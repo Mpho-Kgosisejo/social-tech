@@ -1,5 +1,6 @@
 import Link from "next/link"
-import {Container, Menu} from "semantic-ui-react"
+import {Container, Menu, Button} from "semantic-ui-react"
+import AuthLayout from "./Auth/AuthLayout";
 
 const Nav = () => (
     <Menu inverted fixed="top">
@@ -10,6 +11,10 @@ const Nav = () => (
             <Link href="/about" prefetch passHref>
                 <Menu.Item as="a">About</Menu.Item>
             </Link>
+
+            <Menu.Menu position="right">
+                <AuthLayout/>
+            </Menu.Menu>
         </Container>
     </Menu>
 )
