@@ -1,0 +1,1 @@
+export const FIELD_CANT_BE_EMPTY = "field can not be empty"

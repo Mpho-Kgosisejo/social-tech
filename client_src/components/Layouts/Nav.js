@@ -1,6 +1,6 @@
 import Link from "next/link"
 import {Container, Menu, Button} from "semantic-ui-react"
-import AuthLayout from "./Auth/AuthLayout";
+import AuthLayout from "./Features/Auth/AuthLayout";
 
 const Nav = () => (
     <Menu inverted fixed="top">
