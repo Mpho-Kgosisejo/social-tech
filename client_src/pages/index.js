@@ -1,7 +1,7 @@
 import Layout from "../components/Layouts/Layout"
 
 const Index = () => (
-    <Layout>
+    <Layout title="Home">
         Index
     </Layout>
 )

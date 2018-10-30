@@ -1,7 +1,8 @@
-import {Form, Button, Icon, Grid} from "semantic-ui-react"
+import {Form, Button, Icon, Grid, Input, Label} from "semantic-ui-react"
 
-import InLineError from "../../../Messages/InLineError"
+import {InLineError} from "../../../Messages/InLineMessage"
 import * as MessageTypes from "../../../../src/Types/MessageTypes"
+import {MainMessage} from "../../../Messages/Message"
 
 class SignInForm extends React.Component{
     constructor(){
@@ -13,7 +14,12 @@ class SignInForm extends React.Component{
                 password: ""
             },
             loading: false,
-            errors: {}
+            errors: {},
+            feedback: {
+                type: "info",
+                header: "",
+                message: ""
+            }
         }
     }
 
@@ -31,7 +37,31 @@ class SignInForm extends React.Component{
             ...this.state.errors,
             errors
         })
+
+        if (Object.keys(errors).length === 0){
+            this.setState({loading: true})
+            setTimeout(() => {
+
+                this.setState({
+                    feedback: {
+                        type: "error",
+                        header: "",
+                        message: "Wrong password or email..."
+                    }
+                })
+                this.resetInputs()
+            }, 5000)
+            
+        }
     }
+
+    resetInputs = () => this.setState({
+        user: {
+            login: "",
+            password: ""
+        },
+        loading: false
+    })
 
     validate = (user) => {
         const errors = {}
@@ -46,26 +76,28 @@ class SignInForm extends React.Component{
     }
 
     render(){
-        const {user, loading, errors} = this.state
+        const {user, loading, errors, feedback} = this.state
 
         return (
             <React.Fragment>
                 <Grid columns="equal">
                     <Grid.Column></Grid.Column>
                     <Grid.Column mobile={16} tablet={10} computer={8}>
+                        {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} />}
+                        
                         <Form onSubmit={this.onSubmit} loading={loading}>
                             <Form.Field>
                                 <label>Login:</label>
                                 <input value={user.login} onChange={this.onChange} name="login" placeholder="Username or email" />
-                                {errors.login && <InLineError error={errors.login}/>}
+                                {errors.login && <InLineError message={errors.login}/>}
                             </Form.Field>
                             <Form.Field>
                                 <label>Password:</label>
-                                <input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
-                                {errors.password && <InLineError error={errors.password}/>}
+                                <Input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
+                                {errors.password && <InLineError message={errors.password}/>}
                             </Form.Field>
 
-                            <Button animated fluid type="submit">
+                            <Button animated fluid type="submit" loading={loading}>
                                 <Button.Content visible>Sign In</Button.Content>
                                 <Button.Content hidden>
                                     <Icon name="sign in"/>

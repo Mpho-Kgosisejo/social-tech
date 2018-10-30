@@ -56,7 +56,7 @@ class AuthLayout extends React.Component {
         return (
             <React.Fragment>
                 <Modal open={openModal} onClose={this.closeModal}>
-                    {/* <Modal.Header>Modal Header</Modal.Header> */}
+                    <Modal.Header>Auth</Modal.Header>
                     <Modal.Content scrolling>
                         <Tab menu={{secondary: true, pointing: true}} panes={tabPanes} activeIndex={activeTabIndex} onTabChange={this.taggleTab} />
                     </Modal.Content>
