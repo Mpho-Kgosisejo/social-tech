@@ -5,6 +5,7 @@ import {InLineError} from "../../../Messages/InLineMessage"
 import * as MessageTypes from "../../../../src/Types/MessageTypes"
 import {MainMessage} from "../../../Messages/Message"
 import api from "../../../../src/providers/APIRequest"
+import {login} from "../../../../src/providers/AuthSession"
 
 class SignInForm extends React.Component{
     constructor(){
@@ -86,6 +87,7 @@ class SignInForm extends React.Component{
                 }
             })
 
+            login(res.data)
             this.resetInputs()
         }
         else if (res.status === 401){
