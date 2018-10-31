@@ -1,8 +1,10 @@
 import {Form, Button, Icon, Grid, Input, Label} from "semantic-ui-react"
+import validator from "validator"
 
 import {InLineError} from "../../../Messages/InLineMessage"
 import * as MessageTypes from "../../../../src/Types/MessageTypes"
 import {MainMessage} from "../../../Messages/Message"
+import api from "../../../../src/providers/APIRequest"
 
 class SignInForm extends React.Component{
     constructor(){
@@ -39,29 +41,73 @@ class SignInForm extends React.Component{
         })
 
         if (Object.keys(errors).length === 0){
-            this.setState({loading: true})
-            setTimeout(() => {
-
-                this.setState({
-                    feedback: {
-                        type: "error",
-                        header: "",
-                        message: "Wrong password or email..."
-                    }
-                })
-                this.resetInputs()
-            }, 5000)
-            
+            this.doSignIn()
         }
     }
 
-    resetInputs = () => this.setState({
-        user: {
-            login: "",
-            password: ""
-        },
-        loading: false
-    })
+    resetInputs = (resetAll = true) => {
+        if (resetAll){
+            this.setState({
+                user: {
+                    login: "",
+                    password: ""
+                },
+                loading: false
+            })
+        }else{
+            this.setState({
+                user: {
+                    ...this.state.user,
+                    password: ""
+                },
+                loading: false
+            })
+        }
+    }
+
+    doSignIn = async () => {
+        const loginType = (!validator.isEmail(this.state.user.login)) ? "username" : "email"
+
+        this.setState({loading: true})
+        const res = await api.user.signin({
+            login: {
+                key: loginType,
+                value: this.state.user.login
+            },
+            password: this.state.user.password,
+        })
+
+        if (res.status === 200){
+            this.setState({
+                feedback: {
+                    type: "success",
+                    header: MessageTypes.SIGNIN_SUCCESS,
+                    message: MessageTypes.SUCCESSFULLY_LOGGED_IN
+                }
+            })
+
+            this.resetInputs()
+        }
+        else if (res.status === 401){
+            this.setState({
+                feedback: {
+                    type: "error",
+                    header: MessageTypes.INCORRECT_CREDENTIALS,
+                    message: MessageTypes.INCORRECT_LOGIN_OR_PASSWORD
+                }
+            })
+            this.resetInputs(false)
+        }else{
+            this.setState({
+                feedback: {
+                    type: "error",
+                    header: MessageTypes.UNEXPECTED_ERROR,
+                    message: MessageTypes.TRY_AGAIN_LATER
+                }
+            })
+            this.resetInputs(false)
+        }
+    }
 
     validate = (user) => {
         const errors = {}

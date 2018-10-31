@@ -1,9 +1,11 @@
 import {Form, Button, Icon, Container, Grid, Input} from "semantic-ui-react"
 import validator from "validator"
 
-import {FIELD_CANT_BE_EMPTY, INVALID_EMAIL, valueMustBeInLength, PASSWORD_MISMATCH} from "../../../../src/Types/MessageTypes"
-import {InLineError, InLineWarning} from "../../../Messages/InLineMessage"
+import {FIELD_CANT_BE_EMPTY, INVALID_EMAIL, valueMustBeInLength, PASSWORD_MISMATCH, SIGNUP_SUCCESS} from "../../../../src/Types/MessageTypes"
+import {InLineError} from "../../../Messages/InLineMessage"
 import {MainMessage} from "../../../Messages/Message"
+import api from "../../../../src/providers/APIRequest"
+import * as MessagesTypes from "../../../../src/Types/MessageTypes"
 
 class SignUpForm extends React.Component{
     constructor(){
@@ -62,18 +64,7 @@ class SignUpForm extends React.Component{
         })
         
         if (Object.keys(errors).length === 0){
-            this.setState({loading: true})
-            setTimeout(() => {
-
-                this.setState({
-                    feedback: {
-                        type: "success",
-                        header: "Demo",
-                        message: "Demo task done..."
-                    }
-                })
-                this.resetInputs()
-            }, 5000)
+            this.doSignUp()
         }
     }
 
@@ -120,6 +111,55 @@ class SignUpForm extends React.Component{
             errors.confirmpassword = FIELD_CANT_BE_EMPTY
         }
         return (errors)
+    }
+
+    doSignUp = async () => {
+        this.setState({loading: true})
+        const res = await api.user.signup(this.state.user);
+
+        if (res.status === 200){
+            this.setState({
+                feedback: {
+                    type: "success",
+                    header: MessagesTypes.SIGNUP_SUCCESS,
+                    message: MessagesTypes.SUCCESSFULLY_SIGNUP
+                }
+            })
+            this.resetInputs()
+            return
+        }
+        else if (res.status === 422){
+            if (res.data && res.data.error && res.data.error.message){
+                this.setState({
+                    feedback: {
+                        type: "error",
+                        header: "",
+                        message: res.data.error.message
+                    },
+                    user: {
+                        ...this.state.user,
+                        password: "",
+                        confirmpassword: ""
+                    },
+                    loading: false
+                })
+                return
+            }
+        }
+        
+        this.setState({
+            feedback: {
+                type: "error",
+                header: MessageTypes.UNEXPECTED_ERROR,
+                message: MessageTypes.TRY_AGAIN_LATER
+            },
+            user: {
+                ...this.state.user,
+                password: "",
+                confirmpassword: ""
+            },
+            loading: false
+        })
     }
 
     render(){
