@@ -3,7 +3,6 @@ import {Container} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
-import ContextProvider from "../../src/providers/ContextProvider"
 import "../../static/css/style.css"
 
 const Layout = ({children, title = ""}) => (
@@ -22,15 +21,13 @@ const Layout = ({children, title = ""}) => (
         </Head>
 
        <div className="mainLayout">
-            <ContextProvider>
-                <Nav />
+            <Nav />
 
-                <Container className="childLayout">
-                    {children}
-                </Container>
+            <Container className="childLayout">
+                {children}
+            </Container>
 
-                <Footer />
-            </ContextProvider>
+            <Footer />
        </div>
     </React.Fragment>
 )
