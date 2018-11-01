@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import Footer from "./Footer";
 import "../../static/css/style.css"
 
-const Layout = ({children, title = ""}) => (
+const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = false}) => (
     <React.Fragment>
         <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,19 +15,19 @@ const Layout = ({children, title = ""}) => (
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css" />
             {/* If you offline... */}
             {/* <link rel="stylesheet" href="/static/css/semantic-2.3.0.min.css" /> */}
-            {/* <link ref="stylesheet" href="/static/css/main.css" /> */}
+            <link ref="stylesheet" href="/static/css/sstyle.css" />
             
             <title>{title}</title>
         </Head>
 
        <div className="mainLayout">
-            <Nav />
+            {includeNav && <Nav />}
 
-            <Container className="childLayout">
+            <Container className="childLayout" fluid={includeContainer}>
                 {children}
             </Container>
 
-            <Footer />
+            {includeFooter && <Footer />}
        </div>
     </React.Fragment>
 )

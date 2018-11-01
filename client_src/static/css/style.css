@@ -3,3 +3,10 @@
 .mainLayout .childLayout{
     margin-top: 75px;
 }
+
+.appSegment{
+    background-color: #eee;
+    border: 0px;
+    padding: "0px";
+    /* boxShadow: "#000" */
+}

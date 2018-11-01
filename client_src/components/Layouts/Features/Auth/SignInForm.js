@@ -5,7 +5,7 @@ import {InLineError} from "../../../Messages/InLineMessage"
 import * as MessageTypes from "../../../../src/Types/MessageTypes"
 import {MainMessage} from "../../../Messages/Message"
 import api from "../../../../src/providers/APIRequest"
-import {login} from "../../../../src/providers/AuthSession"
+import {login} from "../../../../src/providers/LoginSession"
 
 class SignInForm extends React.Component{
     constructor(){
