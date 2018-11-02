@@ -48,7 +48,14 @@ export default class MyApp extends App {
         return (
             <Container>
                 <ContextAPI.Provider value={{state: this.state}}>
-                    <Segment className="appsegment" style={{position: "static", border: "0px", paddingRight: "0px", paddingLetf: "0px", boxShadow: "0px 0px #fff", borderRadius: "0px"}}>
+                    <Segment
+                        className="appsegment"
+                        style={{position: "static",
+                        border: "0px", paddingRight: "0px",
+                        paddingLetf: "0px",
+                        boxShadow: "0px 0px #fff",
+                        borderRadius: "0px"}}
+                    >
                         <Dimmer active={root_loading} inverted>
                             <Loader size="large">Loading page...</Loader>
                         </Dimmer>
@@ -56,8 +63,6 @@ export default class MyApp extends App {
                         <Component {...pageProps} login={this.state.login} lol={{}} />
                     </Segment>
                 </ContextAPI.Provider>
-
-                <style jsx>{``}</style>
             </Container>
         )
     }

@@ -6,6 +6,7 @@ import * as MessageTypes from "../../../../src/Types/MessageTypes"
 import {MainMessage} from "../../../Messages/Message"
 import api from "../../../../src/providers/APIRequest"
 import {login} from "../../../../src/providers/LoginSession"
+import { isEmptyObj } from "../../../../src/utils/Objs";
 
 class SignInForm extends React.Component{
     constructor(){
@@ -89,6 +90,7 @@ class SignInForm extends React.Component{
 
             login(res.data)
             this.resetInputs()
+            location.reload(true)
         }
         else if (res.status === 401){
             this.setState({
@@ -134,12 +136,12 @@ class SignInForm extends React.Component{
                         {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} />}
                         
                         <Form onSubmit={this.onSubmit} loading={loading}>
-                            <Form.Field>
+                            <Form.Field error={!isEmptyObj(errors.login)}>
                                 <label>Login:</label>
                                 <input value={user.login} onChange={this.onChange} name="login" placeholder="Username or email" />
                                 {errors.login && <InLineError message={errors.login}/>}
                             </Form.Field>
-                            <Form.Field>
+                            <Form.Field error={!isEmptyObj(errors.password)}>
                                 <label>Password:</label>
                                 <Input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
                                 {errors.password && <InLineError message={errors.password}/>}

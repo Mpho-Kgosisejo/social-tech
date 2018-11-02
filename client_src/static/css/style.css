@@ -4,9 +4,6 @@
     margin-top: 75px;
 }
 
-.appSegment{
-    background-color: #eee;
-    border: 0px;
-    padding: "0px";
-    /* boxShadow: "#000" */
+.appNav{
+    height: 54px;
 }
