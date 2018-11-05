@@ -5,7 +5,7 @@ import {FIELD_CANT_BE_EMPTY, INVALID_EMAIL, valueMustBeInLength, PASSWORD_MISMAT
 import {InLineError} from "../../../Messages/InLineMessage"
 import {MainMessage} from "../../../Messages/Message"
 import api from "../../../../src/providers/APIRequest"
-import * as MessagesTypes from "../../../../src/Types/MessageTypes"
+import * as MessageTypes from "../../../../src/Types/MessageTypes"
 
 class SignUpForm extends React.Component{
     constructor(){
@@ -121,8 +121,8 @@ class SignUpForm extends React.Component{
             this.setState({
                 feedback: {
                     type: "success",
-                    header: MessagesTypes.SIGNUP_SUCCESS,
-                    message: MessagesTypes.SUCCESSFULLY_SIGNUP
+                    header: MessageTypes.SIGNUP_SUCCESS,
+                    message: MessageTypes.SUCCESSFULLY_SIGNUP
                 }
             })
             this.resetInputs()
