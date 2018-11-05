@@ -6,6 +6,8 @@ import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
 import {getLogin} from "../src/providers/LoginSession"
 
+import mock from "../src/providers/data/mock"
+
 export default class MyApp extends App {
     constructor(props){
         super(props)
