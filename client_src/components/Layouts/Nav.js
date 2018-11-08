@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Router from "next/router"
-import {Container, Menu, Image} from "semantic-ui-react"
+import {Container, Menu, Image, Dropdown} from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
@@ -11,6 +11,13 @@ const handleLogout = () => {
     Router.push({pathname: "/"})
     location.reload(true)
 }
+
+const options = [
+    { key: 1, text: 'Our Story', value: 1 },
+    { key: 2, text: 'Our Chefs', value: 2 },
+    { key: 3, text: 'Contact Us', value: 3 },
+    { key: 4, text: 'FAQs', value: 4 },
+  ]
 
 const RightNav = () => (
     <React.Fragment>
@@ -39,8 +46,9 @@ const Nav = () => (
                         <Link href="/" prefetch passHref>
                             <Menu.Item as="a">Home</Menu.Item>
                         </Link>
+
                         <Link href="/about" prefetch passHref>
-                            <Menu.Item as="a">About</Menu.Item>
+                            <Dropdown text='About' options={options} simple item />
                         </Link>
                         <Link href="/gallery" prefetch passHref>
                             <Menu.Item as="a">Gallery</Menu.Item>
