@@ -31,7 +31,7 @@ const RightNav = () => (
 )
 
 const Nav = () => (
-    <Menu inverted fixed="top" className="appNav">
+    <Menu inverted secondary fixed="top" className="appNav">
         <Container>
             <ContextAPI.Consumer>
                 {({state}) => (
@@ -41,6 +41,9 @@ const Nav = () => (
                         </Link>
                         <Link href="/about" prefetch passHref>
                             <Menu.Item as="a">About</Menu.Item>
+                        </Link>
+                        <Link href="/gallery" prefetch passHref>
+                            <Menu.Item as="a">Gallery</Menu.Item>
                         </Link>
                         {(state.login && state.login.isAdmin) && 
                             <Link href="/dashboard" prefetch passHref>
