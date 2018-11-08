@@ -35,6 +35,14 @@ const API = {
                 .catch(err => err.response)
             )
         }
+    },
+    web:{
+        about: () =>{
+            if (IS_MOCK)
+            {
+                return (mock.about().then(res => res))
+            }
+        }
     }
 }
 

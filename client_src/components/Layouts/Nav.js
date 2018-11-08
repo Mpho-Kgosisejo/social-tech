@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Router from "next/router"
-import {Container, Menu, Image, Dropdown} from "semantic-ui-react"
+import {Container, Menu, Image, Dropdown, Divider} from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
@@ -11,6 +11,8 @@ const handleLogout = () => {
     Router.push({pathname: "/"})
     location.reload(true)
 }
+
+const handleClick = e => this.reply_click(e.target.id);
 
 const options = [
     { key: 1, text: 'Our Story', value: 1 },
@@ -47,9 +49,25 @@ const Nav = () => (
                             <Menu.Item as="a">Home</Menu.Item>
                         </Link>
 
-                        <Link href="/about" prefetch passHref>
-                            <Dropdown text='About' options={options} simple item />
-                        </Link>
+                        <Dropdown text='About'simple item>
+                            <Dropdown.Menu>
+                                <Link href="/about" prefetch passHref>
+                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                </Link>
+                                <Divider />
+                                <Link href="/about" prefetch passHref>
+                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                </Link>
+                                <Divider />
+                                <Link href="/about" prefetch passHref>
+                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                </Link>
+                                <Divider />
+                                <Link href="/about" prefetch passHref>
+                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                </Link>
+                            </Dropdown.Menu>
+                        </Dropdown>
                         {(state.login && state.login.isAdmin) && 
                             <Link href="/dashboard" prefetch passHref>
                                 <Menu.Item as="a">Dashboard</Menu.Item>
