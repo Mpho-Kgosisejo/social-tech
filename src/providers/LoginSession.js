@@ -1,25 +1,24 @@
 import jwt from "jsonwebtoken"
-
-import appConfig from "../config/AppConfig"
+import Config from "react-global-configuration"
 
 export const login = (data) => {
     const loginPayload = {
         token: data.id,
         isAdmin: true
     }
-    const jwtJson = jwt.sign(loginPayload, appConfig.jwt.secret)
+    const jwtJson = jwt.sign(loginPayload, Config.get("jwt.secret"))
 
-    localStorage.setItem(appConfig.jwt.itemName, jwtJson)
+    localStorage.setItem(Config.get("jwt.itemName"), jwtJson)
 }
 
 export const logout = () => {
-    localStorage.removeItem(appConfig.jwt.itemName)
+    localStorage.removeItem(Config.get("jwt.itemName"))
 }
 
 export const getLogin = () => {
     try {
-        const userEncryptJWT = localStorage.getItem(appConfig.jwt.itemName)
-        const userJWT = jwt.verify(userEncryptJWT, appConfig.jwt.secret)
+        const userEncryptJWT = localStorage.getItem(Config.get("jwt.itemName"))
+        const userJWT = jwt.verify(userEncryptJWT, Config.get("jwt.secret"))
 
         return (userJWT)
     } catch (error) {}

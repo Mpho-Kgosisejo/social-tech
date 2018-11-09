@@ -1,17 +1,16 @@
 import axios from "axios"
-import mock from "./data/mock"
+import Config from "react-global-configuration"
 
-const IS_MOCK = true
-const API_ENDPOINT = "http://localhost:3000/api"
+import mock from "./data/mock"
 
 const API = {
     user: {
         signin: (credentials) => {
-            if (IS_MOCK){
+            if (Config.get("api.isMock")){
                 return (mock.login().then(res => res))
             }
             return (
-                axios.post(`${API_ENDPOINT}/Users/login`, {
+                axios.post(`${Config.get("api.endpoint")}/Users/login`, {
                     [credentials.login.key]: credentials.login.value,
                     password: credentials.password
                 })
@@ -20,11 +19,11 @@ const API = {
             )
         },
         signup: (user) => {
-            if (IS_MOCK){
+            if (Config.get("api.isMock")){
                 return (mock.signup().then(res => res))
             }
             return (
-                axios.post(`${API_ENDPOINT}/Users`, {
+                axios.post(`${Config.get("api.endpoint")}/Users`, {
                     realm: "", // research what this does...
                     username: user.username,
                     email: user.email,
