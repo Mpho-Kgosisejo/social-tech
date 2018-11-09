@@ -35,6 +35,13 @@ const API = {
                 .catch(err => err.response)
             )
         }
+    },
+    menu: {
+        menu_items : () => {
+            if (IS_MOCK){
+                return(mock.menu().then(res => res))
+            }
+        }
     }
 }
 

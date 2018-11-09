@@ -50,6 +50,10 @@ const Nav = () => (
                         <Link href="/about" prefetch passHref>
                             <Dropdown text='About' options={options} simple item />
                         </Link>
+
+                        <Link href="/menu" prefetch passHref>
+                            <Menu.Item as="a">Menu</Menu.Item>
+                        </Link>
                         {(state.login && state.login.isAdmin) && 
                             <Link href="/dashboard" prefetch passHref>
                                 <Menu.Item as="a">Dashboard</Menu.Item>
