@@ -52,7 +52,7 @@ class Menu_Items extends React.Component {
                                 <Card.Description>{item.description}</Card.Description>
                             </Card.Content>
                             <Card.Content extra>
-                            <Button disabled={item.available ? false : true} primary>
+                            <Button disabled={!item.available} primary>
                                 Order
                             </Button>
               </Card.Content>
