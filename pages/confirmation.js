@@ -1,15 +1,20 @@
 import Layout from "../components/Layouts/Layout"
 
-const Confirmation = ({url}) => (
-    <Layout includeNav={false}>
-        <pre>{JSON.stringify(url)}</pre>
-        Confirmation
-    </Layout>
-)
+class Confirmation extends React.Component{
+    constructor(props){
+        super(props)
+    }
 
-Confirmation.getInitialProps = async (props) => {
-    console.log("props:", props)
-    return ({test: "ok"})
+    componentDidMount(){
+        console.log("props", this.props)
+    }
+
+    render(){return (
+        <Layout includeNav={false} includeFooter={false}>
+            <pre>{JSON.stringify(this.props.router.query, "", 2)}</pre>
+            Confirmation
+        </Layout>
+    )}
 }
 
 export default Confirmation

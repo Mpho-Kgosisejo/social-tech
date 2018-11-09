@@ -3,8 +3,8 @@ import Config from "react-global-configuration"
 
 export const login = (data) => {
     const loginPayload = {
-        token: data.id,
-        isAdmin: true
+        token: data.user.token,
+        isAdmin: data.user.isAdmin
     }
     const jwtJson = jwt.sign(loginPayload, Config.get("jwt.secret"))
 

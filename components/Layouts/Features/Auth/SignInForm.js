@@ -88,16 +88,16 @@ class SignInForm extends React.Component{
                 }
             })
 
-            login(res.data)
+            login(res.data.data)
             this.resetInputs()
-            location.reload(true)
+            //location.reload(true)
         }
         else if (res.status === 401){
             this.setState({
                 feedback: {
                     type: "error",
-                    header: MessageTypes.INCORRECT_CREDENTIALS,
-                    message: MessageTypes.INCORRECT_LOGIN_OR_PASSWORD
+                    // header: MessageTypes.INCORRECT_CREDENTIALS,
+                    message: res.data.error.message || MessageTypes.INCORRECT_LOGIN_OR_PASSWORD
                 }
             })
             this.resetInputs(false)

@@ -23,8 +23,17 @@ class SignUpForm extends React.Component{
             feedback: {
                 type: "info",
                 header: "",
-                message: ""
+                message: "",
+                messages: {}
             }
+        }
+
+        const mssgs = {
+            email: " ddddd",
+            username: " ffff",
+        }
+        for(const key of Object.keys(mssgs)){
+            console.log(key + " "+ mssgs[key])
         }
     }
 
@@ -114,7 +123,7 @@ class SignUpForm extends React.Component{
     }
 
     doSignUp = async () => {
-        this.setState({loading: true})
+        // this.setState({loading: true})
         const res = await api.user.signup(this.state.user);
 
         if (res.status === 200){
@@ -134,7 +143,7 @@ class SignUpForm extends React.Component{
                     feedback: {
                         type: "error",
                         header: "",
-                        message: res.data.error.message
+                        messages: res.data.error.message
                     },
                     user: {
                         ...this.state.user,
@@ -171,7 +180,12 @@ class SignUpForm extends React.Component{
                     <Grid.Column></Grid.Column>
                     <Grid.Column mobile={16} tablet={10} computer={8}>
                         {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} />}
-                        
+                        {(feedback.messages && Object.keys(feedback.messages).length > 0) &&
+                            Object.keys(feedback.messages).map(el => (
+                                <MainMessage key={Object.keys(feedback.messages).indexOf(el)} type={feedback.type} header={feedback.header} message={`${el} ${feedback.messages[el]}`} />
+                            ))
+                        }
+
                         <Form onSubmit={this.onSubmit} loading={loading}>
                             <Form.Field>
                                 <label>Username:</label>

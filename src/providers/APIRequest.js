@@ -10,12 +10,12 @@ const API = {
                 return (mock.login().then(res => res))
             }
             return (
-                axios.post(`${Config.get("api.endpoint")}/Users/login`, {
+                axios.post(`${Config.get("api.endpoint")}/auth`, {
                     [credentials.login.key]: credentials.login.value,
                     password: credentials.password
                 })
                 .then(res => res)
-                .catch(err => err)
+                .catch(err => err.response)
             )
         },
         signup: (user) => {
@@ -23,11 +23,10 @@ const API = {
                 return (mock.signup().then(res => res))
             }
             return (
-                axios.post(`${Config.get("api.endpoint")}/Users`, {
+                axios.post(`${Config.get("api.endpoint")}/user`, {
                     realm: "", // research what this does...
                     username: user.username,
                     email: user.email,
-                    emailVerified: false,
                     password: user.password
                 })
                 .then(res => res)
