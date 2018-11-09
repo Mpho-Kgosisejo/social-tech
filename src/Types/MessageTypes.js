@@ -10,7 +10,7 @@ export const INCORRECT_LOGIN_OR_PASSWORD = "user login or password might is inco
 export const SIGNIN_SUCCESS = "signin success"
 export const SUCCESSFULLY_LOGGED_IN = "you have successfully logged in"
 export const SIGNUP_SUCCESS = "signup success"
-export const SUCCESSFULLY_SIGNUP = "you have successfully signed up"
+export const SUCCESSFULLY_SIGNUP = "you have successfully signed up, check email to confirm your signup"
 
 export const valueMustBeInLength = length => (`value must be ${length} in length`)
 // #endregion
