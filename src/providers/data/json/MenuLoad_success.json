@@ -72,7 +72,7 @@
                 "id": "10",
                 "name": "Cappuccino",
                 "image": "http://picsum.photos/400/400/?random",
-                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
             }, {
                 "price": "150",
                 "available" : false,

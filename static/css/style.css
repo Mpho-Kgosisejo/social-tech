@@ -18,8 +18,17 @@
     right: 15px;
 }
 
-.menuDiv .menuImage {
-    max-width: 100%;
+.menuPageDiv .MenuImageContainerDiv {
+    /* width : 100%; */
     height: auto;
-    width: auto\9; /* ie8 */
+    padding: 134px 0 80px 0;
+    background-image: url("https://i0.wp.com/www.healthline.com/hlcmsresource/images/AN_images/best-foods-for-diabetes-1296x728.jpg?w=1155&h=1528");
+    background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.menuCardImage
+{
+    height: 300px;
 }

@@ -37,7 +37,7 @@ const API = {
     },
     menu: {
         menu_items : () => {
-            if (IS_MOCK){
+            if (Config.get("api.isMock")){
                 return(mock.menu().then(res => res))
             }
         }
