@@ -1,6 +1,9 @@
 export default {
+    api: {
+        isMock: true
+    },
     jwt: {
-        itemName: "freshEatsJWT",
+        itemName: "fresheatsJWT",
         secret: "fresheats_jwt_secret"
     }
 }
