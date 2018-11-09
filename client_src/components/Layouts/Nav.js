@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Router from "next/router"
-import {Container, Menu, Image} from "semantic-ui-react"
+import {Container, Menu, Image, Dropdown, Divider} from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
@@ -11,6 +11,15 @@ const handleLogout = () => {
     Router.push({pathname: "/"})
     location.reload(true)
 }
+
+const handleClick = e => this.reply_click(e.target.id);
+
+const options = [
+    { key: 1, text: 'Our Story', value: 1 },
+    { key: 2, text: 'Our Chefs', value: 2 },
+    { key: 3, text: 'Contact Us', value: 3 },
+    { key: 4, text: 'FAQs', value: 4 },
+  ]
 
 const RightNav = () => (
     <React.Fragment>
@@ -39,9 +48,26 @@ const Nav = () => (
                         <Link href="/" prefetch passHref>
                             <Menu.Item as="a">Home</Menu.Item>
                         </Link>
-                        <Link href="/about" prefetch passHref>
-                            <Menu.Item as="a">About</Menu.Item>
-                        </Link>
+
+                        <Dropdown text='About'simple item>
+                            <Dropdown.Menu>
+                                <Link href="/about" prefetch passHref>
+                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                </Link>
+                                <Divider />
+                                <Link href="/about" prefetch passHref>
+                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                </Link>
+                                <Divider />
+                                <Link href="/about" prefetch passHref>
+                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                </Link>
+                                <Divider />
+                                <Link href="/about" prefetch passHref>
+                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                </Link>
+                            </Dropdown.Menu>
+                        </Dropdown>
                         {(state.login && state.login.isAdmin) && 
                             <Link href="/dashboard" prefetch passHref>
                                 <Menu.Item as="a">Dashboard</Menu.Item>
