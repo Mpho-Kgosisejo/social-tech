@@ -56,7 +56,7 @@ schema.methods.setConfirmation = function setConfirmation(password){
 }
 
 schema.methods.generateConfirmationUrl = function generateConfirmationUrl(){
-    return (`${process.env.HOST}/confirmation?token=${this.confirmationToken}`)
+    return (`${process.env.HOST}/confirmation?type=email&token=${this.confirmationToken}`)
 }
 
 schema.methods.generateResetPasswordUrl = function generateResetPasswordUrl(){

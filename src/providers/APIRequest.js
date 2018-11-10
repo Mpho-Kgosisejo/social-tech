@@ -24,10 +24,21 @@ const API = {
             }
             return (
                 axios.post(`${Config.get("api.endpoint")}/user`, {
-                    realm: "", // research what this does...
                     username: user.username,
                     email: user.email,
                     password: user.password
+                })
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        confirmEmail: (token) => {
+            if (Config.get("api.isMock")){
+                return (mock.confirmEmail().then(res => res))
+            }
+            return (
+                axios.post(`${Config.get("api.endpoint")}/auth/confirmation`, {
+                    token
                 })
                 .then(res => res)
                 .catch(err => err.response)
