@@ -4,6 +4,10 @@ export const reducer = (state, action) => {
                 ...state,
                 [action.payload.key]: action.payload.value
             })
+        case "LOGIN": return ({
+            ...state,
+            login: action.payload
+        })
         case "TEST": return ({
             ...state,
             test: action.payload

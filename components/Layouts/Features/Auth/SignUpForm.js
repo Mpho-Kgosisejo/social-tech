@@ -27,14 +27,6 @@ class SignUpForm extends React.Component{
                 messages: {}
             }
         }
-
-        const mssgs = {
-            email: " ddddd",
-            username: " ffff",
-        }
-        for(const key of Object.keys(mssgs)){
-            console.log(key + " "+ mssgs[key])
-        }
     }
 
     onChange = (e) => {
@@ -123,7 +115,7 @@ class SignUpForm extends React.Component{
     }
 
     doSignUp = async () => {
-        // this.setState({loading: true})
+        this.setState({loading: true})
         const res = await api.user.signup(this.state.user);
 
         if (res.status === 200){

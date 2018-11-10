@@ -5,29 +5,34 @@ import {Container, Menu, Image} from "semantic-ui-react"
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
 import {logout} from "../../src/providers/LoginSession"
+import {isEmptyObj} from "../../src/utils/Objs"
 
-const handleLogout = () => {
+const handleLogout = (dispatch) => {
     logout()
     Router.push({pathname: "/"})
-    location.reload(true)
+    dispatch({type: "LOGIN", payload: {}})
 }
 
 const RightNav = () => (
-    <React.Fragment>
-        <Link href="/profile" prefetch passHref>
-            <Menu.Item as="a">
-                <Image
-                    size="mini"
-                    alt="no-image"
-                    src={"http://i.pravatar.cc/100"}
-                    avatar
-                    style={{marginRight: "8px"}}
-                />
-                {"Username"}
-            </Menu.Item>
-        </Link>
-        <Menu.Item as="a" onClick={handleLogout}>Logout</Menu.Item>
-    </React.Fragment>
+    <ContextAPI.Consumer>
+        {({state}) => (
+            <React.Fragment>
+                <Link href="/profile" prefetch passHref>
+                    <Menu.Item as="a">
+                        <Image
+                            size="mini"
+                            alt="no-image"
+                            src={"http://i.pravatar.cc/100"}
+                            avatar
+                            style={{marginRight: "8px"}}
+                        />
+                        {"Username"}
+                    </Menu.Item>
+                </Link>
+                <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)}>Logout</Menu.Item>
+            </React.Fragment>
+        )}
+    </ContextAPI.Consumer>
 )
 
 const Nav = () => (
@@ -50,7 +55,7 @@ const Nav = () => (
                     
                         {!state.root_loading &&
                             <Menu.Menu position="right">
-                                {state.loggedIn ? <RightNav /> : <AuthLayout/>}
+                                {!isEmptyObj(state.login) ? <RightNav /> : <AuthLayout/>}
                             </Menu.Menu>
                         }
                     </React.Fragment>

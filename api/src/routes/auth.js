@@ -38,7 +38,7 @@ router.post("/", (req, res) => {
                 res.status(401).json({error: {message: "You must confirm email before you can login"}})
             }
         }else{
-            res.status(401).json({error: {message: "Invaild credentials"}})
+            res.status(401).json({error: {message: "Invalid credentials"}})
         }
     })
     .catch(err => {
