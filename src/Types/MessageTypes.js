@@ -12,7 +12,8 @@ export const SUCCESSFULLY_LOGGED_IN = "you have successfully logged in"
 export const SIGNUP_SUCCESS = "signup success"
 export const SUCCESSFULLY_SIGNUP = "you have successfully signed up, check email to confirm your signup"
 export const CONFIRMATION_EMAIL_ERROR = `invalid confirmation token, ${TRY_AGAIN_LATER}`
-export const CONFIRMATION_EMAIL_SUCCESS = "Email was successfully confirmed" 
+export const CONFIRMATION_EMAIL_SUCCESS = "Email was successfully confirmed"
+export const CONFIRMATION_EMAIL_UNEXPECTED_ERROR = `${UNEXPECTED_ERROR} confirming email`
 
 export const valueMustBeInLength = length => (`value must be ${length} in length`)
 // #endregion

@@ -1,16 +1,12 @@
-import { Header, Segment, Divider } from "semantic-ui-react";
+import { Header, Segment, Divider, Message, Icon } from "semantic-ui-react";
+import Link from "next/link"
 
 import Layout from "../components/Layouts/Layout"
 import {isEmptyObj } from "../src/utils/Objs";
 import {MainMessage} from "../components/Messages/Message"
 import api from "../src/providers/APIRequest"
-import { CONFIRMATION_EMAIL_ERROR, CONFIRMATION_EMAIL_SUCCESS } from "../src/Types/MessageTypes";
-
-const ConfirmationComponent = () => (
-    <>
-        ConfirmationComponent
-    </>
-)
+import { CONFIRMATION_EMAIL_ERROR, CONFIRMATION_EMAIL_SUCCESS, UNEXPECTED_ERROR, CONFIRMATION_EMAIL_UNEXPECTED_ERROR } from "../src/Types/MessageTypes";
+import { PlaceholderMediumParagraph } from "../components/Placeholders/Placeholders";
 
 class Confirmation extends React.Component{
     constructor(props){
@@ -29,7 +25,6 @@ class Confirmation extends React.Component{
 
     processEmailConfirmation = async (token) => {
         const res = await api.user.confirmEmail(token)
-        console.log("processEmailConfirmation()", res.data)
 
         if (res.status === 200){
             this.setState({
@@ -62,16 +57,21 @@ class Confirmation extends React.Component{
                     }
                 }
             }
-            console.log("no empty or no token")
             this.setState({
                 loading: false,
                 feedback: {
                     ...this.state.feedback,
-                    message: "d(-_-)b"
+                    message: CONFIRMATION_EMAIL_UNEXPECTED_ERROR
                 }
             })
         }else{
-            console.error("no queries - redirect")
+            this.setState({
+                loading: false,
+                feedback: {
+                    ...this.state.feedback,
+                    message: UNEXPECTED_ERROR
+                }
+            })
         }
     }
 
@@ -85,10 +85,18 @@ class Confirmation extends React.Component{
                         <Header size="huge">{`${confirmationType} Confirmation`}</Header>
                     </Divider>
                     
-                    {loading ? "loading..." :
-                        feedback.message ?
-                            <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} /> :
-                            <ConfirmationComponent />
+                    {loading ? <PlaceholderMediumParagraph /> :
+                        feedback.message &&
+                        <React.Fragment>
+                            <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} />
+
+                            <Message icon>
+                                <Icon name="world"/>
+                                <Message.Content>
+                                    Go to home -> <Link href="/" ><a>Home Page</a></Link>
+                                </Message.Content>
+                            </Message>
+                        </React.Fragment>
                     }
                 </Segment>
             </Layout>

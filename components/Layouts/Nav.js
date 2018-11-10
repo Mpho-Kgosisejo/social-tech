@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Router from "next/router"
-import {Container, Menu, Image} from "semantic-ui-react"
+import {Container, Menu, Image, Placeholder} from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
