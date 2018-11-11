@@ -6,11 +6,13 @@ import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
 import {logout} from "../../src/providers/LoginSession"
 import {isEmptyObj} from "../../src/utils/Objs"
+import * as MessageTypes from "../../src/Types/MessageTypes"
 
 const handleLogout = (dispatch) => {
     logout()
     Router.push({pathname: "/"})
     dispatch({type: "LOGIN", payload: {}})
+    dispatch({type: "ALERT_PORTAL", payload: {type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true}})
 }
 
 const RightNav = () => (

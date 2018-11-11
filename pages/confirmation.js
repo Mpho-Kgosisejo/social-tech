@@ -6,7 +6,7 @@ import {isEmptyObj } from "../src/utils/Objs";
 import {MainMessage} from "../components/Messages/Message"
 import api from "../src/providers/APIRequest"
 import { CONFIRMATION_EMAIL_ERROR, CONFIRMATION_EMAIL_SUCCESS, UNEXPECTED_ERROR, CONFIRMATION_EMAIL_UNEXPECTED_ERROR } from "../src/Types/MessageTypes";
-import { PlaceholderMediumParagraph } from "../components/Placeholders/Placeholders";
+import { PlaceholderMediumParagraph } from "../components/utils/Placeholders";
 
 class Confirmation extends React.Component{
     constructor(props){
@@ -93,7 +93,7 @@ class Confirmation extends React.Component{
                             <Message icon>
                                 <Icon name="world"/>
                                 <Message.Content>
-                                    Go to home -> <Link href="/" ><a>Home Page</a></Link>
+                                    Go to -> <Link href="/" ><a>Home Page</a></Link>
                                 </Message.Content>
                             </Message>
                         </React.Fragment>

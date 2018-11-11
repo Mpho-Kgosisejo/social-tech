@@ -1,9 +1,11 @@
 import Head from "next/head"
-import {Container} from "semantic-ui-react"
+import {Container, Portal, Grid, Segment} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
 import "../../static/css/style.css"
+import ContextAPI from "../../src/config/ContextAPI";
+import AlertPortal from "../utils/AlertPortal";
 
 const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = false}) => (
     <React.Fragment>
@@ -20,15 +22,21 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
             <title>{title}</title>
         </Head>
 
-       <div className="mainLayout">
-            {includeNav && <Nav />}
-
-            <Container className="childLayout" fluid={includeContainer}>
-                {children}
-            </Container>
-
-            {includeFooter && <Footer />}
-       </div>
+        <ContextAPI.Consumer>
+            {({state}) => (
+                <div className="mainLayout">
+                        {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
+            
+                        {includeNav && <Nav />}
+            
+                        <Container className="childLayout" fluid={includeContainer}>
+                            {children}
+                        </Container>
+            
+                        {includeFooter && <Footer />}
+                    </div>
+            )}
+        </ContextAPI.Consumer>
     </React.Fragment>
 )
 

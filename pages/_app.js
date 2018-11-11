@@ -15,6 +15,13 @@ export default class MyApp extends App {
         this.state = {
             test: "Hello NextJS!",
             root_loading: true,
+            alertPortal: {
+                open: false,
+                type: "",
+                header: "",
+                message: ""
+            },
+            login: {},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
