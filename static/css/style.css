@@ -7,3 +7,41 @@
 .appNav{
     height: 54px;
 }
+
+.fresheats-green-bg{
+    background-color: #082908 !important;
+}
+
+.fresheats-brown-bg{
+    background-color: #c59c70 !important;
+}
+
+.fresheats-green-color{
+    color: #082908 !important;
+}
+
+.fresheats-brown-color{
+    color: #c59c70 !important;
+}
+
+.fresheats-green-border-color{
+    border-color: #082908 !important;
+}
+
+.fresheats-brown-border-color{
+    border-top: 1px solid rgba(197,156,112) !important;
+    border-bottom: 1px solid rgba(197,156,112,.1) !important;
+}
+
+.fresheats-green-border-color{
+    border-top: 1px solid rgba(8,41,8) !important;
+    border-bottom: 1px solid rgba(8,41,8,.1) !important;
+}
+
+.fresheats-green-border-color-around{
+    border: 1px solid rgba(8,41,8) !important;
+}
+
+.fresheats-brown-border-color-around{
+    border: 1px solid rgba(197,156,112) !important;
+}
