@@ -1,9 +1,11 @@
+export const UNEXPECTED_ERROR = "unexpected error occurred"
+export const NOT_AUTHORIZED = "you are not authorized"
+export const NOT_AUTHORIZED_PAGE_ACCESS = `${NOT_AUTHORIZED} to access page`
 
 // #region Auth
 export const FIELD_CANT_BE_EMPTY = "field can not be empty"
 export const INVALID_EMAIL = "invalid email"
 export const PASSWORD_MISMATCH = "password mismatch"
-export const UNEXPECTED_ERROR = "unexpected error occurred"
 export const TRY_AGAIN_LATER = "please try again later"
 export const INCORRECT_CREDENTIALS = "incorrect credentials"
 export const INCORRECT_LOGIN_OR_PASSWORD = "user login or password might is incorrect"

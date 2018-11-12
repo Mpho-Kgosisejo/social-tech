@@ -1,12 +1,14 @@
-import { Header, Segment, Divider, Message, Icon } from "semantic-ui-react";
-import Link from "next/link"
+import { Header, Segment, Divider} from "semantic-ui-react";
+
+import Router from "next/router"
 
 import Layout from "../components/Layouts/Layout"
 import {isEmptyObj } from "../src/utils/Objs";
-import {MainMessage} from "../components/Messages/Message"
 import api from "../src/providers/APIRequest"
-import { CONFIRMATION_EMAIL_ERROR, CONFIRMATION_EMAIL_SUCCESS, UNEXPECTED_ERROR, CONFIRMATION_EMAIL_UNEXPECTED_ERROR } from "../src/Types/MessageTypes";
-import { PlaceholderMediumParagraph } from "../components/utils/Placeholders";
+import { CONFIRMATION_EMAIL_ERROR, CONFIRMATION_EMAIL_SUCCESS, CONFIRMATION_EMAIL_UNEXPECTED_ERROR, NOT_AUTHORIZED_PAGE_ACCESS } from "../src/Types/MessageTypes";
+import { PlaceholderSmallParagraph } from "../components/utils/Placeholders";
+import ToHomeMessage from "../components/Messages/ToHomeMessage"
+import {MainMessage} from "../components/Messages/Message"
 
 class Confirmation extends React.Component{
     constructor(props){
@@ -21,6 +23,8 @@ class Confirmation extends React.Component{
                 message: ""
             }
         }
+
+        console.log(props)
     }
 
     processEmailConfirmation = async (token) => {
@@ -46,17 +50,14 @@ class Confirmation extends React.Component{
     }
 
     componentDidMount(){
-        const {query} = this.props.router
+        const {token, type} = this.props.router.query
 
-        if (!isEmptyObj(query)){
-            if (query.hasOwnProperty("token") && query["token"].length > 0){
-                if (query.hasOwnProperty("type")){
-                    if (query["type"] === "email"){
-                        this.processEmailConfirmation(query.token)
-                        return
-                    }
-                }
+        if (token && type){
+            if (type === "email"){
+                this.processEmailConfirmation(token)
+                return
             }
+            
             this.setState({
                 loading: false,
                 feedback: {
@@ -69,9 +70,13 @@ class Confirmation extends React.Component{
                 loading: false,
                 feedback: {
                     ...this.state.feedback,
-                    message: UNEXPECTED_ERROR
+                    message: NOT_AUTHORIZED_PAGE_ACCESS
                 }
             })
+            setTimeout(() => {
+                this.props.dispatch({type: "ALERT_PORTAL", payload: {open: true, type: "error", header: "", message: `${NOT_AUTHORIZED_PAGE_ACCESS}: confirmation`}})
+            }, 50)
+            Router.replace({pathname: "/"})
         }
     }
 
@@ -85,20 +90,14 @@ class Confirmation extends React.Component{
                         <Header size="huge">{`${confirmationType} Confirmation`}</Header>
                     </Divider>
                     
-                    {loading ? <PlaceholderMediumParagraph /> :
+                    {loading ? <PlaceholderSmallParagraph /> :
                         feedback.message &&
                         <React.Fragment>
                             <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} />
-
-                            <Message icon>
-                                <Icon name="world"/>
-                                <Message.Content>
-                                    Go to -> <Link href="/" ><a>Home Page</a></Link>
-                                </Message.Content>
-                            </Message>
                         </React.Fragment>
                     }
                 </Segment>
+                <ToHomeMessage  />
             </Layout>
         )
     }

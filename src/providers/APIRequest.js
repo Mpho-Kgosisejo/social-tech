@@ -43,6 +43,19 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
+        },
+        changePassword: ({token, password}) => {
+            if (Config.get("api.isMock")){
+                return (mock.changePassword().then(res => res))
+            }
+            return (
+                axios.post(`${Config.get("api.endpoint")}/auth/change-password`, {
+                    token,
+                    password
+                })
+                .then(res => res)
+                .catch(err => err.response)
+            )
         }
     }
 }
