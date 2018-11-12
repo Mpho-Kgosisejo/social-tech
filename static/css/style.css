@@ -67,6 +67,14 @@
     float: right;
 }
 
+.myImgs
+{
+    height: auto !important; 
+    width: auto  !important; 
+    max-width: 300px; 
+    max-height: 300px;
+}
+
  /* -------------------------------- */
 
  /* Footer styling */

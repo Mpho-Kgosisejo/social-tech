@@ -1,47 +1,64 @@
-import { Container, Divider, Card, Image, Icon, Header, Segment } from "semantic-ui-react"
+import { Container, Divider, Card, Image, Icon, Header, Segment, Loader } from "semantic-ui-react"
 import Layout from "../../Layout"
+import api from "../../../../src/providers/APIRequest"
 
 class AboutOurChefs extends React.Component {
     constructor() {
         super()
+        this.state = {
+            responseMessage: "",
+            isLoadingData: true,
+            aboutData: {}
+        }
+    }
+
+    getData = async () => {
+        const data = await api.web.about()
+
+        this.setState({ aboutData: data })
+        console.log(this.state.aboutData)
+        console.log(data.data.chefs)
+        if (data.status === 200) {
+            this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.chefs })
+        } else {
+            this.setState({ responseMessage: data.error.message, isLoadingData: false })
+        }
+    }
+
+    componentDidMount() {
+        this.getData()
     }
     render() {
+        const { isLoadingData, aboutData } = this.state
         return (
             <React.Fragment>
                 <Divider hidden />
                 <Container text>
                     <Segment inverted>
-                        <Divider inverted />
                         <Divider horizontal inverted>
-                            <Header className="aboutsHeaders" as='h2'>Our Chefs</Header>
+                            <Header className="aboutsHeaders" as='h2'>{aboutData.page_header}</Header>
                         </Divider>
                     </Segment>
-                    <Card.Group itemsPerRow={2}>
+                    {isLoadingData ? <Loader active inline='centered'>Loading Menu</Loader> : <Card.Group itemsPerRow={2} stackable>
+                    {aboutData.chef_details.map(item => (
                         <Card >
-                            <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
+                            <Image className="myImgs" src={item.image_url} />
                             <Card.Content>
-                                <Card.Header>Matthew</Card.Header>
+                                <Card.Header>{item.name}</Card.Header>
                                 <Card.Meta>
-                                    <span className='date'>Joined in 2015</span>
+                                    <span className='date'>{item.specialty}</span>
                                 </Card.Meta>
-                                <Card.Description>Matthew is a musician living in Nashville.</Card.Description>
+                                <Card.Description>{item.background}</Card.Description>
                             </Card.Content>
                             <Card.Content extra>
+                                <a>
+                                    <Icon name='star' />
+                                    {item.rating} rating
+                                </a>
                             </Card.Content>
-                        </Card>
-                        <Card>
-                            <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' />
-                            <Card.Content>
-                                <Card.Header>Matthew</Card.Header>
-                                <Card.Meta>
-                                    <span className='date'>Joined in 2015</span>
-                                </Card.Meta>
-                                <Card.Description>Matthew is a musician living in Nashville.</Card.Description>
-                            </Card.Content>
-                            <Card.Content extra>
-                            </Card.Content>
-                        </Card>
-                    </Card.Group>
+                        </Card>               
+                     )) }
+                     </Card.Group>}
                 </Container>
 
                 <Divider hidden />

@@ -1,61 +1,64 @@
-import { Container, Divider, Header, Segment } from "semantic-ui-react"
+import { Container, Divider, Header, Segment, Loader, Icon, Grid } from "semantic-ui-react"
 import Layout from "../../Layout"
 import api from "../../../../src/providers/APIRequest"
 
 class AboutOurStory extends React.Component {
+   
     constructor() {
         super()
         this.state = {
-            aboutData : {}
+            responseMessage: "",
+            isLoadingData: true,
+            aboutData: {}
         }
     }
 
-    getData = async() => {
+    getData = async () => {
         const data = await api.web.about()
-        this.setState({aboutData : data})
-        console.log("==========", this.state.aboutData)
+
+        this.setState({ aboutData: data })
+        console.log(this.state.aboutData)
+        console.log(data.data.chefs)
+        if (data.status === 200) {
+            this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.our_story })
+        } else {
+            this.setState({ responseMessage: data.error.message, isLoadingData: false })
+        }
     }
 
-    componentDidMount()
-    {
+    componentDidMount() {
         this.getData()
     }
 
     render() {
+        const { isLoadingData, aboutData } = this.state
         return (
             <React.Fragment>
                 <Divider hidden />
                 <Container text>
                     <Segment inverted>
-                        <Divider inverted />
                         <Divider horizontal inverted>
-                            <Header className="aboutsHeaders" as='h2'>Our Story</Header>
+                            <Header className="aboutsHeaders" as='h2'>{aboutData.page_header}</Header>
                         </Divider>
                     </Segment>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                        Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
-                        consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                        In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
-                        link mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
-                        vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-                        enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla
-                        ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
-                        Curabitur ullamcorper ultricies nisi.
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                        Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
-                        consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-                        In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
-                        link mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
-                        vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-                        enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla
-                        ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
-                        Curabitur ullamcorper ultricies nisi.
-                    </p>
+                    <p>{aboutData.description}</p>
+                    <Divider hidden/>
+                    {isLoadingData ? <Loader active inline='centered'>Loading Menu</Loader> : <Grid>
+                    {aboutData.tags.map(item => (
+                        
+                        <Grid.Row>
+                        <Grid.Column width={16}>
+                            <Header as="h1" icon textAlign='center'> <Icon name={item.icon_tag} /></Header>
+                        </Grid.Column>
+                        <Grid.Column width={16}>
+                            <Header textAlign='center'>{item.tag_name}</Header>
+                            <p>{item.tag_descritption}</p>
+                        </Grid.Column>
+                        </Grid.Row>
+                        
+                    ))}
+                    </Grid>
+                    }   
                 </Container>
 
                 <Divider hidden />
