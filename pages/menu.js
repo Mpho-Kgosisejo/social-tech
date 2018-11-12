@@ -8,6 +8,7 @@ const Menu = (props) => (
         <div className="MenuImageContainerDiv">
             <Container>
                 <Header as='h1'>First Header</Header>
+                <Header as='h1'>First Header</Header>
             </Container>
         </div>
         <Layout title="Menu">

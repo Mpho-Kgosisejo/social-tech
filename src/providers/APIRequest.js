@@ -35,10 +35,17 @@ const API = {
             )
         }
     },
-    menu: {
-        menu_items : () => {
+    Foodmenu: {
+        Foodmenu_items : () => {
             if (Config.get("api.isMock")){
-                return(mock.menu().then(res => res))
+                return(mock.foodmenu().then(res => res))
+            }
+        }
+    },
+    Spicemenu: {
+        Spicemenu_items : () => {
+            if (Config.get("api.isMock")){
+                return(mock.spicemenu().then(res => res))
             }
         }
     }
