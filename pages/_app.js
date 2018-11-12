@@ -1,6 +1,8 @@
 import React from 'react'
 import App, { Container } from 'next/app'
-import {Segment, Dimmer, Loader} from "semantic-ui-react"
+import Config from "react-global-configuration"
+import devConfig from "../src/config/devConfig"
+import prodConfig from "../src/config/prodConfig"
 
 import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
@@ -15,6 +17,19 @@ export default class MyApp extends App {
             root_loading: true,
             loggedIn: false,
             dispatch: (action) => this.setState(state => reducer(state, action))
+        }
+    }
+
+    UNSAFE_componentWillMount(){
+        if (process.browser){
+            if (window.location.hostname === "localhost"){
+                console.log("Running: Dev")
+                Config.set(devConfig, {freeze: false})
+            }else{
+                Config.set(prodConfig, {freeze: false})
+            }
+        }else{
+            // Config.set(prodConfig)
         }
     }
 
@@ -43,25 +58,11 @@ export default class MyApp extends App {
 
     render () {
         const { Component, pageProps } = this.props
-        const {root_loading} = this.state
 
         return (
             <Container>
                 <ContextAPI.Provider value={{state: this.state}}>
-                    <Segment
-                        className="appsegment"
-                        style={{position: "static",
-                        border: "0px", paddingRight: "0px",
-                        paddingLetf: "0px",
-                        boxShadow: "0px 0px #fff",
-                        borderRadius: "0px"}}
-                    >
-                        <Dimmer active={root_loading} inverted>
-                            <Loader size="large">Loading page...</Loader>
-                        </Dimmer>
-
-                        <Component {...pageProps} login={this.state.login} lol={{}} />
-                    </Segment>
+                    <Component {...pageProps} login={this.state.login} lol={{}} />
                 </ContextAPI.Provider>
             </Container>
         )

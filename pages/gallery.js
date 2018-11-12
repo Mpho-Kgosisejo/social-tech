@@ -2,49 +2,61 @@ import Router from "next/router"
 import Layout from "../components/Layouts/Layout"
 import ContextAPI from "../src/config/ContextAPI"
 import React from 'react'
-import { Divider, Image, Card } from 'semantic-ui-react'
+import { Divider, Image, Card, Button} from 'semantic-ui-react'
+import axios from 'axios';
+import "../static/css/style.css";
+
+ const API = 'https://graph.facebook.com/v3.2/114272482259035?fields=posts.limit(200){full_picture}&access_token=EAACqlwR17REBAORh8KWT7X0hE66TAnl4XYodGSDJ8byZBg1q8vT2p6CMag8BGc3mUTzWevAH8QKj3MizN1W6P75kax7c3Ig21D3JD3vjO7evXnQCaQpsiPq6s2EyfTk5NpRzM914XeOsvDut6bx7ZByYqVJkskB7O3CbMewwZDZD';
 
 
 class Gallery extends React.Component {
   constructor(){
     super()
 
-    this.state = {
-      mainUrl: "",
-      URLs: [
-        {url: "https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg"},
-        {url: "https://preview.ibb.co/iZ3Lww/img2.jpg"},
-        {url: "https://preview.ibb.co/iQsPOb/img3.jpg"},
-        {url: "https://preview.ibb.co/gFFdib/img4.jpg"},
-        {url: "https://preview.ibb.co/hS5ppG/img5.jpg"},
-        {url: "https://preview.ibb.co/goKtGw/img6.jpg"},
-        {url: "https://preview.ibb.co/bSWjOb/img7.jpg"},
-        {url: "https://preview.ibb.co/i2o9pG/img8.jpg"},
-        {url: "https://preview.ibb.co/bSWjOb/img7.jpg"},
-        {url: "https://preview.ibb.co/bSWjOb/img7.jpg"},
-        {url: "https://preview.ibb.co/bSWjOb/img7.jpg"},
-        {url: "https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg"},
-        {url: "https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg"},
-        {url: "https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg"}
-      ]
-    }
+    this.state ={
+      images: []
+    };
+
+    this.mainImageRef = React.createRef()
   }
+  componentDidMount(){
+    axios.get(API)
+    .then(res => {
+      const images = res.data;
+      this.setState({images: images.posts.data});
+      console.log(images)
+    })
+  }
+
+  autoScroll = () => {
+    window.scrollTo({
+      top: this.mainImageRef,
+      behavior: "smooth"
+    })
+  }
+  
 
   onSelectImage = (url) => this.setState({mainUrl: url})
 
   render(){
-    const {mainUrl, URLs} = this.state
-    const src = "https://images.pexels.com/photos/54455/cook-food-kitchen-eat-54455.jpeg"
-
+    const {mainUrl, URLs, images} = this.state
+   
     return (
       <Layout title="Gallery">
-      <Card.Group itemsPerRow={1}>
+      <Card.Group itemsPerRow={1} >
+        <hidden ref={this.mainImageRef} />
         <Card image={mainUrl} />
       </Card.Group>
-
       <Card.Group itemsPerRow={3}>
-        {URLs.map(el => (
-          <Card image={el.url} onClick={() => this.onSelectImage(el.url)} />
+        {images.map(el => (
+          <Card className="card"
+            key={el.id}
+            onClick={() => {
+              this.onSelectImage(el.full_picture)
+              this.autoScroll()
+            }}
+            style={{height: "250px", background: `url(${el.full_picture})`}}>          
+            </Card>
         ))}
       </Card.Group>
   </Layout>
