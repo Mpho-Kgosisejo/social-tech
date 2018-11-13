@@ -15,7 +15,7 @@ const handleLogout = () => {
 const RightNav = () => (
     <React.Fragment>
         <Link href="/profile" prefetch passHref>
-            <Menu.Item as="a">
+            <Menu.Item as="a" className="fresheats-brown-color">
                 <Image
                     size="mini"
                     alt="no-image"
@@ -26,25 +26,25 @@ const RightNav = () => (
                 {"Username"}
             </Menu.Item>
         </Link>
-        <Menu.Item as="a" onClick={handleLogout}>Logout</Menu.Item>
+        <Menu.Item as="a" onClick={handleLogout} className="fresheats-brown-color">Logout</Menu.Item>
     </React.Fragment>
 )
 
 const Nav = () => (
-    <Menu inverted secondary fixed="top" className="appNav">
+    <Menu inverted fixed="top" className="appNav fresheats-green-bg">
         <Container>
             <ContextAPI.Consumer>
                 {({state}) => (
                     <React.Fragment>
                         <Link href="/" prefetch passHref>
-                            <Menu.Item as="a">Home</Menu.Item>
+                            <Menu.Item as="a" className="fresheats-brown-color">Home</Menu.Item>
                         </Link>
                         <Link href="/gallery" prefetch passHref>
-                            <Menu.Item as="a">Gallery</Menu.Item>
+                            <Menu.Item as="a" className="fresheats-brown-color">Gallery</Menu.Item>
                         </Link>
-                        <Dropdown text='About'simple item>
+                        <Dropdown text='About' className="fresheats-brown-color" simple item>
                             <Dropdown.Menu>
-                                <Link href="/about" prefetch passHref>
+                                <Link href="/about" className="fresheats-brown-color" prefetch passHref>
                                     <Dropdown.Item as="a">Our Story</Dropdown.Item>
                                 </Link>
                                 <Divider />
@@ -63,7 +63,7 @@ const Nav = () => (
                         </Dropdown>
                         {(state.login && state.login.isAdmin) && 
                             <Link href="/dashboard" prefetch passHref>
-                                <Menu.Item as="a">Dashboard</Menu.Item>
+                                <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
                         }
                     

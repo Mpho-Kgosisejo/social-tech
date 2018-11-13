@@ -1,0 +1,45 @@
+.card{
+    background-position: center !important;
+	background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+.angle{
+    color: black;
+    cursor: pointer;
+    position: relative;
+    top: calc(50% - 20px);
+    transform: scale(1);
+    transition: all .2s ease-in-out;
+    z-index: 10;
+  }
+    .right {
+      float: right;
+      margin-right: 1rem;
+    }
+    .left {
+      float: left;
+      margin-left: 1rem;
+    }
+    .right_icon {
+      cursor: pointer !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 10% !important;
+      height: 80% !important;
+      z-index: 2 !important;
+  }
+
+  .left_icon {
+      cursor: pointer !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 190% !important;
+      height: 80% !important;
+      z-index: 2 !important;
+  }
+  .img_height
+  {
+      height: 600px !important;
+  }
