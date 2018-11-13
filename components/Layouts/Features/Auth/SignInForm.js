@@ -1,5 +1,6 @@
-import {Form, Button, Icon, Grid, Input, Label} from "semantic-ui-react"
+import {Form, Button, Icon, Grid, Input} from "semantic-ui-react"
 import validator from "validator"
+import Link from "next/link"
 
 import {InLineError} from "../../../Messages/InLineMessage"
 import * as MessageTypes from "../../../../src/Types/MessageTypes"
@@ -151,6 +152,9 @@ class SignInForm extends React.Component{
                                         <label>Password:</label>
                                         <Input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
                                         {errors.password && <InLineError message={errors.password}/>}
+                                    </Form.Field>
+                                    <Form.Field>
+                                        <Link href="/forgot-password"><a>Forgot password?</a></Link>
                                     </Form.Field>
         
                                     <Button animated fluid type="submit" loading={loading}>

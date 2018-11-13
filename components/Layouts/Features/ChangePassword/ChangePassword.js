@@ -6,7 +6,7 @@ import { FIELD_CANT_BE_EMPTY, valueMustBeInLength, PASSWORD_MISMATCH, UNEXPECTED
 import { InLineError } from "../../../Messages/InLineMessage";
 import api from "../../../../src/providers/APIRequest";
 
-class ForgotPassword extends React.Component {
+class ChangePassword extends React.Component {
     constructor(props){
         super(props)
 
@@ -61,7 +61,7 @@ class ForgotPassword extends React.Component {
             feedback: {
                 type: "error",
                 header: "",
-                message: res.error.message || UNEXPECTED_ERROR
+                message: res.data.error.message || UNEXPECTED_ERROR
             },
             loading: false
         })
@@ -106,10 +106,9 @@ class ForgotPassword extends React.Component {
                 <Grid.Row>
                     <Grid.Column />
                     <Grid.Column mobile={16} tablet={10} computer={8}>
-                        <Form onSubmit={this.onSubmitForm} loading={loading}>
-                            {feedback.message.length > 0 && <MainMessage {...feedback} />}
-                            {feedback.message.length > 0 && "<MainMessage {...feedback} />"}
+                        {feedback.message.length > 0 && <MainMessage {...feedback} />}
 
+                        <Form onSubmit={this.onSubmitForm} loading={loading}>
                             <Form.Field>
                                 <label>New Password</label>
                                 <input placeholder="Enter new password" name="password" value={password} onChange={this.onChangeValue} type="password" />
@@ -130,4 +129,4 @@ class ForgotPassword extends React.Component {
     }
 }
 
-export default ForgotPassword
+export default ChangePassword

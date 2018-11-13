@@ -16,25 +16,21 @@ const handleLogout = (dispatch) => {
 }
 
 const RightNav = () => (
-    <ContextAPI.Consumer>
-        {({state}) => (
-            <React.Fragment>
-                <Link href="/profile" prefetch passHref>
-                    <Menu.Item as="a" className="fresheats-brown-color">
-                        <Image
-                            size="mini"
-                            alt="no-image"
-                            src={"http://i.pravatar.cc/100"}
-                            avatar
-                            style={{marginRight: "8px"}}
-                        />
-                        {"Username"}
-                    </Menu.Item>
-                </Link>
-                <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>
-            </React.Fragment>
-        )}
-    </ContextAPI.Consumer>
+    <React.Fragment>
+        <Link href="/profile" prefetch passHref>
+            <Menu.Item as="a" className="fresheats-brown-color">
+                <Image
+                    size="mini"
+                    alt="no-image"
+                    src={"http://i.pravatar.cc/100"}
+                    avatar
+                    style={{marginRight: "8px"}}
+                />
+                {"Username"}
+            </Menu.Item>
+        </Link>
+        <Menu.Item as="a" onClick={handleLogout} className="fresheats-brown-color">Logout</Menu.Item>
+    </React.Fragment>
 )
 
 const Nav = () => (
