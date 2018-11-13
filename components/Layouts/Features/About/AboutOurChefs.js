@@ -39,9 +39,9 @@ class AboutOurChefs extends React.Component {
                             <Header className="aboutsHeaders" as='h2'>{aboutData.page_header}</Header>
                         </Divider>
                     </Segment>
-                    {isLoadingData ? <Loader active inline='centered'>Loading Menu</Loader> : <Card.Group itemsPerRow={2} stackable>
+                    {!aboutData.chef_details ? "" : <Card.Group itemsPerRow={2} stackable>
                     {aboutData.chef_details.map(item => (
-                        <Card >
+                        <Card key={item.name}>
                             <Image className="myImgs" src={item.image_url} />
                             <Card.Content>
                                 <Card.Header>{item.name}</Card.Header>

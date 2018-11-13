@@ -30,7 +30,7 @@ class AboutContactUs extends React.Component {
     }
 
     render() {
-        const {isLoadingData, aboutData}  = this.state
+        const { aboutData}  = this.state
         return (
             <React.Fragment>
                 <Divider hidden />

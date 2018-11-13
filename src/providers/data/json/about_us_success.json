@@ -83,7 +83,30 @@
         {
             "id": 9,
             "page_header":"Frequently Asked Questions",
-            "no_questions": "No comment"
+            "no_questions": "No comment",
+            "faqs":[
+                {
+                    "index": 0,
+                    "question": "Who is the owner of the resturant Fresh Eats?",
+                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+                },{
+                    "index": 1,
+                    "question": "When Did Fresh Eats Restaurant Established?",
+                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+                },{
+                    "index": 2,
+                    "question": "How Many Tables In The Resturant?",
+                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+                },{
+                    "index": 3,
+                    "question": "How Many Chefs And Workers On Fresh Eats Restaurant?",
+                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+                },{
+                    "index": 4,
+                    "question": "Can I Have A Reservation On Fresh Eats?",
+                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+                }
+            ]
         }
     }
 }

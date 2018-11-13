@@ -17,8 +17,8 @@ class AboutOurStory extends React.Component {
         const data = await api.web.about()
 
         this.setState({ aboutData: data })
-        console.log(this.state.aboutData)
-        console.log(data.data.chefs)
+        // console.log(this.state.aboutData)
+        // console.log(data.data.chefs)
         if (data.status === 200) {
             this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.our_story })
         } else {
@@ -32,6 +32,7 @@ class AboutOurStory extends React.Component {
 
     render() {
         const { isLoadingData, aboutData } = this.state
+
         return (
             <React.Fragment>
                 <Divider hidden />
@@ -43,20 +44,20 @@ class AboutOurStory extends React.Component {
                     </Segment>
                     <p>{aboutData.description}</p>
                     <Divider hidden/>
-                    {isLoadingData ? <Loader active inline='centered'>Loading Menu</Loader> : <Grid>
-                    {aboutData.tags.map(item => (
-                        
-                        <Grid.Row>
-                        <Grid.Column width={16}>
-                            <Header as="h1" icon textAlign='center'> <Icon name={item.icon_tag} /></Header>
-                        </Grid.Column>
-                        <Grid.Column width={16}>
-                            <Header textAlign='center'>{item.tag_name}</Header>
-                            <p>{item.tag_descritption}</p>
-                        </Grid.Column>
-                        </Grid.Row>
-                        
-                    ))}
+                    {!aboutData.tags ? "" : <Grid>
+                        {aboutData.tags.map(item => (
+                            
+                            <Grid.Row key={item.tag_name}>
+                            <Grid.Column width={16}>
+                                <Header as="h1" icon textAlign='center'> <Icon name={item.icon_tag} /></Header>
+                            </Grid.Column>
+                            <Grid.Column width={16}>
+                                <Header textAlign='center'>{item.tag_name}</Header>
+                                <p>{item.tag_descritption}</p>
+                            </Grid.Column>
+                            </Grid.Row>
+                            
+                        ))}
                     </Grid>
                     }   
                 </Container>

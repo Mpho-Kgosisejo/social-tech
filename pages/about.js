@@ -9,9 +9,9 @@ import AboutFAQs from "../components/Layouts/Features/About/AboutFAQ"
 
 const panes = [
     { menuItem: 'Our Story', render: () => <Tab.Pane className="zero-border"> <AboutOurStory /> </Tab.Pane> },
-    { menuItem: 'Our Chefs', render: () => <Tab.Pane > <AboutOurChefs /></Tab.Pane> },
-    { menuItem: 'Contact Us', render: () => <Tab.Pane> <AboutContactUs /> </Tab.Pane> },
-    { menuItem: 'FAQs', render: () => <Tab.Pane> <AboutFAQs /> </Tab.Pane> },
+    { menuItem: 'Our Chefs', render: () => <Tab.Pane  className="zero-border"> <AboutOurChefs /></Tab.Pane> },
+    { menuItem: 'Contact Us', render: () => <Tab.Pane  className="zero-border"> <AboutContactUs /> </Tab.Pane> },
+    { menuItem: 'FAQs', render: () => <Tab.Pane  className="zero-border"> <AboutFAQs /> </Tab.Pane> },
 ]
 
 class About extends React.Component {
