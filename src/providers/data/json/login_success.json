@@ -1,11 +1,10 @@
 {
     "status": 200,
     "data": {
-        "data": {
-                "user": {
-                    "isAdmin": true,
-                    "token": "0123456789"
-            }
+            "user": {
+                "isAdmin": true,
+                "username": "smith",
+                "token": "0123456789"
         }
     }
 }

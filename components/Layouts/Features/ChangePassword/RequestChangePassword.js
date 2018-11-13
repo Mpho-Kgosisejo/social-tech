@@ -28,7 +28,6 @@ class RequestChangePassword extends React.Component {
         const {email} = this.state
         const res = await api.user.requestPasswordChange(email)
 
-        console.log(res)
         if (res.status === 200){
             this.setState({
                 email: "",
@@ -41,15 +40,25 @@ class RequestChangePassword extends React.Component {
             })
             return
         }
-        this.setState({
-            email: "",
-            loading: false,
-            feedback: {
-                type: "error",
-                header: "",
-                message: res.error.message || UNEXPECTED_ERROR
-            }
-        })
+        if (res.data.error && res.data.error.message){
+            this.setState({
+                loading: false,
+                feedback: {
+                    type: "error",
+                    header: "",
+                    message: res.data.error.message
+                }
+            })
+        }else{
+            this.setState({
+                loading: false,
+                feedback: {
+                    type: "error",
+                    header: "",
+                    message: UNEXPECTED_ERROR
+                }
+            })
+        }
     }
 
     onSubmitForm = (e) => {
@@ -89,7 +98,7 @@ class RequestChangePassword extends React.Component {
                 <Grid.Row>
                     <Grid.Column />
                     <Grid.Column mobile={16} tablet={10} computer={8}>
-                        {feedback.message.length > 0 && <MainMessage {...feedback} />}
+                        {feedback.message && <MainMessage {...feedback} />}
                         
                         <Form onSubmit={this.onSubmitForm} loading={loading}>
                             <Form.Field>

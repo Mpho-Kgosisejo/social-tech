@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken"
 import Config from "react-global-configuration"
 
-export const login = ({token, isAdmin}) => {
-    const loginPayload = {token, isAdmin}
+export const login = ({token, isAdmin, username}) => {
+    const loginPayload = {token, isAdmin, username}
     const jwtJson = jwt.sign(loginPayload, Config.get("jwt.secret"))
 
     localStorage.setItem(Config.get("jwt.itemName"), jwtJson)

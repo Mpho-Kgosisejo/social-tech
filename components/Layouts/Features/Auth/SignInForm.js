@@ -72,7 +72,6 @@ class SignInForm extends React.Component{
 
     doSignIn = async (dispatch) => {
         const loginType = (!validator.isEmail(this.state.user.login)) ? "username" : "email"
-
         this.setState({loading: true})
         const res = await api.user.signin({
             login: {
@@ -81,6 +80,7 @@ class SignInForm extends React.Component{
             },
             password: this.state.user.password,
         })
+
         if (res.status === 200){
             this.setState({
                 feedback: {
@@ -90,8 +90,8 @@ class SignInForm extends React.Component{
                 }
             })
 
-            const {token, isAdmin} = res.data.data.user
-            const loginPayload = {token, isAdmin}
+            const {token, isAdmin, username} = res.data.user
+            const loginPayload = {token, isAdmin, username}
             login(loginPayload)
             this.resetInputs()
             dispatch({type: "LOGIN", payload: loginPayload})

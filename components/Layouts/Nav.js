@@ -28,7 +28,7 @@ const RightNav = () => (
                             avatar
                             style={{marginRight: "8px"}}
                         />
-                        {"Username"}
+                        {state.login.username}
                     </Menu.Item>
                 </Link>
                 <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>
