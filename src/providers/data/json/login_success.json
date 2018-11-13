@@ -1,6 +1,11 @@
 {
     "status": 200,
     "data": {
-        "id": "NCKHGsKukLYCinAuEx1RU3S5ntABeaXApDuRHJbFNl5r6FJJCEqj2hG8LHOrVEtw"
+        "data": {
+                "user": {
+                    "isAdmin": true,
+                    "token": "0123456789"
+            }
+        }
     }
 }

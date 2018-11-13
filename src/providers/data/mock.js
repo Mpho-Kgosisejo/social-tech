@@ -5,6 +5,10 @@ import signup_s from"./json/signup_success.json"
 import signup_f from"./json/signup_fail.json"
 import about_s from "./json/about_us_success.json"
 import about_f from "./json/about_us_fail.json"
+import confirmemail_s from "./json/confirmemail_success.json"
+import confirmemail_f from "./json/confirmemail_fail.json"
+import changepassword_s from "./json/change_password_success.json"
+import changepassword_f from "./json/change_password_fail.json"
 
 const WAIT_TIME = 1500
 
@@ -20,5 +24,7 @@ const loadMock = (data) => {
 export default {
     login: () => loadMock(login_s),
     signup: () => loadMock(signup_s),
-    about: () => loadMock(about_s)
+    about: () => loadMock(about_s),
+    confirmEmail: () => loadMock(confirmemail_s),
+    changePassword: () => loadMock(changepassword_s)
 }

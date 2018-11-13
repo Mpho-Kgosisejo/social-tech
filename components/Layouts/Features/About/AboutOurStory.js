@@ -49,7 +49,7 @@ class AboutOurStory extends React.Component {
                             
                             <Grid.Row key={item.tag_name}>
                             <Grid.Column width={16}>
-                                <Header as="h1" icon textAlign='center'> <Icon name={item.icon_tag} /></Header>
+                                <Header as="h1" icon textAlign='center'> <Icon color=" #c59c70" name={item.icon_tag} /></Header>
                             </Grid.Column>
                             <Grid.Column width={16}>
                                 <Header textAlign='center'>{item.tag_name}</Header>
