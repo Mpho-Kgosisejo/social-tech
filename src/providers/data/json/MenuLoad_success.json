@@ -4,8 +4,9 @@
         "message" : "got the menu",
         "menuCategories" : [
             {
-                "name" : "Food",
-                "show" : false,
+                "name" : "food",
+                "title" : "Food",
+                "show" : true,
                 "id" : "1",
                 "items" : [
                     {
@@ -110,8 +111,9 @@
                     }] 
             },
             {
-                "name" : "Spices",
-                "show" : false,
+                "name" : "spices",
+                "title" : "Spices",
+                "show" : true,
                 "id" : "2",
                 "items" : [
                     {
@@ -201,47 +203,14 @@
                     }]
             },
             {
-                "name" : "Beverages",
-                "show" : false,
+                "name" : "beverages",
+                "title" : "Beverages",
+                "show" : true,
                 "id" : "3",
                 "items" : [
-                    {
-                        "price": "50",
-                        "available" : true,
-                        "name": "Chocolate Beverage",
-                        "id": "1",
-                        "image": "http://picsum.photos/400/400/?random",
-                        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscinging elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-                    }, {
-                        "price": "150",
-                        "available" : true,
-                        "id": "2",
-                        "image": "http://picsum.photos/400/400/?random",
-                        "name": "Hot Chocolate",
-                        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-                    }, {
-                        "price": "70",
-                        "available" : true,
-                        "id": "3",
-                        "image": "http://picsum.photos/400/400/?random",
-                        "name": "Peppermint Hot Chocolate",
-                        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-                    }, {
-                        "price": "50",
-                        "available" : true,
-                        "id": "4",
-                        "image": "http://picsum.photos/400/400/?random",
-                        "name": "Salted Caramel Hot Chocolate",
-                        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-                    }, {
-                        "price": "20",
-                        "available" : false,
-                        "id": "5",
-                        "image": "http://picsum.photos/400/400/?random",
-                        "name": "White Hot Chocolate",
-                        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
-                    }]
+                    ]
             }
+            
         ]
         
     }

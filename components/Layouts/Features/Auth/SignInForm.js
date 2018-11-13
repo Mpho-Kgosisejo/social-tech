@@ -7,6 +7,7 @@ import {MainMessage} from "../../../Messages/Message"
 import api from "../../../../src/providers/APIRequest"
 import {login} from "../../../../src/providers/LoginSession"
 import { isEmptyObj } from "../../../../src/utils/Objs";
+import ContextAPI from "../../../../src/config/ContextAPI";
 
 class SignInForm extends React.Component{
     constructor(){
@@ -34,8 +35,9 @@ class SignInForm extends React.Component{
         }
     })
 
-    onSubmit = (e) => {
+    onSubmit = (e, dispatch) => {
         e.preventDefault()
+
         const errors = this.validate(this.state.user)
         this.setState({
             ...this.state.errors,
@@ -43,7 +45,7 @@ class SignInForm extends React.Component{
         })
 
         if (Object.keys(errors).length === 0){
-            this.doSignIn()
+            this.doSignIn(dispatch)
         }
     }
 
@@ -67,7 +69,7 @@ class SignInForm extends React.Component{
         }
     }
 
-    doSignIn = async () => {
+    doSignIn = async (dispatch) => {
         const loginType = (!validator.isEmail(this.state.user.login)) ? "username" : "email"
 
         this.setState({loading: true})
@@ -78,7 +80,6 @@ class SignInForm extends React.Component{
             },
             password: this.state.user.password,
         })
-
         if (res.status === 200){
             this.setState({
                 feedback: {
@@ -88,16 +89,19 @@ class SignInForm extends React.Component{
                 }
             })
 
-            login(res.data)
+            const {token, isAdmin} = res.data.data.user
+            const loginPayload = {token, isAdmin}
+            login(loginPayload)
             this.resetInputs()
-            location.reload(true)
+            dispatch({type: "LOGIN", payload: loginPayload})
+            dispatch({type: "ALERT_PORTAL", payload: {type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_IN, open: true}})
         }
         else if (res.status === 401){
             this.setState({
                 feedback: {
                     type: "error",
-                    header: MessageTypes.INCORRECT_CREDENTIALS,
-                    message: MessageTypes.INCORRECT_LOGIN_OR_PASSWORD
+                    // header: MessageTypes.INCORRECT_CREDENTIALS,
+                    message: res.data.error.message || MessageTypes.INCORRECT_LOGIN_OR_PASSWORD
                 }
             })
             this.resetInputs(false)
@@ -135,25 +139,29 @@ class SignInForm extends React.Component{
                     <Grid.Column mobile={16} tablet={10} computer={8}>
                         {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} />}
                         
-                        <Form onSubmit={this.onSubmit} loading={loading}>
-                            <Form.Field error={!isEmptyObj(errors.login)}>
-                                <label>Login:</label>
-                                <input value={user.login} onChange={this.onChange} name="login" placeholder="Username or email" />
-                                {errors.login && <InLineError message={errors.login}/>}
-                            </Form.Field>
-                            <Form.Field error={!isEmptyObj(errors.password)}>
-                                <label>Password:</label>
-                                <Input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
-                                {errors.password && <InLineError message={errors.password}/>}
-                            </Form.Field>
-
-                            <Button animated fluid type="submit" loading={loading}>
-                                <Button.Content visible>Sign In</Button.Content>
-                                <Button.Content hidden>
-                                    <Icon name="sign in"/>
-                                </Button.Content>
-                            </Button>
-                        </Form>
+                        <ContextAPI.Consumer>
+                            {({state}) => (
+                                <Form onSubmit={(e) => this.onSubmit(e, state.dispatch)} loading={loading}>
+                                    <Form.Field error={!isEmptyObj(errors.login)}>
+                                        <label>Login:</label>
+                                        <input value={user.login} onChange={this.onChange} name="login" placeholder="Username or email" />
+                                        {errors.login && <InLineError message={errors.login}/>}
+                                    </Form.Field>
+                                    <Form.Field error={!isEmptyObj(errors.password)}>
+                                        <label>Password:</label>
+                                        <Input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
+                                        {errors.password && <InLineError message={errors.password}/>}
+                                    </Form.Field>
+        
+                                    <Button animated fluid type="submit" loading={loading}>
+                                        <Button.Content visible>Sign In</Button.Content>
+                                        <Button.Content hidden>
+                                            <Icon name="sign in"/>
+                                        </Button.Content>
+                                    </Button>
+                                </Form>
+                            )}
+                        </ContextAPI.Consumer>
                     </Grid.Column>
                     <Grid.Column></Grid.Column>
                 </Grid>

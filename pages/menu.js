@@ -1,5 +1,5 @@
 import Router from "next/router"
-import { Loader, Image, Card, Label, Button, Segment, Header, Container } from "semantic-ui-react"
+import { Label, Header, Container, Embed } from "semantic-ui-react"
 import Layout from "../components/Layouts/Layout"
 import MenuItems from "../components/Layouts/Features/Menu/menu-items"
 
@@ -12,6 +12,11 @@ const Menu = (props) => (
             </Container>
         </div>
         <Layout title="Menu">
+        <Embed id='JY5t6iUzajk' placeholder='/images/image-16by9.png' source='youtube' />
+            <div className="centered-element">
+                <h2 >Just simple text</h2>
+                <p> This could be a paragraph explaining what the menu is about to grab the user.</p>
+            </div>
             <MenuItems/>
         </Layout>
     </div>

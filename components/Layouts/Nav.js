@@ -1,15 +1,18 @@
 import Link from "next/link"
 import Router from "next/router"
-import {Container, Menu, Image} from "semantic-ui-react"
+import {Container, Menu, Image, Placeholder} from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
 import {logout} from "../../src/providers/LoginSession"
+import {isEmptyObj} from "../../src/utils/Objs"
+import * as MessageTypes from "../../src/Types/MessageTypes"
 
-const handleLogout = () => {
+const handleLogout = (dispatch) => {
     logout()
     Router.push({pathname: "/"})
-    location.reload(true)
+    dispatch({type: "LOGIN", payload: {}})
+    dispatch({type: "ALERT_PORTAL", payload: {type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true}})
 }
 
 const RightNav = () => (
@@ -44,7 +47,7 @@ const Nav = () => (
                         </Link>
 
                         <Link href="/menu" prefetch passHref>
-                            <Menu.Item as="a">Menu</Menu.Item>
+                            <Menu.Item as="a" className="fresheats-brown-color">Menu</Menu.Item>
                         </Link>
                         {(state.login && state.login.isAdmin) && 
                             <Link href="/dashboard" prefetch passHref>
@@ -54,7 +57,7 @@ const Nav = () => (
                     
                         {!state.root_loading &&
                             <Menu.Menu position="right">
-                                {state.loggedIn ? <RightNav /> : <AuthLayout/>}
+                                {!isEmptyObj(state.login) ? <RightNav /> : <AuthLayout/>}
                             </Menu.Menu>
                         }
                     </React.Fragment>

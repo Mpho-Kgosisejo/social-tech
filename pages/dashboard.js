@@ -8,6 +8,7 @@ import { Header, Divider } from "semantic-ui-react";
 import ContextAPI from "../src/config/ContextAPI";
 import AdminDashboard from "../components/Layouts/Admin";
 import UserDashboard from "../components/Layouts/User";
+import { NOT_AUTHORIZED_PAGE_ACCESS } from "../src/Types/MessageTypes";
 
 class Dashoard extends React.Component {
     constructor(props){
@@ -22,6 +23,9 @@ class Dashoard extends React.Component {
         const login = getLogin()
 
         if (isEmptyObj(login)){
+            setTimeout(() => {
+                this.props.dispatch({type: "ALERT_PORTAL", payload: {open: true, type: "error", header: "", message: `${NOT_AUTHORIZED_PAGE_ACCESS}: dashboard`}})
+            }, 50)
             logout()
             Router.replace({pathname: "/"})
             return 

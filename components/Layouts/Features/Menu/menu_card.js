@@ -11,13 +11,7 @@ const menu_card = ({image = "", available = false, name = "", price = 0.0, descr
             </Label>
         }
         <Card.Header>{name}</Card.Header>
-        <Card.Meta>R{price}</Card.Meta>
         <Card.Description>{description}</Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-        <Button floated="right" disabled={!available} size="small" primary>
-            Order
-        </Button>
     </Card.Content>
 </Card>
 

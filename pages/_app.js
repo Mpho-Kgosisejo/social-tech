@@ -15,7 +15,13 @@ export default class MyApp extends App {
         this.state = {
             test: "Hello NextJS!",
             root_loading: true,
-            loggedIn: false,
+            alertPortal: {
+                open: false,
+                type: "",
+                header: "",
+                message: ""
+            },
+            login: {},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
@@ -23,8 +29,8 @@ export default class MyApp extends App {
     UNSAFE_componentWillMount(){
         if (process.browser){
             if (window.location.hostname === "localhost"){
-                console.log("Running: Dev")
                 Config.set(devConfig, {freeze: false})
+                console.log(`Running => [ENV]: Development; [API.IS_MOCK]: ${Config.get("api.isMock")}`)
             }else{
                 Config.set(prodConfig, {freeze: false})
             }
@@ -40,7 +46,6 @@ export default class MyApp extends App {
             this.setState({
                 ...this.state,
                 root_loading: false,
-                loggedIn: (Object.keys(login).length > 0),
                 login
             })
         }
@@ -62,7 +67,7 @@ export default class MyApp extends App {
         return (
             <Container>
                 <ContextAPI.Provider value={{state: this.state}}>
-                    <Component {...pageProps} login={this.state.login} lol={{}} />
+                    <Component {...pageProps} {...this.props} dispatch={this.state.dispatch} />
                 </ContextAPI.Provider>
             </Container>
         )

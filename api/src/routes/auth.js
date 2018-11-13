@@ -27,14 +27,18 @@ router.post("/", (req, res) => {
     UserModel.findOne({email})
     .then(user => {
         if (user && user.isValidPassword(password)){
-            res.status(200).json({
-                data: {
-                    user: user.toAuthJSON(),
-                    message: "OK"
-                }
-            })
+            if (user.emailConfirmed){
+                res.status(200).json({
+                    data: {
+                        user: user.toAuthJSON(),
+                        message: "OK"
+                    }
+                })
+            }else{
+                res.status(401).json({error: {message: "You must confirm email before you can login"}})
+            }
         }else{
-            res.status(400).json({error: {message: "Invaild credentials"}})
+            res.status(401).json({error: {message: "Invalid credentials"}})
         }
     })
     .catch(err => {

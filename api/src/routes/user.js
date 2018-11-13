@@ -21,12 +21,21 @@ router.post("/", (req, res) => {
         })
     })
     .catch(err => {
-        console.log("catch:", err)
-        res.status(400).json({
-            error: {
-                message: parseErrors({errors: err.errors})
-            }
-        })
+        const errors = parseErrors({errors: err.errors})
+
+        if (Object.keys(errors).length > 0){
+            res.status(422).json({
+                error: {
+                    message: errors
+                }
+            })
+        }else{
+            res.status(500).json({
+                error: {
+                    message: "Something went wrong"
+                }
+            })
+        }
     })
 })
 

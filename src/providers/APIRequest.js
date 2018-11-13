@@ -10,12 +10,12 @@ const API = {
                 return (mock.login().then(res => res))
             }
             return (
-                axios.post(`${Config.get("api.endpoint")}/Users/login`, {
+                axios.post(`${Config.get("api.endpoint")}/auth`, {
                     [credentials.login.key]: credentials.login.value,
                     password: credentials.password
                 })
                 .then(res => res)
-                .catch(err => err)
+                .catch(err => err.response)
             )
         },
         signup: (user) => {
@@ -23,29 +23,45 @@ const API = {
                 return (mock.signup().then(res => res))
             }
             return (
-                axios.post(`${Config.get("api.endpoint")}/Users`, {
-                    realm: "", // research what this does...
+                axios.post(`${Config.get("api.endpoint")}/user`, {
                     username: user.username,
                     email: user.email,
-                    emailVerified: false,
                     password: user.password
+                })
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        confirmEmail: (token) => {
+            if (Config.get("api.isMock")){
+                return (mock.confirmEmail().then(res => res))
+            }
+            return (
+                axios.post(`${Config.get("api.endpoint")}/auth/confirmation`, {
+                    token
+                })
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        changePassword: ({token, password}) => {
+            if (Config.get("api.isMock")){
+                return (mock.changePassword().then(res => res))
+            }
+            return (
+                axios.post(`${Config.get("api.endpoint")}/auth/change-password`, {
+                    token,
+                    password
                 })
                 .then(res => res)
                 .catch(err => err.response)
             )
         }
     },
-    Foodmenu: {
-        Foodmenu_items : () => {
+    menu: {
+        menu_items : () => {
             if (Config.get("api.isMock")){
-                return(mock.foodmenu().then(res => res))
-            }
-        }
-    },
-    Spicemenu: {
-        Spicemenu_items : () => {
-            if (Config.get("api.isMock")){
-                return(mock.spicemenu().then(res => res))
+                return(mock.menu().then(res => res))
             }
         }
     }
