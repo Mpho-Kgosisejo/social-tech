@@ -12,7 +12,6 @@ const Menu = (props) => (
             </Container>
         </div>
         <Layout title="Menu">
-        <Embed id='JY5t6iUzajk' placeholder='/images/image-16by9.png' source='youtube' />
             <div className="centered-element">
                 <h2 >Just simple text</h2>
                 <p> This could be a paragraph explaining what the menu is about to grab the user.</p>

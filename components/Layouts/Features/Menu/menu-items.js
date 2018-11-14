@@ -1,7 +1,8 @@
 import api from "../../../../src/providers/APIRequest"
-import { Loader, Image, Card, Label, Button, Reveal, Tab } from "semantic-ui-react"
+import { Loader } from "semantic-ui-react"
 import {isEmptyObj} from "../../../../src/utils/Objs"
 import MenuTab from "./menu-tab"
+import { MainMessage } from "../../../Messages/Message";
 
 class Menu_Items extends React.Component {
     constructor()
@@ -10,7 +11,8 @@ class Menu_Items extends React.Component {
         this.state = {
             responseMessage : "",
             isLoadingData : true,
-            menus : {}
+            menus : {},
+            status : 0
         }
     }
 
@@ -19,9 +21,9 @@ class Menu_Items extends React.Component {
         console.log(data)
 
         if (data.status === 200){
-            this.setState({responseMessage: data.data.message, isLoadingData: false, menus : data.data.menuCategories})
+            this.setState({responseMessage: data.data.message, isLoadingData: false, menus : data.data.menuCategories, status : data.status})
         }else{
-            this.setState({responseMessage: data.error.message, isLoadingData: false})
+            this.setState({responseMessage: data.error.message, isLoadingData: false, status : data.status})
         }
         
     }
@@ -31,15 +33,18 @@ class Menu_Items extends React.Component {
     }
 
     render () {
-        const {isLoadingData, menus} = this.state
+        const {responseMessage, status, isLoadingData, menus} = this.state
 
         return(
-            <div>
+            <div >
                 {/* <pre>{JSON.stringify(this.state, "", 2)}</pre> */}
                 
                 {isLoadingData ? <Loader active inline='centered'>Loading Menu</Loader> : 
-                  <MenuTab data={menus}/>  
-                }
+                    status === 200 ? 
+                        <MenuTab data={menus}/>  
+                    :   
+                        <MainMessage type="error" header="Menu Error" message={responseMessage}/> 
+                } 
             </div>
         )}
 }

@@ -24,6 +24,14 @@
     right: 14px;
 }
 
+.menuCardImage {
+    height: 282px !important;
+    background-position: center !important;
+	background-repeat: no-repeat !important;
+    background-size: cover !important;
+    /* background: #444 !important; */
+}
+
 .menu-card-group {
     border: 0 !important;
 }
@@ -99,7 +107,7 @@
 @media (min-width: 768px) {
     .breakpoints-test{
         background: #77c394 !important;
-    }
+    }    
 }
 
 @media (min-width: 991px) {
@@ -112,4 +120,14 @@
     .breakpoints-test{
         background: #e8d692 !important;
     }
+}
+
+.zero-border
+{
+    border: transparent !important
+}
+
+.marginTopBottom {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

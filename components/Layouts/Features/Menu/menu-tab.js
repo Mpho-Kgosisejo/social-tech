@@ -1,28 +1,64 @@
-import { Tab, Card } from "semantic-ui-react"
+import { Tab, Card, Responsive, Dropdown, Segment } from "semantic-ui-react"
 import MenuCard from "./menu_card"
 import { isEmptyObj } from "../../../../src/utils/Objs";
+import IconMessage from "../../../Messages/IconMessage"
 
 class menu_tab extends React.Component
 {
+    state = {
+        activeIndex: 0
+    }
+
+    changeActiveIndex = (e, { value }) => {
+        this.setState({activeIndex : value})
+    }
+
+    handleTabChange = (e, { activeIndex }) => this.setState({ activeIndex })
+
     render()
     {
-        console.log("mjgnjhhhhnjj>>", this.props.data)
+        console.log(this.state.activeIndex)
+        var newData = this.props.data[this.state.activeIndex]
+        console.log(newData)
         return(
-            <Tab className="centered-element" menu={{pointing: true, secondary: true }} panes={
-                this.props.data.map( item => (
-                    item.show ? 
-                    { menuItem: item.title , render: () => <Tab.Pane className="zero-border" attached={false}>{ 
+            <div>
+                <Responsive minWidth={0} maxWidth={769}>
+                    <Dropdown placeholder='Category' className="marginTopBottom centered-element" fluid selection onChange={this.changeActiveIndex} options={
+                        this.props.data.map(item => (
+                            { key: item.id, text: item.title, value: this.props.data.indexOf(item)}
+                        ))
+                    } selection />
+                </Responsive>
+                <Responsive minWidth={769} >
+                    <Tab className="centered-element zero-border" activeIndex={this.state.activeIndex} onTabChange={this.handleTabChange} menu={{pointing: true, secondary: true }} panes={
+                    this.props.data.map( item => (
+                        item.show ? 
+                        { menuItem: item.title } : console.log("Not showing ", item.title)
+                    ))
+                } />
+                </Responsive>
+                <div className="zero-border marginTopBottom">
                         <Card.Group doubling itemsPerRow={3} stackable>
-                            {isEmptyObj(item.items) ? console.log("found empty") : null }
-                            { item.items.map(product => (
+                        {isEmptyObj(newData.items) ? IconMessage("exclamation", "Menu Error!", "Unfortunately the " + newData.title + " category has no products.") : 
+                            newData.items.map(product => (
                                 <MenuCard key={product.id} {...product} />
-                            ))}
+                            ))
+                        }
                         </Card.Group>
-                    }</Tab.Pane>  } : console.log("Not showing ", item.title)
-                ))
-            } />
+                </div>
+            </div>
         )
     }
 }
+
+// , render: () => <Tab.Pane className="zero-border" attached={false}>{ 
+//     <Card.Group doubling itemsPerRow={3} stackable className="zero-border">
+//         {isEmptyObj(item.items) ? IconMessage("exclamation", "Menu Error!", "Unfortunately the " + item.title + " category has no products.") : 
+//             item.items.map(product => (
+//                 <MenuCard key={product.id} {...product} />
+//             ))
+//         }
+//     </Card.Group>
+// }</Tab.Pane>  
 
 export default menu_tab

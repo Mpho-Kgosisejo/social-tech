@@ -15,13 +15,13 @@
                         "name": "Chocolate Beverage",
                         "id": "1",
                         "image": "http://picsum.photos/400/400/?random",
-                        "description" : "Lorem ipsum dolor sit amet, consectetur adipiscinging elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description" : "aliqua"
                     }, {
                         "price": "150",
         
                         "available" : true,
                         "id": "2",
-                        "image": "http://picsum.photos/400/400/?random",
+                        "image": "http://picsum.photos/800/500/?random",
                         "name": "Hot Chocolate",
                         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                     }, {
