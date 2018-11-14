@@ -60,7 +60,7 @@ schema.methods.generateConfirmationUrl = function generateConfirmationUrl(){
 }
 
 schema.methods.generateResetPasswordUrl = function generateResetPasswordUrl(){
-    return (`${process.env.HOST}/reset-password?token=${this.generateResetPasswordToken()}`)
+    return (`${process.env.HOST}/forgot-password?token=${this.generateResetPasswordToken()}`)
 }
 
 schema.methods.generateResetPasswordToken = function generateResetPasswordToken(){
@@ -85,6 +85,7 @@ schema.methods.toAuthJSON = function toAuthJSON (){
 
     return ({
         isAdmin: this.admin,
+        username: this.username,
         token: this.token
     })
 }

@@ -7,19 +7,22 @@ import ToHomeMessage from "../components/Messages/ToHomeMessage"
 import {PlaceholderSmallParagraph, PlaceholderMediumParagraph} from "../components/utils/Placeholders"
 import { NOT_AUTHORIZED_PAGE_ACCESS } from "../src/Types/MessageTypes";
 import { MainMessage } from "../components/Messages/Message";
-import ForgotPasswordComponent from "../components/Layouts/Features/ChangePassword/Forgotpassword"
+import ChangePassword from "../components/Layouts/Features/ChangePassword/ChangePassword"
+import RequestChangePassword from "../components/Layouts/Features/ChangePassword/RequestChangePassword";
 
 class ForgotPassword extends React.Component {
     constructor(props){
         super(props)
 
         this.state = {
+            isFinalStep: false,
             loading: true,
             feedback: {
                 type: "error",
                 header: "",
                 message: ""
-            }
+            },
+            token: ""
         }
     }
 
@@ -28,24 +31,14 @@ class ForgotPassword extends React.Component {
         const error_mssg = `${NOT_AUTHORIZED_PAGE_ACCESS}: forgot-password`
         
         if (token){
-            this.setState({loading: false})
+            this.setState({loading: false, isFinalStep: true, token})
         }else{
-            this.setState({
-                feedback: {
-                    ...this.state.feedback,
-                    message: error_mssg
-                },
-                loading: false
-            })
-            setTimeout(() => {
-                this.props.dispatch({type: "ALERT_PORTAL", payload: {open: true, type: "error", header: "", message: error_mssg}})
-            }, 50)
-            Router.replace({pathname: "/"})
+            this.setState({loading: false, isFinalStep: false})
         }
     }
 
     render(){
-        const {loading, feedback} = this.state
+        const {loading, feedback, isFinalStep, token} = this.state
 
         return (
             <Layout includeFooter={false} includeNav={false}>
@@ -57,7 +50,7 @@ class ForgotPassword extends React.Component {
                     {loading ? <PlaceholderMediumParagraph /> :
                         feedback.message ?
                             <MainMessage header={feedback.header} message={feedback.message} type={feedback.type} /> :
-                            <ForgotPasswordComponent />
+                            isFinalStep ? <ChangePassword token={token} /> : <RequestChangePassword />
                     }
                 </Segment>
                 <ToHomeMessage />
