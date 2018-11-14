@@ -48,4 +48,28 @@
     border: 1px solid rgba(197,156,112) !important;
 }
 
-  
+/* Semantic UI: Media Queries breakpoints */
+
+@media (min-width: 480px) {
+    .breakpoints-test{
+        background: #5999c2!important;
+    }
+}
+
+@media (min-width: 768px) {
+    .breakpoints-test{
+        background: #77c394 !important;
+    }
+}
+
+@media (min-width: 991px) {
+    .breakpoints-test{
+        background: #df6656 !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .breakpoints-test{
+        background: #e8d692 !important;
+    }
+}

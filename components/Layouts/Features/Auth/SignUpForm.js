@@ -23,7 +23,8 @@ class SignUpForm extends React.Component{
             feedback: {
                 type: "info",
                 header: "",
-                message: ""
+                message: "",
+                messages: {}
             }
         }
     }
@@ -134,7 +135,7 @@ class SignUpForm extends React.Component{
                     feedback: {
                         type: "error",
                         header: "",
-                        message: res.data.error.message
+                        messages: res.data.error.message
                     },
                     user: {
                         ...this.state.user,
@@ -171,7 +172,12 @@ class SignUpForm extends React.Component{
                     <Grid.Column></Grid.Column>
                     <Grid.Column mobile={16} tablet={10} computer={8}>
                         {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} />}
-                        
+                        {(feedback.messages && Object.keys(feedback.messages).length > 0) &&
+                            Object.keys(feedback.messages).map(el => (
+                                <MainMessage key={Object.keys(feedback.messages).indexOf(el)} type={feedback.type} header={feedback.header} message={`${el} ${feedback.messages[el]}`} />
+                            ))
+                        }
+
                         <Form onSubmit={this.onSubmit} loading={loading}>
                             <Form.Field>
                                 <label>Username:</label>

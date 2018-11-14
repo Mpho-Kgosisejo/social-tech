@@ -1,5 +1,6 @@
-import {Form, Button, Icon, Grid, Input, Label} from "semantic-ui-react"
+import {Form, Button, Icon, Grid, Input} from "semantic-ui-react"
 import validator from "validator"
+import Link from "next/link"
 
 import {InLineError} from "../../../Messages/InLineMessage"
 import * as MessageTypes from "../../../../src/Types/MessageTypes"
@@ -7,6 +8,7 @@ import {MainMessage} from "../../../Messages/Message"
 import api from "../../../../src/providers/APIRequest"
 import {login} from "../../../../src/providers/LoginSession"
 import { isEmptyObj } from "../../../../src/utils/Objs";
+import ContextAPI from "../../../../src/config/ContextAPI";
 
 class SignInForm extends React.Component{
     constructor(){
@@ -34,8 +36,9 @@ class SignInForm extends React.Component{
         }
     })
 
-    onSubmit = (e) => {
+    onSubmit = (e, dispatch) => {
         e.preventDefault()
+
         const errors = this.validate(this.state.user)
         this.setState({
             ...this.state.errors,
@@ -43,7 +46,7 @@ class SignInForm extends React.Component{
         })
 
         if (Object.keys(errors).length === 0){
-            this.doSignIn()
+            this.doSignIn(dispatch)
         }
     }
 
@@ -67,9 +70,8 @@ class SignInForm extends React.Component{
         }
     }
 
-    doSignIn = async () => {
+    doSignIn = async (dispatch) => {
         const loginType = (!validator.isEmail(this.state.user.login)) ? "username" : "email"
-
         this.setState({loading: true})
         const res = await api.user.signin({
             login: {
@@ -88,16 +90,19 @@ class SignInForm extends React.Component{
                 }
             })
 
-            login(res.data)
+            const {token, isAdmin, username} = res.data.user
+            const loginPayload = {token, isAdmin, username}
+            login(loginPayload)
             this.resetInputs()
-            location.reload(true)
+            dispatch({type: "LOGIN", payload: loginPayload})
+            dispatch({type: "ALERT_PORTAL", payload: {type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_IN, open: true}})
         }
         else if (res.status === 401){
             this.setState({
                 feedback: {
                     type: "error",
-                    header: MessageTypes.INCORRECT_CREDENTIALS,
-                    message: MessageTypes.INCORRECT_LOGIN_OR_PASSWORD
+                    // header: MessageTypes.INCORRECT_CREDENTIALS,
+                    message: res.data.error.message || MessageTypes.INCORRECT_LOGIN_OR_PASSWORD
                 }
             })
             this.resetInputs(false)
@@ -135,25 +140,32 @@ class SignInForm extends React.Component{
                     <Grid.Column mobile={16} tablet={10} computer={8}>
                         {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message} />}
                         
-                        <Form onSubmit={this.onSubmit} loading={loading}>
-                            <Form.Field error={!isEmptyObj(errors.login)}>
-                                <label>Login:</label>
-                                <input value={user.login} onChange={this.onChange} name="login" placeholder="Username or email" />
-                                {errors.login && <InLineError message={errors.login}/>}
-                            </Form.Field>
-                            <Form.Field error={!isEmptyObj(errors.password)}>
-                                <label>Password:</label>
-                                <Input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
-                                {errors.password && <InLineError message={errors.password}/>}
-                            </Form.Field>
-
-                            <Button animated fluid type="submit" loading={loading}>
-                                <Button.Content visible>Sign In</Button.Content>
-                                <Button.Content hidden>
-                                    <Icon name="sign in"/>
-                                </Button.Content>
-                            </Button>
-                        </Form>
+                        <ContextAPI.Consumer>
+                            {({state}) => (
+                                <Form onSubmit={(e) => this.onSubmit(e, state.dispatch)} loading={loading}>
+                                    <Form.Field error={!isEmptyObj(errors.login)}>
+                                        <label>Login:</label>
+                                        <input value={user.login} onChange={this.onChange} name="login" placeholder="Username or email" />
+                                        {errors.login && <InLineError message={errors.login}/>}
+                                    </Form.Field>
+                                    <Form.Field error={!isEmptyObj(errors.password)}>
+                                        <label>Password:</label>
+                                        <Input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
+                                        {errors.password && <InLineError message={errors.password}/>}
+                                    </Form.Field>
+                                    <Form.Field>
+                                        <Link href="/forgot-password"><a>Forgot password?</a></Link>
+                                    </Form.Field>
+        
+                                    <Button animated fluid type="submit" loading={loading}>
+                                        <Button.Content visible>Sign In</Button.Content>
+                                        <Button.Content hidden>
+                                            <Icon name="sign in"/>
+                                        </Button.Content>
+                                    </Button>
+                                </Form>
+                            )}
+                        </ContextAPI.Consumer>
                     </Grid.Column>
                     <Grid.Column></Grid.Column>
                 </Grid>

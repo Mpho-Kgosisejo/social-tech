@@ -1,33 +1,40 @@
 import Link from "next/link"
 import Router from "next/router"
-import {Container, Menu, Image, Dropdown, Divider} from "semantic-ui-react"
+import {Container, Menu, Image, Dropdown, Divider, Placeholder} from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
 import {logout} from "../../src/providers/LoginSession"
+import {isEmptyObj} from "../../src/utils/Objs"
+import * as MessageTypes from "../../src/Types/MessageTypes"
 
-const handleLogout = () => {
+const handleLogout = (dispatch) => {
     logout()
     Router.push({pathname: "/"})
-    location.reload(true)
+    dispatch({type: "LOGIN", payload: {}})
+    dispatch({type: "ALERT_PORTAL", payload: {type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true}})
 }
 
 const RightNav = () => (
-    <React.Fragment>
-        <Link href="/profile" prefetch passHref>
-            <Menu.Item as="a" className="fresheats-brown-color">
-                <Image
-                    size="mini"
-                    alt="no-image"
-                    src={"http://i.pravatar.cc/100"}
-                    avatar
-                    style={{marginRight: "8px"}}
-                />
-                {"Username"}
-            </Menu.Item>
-        </Link>
-        <Menu.Item as="a" onClick={handleLogout} className="fresheats-brown-color">Logout</Menu.Item>
-    </React.Fragment>
+    <ContextAPI.Consumer>
+        {({state}) => (
+            <React.Fragment>
+                <Link href="/profile" prefetch passHref>
+                    <Menu.Item as="a" className="fresheats-brown-color">
+                        <Image
+                            size="mini"
+                            alt="no-image"
+                            src={"http://i.pravatar.cc/100"}
+                            avatar
+                            style={{marginRight: "8px"}}
+                        />
+                        {state.login.username}
+                    </Menu.Item>
+                </Link>
+                <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>
+            </React.Fragment>
+        )}
+    </ContextAPI.Consumer>
 )
 
 const Nav = () => (
@@ -69,7 +76,7 @@ const Nav = () => (
                     
                         {!state.root_loading &&
                             <Menu.Menu position="right">
-                                {state.loggedIn ? <RightNav /> : <AuthLayout/>}
+                                {!isEmptyObj(state.login) ? <RightNav /> : <AuthLayout/>}
                             </Menu.Menu>
                         }
                     </React.Fragment>

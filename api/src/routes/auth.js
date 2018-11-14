@@ -10,10 +10,8 @@ const router = express.Router()
     Response struct:
     {
         status: 200, ## status is auto added
-        data: {
-            ...,
-            message: ""
-        }
+        ....
+        message: ""
         error: {
             ...,
             message: ""
@@ -27,14 +25,16 @@ router.post("/", (req, res) => {
     UserModel.findOne({email})
     .then(user => {
         if (user && user.isValidPassword(password)){
-            res.status(200).json({
-                data: {
+            if (user.emailConfirmed){
+                res.status(200).json({
                     user: user.toAuthJSON(),
                     message: "OK"
-                }
-            })
+                })
+            }else{
+                res.status(401).json({error: {message: "You must confirm email before you can login"}})
+            }
         }else{
-            res.status(400).json({error: {message: "Invaild credentials"}})
+            res.status(401).json({error: {message: "Invalid credentials"}})
         }
     })
     .catch(err => {
@@ -54,9 +54,7 @@ router.post("/confirmation", (req, res) => {
     .then(user => {
         if (user){
             res.status(200).json({
-                data: {
-                    message: "Confirmation success"
-                }
+                message: "Confirmation success"
             })
             return
         }else{
@@ -86,9 +84,7 @@ router.post("/reset-password", (req, res) => {
             sendResetPassword(user)
 
             res.status(200).json({
-                data: {
-                    message: "Reset password email sent"
-                }
+                message: "Reset password email sent"
             })
         }else{
             res.status(400).json({
@@ -121,9 +117,7 @@ router.post("/validate-token", (req, res) => {
             })
         }else{
             res.status(200).json({
-                data: {
-                    message: "OK"
-                }
+                message: "OK"
             })
         }
     })
@@ -132,7 +126,7 @@ router.post("/validate-token", (req, res) => {
 router.post("/change-password", (req, res) => {
     const {password, token} = req.body
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {   
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err){
             res.status(401).json({
                 error: {
@@ -149,9 +143,7 @@ router.post("/change-password", (req, res) => {
                     user.save()
                     .then(() => {
                         res.status(200).json({
-                            data: {
-                                message: "Password reset success"
-                            }
+                            message: "Password changed successfully"
                         })
                     })
                 }else{
