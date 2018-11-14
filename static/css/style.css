@@ -1,11 +1,15 @@
 .mainLayout{}
 
 .mainLayout .childLayout{
-    margin-top: 75px;
+    padding-top: 75px;
 }
 
 .appNav{
     height: 54px;
+}
+
+.appNav .nav-container{
+    padding: 0 28px;
 }
 
 .fresheats-green-bg{
@@ -58,12 +62,18 @@
     .breakpoints-test{
         background: #77c394 !important;
     }
+
+    .appNav .nav-container{
+        padding: 0 14px;
+    }
 }
 
 @media (min-width: 991px) {
     .breakpoints-test{
         background: #df6656 !important;
     }
+
+    
 }
 
 @media (min-width: 1200px) {

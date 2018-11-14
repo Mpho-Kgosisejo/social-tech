@@ -1,11 +1,12 @@
 import Head from "next/head"
-import {Container, Portal, Grid, Segment} from "semantic-ui-react"
+import {Container, Sidebar, Menu, Icon, Responsive} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
 import "../../static/css/style.css"
 import ContextAPI from "../../src/config/ContextAPI";
 import AlertPortal from "../utils/AlertPortal";
+import {LeftComputerNav} from "./Nav"
 
 const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = false}) => (
     <React.Fragment>
@@ -22,19 +23,44 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
             <title>{title}</title>
         </Head>
 
+        
         <ContextAPI.Consumer>
             {({state}) => (
-                <div className="mainLayout">
-                        {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
-            
-                        {includeNav && <Nav />}
-            
-                        <Container className="childLayout" fluid={includeContainer}>
-                            {children}
-                        </Container>
-            
-                        {includeFooter && <Footer />}
-                    </div>
+                <Sidebar.Pushable>
+                    <Responsive maxWidth={991} as={React.Fragment}>
+                        <Sidebar
+                            as={Menu}
+                            animation='push'
+                            direction='left'
+                            icon='labeled'
+                            vertical
+                            inverted
+                            visible={state.isSidebarOpen}
+                            width='thin'
+                            className="fresheats-green-bgs"
+                        >
+                            <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({type: "SIDEBAR"})}>
+                                <Icon name="close" size="mini" />
+                            </Menu.Item>
+                            <Menu.Item as="a" className="fresheats-brown-color"></Menu.Item>
+                            <LeftComputerNav />
+                        </Sidebar>
+                    </Responsive>
+        
+                    <Sidebar.Pusher>
+                        <div className="mainLayout">
+                            {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
+                
+                            {includeNav && <Nav />}
+                
+                            <Container className="childLayout" fluid={includeContainer}>
+                                {children}
+                            </Container>
+                
+                            {includeFooter && <Footer />}
+                        </div>
+                    </Sidebar.Pusher>
+                </Sidebar.Pushable>
             )}
         </ContextAPI.Consumer>
     </React.Fragment>
