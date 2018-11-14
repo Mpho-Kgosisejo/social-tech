@@ -3,6 +3,7 @@ import React from 'react'
 import { Container, Divider, Icon, Header, Segment, Accordion, Loader } from "semantic-ui-react"
 import Layout from "../../Layout"
 import api from "../../../../src/providers/APIRequest"
+import ContextAPI from '../../../../src/config/ContextAPI';
 
 class AboutFAQ extends React.Component {
     constructor() {
@@ -41,33 +42,41 @@ class AboutFAQ extends React.Component {
     }
 
     render() {
-        const {aboutData, activeIndex } = this.state
+        const { aboutData, activeIndex } = this.state
         return (
             <React.Fragment>
-                <Divider hidden />
-                <Container text>
-                    <Segment inverted>
-                        <Divider horizontal inverted>
-                            <Header className="aboutsHeaders" as='h2'>{aboutData.page_header}</Header>
-                        </Divider>
-                    </Segment>
-                    <Divider hidden />
-                    {!aboutData.faqs ? "" : <Accordion fluid styled>
-                        {aboutData.faqs.map(item => (
-                            <React.Fragment key={item.index}>
-                                <Accordion.Title active={activeIndex === item.index} index={item.index} onClick={this.handleClick}> <Icon name='dropdown' />
-                                    {item.question}
-                                </Accordion.Title>
-                                <Accordion.Content active={activeIndex === item.index}>
-                                    <p>
-                                        {item.answer}
-                                    </p>
-                                </Accordion.Content>
-                            </React.Fragment>
-                        ))}
-                    </Accordion>
-                    }
-                </Container>
+               
+                <ContextAPI.Consumer>
+                    {({ state }) => (
+                        <React.Fragment>
+                            {/* <pre>{JSON.stringify(state, "", 2)}</pre> */}
+                            <Divider hidden />
+                            <Container text>
+                                <Segment inverted>
+                                    <Divider horizontal inverted>
+                                        <Header className="aboutsHeaders" as='h2'>{state.about.data.faqs.page_header}</Header>
+                                    </Divider>
+                                </Segment>
+                                <Divider hidden />
+                                {!state.about.data.faqs ? "" : <Accordion fluid styled>
+                                    {state.about.data.faqs.faqs.map(item => (
+                                        <React.Fragment key={item.index}>
+                                            <Accordion.Title active={activeIndex === item.index} index={item.index} onClick={this.handleClick}> <Icon name='dropdown' />
+                                                {item.question}
+                                            </Accordion.Title>
+                                            <Accordion.Content active={activeIndex === item.index}>
+                                                <p>
+                                                    {item.answer}
+                                                </p>
+                                            </Accordion.Content>
+                                        </React.Fragment>
+                                    ))}
+                                </Accordion>
+                                }
+                            </Container>
+                        </React.Fragment>
+                    )}
+                </ContextAPI.Consumer>
             </React.Fragment>
         )
     }

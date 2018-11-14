@@ -51,13 +51,13 @@ const Nav = () => (
                                 <Link href="/about?index=ourchefs" prefetch passHref>
                                     <Dropdown.Item as="a">Our Story</Dropdown.Item>
                                 </Link>
-                                <Link href="/about" prefetch passHref>
+                                <Link href="/about?index=ourchefs" prefetch passHref>
                                     <Dropdown.Item as="a">Our Chefs</Dropdown.Item>
                                 </Link>
-                                <Link href="/about" prefetch passHref>
+                                <Link href="/about?index=ourcontacts" prefetch passHref>
                                     <Dropdown.Item as="a">Contact Us</Dropdown.Item>
                                 </Link>
-                                <Link href="/about" prefetch passHref>
+                                <Link href="/about?index=ourfaqs" prefetch passHref>
                                     <Dropdown.Item as="a">FAQs</Dropdown.Item>
                                 </Link>
                             </Dropdown.Menu>

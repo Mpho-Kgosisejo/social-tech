@@ -1,8 +1,8 @@
 /* Global styling */
-/* *{
-    margin: 0 !important;
-    padding: 0 !important;
-} */
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Raleway');
+*{
+    font-family: 'Raleway', sans-serif;
+}
 
 /* Navbar styling */
 
@@ -84,7 +84,7 @@
     width: 100%;
     height: 479px;
     position: relative;
-    margin-top: 100px !important;
+    margin-top: 50px !important;
     bottom: 0;
     left: 0;
     color: #ffff;
@@ -152,7 +152,6 @@
     margin-left: 70px;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: white;
 }
 
 .footer_social_row
@@ -177,14 +176,44 @@
 
 .social_media_icons
 {
-    background-color: #000;
     float: left;
     height: 42px;
 }
 
+.footer_subscriber
+{
+    outline: none !important;
+    box-shadow: none  !important;
+    border: none  !important;
+    background-color: #1c1c1c !important;
+    color: #6a6969 !important;
+    font-style: italic  !important;
+    height: 42px !important;
+    width: 100% !important;
+    line-height: 42px  !important;
+    border-radius: 42px  !important;
+    margin: 0 !important;
+    font-size: 13px !important;
+    font-weight: 500  !important;
+    padding-left: 18px  !important;
+
+}
+
+.footer_button_icon
+{
+    background-color: transparent  !important;
+    border: none  !important;
+    line-height: 42px  !important;
+    color: #c59d5f  !important;
+    position: absolute  !important;
+    right: 10px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
 .subscribe_to_newsletter
 {
-    background-color:springgreen;
     float: right;
     height: 42px;
 }
@@ -220,12 +249,39 @@
     line-height: 1.4285em;
 }
 
-.fantastics
+.footer_link_color
 {
     color: #c59d5f;
     text-shadow: none;
 }
 
+.footer_h3
+{
+    color: #ffffff;
+    font-family: 'Kaushan Script', cursive;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.footer_p
+{
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 23px !important;
+    margin-bottom: 0 !important;
+    color: #a5a5a5;
+    font-family: 'Raleway', sans-serif;
+}
+
+.footer_a
+{
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 49px;
+    text-transform: uppercase;
+    color: #c59d5f;
+}
 /* ______________ */
 .fresheats-green-bg{
     background-color: #082908 !important;

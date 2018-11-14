@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import {Grid, Image} from 'semantic-ui-react'
+import {Grid, Image, List, Icon, Input} from 'semantic-ui-react'
 
 const Footer = () => (
     <div className="footer">
@@ -9,13 +9,26 @@ const Footer = () => (
                 <Grid className="footer_row">
                     <Grid.Row columns={3}>
                     <Grid.Column className="footer_col_1">
-                        <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+                       <h3 className="footer_h3">Our address</h3>
+                        <p className="footer_p"> 22 Alnahas Building, 2 AlBahr St, Tanta
+                            <br />
+                            Al-Gharbia Governorate, Egypt
+                        </p>
+                        <a className="footer_a" href="#">VIEW ON MAP</a>
                     </Grid.Column>
                     <Grid.Column className="footer_col_2">
-                        <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+                        <h3 className="footer_h3">Stay connected</h3>
+                        <input type="text" className="footer_subscriber" placeholder='Subscribe Our Newsletter' />
+                        <button type="submit" className="footer_button_icon"><Icon size="small" name="long arrow alternate right"/></button>
                     </Grid.Column>
                     <Grid.Column className="footer_col_3">
-                        <Image src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
+                        <h3 className="footer_h3">Contact us</h3>
+                        <p className="footer_p">
+                            Main Email: FreshEats@mailer.com
+                        <br />
+                            Phone: 012 345 6789
+                        </p>
+                        <a className="footer_a" href="/" >SEND MESSAGE</a>
                     </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -26,10 +39,23 @@ const Footer = () => (
                 <Grid className="footer_social_grid" columns="equal">
                     <Grid.Row footer_social_row>
                         <Grid.Column className="social_media_icons">
-
-                        </Grid.Column>
-                        <Grid.Column className="subscribe_to_newsletter">
-
+                            <List horizontal relaxed>
+                                <List.Item>
+                                    <Icon name="instagram" size="big"/>
+                                </List.Item>
+                                <List.Item>
+                                    <Icon name="facebook f" size="big"/>
+                                </List.Item>
+                                <List.Item>
+                                    <Icon name="snapchat" size="big"/>
+                                </List.Item>
+                                <List.Item>
+                                    <Icon name="pinterest" size="big"/>
+                                </List.Item>
+                                <List.Item>
+                                    <Icon name="twitter" size="big"/>
+                                </List.Item>
+                            </List>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -40,7 +66,7 @@ const Footer = () => (
                 <div className="footer_copywriter_row">
                     <div className="copywriter_info">
                         <span>© 2019 Fresh Eats, With Love by the </span>
-                        <a className="fantastics" href="\">Fantastic 4</a>
+                        <a className="footer_link_color" href="\">Fantastic 4</a>
                     </div>
                 </div>
             </div>
