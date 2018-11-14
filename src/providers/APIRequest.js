@@ -44,6 +44,16 @@ const API = {
                 .catch(err => err.response)
             )
         },
+        requestPasswordChange: (email) => {
+            if (Config.get("api.isMock")){
+                return (mock.requestPasswordChange().then(res => res))
+            }
+            return (
+                axios.post(`${Config.get("api.endpoint")}/auth/reset-password`, {email})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
         changePassword: ({token, password}) => {
             if (Config.get("api.isMock")){
                 return (mock.changePassword().then(res => res))

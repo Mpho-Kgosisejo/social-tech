@@ -20,7 +20,7 @@ export const MainMessage = ({type = "info", header = "", message}) => {
     if (type === "error"){
         return (<ErrorMessage header={header} message={message} />)
     }
-    else if (type === "success"){
+    else if (type === "success"){                                                                                                                    
         return (<SuccessMessage header={header} message={message} />)
     }
     else if (type === "warning"){

@@ -23,8 +23,6 @@ class Confirmation extends React.Component{
                 message: ""
             }
         }
-
-        console.log(props)
     }
 
     processEmailConfirmation = async (token) => {

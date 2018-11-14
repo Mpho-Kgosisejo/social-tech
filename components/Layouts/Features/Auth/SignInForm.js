@@ -1,5 +1,6 @@
-import {Form, Button, Icon, Grid, Input, Label} from "semantic-ui-react"
+import {Form, Button, Icon, Grid, Input} from "semantic-ui-react"
 import validator from "validator"
+import Link from "next/link"
 
 import {InLineError} from "../../../Messages/InLineMessage"
 import * as MessageTypes from "../../../../src/Types/MessageTypes"
@@ -71,7 +72,6 @@ class SignInForm extends React.Component{
 
     doSignIn = async (dispatch) => {
         const loginType = (!validator.isEmail(this.state.user.login)) ? "username" : "email"
-
         this.setState({loading: true})
         const res = await api.user.signin({
             login: {
@@ -80,6 +80,7 @@ class SignInForm extends React.Component{
             },
             password: this.state.user.password,
         })
+
         if (res.status === 200){
             this.setState({
                 feedback: {
@@ -89,8 +90,8 @@ class SignInForm extends React.Component{
                 }
             })
 
-            const {token, isAdmin} = res.data.data.user
-            const loginPayload = {token, isAdmin}
+            const {token, isAdmin, username} = res.data.user
+            const loginPayload = {token, isAdmin, username}
             login(loginPayload)
             this.resetInputs()
             dispatch({type: "LOGIN", payload: loginPayload})
@@ -151,6 +152,9 @@ class SignInForm extends React.Component{
                                         <label>Password:</label>
                                         <Input value={user.password} onChange={this.onChange} name="password" type="password" placeholder="Password"/>
                                         {errors.password && <InLineError message={errors.password}/>}
+                                    </Form.Field>
+                                    <Form.Field>
+                                        <Link href="/forgot-password"><a>Forgot password?</a></Link>
                                     </Form.Field>
         
                                     <Button animated fluid type="submit" loading={loading}>

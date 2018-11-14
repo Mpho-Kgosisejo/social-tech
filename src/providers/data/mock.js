@@ -9,6 +9,8 @@ import confirmemail_s from "./json/confirmemail_success.json"
 import confirmemail_f from "./json/confirmemail_fail.json"
 import changepassword_s from "./json/change_password_success.json"
 import changepassword_f from "./json/change_password_fail.json"
+import requestpasswordchange_s from "./json/request_password_change_success.json"
+import requestpasswordchange_f from "./json/request_password_change_fail.json"
 
 const WAIT_TIME = 1500
 
@@ -27,4 +29,5 @@ export default {
     menu : () => loadMock(menu_s),
     confirmEmail: () => loadMock(confirmemail_s),
     changePassword: () => loadMock(changepassword_s),
+    requestPasswordChange: () => loadMock(requestpasswordchange_s)
 }
