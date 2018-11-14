@@ -1,4 +1,4 @@
-import { Container, Divider, Card, Image, Icon, Header, Segment, Loader } from "semantic-ui-react"
+import { Container, Divider, Card, Image, Icon, Header, Segment, Loader, Placeholder } from "semantic-ui-react"
 import Layout from "../../Layout"
 import api from "../../../../src/providers/APIRequest"
 import ContextAPI from "../../../../src/config/ContextAPI";
@@ -43,7 +43,7 @@ class AboutOurChefs extends React.Component {
                                         <Header className="aboutsHeaders" as='h2'>{state.about.data.chefs.page_header}</Header>
                                     </Divider>
                                 </Segment>
-                                {!state.about.data.chefs.chef_details ? "" : <Card.Group itemsPerRow={2} stackable>
+                                {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Card.Group itemsPerRow={2} stackable>
                                     {state.about.data.chefs.chef_details.map(item => (
                                         <Card key={item.name}>
                                             <Image className="myImgs" src={item.image_url} />

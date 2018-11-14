@@ -1,4 +1,4 @@
-import { Container, Divider, Header, Segment, Loader, Icon, Grid } from "semantic-ui-react"
+import { Container, Divider, Header, Segment,  Icon, Grid, Placeholder } from "semantic-ui-react"
 import Layout from "../../Layout"
 import api from "../../../../src/providers/APIRequest"
 import ContextAPI from "../../../../src/config/ContextAPI";
@@ -20,8 +20,6 @@ class AboutOurStory extends React.Component {
         const data = await api.web.about()
 
         this.setState({ aboutData: data })
-        // console.log(this.state.aboutData)
-        // console.log(data.data.chefs)
         if (data.status === 200) {
             this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.our_story })
         } else {
@@ -49,7 +47,7 @@ class AboutOurStory extends React.Component {
                             </Segment>
                             <p>{state.about.data.our_story.description}</p>
                             <Divider hidden/>
-                            {!state.about.data.our_story.tags ? "" : <Grid>
+                            {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Grid>
                                 {state.about.data.our_story.tags.map(item => (
                                     
                                     <Grid.Row key={item.tag_name}>

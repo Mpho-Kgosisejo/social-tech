@@ -48,7 +48,7 @@ const Nav = () => (
                         </Link>
                         <Dropdown text='About' pointing className='link item fresheats-brown-color'>
                             <Dropdown.Menu>
-                                <Link href="/about?index=ourchefs" prefetch passHref>
+                                <Link href="/about?index=ourstory" prefetch passHref>
                                     <Dropdown.Item as="a">Our Story</Dropdown.Item>
                                 </Link>
                                 <Link href="/about?index=ourchefs" prefetch passHref>

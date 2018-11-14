@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import {Grid, Image, List, Icon, Input} from 'semantic-ui-react'
+import {Grid, List, Icon} from 'semantic-ui-react'
 
 const Footer = () => (
     <div className="footer">

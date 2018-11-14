@@ -45,6 +45,7 @@ class AboutContactUs extends React.Component {
                                         <Header className="aboutsHeaders" as='h2'>{state.about.data.contact_us.page_header}</Header>
                                     </Divider>
                                 </Segment>
+                                {/* {isLoadingData ? } */}
                                 <Grid columns={2} relaxed>
                                     <Grid.Column>
                                         <Segment basic>
@@ -52,7 +53,7 @@ class AboutContactUs extends React.Component {
                                         </Segment>
                                         <Header as='h2' dividing>
                                             Our Address
-                            </Header>
+                                        </Header>
                                         <Segment attached>
                                             <Header as='h3'>{state.about.data.contact_us.sub_header}</Header>
                                             <p>{state.about.data.contact_us.address_1}</p>

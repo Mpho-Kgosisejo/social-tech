@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Container, Divider, Icon, Header, Segment, Accordion, Loader } from "semantic-ui-react"
+import { Container, Divider, Icon, Header, Segment, Accordion, Placeholder } from "semantic-ui-react"
 import Layout from "../../Layout"
 import api from "../../../../src/providers/APIRequest"
 import ContextAPI from '../../../../src/config/ContextAPI';
@@ -42,7 +42,7 @@ class AboutFAQ extends React.Component {
     }
 
     render() {
-        const { aboutData, activeIndex } = this.state
+        const { isLoadingData, activeIndex } = this.state
         return (
             <React.Fragment>
                
@@ -58,7 +58,7 @@ class AboutFAQ extends React.Component {
                                     </Divider>
                                 </Segment>
                                 <Divider hidden />
-                                {!state.about.data.faqs ? "" : <Accordion fluid styled>
+                                {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Accordion fluid styled>
                                     {state.about.data.faqs.faqs.map(item => (
                                         <React.Fragment key={item.index}>
                                             <Accordion.Title active={activeIndex === item.index} index={item.index} onClick={this.handleClick}> <Icon name='dropdown' />

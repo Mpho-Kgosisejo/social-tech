@@ -74,8 +74,7 @@ class About extends React.Component {
                 <div className="aboutsPageWelcomeMessage">
                     <Header as='h1' icon textAlign='center'>
                         <Icon name='food' circular />
-                        <Header.Content>Welcome to Fr
-                            esh Eats</Header.Content>
+                        <Header.Content>Welcome to Fresh Eats</Header.Content>
                     </Header>
                 </div>
                 <Divider hidden />
