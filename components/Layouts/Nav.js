@@ -38,7 +38,7 @@ const RightNav = () => (
 )
 
 const Nav = () => (
-    <Menu inverted fixed="top" className="appNav fresheats-green-bg">
+    <Menu inverted fixed="top" className="appNav fresheats-green-bg content-none">
         <Container>
             <ContextAPI.Consumer>
                 {({state}) => (

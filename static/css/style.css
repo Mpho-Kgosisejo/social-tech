@@ -10,6 +10,16 @@
     height: 54px;
 }
 
+.ui.menu .item:before
+{
+    content: none !important;
+}
+
+.content-none
+{
+    content: none !important;
+}
+
 .navbarItems
 {
     padding: 5px 25px !important;
