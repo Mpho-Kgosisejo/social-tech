@@ -8,26 +8,26 @@ class AboutOurChefs extends React.Component {
         super()
         this.state = {
             responseMessage: "",
-            isLoadingData: true,
+            isLoadingData: false,
             aboutData: {}
         }
     }
 
-    getData = async () => {
-        const data = await api.web.about()
+    // getData = async () => {
+    //     const data = await api.web.about()
 
-        this.setState({ aboutData: data })
-        console.log(this.state.aboutData)
-        console.log(data.data.chefs)
-        if (data.status === 200) {
-            this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.chefs })
-        } else {
-            this.setState({ responseMessage: data.error.message, isLoadingData: false })
-        }
-    }
+    //     this.setState({ aboutData: data })
+    //     console.log(this.state.aboutData)
+    //     console.log(data.data.chefs)
+    //     if (data.status === 200) {
+    //         this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.chefs })
+    //     } else {
+    //         this.setState({ responseMessage: data.error.message, isLoadingData: false })
+    //     }
+    // }
 
     componentDidMount() {
-        this.getData()
+        // this.getData()
     }
     render() {
         const { isLoadingData, aboutData } = this.state
@@ -40,11 +40,11 @@ class AboutOurChefs extends React.Component {
                             <Container text>
                                 <Segment inverted>
                                     <Divider horizontal inverted>
-                                        <Header className="aboutsHeaders" as='h2'>{state.about.data.chefs.page_header}</Header>
+                                        <Header className="aboutsHeaders" as='h2'>{state.about.chefs.page_header}</Header>
                                     </Divider>
                                 </Segment>
                                 {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Card.Group itemsPerRow={2} stackable>
-                                    {state.about.data.chefs.chef_details.map(item => (
+                                    {state.about.chefs.chef_details.map(item => (
                                         <Card key={item.name}>
                                             <Image className="myImgs" src={item.image_url} />
                                             <Card.Content>

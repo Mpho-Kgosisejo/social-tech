@@ -11,7 +11,7 @@ class AboutFAQ extends React.Component {
         this.state = {
             activeIndex: 0,
             responseMessage: "",
-            isLoadingData: true,
+            isLoadingData: false,
             aboutData: {}
         }
     }
@@ -24,21 +24,7 @@ class AboutFAQ extends React.Component {
         this.setState({ activeIndex: newIndex })
     }
 
-    getData = async () => {
-        const data = await api.web.about()
-
-        this.setState({ aboutData: data })
-        console.log(this.state.aboutData)
-        console.log(data.data.chefs)
-        if (data.status === 200) {
-            this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.faqs })
-        } else {
-            this.setState({ responseMessage: data.error.message, isLoadingData: false })
-        }
-    }
-
     componentDidMount() {
-        this.getData()
     }
 
     render() {
@@ -54,12 +40,12 @@ class AboutFAQ extends React.Component {
                             <Container text>
                                 <Segment inverted>
                                     <Divider horizontal inverted>
-                                        <Header className="aboutsHeaders" as='h2'>{state.about.data.faqs.page_header}</Header>
+                                        <Header className="aboutsHeaders" as='h2'>{state.about.faqs.page_header}</Header>
                                     </Divider>
                                 </Segment>
                                 <Divider hidden />
                                 {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Accordion fluid styled>
-                                    {state.about.data.faqs.faqs.map(item => (
+                                    {state.about.faqs.faqs.map(item => (
                                         <React.Fragment key={item.index}>
                                             <Accordion.Title active={activeIndex === item.index} index={item.index} onClick={this.handleClick}> <Icon name='dropdown' />
                                                 {item.question}

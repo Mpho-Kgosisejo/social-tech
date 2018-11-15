@@ -21,7 +21,9 @@ export default class MyApp extends App {
                 header: "",
                 message: ""
             },
-            about: {},
+            about: {
+                index: 0
+            },
             login: {},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }

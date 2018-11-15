@@ -15,6 +15,10 @@ const handleLogout = (dispatch) => {
     dispatch({type: "ALERT_PORTAL", payload: {type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true}})
 }
 
+const handleAboutDropdown = ({dispatch, aboutState, index}) => {
+    dispatch({type: "ABOUT", payload: {...aboutState, index}})
+}
+
 const RightNav = () => (
     <ContextAPI.Consumer>
         {({state}) => (
@@ -49,16 +53,16 @@ const Nav = () => (
                         <Dropdown text='About' pointing className='link item fresheats-brown-color'>
                             <Dropdown.Menu>
                                 <Link href="/about?index=ourstory" prefetch passHref>
-                                    <Dropdown.Item as="a">Our Story</Dropdown.Item>
+                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({state: state.dispatch, aboutState: state.about, index: 0})}>Our Story</Dropdown.Item>
                                 </Link>
                                 <Link href="/about?index=ourchefs" prefetch passHref>
-                                    <Dropdown.Item as="a">Our Chefs</Dropdown.Item>
+                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({state: state.dispatch, aboutState: state.about, index: 1})}>Our Chefs</Dropdown.Item>
                                 </Link>
                                 <Link href="/about?index=ourcontacts" prefetch passHref>
-                                    <Dropdown.Item as="a">Contact Us</Dropdown.Item>
+                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({state: state.dispatch, aboutState: state.about, index: 2})}>Contact Us</Dropdown.Item>
                                 </Link>
                                 <Link href="/about?index=ourfaqs" prefetch passHref>
-                                    <Dropdown.Item as="a">FAQs</Dropdown.Item>
+                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({state: state.dispatch, aboutState: state.about, index: 3})}>FAQs</Dropdown.Item>
                                 </Link>
                             </Dropdown.Menu>
                         </Dropdown>

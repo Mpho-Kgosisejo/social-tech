@@ -42,34 +42,34 @@ class AboutContactUs extends React.Component {
                             <Container text>
                                 <Segment inverted>
                                     <Divider horizontal inverted>
-                                        <Header className="aboutsHeaders" as='h2'>{state.about.data.contact_us.page_header}</Header>
+                                        <Header className="aboutsHeaders" as='h2'>{state.about.contact_us.page_header}</Header>
                                     </Divider>
                                 </Segment>
                                 {/* {isLoadingData ? } */}
                                 <Grid columns={2} relaxed>
                                     <Grid.Column>
                                         <Segment basic>
-                                            {state.about.data.contact_us.description}
+                                            {state.about.contact_us.description}
                                         </Segment>
                                         <Header as='h2' dividing>
                                             Our Address
                                         </Header>
                                         <Segment attached>
-                                            <Header as='h3'>{state.about.data.contact_us.sub_header}</Header>
-                                            <p>{state.about.data.contact_us.address_1}</p>
-                                            <p>{state.about.data.contact_us.city}</p>
-                                            <p>{state.about.data.contact_us.address_2}</p>
-                                            <p>{state.about.data.contact_us.address_3}</p>
+                                            <Header as='h3'>{state.about.contact_us.sub_header}</Header>
+                                            <p>{state.about.contact_us.address_1}</p>
+                                            <p>{state.about.contact_us.city}</p>
+                                            <p>{state.about.contact_us.address_2}</p>
+                                            <p>{state.about.contact_us.address_3}</p>
                                         </Segment>
                                         <Divider hidden />
                                         <Header as='h2' dividing>
                                             Our Contact Details
                                 </Header>
                                         <Segment attached>
-                                            <p>Tell: {state.about.data.contact_us.tell}</p>
-                                            <p>fax: {state.about.data.contact_us.fax}</p>
-                                            <p>Chefs: {state.about.data.contact_us.chefs_phone}</p>
-                                            <p>Business hours: {state.about.data.contact_us.business_hours}</p>
+                                            <p>Tell: {state.about.contact_us.tell}</p>
+                                            <p>fax: {state.about.contact_us.fax}</p>
+                                            <p>Chefs: {state.about.contact_us.chefs_phone}</p>
+                                            <p>Business hours: {state.about.contact_us.business_hours}</p>
                                         </Segment>
                                     </Grid.Column>
                                     <Grid.Column>
