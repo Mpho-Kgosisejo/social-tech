@@ -3,12 +3,13 @@ import {Container, Sidebar, Menu, Icon, Responsive} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
-import "../../static/css/style.css"
 import ContextAPI from "../../src/config/ContextAPI";
 import AlertPortal from "../utils/AlertPortal";
 import {LeftComputerNav} from "./Nav"
 
-const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = false}) => (
+import "../../static/css/style.css"
+
+const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = true}) => (
     <React.Fragment>
         <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,6 +17,9 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
 
             {/* If you online... */}
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.0/semantic.min.css" />
+            <link rel="stylesheet" type="text/css" charSet="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" />
+            <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
+
             {/* If you offline... */}
             {/* <link rel="stylesheet" href="/static/css/semantic-2.3.0.min.css" /> */}
             <link ref="stylesheet" href="/static/css/sstyle.css" />
@@ -53,9 +57,7 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                 
                             {includeNav && <Nav />}
                 
-                            <Container className="childLayout" fluid={includeContainer}>
-                                {children}
-                            </Container>
+                            {includeContainer ? <Container children={children} /> : children}
                 
                             {includeFooter && <Footer />}
                         </div>
