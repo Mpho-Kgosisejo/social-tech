@@ -8,6 +8,7 @@ import morgan from "morgan"
 
 import auth from "./routes/auth"
 import user from "./routes/user"
+import menu from "./routes/menus"
 
 dotenv.config()
 const app = express()
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 
 app.use("/auth", auth)
 app.use("/user", user)
+app.use("/menus",menu)
 
 app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"))
