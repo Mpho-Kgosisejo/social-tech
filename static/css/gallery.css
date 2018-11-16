@@ -12,12 +12,12 @@
   .arrow-left{
     position: absolute;
      left: 20vw;
-      top: 58vh;
+      top: 53vh;
   }
   .arrow_right{
     position: absolute;
     right: 20vw;
-     top: 58vh;
+     top: 53vh;
   }
   .insta-butt{
       text-align: end !important;
@@ -65,12 +65,10 @@
         height: 100vh;
     }
     .arrow_right{
-        position: absolute;
         right: 3vw;
          top: 85vh;
       }
       .arrow-left{
-        position: absolute;
          left: 3vw;
           top: 85vh;
       }
@@ -85,18 +83,36 @@
   {
       height: 100vh;
   }
+  .arrow_right{
+    right: 5vw;
+     top: 70vh;
+  }
+  .arrow-left{
+     left: 5vw;
+      top: 70vh;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
     .breakpoints-test{
         background: #df6656 !important;
     }
+    
 }
 
 @media (min-width: 991px) and (max-width: 1200px) {
     .breakpoints-test{
         background: #e8d692 !important;
     }
+    .arrow_right{
+        right: 5vw;
+         top: 45vh;
+      }
+      .arrow-left{
+         left: 5vw;
+          top: 45vh;
+      }
+    
 }
 
 
