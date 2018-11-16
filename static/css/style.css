@@ -4,7 +4,7 @@
     font-family: 'Raleway', sans-serif;
 }
 
-/* Navbar styling */
+/*#region Navbar styling */
 
 .appNav{
     height: 54px;
@@ -39,15 +39,13 @@
     right: 0;
 }
 
-/* --------------- */
+/*#endregion--------------- */
 
-
-
-/* Main layout styling */
+/*#region  Main layout styling */
 .mainLayout{
     min-height: 100vh;
     position: relative !important;
-    padding-bottom: 479px !important;
+    padding-bottom: 479px;
 }
 
 .mainLayout .childLayout{
@@ -58,9 +56,9 @@
     height: 54px;
 }
 
+/* #endregion */
 
-/* Styles for the abouts page: By Thato 
- */
+/*#region Styles for the abouts page: By Thato */
 
 .zero-border
 {
@@ -89,9 +87,9 @@
     max-height: 300px;
 }
 
- /* -------------------------------- */
+ /*#endregion */
 
- /* Footer styling */
+ /*#region Footer styling */
 
  .footer
  {
@@ -296,7 +294,10 @@
     text-transform: uppercase;
     color: #c59d5f;
 }
-/* ______________ */
+/*#endregion */
+
+/* #region Colors */
+
 .fresheats-green-bg{
     background-color: #082908 !important;
 }
@@ -335,7 +336,110 @@
     border: 1px solid rgba(197,156,112) !important;
 }
 
+/* #endregion */
+
 /* Semantic UI: Media Queries breakpoints */
+/* #region media queries */
+@media (max-width: 480px)
+{
+    /* #region FOOTER */
+        .mainLayout
+        {
+            padding-bottom: 600px;
+        }
+
+        .footer{
+            height: 600px !important;
+        }
+        .footer_container{
+            margin-left: 20px !important;
+            margin-right: 20px !important;
+        }
+
+        .ui.grid>[class*="three column"].row>.column
+        {
+            width: 100% !important;
+        }
+
+        .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column
+        {
+            width: 100% !important;
+        }
+
+        .display-felx{
+            display: flex !important;
+        }
+
+        .footer_wideget
+        {
+            height: 478px !important;
+        }
+
+        .footer_social_container {
+            height: 28px;
+            margin-right: 0px;
+            margin-left: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .footer_social_row
+        {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+        .footer_wideget
+        {
+            padding-top: 20px !important;
+        }
+
+    /* #endregion */
+}
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .mainLayout
+    {
+        padding-bottom: 600px;
+    }
+
+    .footer{
+        height: 600px !important;
+    }
+    .footer_container{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+
+    .ui.grid>[class*="three column"].row>.column
+    {
+        width: 100% !important;
+    }
+
+    .footer_wideget
+    {
+        height: 478px !important;
+    }
+
+    .footer_social_container {
+        height: 28px;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .footer_social_row
+    {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .footer_wideget
+    {
+        padding-top: 20px !important;
+    }
+}
 
 @media (min-width: 480px) {
     .breakpoints-test{

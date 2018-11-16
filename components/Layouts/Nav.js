@@ -17,6 +17,21 @@ const handleLogout = (dispatch) => {
 
 const handleAboutDropdown = ({dispatch, aboutState, index}) => {
     dispatch({type: "ABOUT", payload: {...aboutState, index}})
+
+    switch (index) {
+        case 0:
+            Router.push({pathname: "/about", query: { index: 'ourstory' }})
+            break;
+        case 1:
+            Router.push({pathname: "/about", query: { index: 'ourchefs' }})       
+            break;
+        case 2:
+        Router.push({pathname: "/about", query: { index: 'contactus' }})
+            break;
+        case 3:
+        Router.push({pathname: "/about", query: { index: 'faqs' }})
+            break;
+    }
 }
 
 const RightNav = () => (
@@ -52,18 +67,18 @@ const Nav = () => (
                         </Link>
                         <Dropdown text='About' pointing className='link item fresheats-brown-color'>
                             <Dropdown.Menu>
-                                <Link href="/about?index=ourstory" prefetch passHref>
-                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({state: state.dispatch, aboutState: state.about, index: 0})}>Our Story</Dropdown.Item>
-                                </Link>
-                                <Link href="/about?index=ourchefs" prefetch passHref>
-                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({state: state.dispatch, aboutState: state.about, index: 1})}>Our Chefs</Dropdown.Item>
-                                </Link>
-                                <Link href="/about?index=ourcontacts" prefetch passHref>
-                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({state: state.dispatch, aboutState: state.about, index: 2})}>Contact Us</Dropdown.Item>
-                                </Link>
-                                <Link href="/about?index=ourfaqs" prefetch passHref>
-                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({state: state.dispatch, aboutState: state.about, index: 3})}>FAQs</Dropdown.Item>
-                                </Link>
+                                {/* <Link href="/about?index=ourstory" prefetch passHref> */}
+                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 0})}>Our Story</Dropdown.Item>
+                                {/* </Link> */}
+                                {/* <Link href="/about?index=ourchefs" prefetch passHref> */}
+                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 1})}>Our Chefs</Dropdown.Item>
+                                {/* </Link> */}
+                                {/* <Link href="/about?index=ourcontacts" prefetch passHref> */}
+                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 2})}>Contact Us</Dropdown.Item>
+                                {/* </Link> */}
+                                {/* <Link href="/about?index=ourfaqs" prefetch passHref> */}
+                                    <Dropdown.Item as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 3})}>FAQs</Dropdown.Item>
+                                {/* </Link> */}
                             </Dropdown.Menu>
                         </Dropdown>
                         {(state.login && state.login.isAdmin) && 

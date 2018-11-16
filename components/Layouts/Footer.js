@@ -2,6 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 import {Grid, List, Icon} from 'semantic-ui-react'
 
+function openInNewTab(url) {
+    var win = window.open(url, '_blank');
+    win.focus();
+  }
+
 const Footer = () => (
     <div className="footer">
         <div className="footer_wideget">
@@ -14,7 +19,7 @@ const Footer = () => (
                             <br />
                             Al-Gharbia Governorate, Egypt
                         </p>
-                        <a className="footer_a" href="https://www.google.com/maps/place/Eagle+Ford/@-26.1255169,28.0787411,16z/data=!4m13!1m7!3m6!1s0x1e950d3ec0a21017:0xc8c883b04b670e62!2sBramley,+Johannesburg,+2018!3b1!8m2!3d-26.1242991!4d28.0815415!3m4!1s0x1e950d15843f38e9:0x4a8a8861561f6446!8m2!3d-26.1252457!4d28.0854549">VIEW ON MAP</a>
+                        <a className="footer_a" href="https://www.google.com/maps/place/48+Silwood+Rd,+Bramley,+Johannesburg,+2018/@-26.1279852,28.0803513,17z/data=!3m1!4b1!4m5!3m4!1s0x1e950d167db50e61:0x6b58942d39a1bc0!8m2!3d-26.12799!4d28.08254">VIEW ON MAP</a>
                     </Grid.Column>
                     <Grid.Column className="footer_col_2">
                         <h3 className="footer_h3">Stay connected</h3>
@@ -39,7 +44,7 @@ const Footer = () => (
                 <Grid className="footer_social_grid" columns="equal">
                     <Grid.Row className="footer_social_row">
                         <Grid.Column className="social_media_icons">
-                            <List horizontal relaxed>
+                            <List className="display-felx" horizontal relaxed>
                                 <List.Item>
                                     <Icon name="instagram" size="big"/>
                                 </List.Item>

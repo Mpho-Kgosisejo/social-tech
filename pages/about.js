@@ -1,5 +1,5 @@
 import Layout from "../components/Layouts/Layout"
-import { Tab, Header, Icon, Divider, Message } from "semantic-ui-react"
+import { Tab, Header, Icon, Divider, Message, Placeholder } from "semantic-ui-react"
 import Router from 'next/router'
 
 import AboutOurChefs from "../components/Layouts/Features/About/AboutOurChefs"
@@ -162,7 +162,7 @@ class About extends React.Component {
                                 </Header>
                             </div>
                             <Divider hidden />
-                            {loading ? "laoding" : <Tab menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} />}
+                            {loading ? <Placeholder fluid><Placeholder.Header ><Placeholder.Line /><Placeholder.Line /></Placeholder.Header><Placeholder.Paragraph><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder.Paragraph></Placeholder>  : <Tab menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} />}
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>
