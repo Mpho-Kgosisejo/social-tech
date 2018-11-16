@@ -51,7 +51,7 @@ const Nav = () => (
                         </Link>
                         <Dropdown text='About' className="fresheats-brown-color" simple item>
                             <Dropdown.Menu>
-                                <Link href="/about" className="fresheats-brown-color" prefetch passHref>
+                                <Link href="/about" prefetch passHref>
                                     <Dropdown.Item as="a">Our Story</Dropdown.Item>
                                 </Link>
                                 <Divider />

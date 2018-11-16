@@ -9,6 +9,7 @@ import changepassword_s from "./json/change_password_success.json"
 import changepassword_f from "./json/change_password_fail.json"
 import requestpasswordchange_s from "./json/request_password_change_success.json"
 import requestpasswordchange_f from "./json/request_password_change_fail.json"
+import insta_s from "./json/insta_success.json"
 
 const WAIT_TIME = 1500
 
@@ -26,5 +27,6 @@ export default {
     signup: () => loadMock(signup_s),
     confirmEmail: () => loadMock(confirmemail_s),
     changePassword: () => loadMock(changepassword_s),
-    requestPasswordChange: () => loadMock(requestpasswordchange_s)
+    requestPasswordChange: () => loadMock(requestpasswordchange_s),
+    instaGallery: () => loadMock(insta_s)
 }

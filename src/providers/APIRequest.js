@@ -67,6 +67,18 @@ const API = {
                 .catch(err => err.response)
             )
         }
+    },
+    gallery: {
+        getInstaImgs: () => {
+            if (Config.get("api.isMock")){
+                return (mock.instaGallery().then(res => res))
+            }
+            return (
+                axios.get(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${Config.get("api.instaToken")}`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }
     }
 }
 

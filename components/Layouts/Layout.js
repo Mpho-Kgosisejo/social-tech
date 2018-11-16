@@ -15,6 +15,8 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
 
             {/* If you online... */}
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.0/semantic.min.css" />
+            {/* <link rel="script" href="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js" /> */}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>
             {/* If you offline... */}
             {/* <link rel="stylesheet" href="/static/css/semantic-2.3.0.min.css" /> */}
             <link ref="stylesheet" href="/static/css/style.css" />

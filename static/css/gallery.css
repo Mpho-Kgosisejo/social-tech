@@ -1,45 +1,72 @@
-.card{
+.gallery-card{
     background-position: center !important;
 	background-repeat: no-repeat !important;
     background-size: cover !important;
+    border-radius: 0% !important;
 }
 .angle{
-    color: black;
+    color: #c59c70;
     cursor: pointer;
-    position: relative;
-    top: calc(50% - 20px);
-    transform: scale(1);
-    transition: all .2s ease-in-out;
-    z-index: 10;
-  }
-    .right {
-      float: right;
-      margin-right: 1rem;
-    }
-    .left {
-      float: left;
-      margin-left: 1rem;
-    }
-    .right_icon {
-      cursor: pointer !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 10% !important;
-      height: 80% !important;
-      z-index: 2 !important;
   }
 
-  .left_icon {
-      cursor: pointer !important;
-      position: absolute !important;
-      top: 0 !important;
-      left: 0 !important;
-      width: 190% !important;
-      height: 80% !important;
-      z-index: 2 !important;
-  }
   .img_height
   {
-      height: 600px !important;
+      height: 50vh;
+      width: 100%;
+      /* margin-left: calc(50% - 35vw); */
   }
+  
+  .font_header{
+    font-family: cursive;
+    font-size: xx-large;
+  }
+
+  .ui.icon.header {
+    margin: 2rem 0 2rem;
+  }
+
+  .gallery-height{
+    height: 300px !important;
+  }
+
+
+@media ( max-width: 480px) {
+    .breakpoints-test{
+        background: #5999c2!important;
+    }
+
+    .img_height
+    {
+        height: 100vh;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .breakpoints-test{
+        background: #77c394 !important;
+    }
+
+    .img_height
+  {
+      height: 100vh;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    .breakpoints-test{
+        background: #df6656 !important;
+    }
+}
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .breakpoints-test{
+        background: #e8d692 !important;
+    }
+}
+
+
+@media (min-width: 1201px) {
+    .breakpoints-test{
+        background: yellow !important;
+    }
+}
