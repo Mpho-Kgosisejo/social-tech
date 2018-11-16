@@ -20,7 +20,6 @@ class Gallery extends React.Component {
       mainUrl: "",
       imageIndex: 0
     }
-
     this.mainImageRef = React.createRef()
   }
 
@@ -78,17 +77,14 @@ class Gallery extends React.Component {
         {!isEmptyObj(data) ?
           <div className="image_height">
             <div className="ui container slides">
-            {imageIndex > 0 && <i className="big angle arrow left icon" style={{position: "absolute", left: "20vw", top: "475px"}} onClick={() => { this.prevImage() }} />}
-            {imageIndex < data.length - 1 && <i className="big angle arrow right icon" style={{position: "absolute", right: "20vw", top: "475px"}} onClick={() => { this.nextImage() }} />}
-              <div className="gallery-card img_height" style={{ background: `url(${data[imageIndex].images.standard_resolution.url})` }}
-                onClick={() => {
-                  window.open(data[imageIndex].link)
-                }}>
+            {imageIndex > 0 && <i className="big angle arrow left icon arrow-left" onClick={() => { this.prevImage() }} />}
+            {imageIndex < data.length - 1 && <i className="big angle arrow right icon arrow_right" onClick={() => { this.nextImage() }} />}
+              <div className="gallery-card img_height" style={{ background: `url(${data[imageIndex].images.standard_resolution.url})` }}>
                 <hidden ref={this.mainImageRef} />
               </div>
             </div>
           </div>
-          : "nodata"}
+          : ""}
         <Layout title="Gallery">
           {!isEmptyObj(data) ? <>
             <Card.Group  doubling itemsPerRow={3} stackable>
@@ -100,11 +96,14 @@ class Gallery extends React.Component {
                       this.autoScroll()
                     }}>
                     <div className="gallery-card gallery-height" style={{background: `url(${el.images.low_resolution.url})` }}></div>
+                    <Button className="insta-butt" onClick={() =>{window.open(data[imageIndex].link)}}>
+                    <i>Instagram</i>
+                    </Button>
                   </Card>
                 )
               })}
             </Card.Group>
-          </> : "noData"}
+          </> : ""}
         </Layout>
       </>
     )

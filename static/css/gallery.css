@@ -9,11 +9,36 @@
     cursor: pointer;
   }
 
+  .arrow-left{
+    position: absolute;
+     left: 20vw;
+      top: 58vh;
+  }
+  .arrow_right{
+    position: absolute;
+    right: 20vw;
+     top: 58vh;
+  }
+  .insta-butt{
+      text-align: end !important;
+      font-family: cursive !important;
+      background: #c5a370 !important;
+      opacity: 0.9;
+      padding: .3em 1.5em .3em !important;
+      border-radius: 0% !important; 
+  }
+  
+  .ui.cards>.card>:first-child {
+      border-radius: 0% !important;
+  }
+  .ui.cards>.card>:last-child{
+    border-radius: 0% !important;
+  }
+
   .img_height
   {
-      height: 50vh;
+      height: 60vh;
       width: 100%;
-      /* margin-left: calc(50% - 35vw); */
   }
   
   .font_header{
@@ -39,6 +64,16 @@
     {
         height: 100vh;
     }
+    .arrow_right{
+        position: absolute;
+        right: 3vw;
+         top: 85vh;
+      }
+      .arrow-left{
+        position: absolute;
+         left: 3vw;
+          top: 85vh;
+      }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {

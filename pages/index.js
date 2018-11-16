@@ -2,11 +2,8 @@ import Layout from "../components/Layouts/Layout"
 import ContextAPI from "../src/config/ContextAPI";
 
 const Index = () => (
-    <Layout title="Home">
-        <div className="breakpoints-test">
-
+    <Layout title="Home"> 
         Index
-        </div>
     </Layout>
 )
 
