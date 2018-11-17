@@ -16,20 +16,43 @@ const settings = {
 const sliderImages = [
     {
         id: 1,
-        url: "http://www.arrowstudio.com/img/foodphotography/restaurant-food-photography.jpg",
-        caption: {
+        url: "https://pixabay.com/get/e837b10628f4063ed1584d05fb0938c9bd22ffd41cb5134594f3c87fa3/food-1209007_1280.jpg",
+        caption: 
+        {
             title: "",
             content: "Nothing is better than going home to family and eating good food and relaxing."
         }
-    }, {
+    },
+    {
         id: 2,
-        url: "http://www.arrowstudio.com/img/foodphotography/food-photographer-florida.jpg",
-        caption: {
+        url: " https://www.publicdomainpictures.net/pictures/220000/velka/food-kitchenspices-spoon-wood.jpg",
+        caption: 
+        {
+            title: "",
+            content: "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world."
+        }
+    },
+    {
+        id: 3,
+        url: "https://pixabay.com/get/eb3cb90c2ff4083ed1584d05fb0938c9bd22ffd41cb5134594f4c378a6/dark-mood-food-2983709_1280.jpg",
+        caption: 
+        {
+            title: "",
+            content: "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world."
+        }
+    },
+    {
+        id: 4,
+        url: "https://pixabay.com/get/ec31b0062af61c22d2524518a33219c8b66ae3d01db3154090f9c27f/wine-541922_1280.jpg",
+        caption: 
+        {
             title: "",
             content: "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world."
         }
     }
+    
 ]
+
 
 const Index = () => (
     <Layout title="Home" includeContainer={false} includeNav={true}>
@@ -56,7 +79,7 @@ const Index = () => (
             <div className="static-caption">
                 <Container>
                     <Header as="h1">Fresh Eats</Header>
-                    <Header as="h5">Fresh eats sub-title, and more...</Header>
+                    <Header as="h5">Fresh eats something fresh all the time...</Header>
                 </Container>
             </div>
         </div>

@@ -124,7 +124,6 @@
     font-weight: 100;
     font-size: 2em;
     margin: 0;
-    color: #fff;
     color: rgb(231, 195, 157);
 }
 
@@ -140,9 +139,9 @@
 }
 
 .slider-container .static-caption .header{
-    color: rgb(245, 245, 245);
+    color: rgb(212, 195, 176);
     /* text-align: center; */
-    font-weight: 100;
+    font-weight: 500;
     font-family: 'Raleway', sans-serif;
 }
 
@@ -153,7 +152,13 @@
 
 .slider-container .static-caption h5{
     margin-top: 0;
-    font-size: 2.5em;
+    font-size: 2.8em;
+}
+.slick-dots li button:before
+{
+    color: #f1d9bf !important;
+    top: -40px !important;
+    font-size: 18px !important;
 }
 
 /* #endregion */
