@@ -19,12 +19,14 @@ const Footer = () => (
                             <br />
                             Al-Gharbia Governorate, Egypt
                         </p>
-                        <a className="footer_a" href="https://www.google.com/maps/place/48+Silwood+Rd,+Bramley,+Johannesburg,+2018/@-26.1279852,28.0803513,17z/data=!3m1!4b1!4m5!3m4!1s0x1e950d167db50e61:0x6b58942d39a1bc0!8m2!3d-26.12799!4d28.08254">VIEW ON MAP</a>
+                        <a className="footer_a" target="_blank" href="https://www.google.com/maps/place/48+Silwood+Rd,+Bramley,+Johannesburg,+2018/@-26.1279852,28.0803513,17z/data=!3m1!4b1!4m5!3m4!1s0x1e950d167db50e61:0x6b58942d39a1bc0!8m2!3d-26.12799!4d28.08254">VIEW ON MAP</a>
                     </Grid.Column>
                     <Grid.Column className="footer_col_2">
                         <h3 className="footer_h3">Stay connected</h3>
-                        <input type="text" className="footer_subscriber" placeholder='Subscribe Our Newsletter' />
-                        <button type="submit" className="footer_button_icon"><Icon size="small" name="long arrow alternate right"/></button>
+                        <form>
+                            <input type="text" className="footer_subscriber" placeholder='Subscribe Our Newsletter' />
+                            <button type="submit" className="footer_button_icon"><Icon size="small" name="long arrow alternate right"/></button>
+                        </form>
                     </Grid.Column>
                     <Grid.Column className="footer_col_3">
                         <h3 className="footer_h3">Contact us</h3>
@@ -71,7 +73,7 @@ const Footer = () => (
                 <div className="footer_copywriter_row">
                     <div className="copywriter_info">
                         <span>© 2019 Fresh Eats, With Love by the </span>
-                        <a className="footer_link_color" href="https://en.wikipedia.org/wiki/Fantastic_Four_(2015_film)">Fantastic 4</a>
+                        <a className="footer_link_color" target="_blank" href="https://en.wikipedia.org/wiki/Fantastic_Four_(2015_film)">Fantastic 4</a>
                     </div>
                 </div>
             </div>

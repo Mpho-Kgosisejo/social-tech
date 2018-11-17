@@ -38,11 +38,9 @@ class AboutOurChefs extends React.Component {
                         <React.Fragment>
                             <Divider hidden />
                             <Container text>
-                                <Segment inverted>
-                                    <Divider horizontal inverted>
-                                        <Header className="aboutsHeaders" as='h2'>{state.about.chefs.page_header}</Header>
-                                    </Divider>
-                                </Segment>
+                                <Header className="aboutsHeaders" as='h2'>{state.about.chefs.page_header}</Header>
+                                <Divider inverted/>
+                                <Divider hidden/>
                                 {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Card.Group itemsPerRow={2} stackable>
                                     {state.about.chefs.chef_details.map(item => (
                                         <Card key={item.name}>

@@ -40,11 +40,8 @@ class AboutContactUs extends React.Component {
                         // <pre>{JSON.stringify(state.about.data.contact_us, "", 2)}</pre>
                         <React.Fragment>
                             <Container text>
-                                <Segment inverted>
-                                    <Divider horizontal inverted>
-                                        <Header className="aboutsHeaders" as='h2'>{state.about.contact_us.page_header}</Header>
-                                    </Divider>
-                                </Segment>
+                                <Header className="aboutsHeaders" as='h2'>{state.about.contact_us.page_header}</Header>
+                                <Divider />
                                 {/* {isLoadingData ? } */}
                                 <Grid columns={2} relaxed>
                                     <Grid.Column>

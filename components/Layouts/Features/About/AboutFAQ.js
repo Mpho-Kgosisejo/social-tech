@@ -31,18 +31,15 @@ class AboutFAQ extends React.Component {
         const { isLoadingData, activeIndex } = this.state
         return (
             <React.Fragment>
-               
+
                 <ContextAPI.Consumer>
                     {({ state }) => (
                         <React.Fragment>
                             {/* <pre>{JSON.stringify(state, "", 2)}</pre> */}
                             <Divider hidden />
                             <Container text>
-                                <Segment inverted>
-                                    <Divider horizontal inverted>
-                                        <Header className="aboutsHeaders" as='h2'>{state.about.faqs.page_header}</Header>
-                                    </Divider>
-                                </Segment>
+                                <Header className="aboutsHeaders" as='h2'>{state.about.faqs.page_header}</Header>
+                                <Divider />
                                 <Divider hidden />
                                 {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Accordion fluid styled>
                                     {state.about.faqs.faqs.map(item => (

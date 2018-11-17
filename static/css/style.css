@@ -67,7 +67,11 @@
 
 .aboutsHeaders
 {
-    color: white !important;
+    /* color: white !important; */
+    font-family: 'Kaushan Script', cursive !important;
+    text-align: center !important;
+    font-weight: 100 !important;
+    font-size: 4em !important;
 }
 
 .pull-left
@@ -216,7 +220,7 @@
     background-color: transparent  !important;
     border: none  !important;
     line-height: 42px  !important;
-    color: #c59d5f  !important;
+    color: #000  !important;
     position: absolute  !important;
     right: 10px !important;
     top: 0 !important;

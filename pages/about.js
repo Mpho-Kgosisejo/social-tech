@@ -119,11 +119,11 @@ class About extends React.Component {
     }
 
     componentDidMount() {
-        const { index } = this.props.router.query
+        const { tab } = this.props.router.query
         this.getData()
 
-        if (index) {
-            switch (index) {
+        if (tab) {
+            switch (tab) {
                 case "ourstory":
                     this.setState({ index: 0 })
                     break;
