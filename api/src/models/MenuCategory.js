@@ -20,7 +20,8 @@ const Categoryschema = new mongoose.Schema({
         type: Boolean,
         required: true,
         lowercase: true,
-    }
+    },
+    items: [{ type: Schema.Types.ObjectId, ref:'Products' }]
 }, {timestamps: true})
 
 Categoryschema.plugin(pluginUniqueValidator, {message: "value must be unique"})

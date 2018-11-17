@@ -28,11 +28,10 @@ const productSchema = new mongoose.Schema({
         default : "no description",
         required : true,
     },
-    ingredients : {
+    ingredients : [{
         type : String,
-        default : "no ingredients",
         required : true,
-    },
+    }],
     menuCategoryId : {
         type : String,
         required : true

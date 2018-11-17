@@ -2,7 +2,7 @@
     "status": 200,
     "data" : {
         "message" : "got the menu",
-        "menuCategories" : [
+        "menuWithProducts" : [
             {
                 "name" : "food",
                 "title" : "Food",
