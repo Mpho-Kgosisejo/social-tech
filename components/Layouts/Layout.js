@@ -9,6 +9,8 @@ import {LeftComputerNav} from "./Nav"
 
 import "../../static/css/style.css"
 
+const ResponsiveFragmentBugFix = () => (<></>)
+
 const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = true}) => (
     <React.Fragment>
         <Head>
@@ -57,7 +59,7 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                 
                             {includeNav && <Nav />}
                 
-                            {includeContainer ? <Container children={children} /> : children}
+                            {includeContainer ? <Container className="childLayout" children={children} /> : children}
                 
                             {includeFooter && <Footer />}
                         </div>

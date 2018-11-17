@@ -9,6 +9,7 @@
 
 .appNav{
     height: 54px;
+    background: transparent !important;
 }
 
 .appNav .nav-container{

@@ -15,23 +15,7 @@ const handleLogout = (dispatch) => {
     dispatch({type: "ALERT_PORTAL", payload: {type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true}})
 }
 
-const handleSidebarClick = (state) => {
-    const {isSidebarOpen, dispatch} = state
-
-    if (isSidebarOpen){
-        dispatch({type: "SIDEBAR", payload: false})
-    }else{
-        dispatch({type: "SIDEBAR", payload: true})
-    }
-}
-
-// const Logout = () => (
-//     <ContextAPI.Consumer>
-//         {({state}) => (
-//             <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>
-//         )}
-//     </ContextAPI.Consumer>
-// )
+const ResponsiveFragmentBugFix = () => (<></>)
 
 const RightNav = () => (
     <ContextAPI.Consumer>
@@ -105,7 +89,7 @@ export const LeftComputerNav = () => (
                                 <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
                         )}
-                        <Responsive maxWidth={991} as={React.Fragment}>
+                        <Responsive maxWidth={991} as={ResponsiveFragmentBugFix}>
                             <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>
                         </Responsive>
                     </React.Fragment>
