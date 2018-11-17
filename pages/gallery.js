@@ -70,31 +70,31 @@ class Gallery extends React.Component {
         const { data, imageIndex } = this.state
 
         return (
-            <>
-                <Container style={{ marginTop: "75px" }}>
+                <>
+                <Layout title="Gallery">
                     <Header as='h2' textAlign='center'>
                         Our Gallery
                     </Header>
+
+                    <i ref={this.s} />
                     <Divider />
-                </Container>
+                    
+                    {!isEmptyObj(data) ?
+                        <div className="image_height">
+                            <div className="ui slides">
+                                {imageIndex > 0 && <div className="icon-container left"><i className="big angle arrow left icon arrow-left" onClick={() => { this.prevImage() }} /></div>}
 
-                {!isEmptyObj(data) ?
-                    <div className="image_height">
-                        <div className="ui container slides">
-                            {imageIndex > 0 && <div className="icon-container left"><i className="big angle arrow left icon arrow-left" onClick={() => { this.prevImage() }} /></div>}
+                                <div className="gallery-card img_height" style={{ backgroundImage: `url(${data[imageIndex].images.standard_resolution.url})` }}>
+                                </div>
 
-                            <div className="gallery-card img_height" style={{ backgroundImage: `url(${data[imageIndex].images.standard_resolution.url})` }}>
-                                <i ref={this.s} />
+                                {imageIndex < data.length - 1 && <div className="icon-container right"><i className="big angle arrow right icon arrow_right" onClick={() => { this.nextImage() }} /></div>}
                             </div>
-
-                            {imageIndex < data.length - 1 && <div className="icon-container right"><i className="big angle arrow right icon arrow_right" onClick={() => { this.nextImage() }} /></div>}
                         </div>
-                    </div>
-                    : null
-                }
+                        : null
+                    }
 
-                <Layout title="Gallery">
                     {!isEmptyObj(data) ? <>
+                        <Divider hidden />
                         <Card.Group doubling itemsPerRow={3} stackable>
                             {data.map(el => {
                                 return (

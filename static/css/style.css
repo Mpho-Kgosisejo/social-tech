@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:100');
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
 
 .mainLayout{}
 
 .mainLayout .childLayout{
-    margin-top: 75px;
+    padding-top: 75px;
 }
 
 .appNav{
     height: 54px;
     background-color: #000 !important;
+    background: transparent !important;
+}
+
+.appNav .nav-container{
+    padding: 0 28px;
 }
 
 
@@ -50,28 +56,174 @@
     border: 1px solid rgba(197,156,112) !important;
 }
 
-/* Semantic UI: Media Queries breakpoints */
+/* #region - Index/Home page */
 
-@media (min-width: 480px) {
+.slider-container{
+    background-color: #888;
+    position: relative;
+    width: 100%;
+    height: 75vh;
+}
+
+.slider-container .de-slider{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slider-container .de-slider div {
+    height: 100%;
+}
+
+.slider-container .de-slider div .slider-bg{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.slider-container .de-slider div .slider-bg .slider-dimmer{
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    background-color: rgba(0, 0, 0, .25);
+}
+
+.slider-container h1, .slider-container h5{
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, .5);
+}
+
+.slider-container .de-slider .slider-item{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 15px 0 50px 0;
+}
+
+.slider-container .de-slider .slider-item .quotes{
+    float: right;
+    width: 50%;
+    /* background: rgba(0, 0, 0, .15);
+    box-shadow: 0 0 15px rgba(0, 0, 0, .25);; */
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.slider-container .de-slider .slider-item .header{
+    text-align: right;
+    padding: 0 25px;
+}
+
+.slider-container .de-slider .slider-item h1{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.slider-container .de-slider .slider-item h5{
+    font-family: 'Kaushan Script', cursive;
+    font-weight: 100;
+    font-size: 2em;
+    margin: 0;
+    color: #fff;
+    color: rgb(231, 195, 157);
+}
+
+.slider-container .static-caption{
+    position: absolute;
+    top: 80px;
+    
+    width: 100%;
+}
+
+.slider-container .static-caption .container{
+    position: relative;
+}
+
+.slider-container .static-caption .header{
+    color: rgb(245, 245, 245);
+    /* text-align: center; */
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
+}
+
+.slider-container .static-caption h1{
+    font-size: 6em;
+    margin-bottom: 0;
+}
+
+.slider-container .static-caption h5{
+    margin-top: 0;
+    font-size: 2.5em;
+}
+
+/* #endregion */
+
+/* #region Semantic UI: Media Queries breakpoints */
+
+@media ( max-width: 480px) {
     .breakpoints-test{
         background: #5999c2!important;
     }
-}
 
-@media (min-width: 768px) {
-    .breakpoints-test{
-        background: #77c394 !important;
+    .slider-container .de-slider .slider-item .quotes{
+        width: 100%;
+    }
+
+    .slider-container .static-caption h1{
+        font-size: 3.5em;
+    }
+    
+    .slider-container .static-caption h5{
+        font-size: 1.5em;
+    }
+
+    .slider-container .de-slider .slider-item h5{
+        font-size: 1.5em;
     }
 }
 
-@media (min-width: 991px) {
+@media (min-width: 481px) and (max-width: 768px) {
+    .breakpoints-test{
+        background: #77c394 !important;
+    }
+
+    .slider-container .de-slider .slider-item .quotes{
+        width: 100%;
+    }
+
+    .slider-container .static-caption h1{
+        font-size: 4em;
+    }
+    
+    .slider-container .static-caption h5{
+        font-size: 2em;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
     .breakpoints-test{
         background: #df6656 !important;
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 991px) and (max-width: 1200px) {
     .breakpoints-test{
         background: #e8d692 !important;
     }
 }
+
+
+@media (min-width: 1201px) {
+    .breakpoints-test{
+        background: yellow !important;
+    }
+}
+
+/* #endregion */

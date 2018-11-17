@@ -22,6 +22,7 @@ export default class MyApp extends App {
                 message: ""
             },
             login: {},
+            isSidebarOpen: false,
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
