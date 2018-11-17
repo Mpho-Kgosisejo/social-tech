@@ -6,6 +6,7 @@ const productSchema = new mongoose.Schema({
         type : String,
         default : "",
         required : [true, 'A menu product must have a name'],
+        unique : true
     },
     price : {
         type : Number,
@@ -24,7 +25,12 @@ const productSchema = new mongoose.Schema({
     },
     description : {
         type : String,
-        default : 0,
+        default : "no description",
+        required : true,
+    },
+    ingredients : {
+        type : String,
+        default : "no ingredients",
         required : true,
     },
     menuCategoryId : {
@@ -35,4 +41,4 @@ const productSchema = new mongoose.Schema({
 
 productSchema.plugin(pluginUniqueValidator, {message: "value must be unique"})
 
-export default mongoose.model("MenuCategory", productSchema)
+export default mongoose.model("Products", productSchema)

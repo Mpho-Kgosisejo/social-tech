@@ -1,6 +1,6 @@
 export default {
     api: {
-        isMock: true,
+        isMock: false,
         endpoint: "http://localhost:3000"
     },
     jwt: {

@@ -1,5 +1,5 @@
 import { Tab, Card, Responsive, Dropdown, Segment } from "semantic-ui-react"
-import MenuCard from "./menu_card"
+import MenuCard from "./MenuCard"
 import { isEmptyObj } from "../../../../src/utils/Objs";
 import IconMessage from "../../../Messages/IconMessage"
 
@@ -17,7 +17,6 @@ class menu_tab extends React.Component
 
     render()
     {
-        console.log(this.state.activeIndex)
         var newData = this.props.data[this.state.activeIndex]
         console.log(newData)
         return(
@@ -25,7 +24,7 @@ class menu_tab extends React.Component
                 <Responsive minWidth={0} maxWidth={769}>
                     <Dropdown placeholder='Category' className="marginTopBottom centered-element" fluid selection onChange={this.changeActiveIndex} options={
                         this.props.data.map(item => (
-                            { key: item.id, text: item.title, value: this.props.data.indexOf(item)}
+                            { key: item._id, text: item.title, value: this.props.data.indexOf(item)}
                         ))
                     } selection />
                 </Responsive>
@@ -41,7 +40,7 @@ class menu_tab extends React.Component
                         <Card.Group doubling itemsPerRow={3} stackable>
                         {isEmptyObj(newData.items) ? IconMessage("exclamation", "Menu Error!", "Unfortunately the " + newData.title + " category has no products.") : 
                             newData.items.map(product => (
-                                <MenuCard key={product.id} {...product} />
+                                <MenuCard key={product._id} {...product} />
                             ))
                         }
                         </Card.Group>

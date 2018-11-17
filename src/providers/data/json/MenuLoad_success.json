@@ -18,7 +18,6 @@
                         "description" : "aliqua"
                     }, {
                         "price": "150",
-        
                         "available" : true,
                         "id": "2",
                         "image": "http://picsum.photos/800/500/?random",
@@ -95,17 +94,17 @@
                         "image": "http://picsum.photos/400/400/?random",
                         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                     }, {
-                        "price": "90",
+                        "price": "93",
                         "available" : false,
                         "id": "13",
-                        "name": "Frappuccino",
+                        "name": "MOCHACHOS",
                         "image": "http://picsum.photos/400/400/?random",
                         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                     }, {
-                        "price": "90",
+                        "price": "87",
                         "available" : false,
                         "id": "14",
-                        "name": "Frappuccino",
+                        "name": "Mrappuccino",
                         "image": "http://picsum.photos/400/400/?random",
                         "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
                     }] 

@@ -1,7 +1,7 @@
 import api from "../../../../src/providers/APIRequest"
 import { Loader } from "semantic-ui-react"
 import {isEmptyObj} from "../../../../src/utils/Objs"
-import MenuTab from "./menu-tab"
+import MenuTab from "./MenuTab"
 import { MainMessage } from "../../../Messages/Message";
 
 class Menu_Items extends React.Component {
@@ -12,16 +12,15 @@ class Menu_Items extends React.Component {
             responseMessage : "",
             isLoadingData : true,
             menus : {},
-            status : 0
+            status : 200
         }
     }
 
     getMenu = async () => {
         const data = await api.menu.menu_items()
-        console.log(data)
-
+        console.log("datata", data)
         if (data.status === 200){
-            this.setState({responseMessage: data.data.message, isLoadingData: false, menus : data.data.menuCategories, status : data.status})
+            this.setState({responseMessage: data.data.message, isLoadingData: false, menus : data.data.menuWithProducts, status : data.status})
         }else{
             this.setState({responseMessage: data.error.message, isLoadingData: false, status : data.status})
         }
@@ -34,7 +33,6 @@ class Menu_Items extends React.Component {
 
     render () {
         const {responseMessage, status, isLoadingData, menus} = this.state
-
         return(
             <div >
                 {/* <pre>{JSON.stringify(this.state, "", 2)}</pre> */}

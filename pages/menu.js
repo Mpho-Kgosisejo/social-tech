@@ -1,7 +1,7 @@
 import Router from "next/router"
 import { Label, Header, Container, Embed } from "semantic-ui-react"
 import Layout from "../components/Layouts/Layout"
-import MenuItems from "../components/Layouts/Features/Menu/menu-items"
+import MenuItems from "../components/Layouts/Features/Menu/MenuItems"
 
 const Menu = (props) => (
     <div className="menuPageDiv">

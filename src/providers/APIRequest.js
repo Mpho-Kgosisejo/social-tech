@@ -73,6 +73,21 @@ const API = {
             if (Config.get("api.isMock")){
                 return(mock.menu().then(res => res))
             }
+            return (
+                axios.get(`${Config.get("api.endpoint")}/menus/menu-products`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        menu_product : (productID) => {
+            if (Config.get("api.isMock")){
+                return(mock.menu().then(res => res))
+            }
+            return (
+                axios.get(`${Config.get("api.endpoint")}/menus/${productID}`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
         }
     }
 }
