@@ -53,13 +53,6 @@ class AboutOurStory extends React.Component {
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>
-
-                <Divider hidden />
-                <Container text>
-
-                </Container>
-
-                <Divider hidden />
             </React.Fragment>
         )
     }

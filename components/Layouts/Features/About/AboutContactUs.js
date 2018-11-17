@@ -85,8 +85,6 @@ class AboutContactUs extends React.Component {
                                     </Grid.Column>
                                 </Grid>
                             </Container>
-
-                            <Divider hidden />
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>

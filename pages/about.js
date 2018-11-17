@@ -1,7 +1,7 @@
-import Layout from "../components/Layouts/Layout"
-import { Tab, Header, Icon, Divider, Message, Placeholder } from "semantic-ui-react"
-import Router from 'next/router'
+import { Tab, Header, Icon, Divider, Message } from "semantic-ui-react"
 
+import {PlaceholderMediumParagraph} from "../components/utils/Placeholders"
+import Layout from "../components/Layouts/Layout"
 import AboutOurChefs from "../components/Layouts/Features/About/AboutOurChefs"
 import AboutOurStory from "../components/Layouts/Features/About/AboutOurStory"
 import AboutContactUs from "../components/Layouts/Features/About/AboutContactUs"
@@ -146,7 +146,7 @@ class About extends React.Component {
     }
 
     render() {
-        const { index, panes, loading } = this.state
+        const { panes, loading } = this.state
 
         return (
             <Layout title="About Us">
@@ -162,7 +162,7 @@ class About extends React.Component {
                                 </Header>
                             </div>
                             <Divider hidden />
-                            {loading ? <Placeholder fluid><Placeholder.Header ><Placeholder.Line /><Placeholder.Line /></Placeholder.Header><Placeholder.Paragraph><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder.Paragraph></Placeholder>  : <Tab menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} />}
+                            {loading ? <PlaceholderMediumParagraph />  : <Tab menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} />}
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>

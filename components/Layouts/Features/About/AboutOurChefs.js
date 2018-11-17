@@ -66,7 +66,6 @@ class AboutOurChefs extends React.Component {
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>
-                <Divider hidden />
             </React.Fragment>
         )
     }

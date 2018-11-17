@@ -16,6 +16,10 @@ export const reducer = (state, action) => {
             ...state,
             about: action.payload
         })
+        case "SIDEBAR": return ({
+            ...state,
+            isSidebarOpen: (state.isSidebarOpen) ? false : true
+        })
         case "TEST": return ({
             ...state,
             test: action.payload
