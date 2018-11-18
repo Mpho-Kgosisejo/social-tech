@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+
+*{
+    font-family: 'Raleway', sans-serif;
+}
+
 .mainLayout{}
 
 .mainLayout .childLayout{
@@ -6,56 +13,6 @@
 
 .appNav{
     height: 54px;
-}
-
-.menuCard{
-    position: relative;
-}
-
-.centered-element{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.menuCard .availabilityLabel{
-    position: absolute;
-    top: 14px;
-    right: 14px;
-}
-
-.menuCardImage {
-    height: 282px !important;
-    background-position: center !important;
-	background-repeat: no-repeat !important;
-    background-size: cover !important;
-    /* background: #444 !important; */
-}
-
-.menu-card-group {
-    border: 0 !important;
-}
-
-.ui.secondary.pointing.menu .active.item {
-    /* this will be for designing how the selected element of the tab looks */
-    color : #c59c70 !important;
-    border-color : #c59c70 !important;
-}
-
-.transparentBackground {
-    background: transparent !important;
-    border-bottom: 1px solid #000 !important;
-    border-radius: 0 !important;
-}
-
-.menuPageDiv .MenuImageContainerDiv {
-    /* width : 100%; */
-    height: auto;
-    padding: 134px 0 80px 0;
-    background-image: url("https://i0.wp.com/www.healthline.com/hlcmsresource/images/AN_images/best-foods-for-diabetes-1296x728.jpg?w=1155&h=1528");
-    background-position: center;
-	background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .fresheats-green-bg{
@@ -131,3 +88,135 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+
+
+
+/*#region Menu styling */
+
+.menuCard{
+    position: relative;
+}
+.menu-img{
+    width: 400px !important;
+    height: 400px !important;
+}
+.ui.modal>.content{
+    padding: 0%;
+}
+.ui.header:first-child{
+    margin-top: 1rem !important;
+}
+
+.centered-element{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menuCard .availabilityLabel{
+    position: absolute;
+    top: 14px;
+    right: 14px;
+}
+
+.menuCardImage {
+    height: 282px !important;
+    background-position: center !important;
+	background-repeat: no-repeat !important;
+    background-size: cover !important;
+    /* background: #444 !important; */
+}
+
+.menu-card-group {
+    border: 0 !important;
+}
+
+.ui.secondary.pointing.menu .active.item {
+    /* this will be for designing how the selected element of the tab looks */
+    color : #c59c70 !important;
+    border-color : #c59c70 !important;
+}
+
+.transparentBackground {
+    background: transparent !important;
+    border-bottom: 1px solid #000 !important;
+    border-radius: 0 !important;
+}
+
+.menuPageDiv .MenuImageContainerDiv {
+    /* width : 100%; */
+    height: auto;
+    padding: 134px 0 80px 0;
+    background-image: url("https://i0.wp.com/www.healthline.com/hlcmsresource/images/AN_images/best-foods-for-diabetes-1296x728.jpg?w=1155&h=1528");
+    background-position: center;
+	background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header-name{
+
+    font-size: 1.7rem;
+    text-align: center;
+    font-family: 'Raleway', sans-serif !important;
+    color: #244024 !important;
+    font-weight: 700 !important;
+
+}
+.header-sub-head{
+    font-family: 'Kaushan Script', cursive !important;
+    color:   #c59c70 !important;
+    margin: 0 !important;
+    font-weight: normal;
+}
+.ui.modal>.content>.image+.description
+{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 100% !important;
+}
+.ingredient-styling{
+
+    /* list-style-type: circle;
+    margin: 0%;
+    padding-inline-start: 20px !important; */
+
+    background-color: #f1e7dc !important;
+
+}
+.food-price{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Kaushan Script', cursive !important;
+    text-align: center;
+    margin-block-start: 0 !important;
+    margin-block-end: 0 !important;
+    /* color: #bc8d46; */
+}
+.add-button{
+    color: #c59c70 !important;
+   background-color: #082908 !important;
+}
+.quantity-div
+{
+    position: absolute;
+}
+.quantity-input{
+    width: 50px;
+    height: 25px;
+}
+.dec-inc{
+    margin-right: 0.9em !important;
+}
+.decrease-button {
+
+    margin-right: 0.9em !important;
+
+}
+.increase-button{
+
+    margin-left: 0.9em !important;
+
+}
+
+/*#endregion--------------- */
