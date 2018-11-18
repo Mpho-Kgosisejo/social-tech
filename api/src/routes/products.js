@@ -1,5 +1,7 @@
 import express from "express"
+
 import Product from "../models/Product"
+import MenuModel from "../models/Menu"
 
 const router  = express.Router()
 
@@ -19,6 +21,7 @@ router.get("/:id", (req, res) => {
     const id = req.params.id
     Product.findById(id)
     .then(data => {
+
         res.status(200).json({
             data
         })
@@ -34,7 +37,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
     const {price, available, name, image, description, menuCategoryId, ingredients} = req.body
-    const newProduct = Product({
+    const newProduct = new Product({
         price,
         available,
         name,
@@ -45,19 +48,31 @@ router.post("/", (req, res) => {
     })
 
     newProduct.save().then(product => {
-        res.status(200).json({
-            price,
-            available,
-            name,
-            image,
-            description,
-            menuCategoryId,
-            ingredients
+
+        const menuModel = new MenuModel({
+            category: menuCategoryId,
+            items: product._id
+        })
+        menuModel.save().then(menu => {
+            res.status(200).json({
+                product,
+                menu,
+                message: "OK"
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                error : {
+                    catch: err,
+                    message : "error"
+                }
+            })
         })
     })
     .catch(err => {
         res.status(500).json({
             error : {
+                catch: err,
                 message : "could not add this product to the database"
             }
         })

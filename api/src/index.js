@@ -8,7 +8,7 @@ import morgan from "morgan"
 
 import auth from "./routes/auth"
 import user from "./routes/user"
-import menu from "./routes/menus"
+import menu from "./routes/menu"
 import product from "./routes/products";
 
 dotenv.config()
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 
 app.use("/auth", auth)
 app.use("/user", user)
-app.use("/menus",menu)
+app.use("/menus", menu)
 app.use("/products", product)
 
 app.get("/*", (req, res) => {
