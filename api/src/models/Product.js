@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import pluginUniqueValidator from "mongoose-unique-validator"
 
-const productSchema = new mongoose.Schema({
+const ProductSchema = new mongoose.Schema({
     name : {
         type : String,
         default : "",
@@ -28,17 +28,13 @@ const productSchema = new mongoose.Schema({
         default : "no description",
         required : true,
     },
-    ingredients : {
+    ingredients : [{
         type : String,
-        default : "no ingredients",
         required : true,
-    },
-    menuCategoryId : {
-        type : String,
-        required : true
-    }
+    }],
+    menuCategoryId : {type: mongoose.Schema.Types.ObjectId, ref: "MenuCategory"}
 }, {timestamps: true})
 
-productSchema.plugin(pluginUniqueValidator, {message: "value must be unique"})
+ProductSchema.plugin(pluginUniqueValidator, {message: "value must be unique"})
 
-export default mongoose.model("Products", productSchema)
+export default mongoose.model("Products", ProductSchema)
