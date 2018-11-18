@@ -171,6 +171,35 @@
         background: #5999c2!important;
     }
 
+    .header-main-div
+    {
+        height: 590px !important;
+        margin-top: 0px !important;
+    }
+
+    .index-banner {
+        height: 910px !important;
+    }
+
+    .col1
+    {
+        height: 480px !important;
+    }
+    .col2
+    {
+        height: 350px !important;
+    }
+
+    .index-banner-content
+    {
+        height: 321px !important;
+    }
+
+    .index-steps
+    {
+        margin-bottom: 30px !important;
+        height: 810px !important;
+    }
     .slider-container .de-slider .slider-item .quotes{
         width: 100%;
     }
@@ -239,10 +268,10 @@
 
     .header-main-div
     {
-        margin-top: 50px !important;
+        margin-top: 50px;
         padding: 60px 0px !important;
         border: 0px !important;
-        height: 421px !important;
+        height: 421px;
         
     }
     .header-container
@@ -402,7 +431,7 @@
 
     .index-steps
     {
-        height: 432px !important;
+        height: 432px;
         width: 100% !important;    
     }
 
