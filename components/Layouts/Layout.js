@@ -33,7 +33,7 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
         <ContextAPI.Consumer>
             {({state}) => (
                 <Sidebar.Pushable>
-                    <Responsive maxWidth={991} as={React.Fragment}>
+                    <Responsive maxWidth={991} as={ResponsiveFragmentBugFix}>
                         <Sidebar
                             as={Menu}
                             animation='push'

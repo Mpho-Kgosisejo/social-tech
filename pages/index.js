@@ -2,6 +2,8 @@ import Layout from "../components/Layouts/Layout"
 
 import Slider from "react-slick"
 import { Container, Header } from "semantic-ui-react";
+import IndexLayout from "../components/Layouts/Features/Index/IndexLayout";
+
 
 const settings = {
     dots: true,
@@ -31,6 +33,7 @@ const sliderImages = [
     }
 ]
 
+
 const Index = () => (
     <Layout title="Home" includeContainer={false} includeNav={true}>
         <div className="slider-container" >
@@ -52,7 +55,6 @@ const Index = () => (
                     </div>
                 ))}
             </Slider>
-
             <div className="static-caption">
                 <Container>
                     <Header as="h1">Fresh Eats</Header>
@@ -62,7 +64,7 @@ const Index = () => (
         </div>
 
         <Container>
-            Index
+                <IndexLayout />
         </Container>
     </Layout>
 )

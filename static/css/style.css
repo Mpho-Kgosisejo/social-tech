@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:100');
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
 
 .mainLayout{}
 
@@ -224,4 +225,436 @@
     }
 }
 
+/* #endregion */
+
+/* #region Global */
+    .align-iterms-center
+    {
+        text-align: center !important;
+    }
+
+/* #endregion */
+
+/* #region Index Header stylying Thato */
+
+    .header-main-div
+    {
+        margin-top: 50px !important;
+        padding: 60px 0px !important;
+        border: 0px !important;
+        height: 421px !important;
+        
+    }
+    .header-container
+    {
+        height: 301px !important;
+        padding: 0px 15px !important;
+        border: 0px !important;
+    }
+    .header-row
+    {
+        height: 301px !important;
+        padding: 0px -15px !important;
+        border: 0px !important;
+    }
+    .header-sub
+    {
+        font-size: 29px;
+        font-family: 'Great Vibes', cursive;
+        color: #c59c70;
+    }
+
+    .header-row h2
+    {
+        font-size: 36px !important;
+        font-weight: 400 !important;
+        font-family: "Kaushan Script", 'cursive' !important;
+    }
+
+    .header-divider
+    {
+        margin: 20px 0  !important;
+        height: 14px !important;
+        color: #c59c70 !important;
+    }
+
+    .header-desc
+    {
+        color: #424242;
+        font-family: 'Raleway', 'sans-serif';
+        font-size: 15px;
+    }
+
+    .header-signature
+    {
+        height: 27px !important;
+        margin-top: 30px !important;
+    }
+    .signImg
+    {
+        width: 99px !important;
+        height: 49px !important;
+        
+    }
+/* #endregion */
+
+/* #region Index Body */
+
+    .index-body
+    {
+        padding-bottom: 110px; 
+    }
+
+    .index-body-main-div
+    {
+        background-image: url("https://pixabay.com/get/ea33b7072ff11c3e955b4502e44c4e92e26ae3d01db3154795f5c679/cook-366875.jpg") !important;
+        height: 642px !important;
+        width: 100% !important;
+        /* background-repeat: no-repeat; */
+
+    }
+
+    .section-divider2
+    {
+        padding-top: 297px !important;
+        padding-bottom: 275px !important;
+        background-repeat: none !important;
+        background-position: center !important;
+        background-size: cover;
+    }
+
+    .bg-parallax
+    {
+        background-attachment: fixed !important;
+    }
+
+    .bg-overlay-dark4:before
+    {
+        background-color: rgba(27, 26, 26, 0.65) !important;
+    }
+
+    .bg-overlay:before {
+        content: "" !important;
+        display: inline-block !important;
+        height: 100% !important;
+        left: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        width: 100% !important;
+        z-index: -1 !important;
+    }
+
+    .bg-section
+    {
+        position: relative !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .index-body-container
+    {
+        height: 85px !important;
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .index-body-row
+    {
+        height: 85px;
+        margin: 0 -15px !important;
+        /* background-color: red; */
+    }
+
+    .index-body-heading
+    {
+        padding: 0 15px !important;
+    }
+
+    .index-body-desc
+    {
+        height: 85px;
+    }
+    
+    .index-body-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+    /* color: #c59c70; */
+
+    .index-body-desc h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color: #fff !important;
+    }
+
+/* #endregion */
+
+/* #region Index Steps */
+
+    .index-steps
+    {
+        height: 432px !important;
+        width: 100% !important;    
+    }
+
+    .index-steps-container
+    {
+        height: 212px;
+        padding: 0 15px;
+        margin: 0 13px;
+    }
+
+    .index-steps-row
+    {
+        height: 212px;
+        margin: 0 -15px !important;
+        /* background-color: #fff; */
+    }
+    
+    .index-step-sub
+    {
+        font-size: 29px;
+        font-family: 'Great Vibes', cursive;
+        color: #c59c70;
+    }
+
+    .index-steps-row h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color:  #000000 !important;
+    }
+    .index-step-grid
+    {
+        margin-top: 40px !important;
+    }
+
+    .index-step-column-h3
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 25px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color:  #082908 !important;
+    }
+
+    .index-step-column-desc
+    {
+        color: #424242;
+        font-family: 'Raleway', 'sans-serif';
+        font-size: 15px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        margin-bottom: 25px !important;
+    }
+
+    .index-step-get-started-btn
+    {
+        margin-top: 30px !important;
+    }
+
+/* #endregion */
+
+/* #region Index Banner */
+    
+    .index-banner
+    {
+        height: 632px;
+        padding-top: 110px;
+        padding-bottom: 110px;
+    }
+
+    .index-banner-container
+    {
+        height: 412px;
+        margin: 0 13px;
+        padding: 0 15px;
+    }
+
+    .index-banner-row
+    {
+        /* margin: -15px; */
+        height: 412px;
+    }
+
+    .index-banner-content
+    {
+        margin-top: 60px;
+        height: 240px;
+    }
+
+    .index-banner-content-subtitle
+    {
+        color: #c59d5f;
+        font-family: 'Great Vibes', cursive;
+        font-size: 35px;
+        font-style: italic;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+
+    .index-banner-content-title{
+        font-family: 'Kaushan Script', cursive !important;
+        color: #424242 !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        margin-bottom: 25px !important;
+    }
+
+    .index-banner-content-desc
+    {
+        font-family: 'Raleway', sans-serif;
+        color: #a5a5a5;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 24px;
+        margin-bottom: 0;
+        padding: 0 40px;
+    }
+
+    .index-banner-btn 
+    {
+        margin-top: 40px !important;
+    }
+
+    .btn-color-dfm
+    {
+        color: #082908 !important;
+    }
+
+    .index-banner-img
+    {
+        width: 100% !important;
+        height: 100% !important;
+        /* position: relative !important; */
+        /* background-repeat: no-repeat !important; */
+        /* background-position: center !important; */
+        /* background-size: cover !important; */
+    }
+
+/* #endregion */
+
+/* #region Index Bottom Body */
+
+    .index-bottom-body
+    {
+        padding-bottom: 110px; 
+    }
+
+    .index-bottom-body-main-div
+    {
+        background-image: url("https://pixabay.com/get/eb35b1062dfd013ecd1f4405e14e469ee776ffd41cb513459cf2c27eaf/platter-2009590.jpg") !important;
+        height: 642px !important;
+        width: 100% !important;
+        /* background-repeat: no-repeat; */
+
+    }
+
+    .index-bottom-body-container
+    {
+        height: 85px !important;
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .index-bottom-body-row
+    {
+        height: 85px;
+        margin: 0 -15px !important;
+        /* background-color: red; */
+    }
+
+    .index-bottom-body-heading
+    {
+        padding: 0 15px !important;
+    }
+
+    .index-bottom-body-desc
+    {
+        height: 85px;
+    }
+    
+    .index-bottom-body-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+
+    .index-bottom-body-desc h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color: #fff !important;
+    }
+
+/* #endregion */
+
+/* #region Index Slider */
+    .index-slider-div
+    {
+        height: 1019px;
+        width: 100%;
+        padding: 110px 0 !important;
+    }
+
+    .index-slider-container
+    {
+        height: 819px;
+        margin: 0 13px 0 13px !important;
+        padding: 0 15px !important;
+    }
+
+    .index-slider-row
+    {
+        position: relative;
+        height: 819px;
+        margin: 0 -15px;
+    }
+
+    .index-content-slider-container
+    {
+        /* background-color: #888; */
+        position: relative;
+        width: 100%;
+        height: 582px;
+
+    }
+
+    .index-slides-row
+    {
+        height: 582px !important;
+        background-color: green;
+                
+    }
+
+    .margin-zero
+    {
+        margin: 0 !important;
+    }
+
+    .header-title
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color: #000000 !important;
+    }
 /* #endregion */
