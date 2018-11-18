@@ -12,6 +12,22 @@
     height: 54px;
     background-color: #000 !important;
     background: transparent !important;
+    transition: ease .5s;
+}
+
+.appNav.transparent *{
+    /* color: #082908 !important; */
+    /* font-weight: bold !important; */
+}
+
+.appNav.transparent{
+    /* background-color: transparent !important;
+    border-bottom: 1px solid #c59c70 !important; */
+}
+
+
+.push.sidebar{
+    padding-top: 54px;
 }
 
 .ui.menu .item:before

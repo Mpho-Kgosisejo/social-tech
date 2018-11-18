@@ -84,7 +84,7 @@ const LeftTabletNav = () => (
                     <Menu.Item as="a" className="fresheats-brown-color">Home</Menu.Item>
                 </Link>
                 <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({type: "SIDEBAR"})}>
-                    <Icon name="bars"  />
+                    {state.isSidebarOpen ? <Icon name="close" /> : <Icon name="bars"  />}
                 </Menu.Item>
             </React.Fragment>
         )}
@@ -137,23 +137,24 @@ const LeftNav = () => (
     </Grid>
 )
 
+
 const Nav = () => (
-    <Menu inverted fixed="top" className="appNav fresheats-light-green-bg">
-        <Container className="nav-container">
-            <ContextAPI.Consumer>
-                {({state}) => (
+    <ContextAPI.Consumer>
+        {({state}) => (
+            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible) ? "transparent" : ""}`}>
+                <Container className="nav-container">
                     <React.Fragment>
                         <LeftNav />
-                    
+                        
                         {!state.root_loading &&
                             <Menu.Menu position="right">
                                 {!isEmptyObj(state.login) ? <RightNav /> : <AuthLayout/>}
                             </Menu.Menu>
                         }
                     </React.Fragment>
-                )}
-            </ContextAPI.Consumer>
-        </Container>
-    </Menu>
+                </Container>
+            </Menu>
+        )}
+    </ContextAPI.Consumer>
 )
 export default Nav

@@ -1,5 +1,5 @@
 import Head from "next/head"
-import {Container, Sidebar, Menu, Icon, Responsive} from "semantic-ui-react"
+import {Container, Sidebar, Menu, Icon, Responsive, Dimmer, Visibility} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -14,6 +14,8 @@ const ResponsiveFragmentBugFix = () => (<></>)
 const getWindowWidth = () => {
     
 }
+
+const onUpdateFrame = ({calculations, dispatch}) => dispatch({type: "MAIN_LAYOUT", payload: calculations})
 
 const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = true}) => (
     <React.Fragment>
@@ -35,40 +37,49 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
 
         
         <ContextAPI.Consumer>
-            {({state}) => (
-                <Sidebar.Pushable>
-                    <Responsive maxWidth={991} as={React.Fragment}>
-                        <Sidebar
-                            as={Menu}
-                            animation='push'
-                            direction='left'
-                            icon='labeled'
-                            vertical
-                            inverted
-                            visible={state.isSidebarOpen}
-                            width='thin'
-                            className="fresheats-green-bg"
-                        >
-                            <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({type: "SIDEBAR"})}>
-                                <Icon name="close" size="mini" />
-                            </Menu.Item>
-                            <Menu.Item as="a" className="fresheats-brown-color"></Menu.Item>
-                            <LeftComputerNav />
-                        </Sidebar>
-                    </Responsive>
-        
-                    <Sidebar.Pusher>
-                        <div className="mainLayout">
-                            {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
-                
-                            {includeNav && <Nav />}
-                
-                            {includeContainer ? <Container className="childLayout" children={children} /> : children}
-                
-                            {includeFooter && <Footer />}
-                        </div>
-                    </Sidebar.Pusher>
-                </Sidebar.Pushable>
+            {({state}) =>(
+                <React.Fragment>
+                    {includeNav && <Nav />}
+
+                    <Sidebar.Pushable>
+                        <Responsive maxWidth={991} as={"span"}>
+                            <Sidebar
+                                as={Menu}
+                                animation='push'
+                                direction='left'
+                                icon='labeled'
+                                vertical
+                                inverted
+                                visible={state.isSidebarOpen}
+                                width='thin'
+                                className="fresheats-green-bg"
+                            >
+                            <div>
+                                {/* <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({type: "SIDEBAR"})}>
+                                    <Icon name="close" size="mini" />
+                                </Menu.Item> */}
+                                <Menu.Item className="fresheats-brown-color"></Menu.Item>
+                                <LeftComputerNav />
+                                </div>
+                            </Sidebar>
+                        </Responsive>
+            
+                        <Sidebar.Pusher>
+                            <Dimmer.Dimmable>
+                                <Visibility fireOnMount onUpdate={(e, {calculations}) => onUpdateFrame({calculations, dispatch: state.dispatch})}>
+                                    <div className="mainLayout">
+                                        {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
+                            
+                                        {includeContainer ? <Container className="childLayout" children={children} /> : children}
+
+                                        {includeFooter && <Footer />}
+                                    </div>
+                                </Visibility>
+                                <Dimmer active={state.isSidebarOpen} onClickOutside={() => state.dispatch({type: "SIDEBAR"})}  />
+                            </Dimmer.Dimmable>
+                        </Sidebar.Pusher>
+                    </Sidebar.Pushable>
+                </React.Fragment>
             )}
         </ContextAPI.Consumer>
     </React.Fragment>

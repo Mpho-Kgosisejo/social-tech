@@ -26,6 +26,9 @@ export default class MyApp extends App {
             },
             login: {},
             isSidebarOpen: false,
+            main_layout_calculations: {
+                topVisible: true
+            },
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
