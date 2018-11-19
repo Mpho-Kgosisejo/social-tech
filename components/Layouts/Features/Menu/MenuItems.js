@@ -18,7 +18,8 @@ class Menu_Items extends React.Component {
 
     getMenu = async () => {
         const data = await api.menu.menu_items()
-        console.log("datata", data)
+         console.log("datata", data)
+        // console.log(data.data.menuWithProducts)
         if (data.status === 200){
             this.setState({responseMessage: data.data.message, isLoadingData: false, menus : data.data.menuWithProducts, status : data.status})
         }else{

@@ -48,26 +48,28 @@ router.post("/", (req, res) => {
     })
 
     newProduct.save().then(product => {
-
-        const menuModel = new MenuModel({
-            category: menuCategoryId,
-            items: product._id
+        res.status(200).json({
+            product
         })
-        menuModel.save().then(menu => {
-            res.status(200).json({
-                product,
-                menu,
-                message: "OK"
-            })
-        })
-        .catch(err => {
-            res.status(500).json({
-                error : {
-                    catch: err,
-                    message : "error"
-                }
-            })
-        })
+        // const menuModel = new MenuModel({
+        //     category: menuCategoryId,
+        //     items: product._id
+        // })
+        // menuModel.save().then(menu => {
+        //     res.status(200).json({
+        //         product,
+        //         menu,
+        //         message: "OK"
+        //     })
+        // })
+        // .catch(err => {
+        //     res.status(500).json({
+        //         error : {
+        //             catch: err,
+        //             message : "error"
+        //         }
+        //     })
+        // })
     })
     .catch(err => {
         res.status(500).json({

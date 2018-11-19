@@ -18,8 +18,8 @@ const CategorySchema = new mongoose.Schema({
     show: {
         type: Boolean,
         required: true
-    }//,
-    // items: [{ type: mongoose.Schema.Types.ObjectId, ref:'Products' }]
+    },
+    items : []
 }, {timestamps: true})
 
 CategorySchema.plugin(pluginUniqueValidator, {message: "value must be unique"})

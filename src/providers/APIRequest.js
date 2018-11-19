@@ -74,7 +74,7 @@ const API = {
                 return(mock.menu().then(res => res))
             }
             return (
-                axios.get(`${Config.get("api.endpoint")}/menus/menu-products`)
+                axios.get(`${Config.get("api.endpoint")}/menus`)
                 .then(res => res)
                 .catch(err => err.response)
             )

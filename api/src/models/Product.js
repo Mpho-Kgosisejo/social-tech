@@ -32,7 +32,10 @@ const ProductSchema = new mongoose.Schema({
         type : String,
         required : true,
     }],
-    menuCategoryId : {type: mongoose.Schema.Types.ObjectId, ref: "MenuCategory"}
+    menuCategoryId : {
+        type: String,
+        required : true
+    }
 }, {timestamps: true})
 
 ProductSchema.plugin(pluginUniqueValidator, {message: "value must be unique"})
