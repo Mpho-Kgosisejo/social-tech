@@ -111,11 +111,21 @@ export const LeftComputerNav = () => (
                 </Link>
                 {(state.login) && (
                     <React.Fragment>
-                        {state.login.isAdmin && (
+                        <Link href="/" prefetch passHref>
+                            <Menu.Item as="a" className="fresheats-brown-color">Home</Menu.Item>
+                        </Link>
+                        <Link href="/about" prefetch passHref>
+                            <Menu.Item as="a" className="fresheats-brown-color">About</Menu.Item>
+                        </Link>
+
+                        <Link href="/menu" prefetch passHref>
+                            <Menu.Item as="a" className="fresheats-brown-color">Menu</Menu.Item>
+                        </Link>
+                        {(state.login && state.login.isAdmin) && 
                             <Link href="/dashboard" prefetch passHref>
                                 <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
-                        )}
+                        }
                         <Responsive maxWidth={991} as={React.Fragment}>
                             <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>
                         </Responsive>
