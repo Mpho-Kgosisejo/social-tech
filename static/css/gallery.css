@@ -1,0 +1,114 @@
+.gallery-card{
+    background-position: center !important;
+	background-repeat: no-repeat !important;
+    background-size: cover !important;
+    border-radius: 0% !important;
+    background: rgb(69, 69, 73);
+}
+.angle{
+    color: #ddbf9f;
+    cursor: pointer;
+    
+  }
+
+  .insta-butt{
+      text-align: end !important;
+      font-family: cursive !important;
+      background: #c5a370 !important;
+      opacity: 0.9;
+      padding: .3em 1.5em .3em !important;
+      border-radius: 0% !important; 
+  }
+  
+  .img_height
+  {
+      position: relative;
+      height: 60vh;
+      width: 100%;
+  }
+  
+  .slides{
+      position: relative;
+  }
+
+  .slides .icon-container {
+      position: absolute;
+      height: 100%;
+      width: 75px;      
+      z-index: 100;
+      top: 0;
+      bottom: 0;
+      margin: 0 !important;
+      transition: ease .5s;
+  }
+
+  .slides .icon-container .icon{
+
+      position:absolute; 
+        left:0; right:0;
+        top:0; bottom:0;
+        margin:auto;
+
+        max-width:100%;
+        max-height:100%;
+        overflow:auto;
+  }
+
+  .slides .icon-container:hover{
+      background: rgba(0, 0, 0, 0.15);
+  }
+
+  .slides .icon-container.right{
+        right: 0;
+    }
+
+  .ui.cards>.card>:first-child {
+      border-radius: 0% !important;
+  }
+  .ui.cards>.card>:last-child{
+    border-radius: 0% !important;
+  }
+  
+  h2.header{
+    font-family: cursive;
+    font-family: 'Kaushan Script', cursive !important;
+    font-size: 3.5em !important;
+  }
+
+  .gallery-height{
+    height: 300px !important;
+  }
+
+  .collection-images{
+      padding-bottom: 50px;
+  }
+
+@media ( max-width: 480px) {
+    .breakpoints-test{
+        background: #5999c2!important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .breakpoints-test{
+        background: #77c394 !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    .breakpoints-test{
+        background: #df6656 !important;
+    }
+}
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .breakpoints-test{
+        background: #e8d692 !important;
+    } 
+}
+
+@media (min-width: 1201px) {
+    .breakpoints-test{
+        background: yellow !important;
+    }
+}

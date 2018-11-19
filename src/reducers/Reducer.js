@@ -12,6 +12,14 @@ export const reducer = (state, action) => {
             ...state,
             alertPortal: action.payload
         })
+        case "ABOUT": return ({
+            ...state,
+            about: action.payload
+        })
+        case "SIDEBAR": return ({
+            ...state,
+            isSidebarOpen: (state.isSidebarOpen) ? false : true
+        })
         case "TEST": return ({
             ...state,
             test: action.payload

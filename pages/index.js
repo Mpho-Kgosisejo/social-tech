@@ -50,9 +50,7 @@ const sliderImages = [
             content: "If more of us valued food and cheer and song above hoarded gold, it would be a merrier world."
         }
     }
-    
 ]
-
 
 const Index = () => (
     <Layout title="Home" includeContainer={false} includeNav={true}>
