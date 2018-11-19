@@ -16,7 +16,7 @@ const settings = {
 const sliderImages = [
     {
         id: 1,
-        url: "https://pixabay.com/get/e837b10628f4063ed1584d05fb0938c9bd22ffd41cb5134594f3c87fa3/food-1209007_1280.jpg",
+        url: "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b2794212b6a288644565104/1529320490905/IMG_1057-2.jpg?format=500w",
         caption: 
         {
             title: "",
@@ -34,7 +34,7 @@ const sliderImages = [
     },
     {
         id: 3,
-        url: "https://pixabay.com/get/eb3cb90c2ff4083ed1584d05fb0938c9bd22ffd41cb5134594f4c378a6/dark-mood-food-2983709_1280.jpg",
+        url: "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd3bcdb29d6afc4c3c266/1500304324793/Mondiall-8.jpg?format=750w",
         caption: 
         {
             title: "",
@@ -43,7 +43,7 @@ const sliderImages = [
     },
     {
         id: 4,
-        url: "https://pixabay.com/get/ec31b0062af61c22d2524518a33219c8b66ae3d01db3154090f9c27f/wine-541922_1280.jpg",
+        url: "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
         caption: 
         {
             title: "",
