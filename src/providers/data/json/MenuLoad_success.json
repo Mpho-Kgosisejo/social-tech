@@ -16,26 +16,7 @@
                         "id": "1",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b2794212b6a288644565104/1529320490905/IMG_1057-2.jpg?format=500w",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "choco"
-                            },
-                            {
-                                "ingredient_name": "coffee"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "any milk"
-                            },
-                            {
-                                "ingredient_name": "chocolate pieces"
-                            },
-                            {
-                                "ingredient_name": "cinnamon"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "150",
@@ -44,19 +25,7 @@
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd3bcdb29d6afc4c3c266/1500304324793/Mondiall-8.jpg?format=750w",
                         "name": "Hot Chocolate",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                
-                                
-                                "ingredient_name": "chocolate"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "70",
@@ -65,17 +34,7 @@
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
                         "name": "Peppermint Hot Chocolate",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "chocolate"
-                            },
-                            {
-                                "ingredient_name": "mint"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "50",
@@ -84,17 +43,7 @@
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b27944b0e2e72364825d2dd/1529320535469/IMG_6518-2.jpg?format=500w",
                         "name": "Salted Caramel Hot Chocolate",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "chocolate"
-                            },
-                            {
-                                "ingredient_name": "caramel"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "20",
@@ -103,17 +52,7 @@
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd2e79f74563f1f11c29b/1500304116722/0L8A1399.jpg?format=500w",
                         "name": "White Hot Chocolate",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "chocolate"
-                            },
-                            {
-                                "ingredient_name": "white some"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "50",
@@ -122,17 +61,7 @@
                         "name": "Espresso Beverage",
                         "image": "http://picsum.photos/400/400/?random",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "espresso"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "10",
@@ -141,17 +70,7 @@
                         "image": "http://picsum.photos/400/400/?random",
                         "name": "Caffe Americano",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "americano"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "50",
@@ -160,17 +79,7 @@
                         "name": "Caffe Latte",
                         "image": "http://picsum.photos/400/400/?random",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "latte"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "50",
@@ -179,17 +88,7 @@
                         "name": "Caffe Mocha",
                         "image": "http://picsum.photos/400/400/?random",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "mocha"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "120",
@@ -198,17 +97,7 @@
                         "name": "Cappuccino",
                         "image": "http://picsum.photos/400/400/?random",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "cuppa"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "150",
@@ -217,17 +106,7 @@
                         "name": "Pumpkin Spice Latte",
                         "image": "http://picsum.photos/400/400/?random",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "pumpkin"
-                            },
-                            {
-                                "ingredient_name": "masala"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "90",
@@ -236,17 +115,7 @@
                         "name": "Frappuccino",
                         "image": "http://picsum.photos/400/400/?random",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "frappa"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "93",
@@ -255,17 +124,7 @@
                         "name": "MOCHACHOS",
                         "image": "http://picsum.photos/400/400/?random",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "mochaca"
-                            },
-                            {
-                                "ingredient_name": "chicken"
-                            },
-                            {
-                                "ingredient_name": "spice"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "87",
@@ -274,17 +133,7 @@
                         "name": "Mrappuccino",
                         "image": "http://picsum.photos/400/400/?random",
                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-                        "ingredients": [
-                            {
-                                "ingredient_name": "mappa"
-                            },
-                            {
-                                "ingredient_name": "coffee beans"
-                            },
-                            {
-                                "ingredient_name": "milk"
-                            }
-                        ]
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     }
                 ]
             },
@@ -299,40 +148,45 @@
                         "available": true,
                         "name": "Chocolate Beverage",
                         "id": "1",
-                        "image": "http://picsum.photos/400/400/?random",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscinging elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b2794212b6a288644565104/1529320490905/IMG_1057-2.jpg?format=500w",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "150",
                         "available": true,
                         "id": "2",
-                        "image": "http://picsum.photos/400/400/?random",
+                        "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd3bcdb29d6afc4c3c266/1500304324793/Mondiall-8.jpg?format=750w",
                         "name": "Hot Chocolate",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "70",
                         "available": true,
                         "id": "3",
-                        "image": "http://picsum.photos/400/400/?random",
+                        "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
                         "name": "Peppermint Hot Chocolate",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "50",
                         "available": true,
                         "id": "4",
-                        "image": "http://picsum.photos/400/400/?random",
+                        "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b27944b0e2e72364825d2dd/1529320535469/IMG_6518-2.jpg?format=500w",
                         "name": "Salted Caramel Hot Chocolate",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "20",
                         "available": false,
                         "id": "5",
-                        "image": "http://picsum.photos/400/400/?random",
+                        "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd2e79f74563f1f11c29b/1500304116722/0L8A1399.jpg?format=500w",
                         "name": "White Hot Chocolate",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "50",
@@ -340,7 +194,8 @@
                         "id": "6",
                         "name": "Espresso Beverage",
                         "image": "http://picsum.photos/400/400/?random",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "10",
@@ -348,7 +203,8 @@
                         "id": "7",
                         "image": "http://picsum.photos/400/400/?random",
                         "name": "Caffe Americano",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "50",
@@ -356,7 +212,8 @@
                         "id": "8",
                         "name": "Caffe Latte",
                         "image": "http://picsum.photos/400/400/?random",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "50",
@@ -364,7 +221,8 @@
                         "id": "9",
                         "name": "Caffe Mocha",
                         "image": "http://picsum.photos/400/400/?random",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "120",
@@ -372,7 +230,8 @@
                         "id": "10",
                         "name": "Cappuccino",
                         "image": "http://picsum.photos/400/400/?random",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "150",
@@ -380,7 +239,8 @@
                         "id": "11",
                         "name": "Pumpkin Spice Latte",
                         "image": "http://picsum.photos/400/400/?random",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     },
                     {
                         "price": "90",
@@ -388,7 +248,26 @@
                         "id": "12",
                         "name": "Frappuccino",
                         "image": "http://picsum.photos/400/400/?random",
-                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
+                    },
+                    {
+                        "price": "93",
+                        "available": false,
+                        "id": "13",
+                        "name": "MOCHACHOS",
+                        "image": "http://picsum.photos/400/400/?random",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
+                    },
+                    {
+                        "price": "87",
+                        "available": false,
+                        "id": "14",
+                        "name": "Mrappuccino",
+                        "image": "http://picsum.photos/400/400/?random",
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        "ingredients": ["choco","coffee", "coffee beans","any milk", "chocolate pieces", "cinnamon"]
                     }
                 ]
             },
