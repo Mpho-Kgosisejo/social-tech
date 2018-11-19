@@ -76,8 +76,8 @@ class AuthLayout extends React.Component {
 
                 <Menu.Item>
                     <Button.Group size="tiny">
-                        <Button basic color="grey" onClick={() => this.openModal(0)}>Sign In</Button>
-                        <Button basic color="grey" onClick={() => this.openModal(1)}>Sign Up</Button>
+                        <Button className="signIn-button" color="grey" onClick={() => this.openModal(0)}>Sign In</Button>
+                        <Button className="signIn-button" color="grey" onClick={() => this.openModal(1)}>Sign Up</Button>
                     </Button.Group>
                 </Menu.Item>
             </React.Fragment>

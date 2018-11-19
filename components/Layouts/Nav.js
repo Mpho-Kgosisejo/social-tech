@@ -141,7 +141,7 @@ const LeftNav = () => (
 const Nav = () => (
     <ContextAPI.Consumer>
         {({state}) => (
-            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible) ? "transparent" : ""}`}>
+            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg .signIn-button ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible) ? "transparent" : ""}`}>
                 <Container className="nav-container">
                     <React.Fragment>
                         <LeftNav />

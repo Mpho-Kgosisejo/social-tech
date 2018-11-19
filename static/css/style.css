@@ -16,15 +16,13 @@
 }
 
 .appNav.transparent *{
-    /* color: #082908 !important; */
-    /* font-weight: bold !important; */
+    color: #c59c70 !important;
+     font-weight: bold !important;
 }
 
 .appNav.transparent{
-    /* background-color: transparent !important;
-    border-bottom: 1px solid #c59c70 !important; */
+    background-color: transparent !important;
 }
-
 
 .push.sidebar{
     padding-top: 54px;
@@ -53,6 +51,12 @@
     top: 0 !important;
     left: 0 !important;
     right: 0;
+}
+.signIn-button{
+    background-color: transparent !important;
+    font-size: 14px !important;
+    color: #c59c70 !important;
+    font-weight: 400 !important;
 }
 
 .ui.sidebar {
