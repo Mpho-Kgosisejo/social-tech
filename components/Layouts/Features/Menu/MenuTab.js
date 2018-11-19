@@ -18,7 +18,7 @@ class menu_tab extends React.Component
     render()
     {
         var newData = this.props.data[this.state.activeIndex]
-        console.log(newData)
+        //console.log(newData)
         return(
             <div>
                 <Responsive minWidth={0} maxWidth={769}>

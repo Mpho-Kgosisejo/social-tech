@@ -19,25 +19,30 @@ class Dashoard extends React.Component {
         }
     }
 
+    showAlertPortal = ({type, header, message}) => {
+        setTimeout(() => {
+            this.props.dispatch({type: "ALERT_PORTAL", payload: {open: true, type, header, message}})
+        }, 50)
+    }
+
     componentDidMount(){
         const login = getLogin()
 
         if (isEmptyObj(login)){
-            setTimeout(() => {
-                this.props.dispatch({type: "ALERT_PORTAL", payload: {open: true, type: "error", header: "", message: `${NOT_AUTHORIZED_PAGE_ACCESS}: dashboard`}})
-            }, 50)
+            this.showAlertPortal({type: "error", header: "", message: `${NOT_AUTHORIZED_PAGE_ACCESS}: dashboard`})
             logout()
             Router.replace({pathname: "/"})
             return 
         }
 
         // await() for call if ever done...
-        if (login.isAdmin){
-            console.log("Load Admin Data")
-        }else{
-            console.log("Load User Data")
+        if (!login.isAdmin){
+            this.showAlertPortal({type: "error", header: "", message: `${NOT_AUTHORIZED_PAGE_ACCESS}: dashboard`})
+            Router.replace({pathname: "/"})
+            return
         }
 
+        console.log("Load Admin Data")
         this.setState({
             loading: false
         })

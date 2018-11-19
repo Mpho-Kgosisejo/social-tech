@@ -85,6 +85,23 @@ const API = {
             }
             return (
                 axios.get(`${Config.get("api.endpoint")}/menus/${productID}`)
+            )
+        }
+    },
+    web:{
+        about: () => {
+            // if (Config.get("api.isMock")){
+                return (mock.about().then(res => res))
+            // }
+        },
+    },
+    gallery: {
+        getInstaImgs: () => {
+            if (Config.get("api.isMock")){
+                return (mock.instaGallery().then(res => res))
+            }
+            return (
+                axios.get(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${Config.get("api.instaToken")}`)
                 .then(res => res)
                 .catch(err => err.response)
             )
@@ -93,5 +110,3 @@ const API = {
 }
 
 export default API
-
-
