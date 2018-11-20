@@ -43,6 +43,7 @@
     overflow: visible !important;
 }
 
+
 .dropdown .menu{
     border-radius: 0 !important;
     border: 0 #fff !important;
@@ -677,7 +678,6 @@
         background: #df6656 !important;
     }
 }
-
 @media (min-width: 991px) and (max-width: 1200px) {
     .breakpoints-test{
         background: #e8d692 !important;
@@ -694,138 +694,6 @@
     margin-bottom: 20px;
 }
 
-
-
-
-/*#region Menu styling */
-
-.menuCard{
-    position: relative;
-}
-.menu-img{
-    width: 400px !important;
-    height: 400px !important;
-}
-.menu-modal-content.content{
-    padding: 0% !important;
-}
-.ui.header:first-child{
-    margin-top: 1rem !important;
-}
-
-.centered-element{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.menuCard .availabilityLabel{
-    position: absolute;
-    top: 14px;
-    right: 14px;
-}
-
-.menuCardImage {
-    height: 282px !important;
-    background-position: center !important;
-	background-repeat: no-repeat !important;
-    background-size: cover !important;
-    /* background: #444 !important; */
-}
-
-.menu-card-group {
-    border: 0 !important;
-}
-
-.ui.secondary.pointing.menu .active.item {
-    /* this will be for designing how the selected element of the tab looks */
-    color : #c59c70 !important;
-    border-color : #c59c70 !important;
-}
-
-.transparentBackground {
-    background: transparent !important;
-    border-bottom: 1px solid #000 !important;
-    border-radius: 0 !important;
-}
-
-.menuPageDiv .MenuImageContainerDiv {
-    /* width : 100%; */
-    height: auto;
-    padding: 134px 0 80px 0;
-    background-image: url("https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/596385a3b6ac50fc885b61ab/596cdb8bd1758e3b4510cf55/1500306327959/Mondiall-9.jpg?format=1000w");
-    background-position: center;
-	background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.header-name{
-
-    font-size: 1.7rem;
-    text-align: center;
-    font-family: 'Raleway', sans-serif !important;
-    color: #244024 !important;
-    font-weight: 700 !important;
-
-}
-.header-sub-head{
-    font-family: 'Kaushan Script', cursive !important;
-    color:   #c59c70 !important;
-    margin: .2em !important;
-    font-weight: normal;
-}
-.ui.modal>.content>.image+.description
-{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    width: 100% !important;
-}
-.ingredient-styling{
-    background-color: #f1e7dc !important;
-    padding: 3px 15px !important;
-    font-weight: normal !important;
-}
-.food-price{
-    font-weight: bold;
-    font-size: 20px;
-    font-family: 'Kaushan Script', cursive !important;
-    text-align: center;
-    margin-block-start: 0 !important;
-    margin-block-end: 0 !important;
-    /* color: #bc8d46; */
-}
-.add-button{
-    color: #c59c70 !important;
-   background-color: #082908 !important;
-}
-.quantity-div
-{
-    position: absolute;
-}
-.quantity-input{
-    width: 50px;
-    height: 25px;
-    opacity: .90 !important;
-}
-.dec-inc{
-    color: #c59c70 !important;
-    background-color: #082908 !important;
-}
-.decrease-button {
-
-    margin-right: 0.9em !important;
-
-}
-.increase-button{
-
-    margin-left: 0.9em !important;
-
-}
-.ui.modal>.close{
-    color: #c59c70 !important;
-}
-
-/*#endregion--------------- */
 @media (min-width: 1201px) {
     .breakpoints-test{
         background: yellow !important;

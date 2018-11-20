@@ -1,28 +1,29 @@
-import Router from "next/router"
 import { Label, Header, Container, Embed, Divider } from "semantic-ui-react"
+
+import Router from "next/router"
 import Layout from "../components/Layouts/Layout"
 import MenuItems from "../components/Layouts/Features/Menu/MenuItems"
 
 const Menu = (props) => (
     <div className="menuPageDiv" >
-        
         <Layout title="Menu" includeContainer={false}>
             <div className="MenuImageContainerDiv">
                 <Container>
-                    <Header as='h1'>First Header</Header>
-                    <Header as='h1'>First Header</Header>
+                    <span className="menu-header-back-span" >Taste the best</span>
+                    <h3 className="menu-header-back-h3">Fresh Ingredients, Tasty Meals</h3>
                 </Container>
             </div>
             <Divider hidden />
             <Container>
                 <div className="centered-element">
-                    <h2 >Just simple text</h2>
-                    <p> This could be a paragraph explaining what the menu is about to grab the user.</p>
+                    <Header className="menu-header" as='h1'>Our Menu</Header>
+                    <p>Everyone has taste, even if they don't realize it. Even if you're not a great chef, there's nothing to stop you understanding the difference between what tastes good and what doesn't.</p>
                 </div>
-                <MenuItems/>
+                <Divider />
+
+                <MenuItems />
             </Container>
         </Layout>
     </div>
 )
-
 export default Menu
