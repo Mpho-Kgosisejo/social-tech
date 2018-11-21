@@ -58,11 +58,9 @@ class Dashoard extends React.Component {
         return(
             <ContextAPI.Consumer>
                 {({state}) => (
-                    <Layout title="Dashboard">
+                    <Layout title="Dashboard" includeContainer={false}>
                         {(!state.root_loading && !loading) && (
                             <React.Fragment>
-                                <Header as="h2">Dashboard</Header>
-                                <Divider />
                                 
                                 {(state.login && state.login.isAdmin) ?
                                     <AdminDashboard /> : <UserDashboard />

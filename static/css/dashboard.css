@@ -1,0 +1,11 @@
+.dashboard-sidebar{
+    background-color: whitesmoke !important;
+    height: 100% !important;
+    max-height: 100%;
+    width: 100% !important;
+}
+
+.show-below-nav {
+    position: fixed;
+    top: 54px !important;
+}
