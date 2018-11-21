@@ -11,6 +11,7 @@ import {getLogin} from "../src/providers/LoginSession"
 export default class MyApp extends App {
     constructor(props){
         super(props)
+        
 
         this.state = {
             test: "Hello NextJS!",

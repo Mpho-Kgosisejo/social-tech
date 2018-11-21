@@ -8,6 +8,8 @@ import morgan from "morgan"
 
 import auth from "./routes/auth"
 import user from "./routes/user"
+import menu from "./routes/menu"
+import product from "./routes/products";
 
 dotenv.config()
 const app = express()
@@ -19,6 +21,8 @@ mongoose.Promise = BluebiredPromise
 mongoose.connect(process.env.MONGODB_URL, {
     useMongoClient: true
 })
+// mongoose.connect('mongodb://andile:qXECjHM4IsSE2dio@fresheatscluster-shard-00-00-trbsk.mongodb.net:27017,fresheatscluster-shard-00-01-trbsk.mongodb.net:27017,fresheatscluster-shard-00-02-trbsk.mongodb.net:27017/test?ssl=true&replicaSet=FreshEatsCluster-shard-0&authSource=admin&retryWrites=true')
+
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")
@@ -34,6 +38,8 @@ app.use((req, res, next) => {
 
 app.use("/auth", auth)
 app.use("/user", user)
+app.use("/menus", menu)
+app.use("/products", product)
 
 app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"))

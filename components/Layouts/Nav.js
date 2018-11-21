@@ -98,6 +98,9 @@ export const LeftComputerNav = () => (
                 <Link href="/" prefetch passHref>
                     <Menu.Item as="a" className="fresheats-brown-color">Home</Menu.Item>
                 </Link>
+                <Link href="/menu" prefetch passHref>
+                    <Menu.Item as="a" className="fresheats-brown-color">Menu</Menu.Item>
+                </Link>
                 <Dropdown text='About' className='link item fresheats-brown-color'>
                     <Dropdown.Menu className="fresheats-light-green-bg">
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 0})}>Our Story</Dropdown.Item>

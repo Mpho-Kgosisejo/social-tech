@@ -3,6 +3,8 @@ import login_s from "./json/login_success.json"
 import login_f from "./json/login_fail.json"
 import signup_s from"./json/signup_success.json"
 import signup_f from"./json/signup_fail.json"
+import menu_s from "./json/MenuLoad_success.json"
+import menu_f from "./json/MenuLoad_failure.json"
 import about_s from "./json/about_us_success.json"
 import about_f from "./json/about_us_fail.json"
 import confirmemail_s from "./json/confirmemail_success.json"
@@ -27,6 +29,7 @@ const loadMock = (data) => {
 export default {
     login: () => loadMock(login_s),
     signup: () => loadMock(signup_s),
+    menu : () => loadMock(menu_s),
     about: () => loadMock(about_s),
     confirmEmail: () => loadMock(confirmemail_s),
     changePassword: () => loadMock(changepassword_s),

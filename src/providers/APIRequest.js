@@ -68,6 +68,26 @@ const API = {
             )
         }
     },
+    menu: {
+        menu_items : () => {
+            if (Config.get("api.isMock")){
+                return(mock.menu().then(res => res))
+            }
+            return (
+                axios.get(`${Config.get("api.endpoint")}/menus`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        menu_product : (productID) => {
+            if (Config.get("api.isMock")){
+                return(mock.menu().then(res => res))
+            }
+            return (
+                axios.get(`${Config.get("api.endpoint")}/menus/${productID}`)
+            )
+        }
+    },
     web:{
         about: () => {
             // if (Config.get("api.isMock")){
@@ -90,5 +110,3 @@ const API = {
 }
 
 export default API
-
-
