@@ -1,11 +1,32 @@
-.dashboard-sidebar{
+.dashboard-sidebar-pushable{
     background-color: whitesmoke !important;
     height: 100% !important;
     max-height: 100%;
-    width: 100% !important;
+}
+
+.dashboard-sidebar{
+    height: 100% !important;
+    max-height: 100%;
 }
 
 .show-below-nav {
     position: fixed;
     top: 54px !important;
+}
+
+.dashboard-page-header {
+    min-height: 40px;
+    margin: 0px;
+    padding: 0px 15px;
+    background: #ffffff;
+    border-bottom: 0px;
+}
+
+.header-content{
+    font-size: 16px;
+    color: #c59c70;
+}
+
+.dash-board-pages {
+    width: 100vw !important;
 }
