@@ -5,8 +5,7 @@
 }
 
 .dashboard-sidebar{
-    height: 100% !important;
-    max-height: 100%;
+    width: 200px !important;
 }
 
 .show-below-nav {
@@ -29,4 +28,11 @@
 
 .dash-board-pages {
     width: 100vw !important;
+}
+
+.menu-upload-container{
+    background-color: #ffffff;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
 }

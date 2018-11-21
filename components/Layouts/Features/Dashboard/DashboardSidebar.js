@@ -19,11 +19,10 @@ class DashboardSidebar extends React.Component{
     }
 
     changeActivePage = (name) => {
-        this.setState({activePage : name})
+        this.setState({activePage : name, openSidebar: false})
     }
 
     showSideBars = () => {
-        console.log("called showsidebar")
         if (this.state.openSidebar === true)
             this.setState({openSidebar : false})
         else
@@ -59,16 +58,6 @@ class DashboardSidebar extends React.Component{
         const {activePage, openSidebar} = this.state
         return (
             <div className="show-below-nav">
-                <div className="dashboard-page-header">
-                <Menu secondary>
-                    <Menu.Item onClick={this.showSideBars}> 
-                        <Icon className="header-content" name={openSidebar ? 'close' : 'bars'}/>
-                    </Menu.Item>
-                    <Menu.Item>
-                        <h1 className="header-content">DASHBOARD</h1>
-                    </Menu.Item>
-                </Menu>
-                </div>
 
                 <Sidebar.Pushable className="dashboard-sidebar-pushable">
                     <Sidebar 
@@ -77,7 +66,8 @@ class DashboardSidebar extends React.Component{
                         direction='left'
                         vertical
                         visible={openSidebar}
-                        width='thin'
+                        //width='thin'
+                        className="dashboard-sidebar"
                     >
 
                     <Menu.Item as='a' onClick={() => { this.changeActivePage("home") }}>
@@ -100,6 +90,16 @@ class DashboardSidebar extends React.Component{
                     </Sidebar>
 
                     <Sidebar.Pusher className="dashboard-sidebar-pushable dash-board-pages">
+                        <div className="dashboard-page-header">
+                            <Menu secondary>
+                                <Menu.Item onClick={this.showSideBars}> 
+                                    <Icon className="header-content" name={openSidebar ? 'close' : 'bars'}/>
+                                </Menu.Item>
+                                <Menu.Item>
+                                    <h1 className="header-content">DASHBOARD</h1>
+                                </Menu.Item>
+                            </Menu>
+                        </div>  
                         <div className="mainLayout">
                             { this.renderPage(activePage) }
 
