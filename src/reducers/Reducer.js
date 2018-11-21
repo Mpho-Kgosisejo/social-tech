@@ -20,6 +20,10 @@ export const reducer = (state, action) => {
             ...state,
             isSidebarOpen: (state.isSidebarOpen) ? false : true
         })
+        case "MAIN_LAYOUT": return ({
+            ...state,
+            main_layout_calculations: action.payload
+        })
         case "TEST": return ({
             ...state,
             test: action.payload
