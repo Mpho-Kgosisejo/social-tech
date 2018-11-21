@@ -9,7 +9,13 @@ import {LeftComputerNav} from "./Nav"
 
 import "../../static/css/style.css"
 
-const handleUpdateLayout = ({dispatch, calculations}) => dispatch({type: "MAIN_LAYOUT", payload: calculations})
+const handleUpdateLayout = ({calculations, state}) => {
+    const {dispatch} = state
+
+    if (calculations.width >= 976)
+        dispatch({type: "SIDEBAR", payload: false})
+    dispatch({type: "MAIN_LAYOUT", payload: calculations})
+}
 
 const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = true}) => (
     <React.Fragment>
@@ -54,11 +60,11 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                     {/* </Responsive> */}
         
                     <Sidebar.Pusher>
-                        <Visibility fireOnMount onUpdate={(e, {calculations}) => handleUpdateLayout({dispatch: state.dispatch, calculations})}>
+                        <Visibility fireOnMount onUpdate={(e, {calculations}) => handleUpdateLayout({state, calculations})}>
                             <div className="mainLayout">
                                 {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
                     
-                                {includeNav && <Nav />}
+                                {!state.root_loading && includeNav && <Nav />}
                     
                                 {includeContainer ? <Container className="childLayout" children={children} /> : children}
 
