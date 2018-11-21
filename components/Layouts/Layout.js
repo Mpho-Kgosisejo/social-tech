@@ -61,8 +61,6 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                                 {includeNav && <Nav />}
                     
                                 {includeContainer ? <Container className="childLayout" children={children} /> : children}
-                                
-                                <pre>{JSON.stringify(state, "", 2)}</pre>
 
                                 {includeFooter && <Footer />}
                             </div>
