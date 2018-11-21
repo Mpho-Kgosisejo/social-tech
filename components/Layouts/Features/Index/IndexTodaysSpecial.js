@@ -1,7 +1,8 @@
 import React from 'react'
 import { Header } from 'semantic-ui-react';
+// import IndexTodaysSpecial from './IndexTodaysSpecial';
 
-class IndexBody extends React.Component {
+class IndexTodaysSpecial extends React.Component {
     render() {
         return (
             <React.Fragment>
@@ -9,9 +10,9 @@ class IndexBody extends React.Component {
                     <div className="index-body-container">
                         <div className="index-body-row">
                             <div className="index-body-heading">
-                                <div className="index-body-desc align-iterms-center">
-                                    <Header as="h2">Explore our menu</Header>
-                                    <p>Discover the taste</p>
+                                <div className="index-todays-special-desc align-iterms-center">
+                                    <Header as="h2">Today's speciality</Header>
+                                    <p>What's trending 👅 </p>    
                                 </div>
                             </div>
                         </div>
@@ -22,4 +23,4 @@ class IndexBody extends React.Component {
     }
 }
 
-export default IndexBody
+export default IndexTodaysSpecial;

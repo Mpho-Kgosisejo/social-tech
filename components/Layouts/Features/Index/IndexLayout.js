@@ -5,19 +5,25 @@ import IndexBody from "./IndexBody";
 import IndexSteps from "./IndexSteps";
 import IndexBanner from "./IndexBanner";
 import IndexBottomBody from "./IndexBottomBody";
-import IndexSlider from './IndexSlider';
+import IndexFrequentlyOrdered from './IndexFrequentlyOrdered';
+import IndexTodaysSpecial from './IndexTodaysSpecial';
+import ResturantHistory from './IndexMenu';
+import IndexHowToUse from './IndexHowToUse';
+import IndexMenu from './IndexMenu';
 
 class IndexLayout extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <p></p>
                 <IndexHeader />
+                <IndexHowToUse />
                 <IndexSteps />
+                <IndexTodaysSpecial />
+                <IndexMenu />
                 <IndexBody />
                 <IndexBanner />
                 <IndexBottomBody />
-                <IndexSlider />
+                <IndexFrequentlyOrdered />
             </React.Fragment>
         )
     }

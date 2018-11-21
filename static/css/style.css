@@ -178,27 +178,39 @@
     }
 
     .index-banner {
-        height: 910px !important;
+        height: 890px !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
     }
 
+    .index-banner-content-title
+    {
+        font-size: 34px !important;
+    }
+
+    .index-steps-row h2
+    {
+        font-size: 34px !important;
+    }
     .col1
     {
         height: 480px !important;
+        width: 100% !important;
     }
     .col2
     {
         height: 350px !important;
+        width: 100% !important;
     }
 
     .index-banner-content
     {
         height: 321px !important;
     }
-
+ 
     .index-steps
     {
-        margin-bottom: 30px !important;
-        height: 810px !important;
+        height: 869px !important
     }
     .slider-container .de-slider .slider-item .quotes{
         width: 100%;
@@ -215,6 +227,24 @@
     .slider-container .de-slider .slider-item h5{
         font-size: 1.5em;
     }
+
+    .frequently-ordered-section {
+        height: 1610px !important;
+        width: 100% !important;
+    }
+
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
+    .padding-zero
+    {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -233,6 +263,18 @@
     .slider-container .static-caption h5{
         font-size: 2em;
     }
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
+    .index-steps
+    {
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+        height:  890px !important
+    }
+
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
@@ -260,6 +302,16 @@
     .align-iterms-center
     {
         text-align: center !important;
+    }
+    /* .veritcal-stack
+    {
+        width: 100% !important;
+    } */
+
+    .padding-zero
+    {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
 /* #endregion */
@@ -295,7 +347,7 @@
 
     .header-row h2
     {
-        font-size: 36px !important;
+        font-size: 45px;
         font-weight: 400 !important;
         font-family: "Kaushan Script", 'cursive' !important;
     }
@@ -336,7 +388,7 @@
 
     .index-body-main-div
     {
-        background-image: url("https://pixabay.com/get/ea33b7072ff11c3e955b4502e44c4e92e26ae3d01db3154795f5c679/cook-366875.jpg") !important;
+        background-image: url("http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg");
         height: 642px !important;
         width: 100% !important;
         /* background-repeat: no-repeat; */
@@ -420,8 +472,6 @@
     {
         font-family: 'Kaushan Script', cursive !important;
         font-size: 45px !important;
-        font-weight: 400 !important;
-        line-height: 1 !important;
         color: #fff !important;
     }
 
@@ -431,20 +481,21 @@
 
     .index-steps
     {
-        height: 432px;
-        width: 100% !important;    
+        /* height: 432px; */
+        width: 100%;
+        padding: 50px 0 50px 0;
     }
 
     .index-steps-container
     {
-        height: 212px;
+        /* height: 212px; */
         padding: 0 15px;
         margin: 0 13px;
     }
 
     .index-steps-row
     {
-        height: 212px;
+        /* height: 212px; */
         margin: 0 -15px !important;
         /* background-color: #fff; */
     }
@@ -459,9 +510,7 @@
     .index-steps-row h2
     {
         font-family: 'Kaushan Script', cursive !important;
-        font-size: 45px !important;
-        font-weight: 400 !important;
-        line-height: 1 !important;
+        font-size: 45px;
         color:  #000000 !important;
     }
     .index-step-grid
@@ -483,9 +532,6 @@
         color: #424242;
         font-family: 'Raleway', 'sans-serif';
         font-size: 15px !important;
-        font-weight: 400 !important;
-        line-height: 1 !important;
-        margin-bottom: 25px !important;
     }
 
     .index-step-get-started-btn
@@ -499,14 +545,14 @@
     
     .index-banner
     {
-        height: 632px;
+        /* height: 632px; */
         padding-top: 110px;
         padding-bottom: 110px;
     }
 
     .index-banner-container
     {
-        height: 412px;
+        /* height: 412px; */
         margin: 0 13px;
         padding: 0 15px;
     }
@@ -514,13 +560,13 @@
     .index-banner-row
     {
         /* margin: -15px; */
-        height: 412px;
+        /* height: 412px; */
     }
 
     .index-banner-content
     {
         margin-top: 60px;
-        height: 240px;
+        /* height: 240px; */
     }
 
     .index-banner-content-subtitle
@@ -536,8 +582,8 @@
     .index-banner-content-title{
         font-family: 'Kaushan Script', cursive !important;
         color: #424242 !important;
-        font-size: 45px !important;
-        font-weight: 400 !important;
+        font-size: 45px;
+        font-weight: 400;
         line-height: 1 !important;
         margin-bottom: 25px !important;
     }
@@ -547,9 +593,6 @@
         font-family: 'Raleway', sans-serif;
         color: #a5a5a5;
         font-size: 15px;
-        font-weight: 400;
-        line-height: 24px;
-        margin-bottom: 0;
         padding: 0 40px;
     }
 
@@ -565,12 +608,7 @@
 
     .index-banner-img
     {
-        width: 100% !important;
-        height: 100% !important;
-        /* position: relative !important; */
-        /* background-repeat: no-repeat !important; */
-        /* background-position: center !important; */
-        /* background-size: cover !important; */
+        width: 100% !important    
     }
 
 /* #endregion */
@@ -584,8 +622,8 @@
 
     .index-bottom-body-main-div
     {
-        background-image: url("https://pixabay.com/get/eb35b1062dfd013ecd1f4405e14e469ee776ffd41cb513459cf2c27eaf/platter-2009590.jpg") !important;
-        height: 642px !important;
+        background-image: url("http://themearth.com/demo/html/restaura/view/assets/img/menu/menu2.jpg");
+        /* height: 642px !important; */
         width: 100% !important;
         /* background-repeat: no-repeat; */
 
@@ -593,7 +631,7 @@
 
     .index-bottom-body-container
     {
-        height: 85px !important;
+        /* height: 85px !important; */
         padding-right: 15px !important;
         padding-left: 15px !important;
         margin-right: auto !important;
@@ -602,7 +640,7 @@
 
     .index-bottom-body-row
     {
-        height: 85px;
+        /* height: 85px; */
         margin: 0 -15px !important;
         /* background-color: red; */
     }
@@ -614,7 +652,7 @@
 
     .index-bottom-body-desc
     {
-        height: 85px;
+        /* height: 85px; */
     }
     
     .index-bottom-body-desc p
@@ -628,62 +666,86 @@
     {
         font-family: 'Kaushan Script', cursive !important;
         font-size: 45px !important;
-        font-weight: 400 !important;
-        line-height: 1 !important;
         color: #fff !important;
     }
 
 /* #endregion */
 
-/* #region Index Slider */
-    .index-slider-div
+/* #region Index Frequently Ordered */
+
+    .frequently-ordered-section
     {
-        height: 1019px;
+        /* height: 626px; */
         width: 100%;
-        padding: 110px 0 !important;
+        padding: 105px 0;
     }
 
-    .index-slider-container
+    .frequently-ordered-container
     {
-        height: 819px;
-        margin: 0 13px 0 13px !important;
-        padding: 0 15px !important;
+        /* height: 626px; */
+        padding: 0 15px;
     }
 
-    .index-slider-row
+    .frequently-ordered-row
     {
-        position: relative;
-        height: 819px;
-        margin: 0 -15px;
+        /* height: 626px; */
+        margin:  0 -15px;
     }
 
-    .index-content-slider-container
-    {
-        /* background-color: #888; */
-        position: relative;
-        width: 100%;
-        height: 582px;
 
-    }
+/* #endregion */
 
-    .index-slides-row
-    {
-        height: 582px !important;
-        background-color: green;
-                
-    }
+/* #region Index Today's Special */
 
-    .margin-zero
+    .index-todays-special-desc h2
     {
-        margin: 0 !important;
-    }
-
-    .header-title
-    {
-        font-family: 'Kaushan Script', cursive !important;
         font-size: 45px !important;
-        font-weight: 400 !important;
-        line-height: 1 !important;
-        color: #000000 !important;
+        color: white !important;
+        font-family: 'Kaushan Script', cursive !important;
     }
+
+    .index-todays-special-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+/* #endregion */
+
+
+/* #region How to use */
+
+.index-how-to-use-div 
+{
+    background-image: url("https://demos.hogash.com/phaeton-restaurant-html/images/bestservice.jpg");
+    height: 642px !important;
+    width: 100% !important;
+    /* background-repeat: no-repeat; */
+
+}
+
+/* #endregion */
+
+/* #region Index Menu */
+
+    .index-menu
+    {
+        padding-top: 110px;
+        padding-bottom: 110px;
+    }
+
+    .index-menu-container
+    {
+        margin: 0 13px;
+        padding: 0 15px;
+    }
+
+    .index-menu-row
+    {
+        margin: 0 -15px;
+        background-color: blue;
+    
+    }
+
+
 /* #endregion */

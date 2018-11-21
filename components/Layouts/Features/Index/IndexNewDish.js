@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, GridColumn, Header, Divider, Button } from 'semantic-ui-react';
 
-class IndexBanner extends React.Component {
+class IndexNewDish extends React.Component {
     render() {
         return (
             <React.Fragment>
@@ -9,7 +9,7 @@ class IndexBanner extends React.Component {
                     <div className="index-banner-container">
                         <Grid columns="equal">
                             <Grid.Row className="index-banner-row">
-                                <GridColumn className="col1 padding-zero">
+                                <GridColumn className="col1">
                                     <div className="index-banner-content align-iterms-center">
                                         <p className="index-banner-content-subtitle">New dishes</p>
                                         <Header className="index-banner-content-title" as="h2">Grilled Seafood Paella</Header>
@@ -22,9 +22,9 @@ class IndexBanner extends React.Component {
                                         </Button>
                                     </div>
                                 </GridColumn>
-                                <Grid.Column className="col2 padding-zero">
+                                <Grid.Column className="col2">
                                     <div className="index-banner-img-div">
-                                        <img className="index-banner-img" src="https://demos.onepagelove.com/html/resto/img/img_square_4.jpg" alt="salmon" border="0" />
+                                        <img className="index-banner-img" src="https://thumb.ibb.co/gJhHFL/salmon.jpg" alt="salmon" border="0" />
                                     </div>
                                 </Grid.Column>
                             </Grid.Row>
@@ -36,4 +36,4 @@ class IndexBanner extends React.Component {
     }
 }
 
-export default IndexBanner;
+export default IndexNewDish;

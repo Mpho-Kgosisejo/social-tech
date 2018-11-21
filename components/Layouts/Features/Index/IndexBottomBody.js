@@ -10,8 +10,8 @@ class IndexBottomBody extends React.Component {
                         <div className="index-bottom-body-row">
                             <div className="index-bottom-body-heading">
                                 <div className="index-bottom-body-desc align-iterms-center">
-                                    <p>Freshly packed and prepared meals</p>
                                     <Header as="h2">Frequently ordered</Header>
+                                    <p>Freshly packed and prepared meals</p>
                                 </div>
                             </div>
                         </div>
