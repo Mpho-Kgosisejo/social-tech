@@ -52,40 +52,48 @@ const sliderImages = [
     }
 ]
 
-const Index = () => (
-    <Layout title="Home" includeContainer={false} includeNav={true}>
-        <div className="slider-container" >
-            <Slider {...settings} className="de-slider">
-                {sliderImages.map(image => (
-                    <div key={image.id} className="de-slider-item">
-                        <div key={image.key} className="slider-bg" style={{backgroundImage: `url(${image.url})`}}>
-                            <div className="slider-dimmer">
-                                <div className="slider-item">
-                                    <Container>
-                                        <div className="quotes">
-                                            {/* <Header as="h1" className="fresheats-brown-color">Quotes:</Header> */}
-                                            <Header as="h5">{`"${image.caption.content}"`}</Header>
+class Index extends React.Component {
+    componentDidMount(){
+        this.props.dispatch({type: "SIDEBAR", payload: false})
+    }
+    
+    render (){
+        return (
+            <Layout title="Home" includeContainer={false} includeNav={true}>
+                <div className="slider-container" >
+                    <Slider {...settings} className="de-slider">
+                        {sliderImages.map(image => (
+                            <div key={image.id} className="de-slider-item">
+                                <div key={image.key} className="slider-bg" style={{backgroundImage: `url(${image.url})`}}>
+                                    <div className="slider-dimmer">
+                                        <div className="slider-item">
+                                            <Container>
+                                                <div className="quotes">
+                                                    {/* <Header as="h1" className="fresheats-brown-color">Quotes:</Header> */}
+                                                    <Header as="h5">{`"${image.caption.content}"`}</Header>
+                                                </div>
+                                            </Container>
                                         </div>
-                                    </Container>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        ))}
+                    </Slider>
+
+                    <div className="static-caption">
+                        <Container>
+                            <Header as="h1">Fresh Eats</Header>
+                            <Header as="h5">Fresh eats something fresh all the time...</Header>
+                        </Container>
                     </div>
-                ))}
-            </Slider>
+                </div>
 
-            <div className="static-caption">
                 <Container>
-                    <Header as="h1">Fresh Eats</Header>
-                    <Header as="h5">Fresh eats something fresh all the time...</Header>
+                    Index
                 </Container>
-            </div>
-        </div>
-
-        <Container>
-            Index
-        </Container>
-    </Layout>
-)
+            </Layout>
+        )
+    }
+}
 
 export default Index
