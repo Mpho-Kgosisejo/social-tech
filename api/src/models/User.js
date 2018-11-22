@@ -40,6 +40,10 @@ const schema = new mongoose.Schema({
     confirmationToken: {
         type: String,
         default: ""
+    },
+    image: {
+        type: String,
+        default: ""
     }
 }, {timestamps: true})
 
@@ -86,6 +90,7 @@ schema.methods.toAuthJSON = function toAuthJSON (){
     return ({
         isAdmin: this.admin,
         username: this.username,
+        avator: this.image,
         token: this.token
     })
 }

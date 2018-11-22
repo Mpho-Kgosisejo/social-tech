@@ -3,8 +3,10 @@ import express from "express"
 import UserModel from "../models/User"
 import parseErrors from "../utils/parseErrors"
 import {sendConfirmationEmail} from "../mailer/mailer"
+import {multerUpload} from "../utils/multerImageHandler"
 
 const router = express.Router()
+
 
 router.post("/", (req, res) => {
     const {email, password, username} = req.body
@@ -37,6 +39,10 @@ router.post("/", (req, res) => {
             })
         }
     })
+})
+
+router.patch("/", (req, res) => {
+    res.json({message: "PATCH Req. Call"})
 })
 
 export default router
