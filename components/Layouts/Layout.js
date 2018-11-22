@@ -8,6 +8,8 @@ import AlertPortal from "../utils/AlertPortal";
 import {LeftComputerNav} from "./Nav"
 
 import "../../static/css/style.css"
+import "../../static/css/gallery.css";
+import "../../static/css/menu.css";
 
 const handleUpdateLayout = ({calculations, state}) => {
     const {dispatch} = state
@@ -77,5 +79,4 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
         </ContextAPI.Consumer>
     </React.Fragment>
 )
-
 export default Layout
