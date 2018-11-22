@@ -4,42 +4,24 @@ import api from "../../../../src/providers/APIRequest"
 import { isEmptyObj } from "../../../../src/utils/Objs"
 import MenuTab from "./MenuTab"
 import { MainMessage } from "../../../Messages/Message";
+import ContextAPI from "../../../../src/config/ContextAPI";
 
 class Menu_Items extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            responseMessage: "",
-            isLoadingData: true,
-            menus: {},
-            status: 200
-        }
-    }
-
-    getMenu = async () => {
-        const data = await api.menu.menu_items()
-        if (data.status === 200) {
-            this.setState({ responseMessage: data.data.message, isLoadingData: false, menus: data.data.menuWithProducts, status: data.status })
-        } else {
-            this.setState({ responseMessage: data.error.message, isLoadingData: false, status: data.status })
-        }
-
-    }
-
-    componentDidMount() {
-        this.getMenu()
-    }
 
     render() {
-        const { responseMessage, status, isLoadingData, menus } = this.state
         return (
             <div >
-                {isLoadingData ? <Loader active inline='centered'>Loading Menu</Loader> :
+                {/* {isLoadingData ? <Loader active inline='centered'>Loading Menu</Loader> :
                     status === 200 ?
                         <MenuTab data={menus} />
                         :
                         <MainMessage type="error" header="Menu Error" message={responseMessage} />
-                }
+                } */}
+                <ContextAPI.Consumer>
+                    {({state}) => (
+                        state.menu.data.length > 0 && <MenuTab />
+                    )}
+                </ContextAPI.Consumer>
             </div>
         )
     }

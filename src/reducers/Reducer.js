@@ -18,7 +18,15 @@ export const reducer = (state, action) => {
         })
         case "SIDEBAR": return ({
             ...state,
-            isSidebarOpen: (state.isSidebarOpen) ? false : true
+            isSidebarOpen: (Object.keys(action).length === 2) ? action.payload : (state.isSidebarOpen) ? false : true
+        })
+        case "MAIN_LAYOUT": return ({
+            ...state,
+            main_layout_calculations: action.payload
+        })
+        case "MENU": return ({
+            ...state,
+            menu: action.payload
         })
         case "TEST": return ({
             ...state,
