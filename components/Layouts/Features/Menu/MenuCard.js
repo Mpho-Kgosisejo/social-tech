@@ -2,6 +2,7 @@ import React from 'react'
 import { Image, Card, Label, Modal, Header, Divider, Button, Icon, Form, Input } from "semantic-ui-react"
 
 import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
+import "../../../../static/css/menu.css";
 
 class menu_card extends React.Component {
 
@@ -32,23 +33,23 @@ class menu_card extends React.Component {
     }
 
     render() {
-
-
         const { image, available, name, price, description, _id, ingredients } = this.props
-
         return (
-            <Modal size='small' trigger={<Card className="zero-border">
+            <Modal key={_id} size='small' trigger={<Card className="zero-border">
                 <div className="zero-border menuCardImage" style={{ background: `url(${image})` }}>
                 </div>
                 <Card.Content className="menuCard zero-border">
                     {available ? null :
                         <Label className="availabilityLabel" style={{ background: MILKY_RED }} horizontal>
+
                             Unavailable
                 </Label>
                     }
                     <Card.Header>{name}</Card.Header>
                     <Card.Description>{description}</Card.Description>
                 </Card.Content>
+
+
             </Card>
             } closeIcon>
                 <Modal.Content image className="menu-modal-content">
@@ -62,7 +63,7 @@ class menu_card extends React.Component {
                         <Header className="header-sub-head">The Ingredients</Header>
                         {ingredients.map(item => {
                             return (
-                                <Label key={_id} className="ingredient-styling">
+                                <Label className="ingredient-styling">
                                     {item}
                                 </Label>
                             )
@@ -78,7 +79,7 @@ class menu_card extends React.Component {
                     </div>
                     <Button className="add-button" size="tiny">
                         <Icon name='shop' /> Add to cart
-      </Button>
+                    </Button>
                 </Modal.Actions>
             </Modal>
         )

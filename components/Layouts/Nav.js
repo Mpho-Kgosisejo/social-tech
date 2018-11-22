@@ -58,10 +58,10 @@ const RightNav = () => (
                         // icon={null}
                     >
                         <Dropdown.Menu className="fresheats-light-green-bg">
-                            <Link href="/profile" prefetch passHref>
+                            <Link href="/account" prefetch passHref>
                                 <Menu.Item as="a">
                                     <Icon name="user" />
-                                    Profile
+                                Account
                                 </Menu.Item>
                             </Link>
                             <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)}>
@@ -80,11 +80,8 @@ const LeftTabletNav = () => (
     <ContextAPI.Consumer>
         {({state}) => (
             <React.Fragment>
-                <Link href="/" prefetch passHref>
-                    <Menu.Item as="a" className="fresheats-brown-color">Home</Menu.Item>
-                </Link>
                 <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({type: "SIDEBAR"})}>
-                    <Icon name="bars"  />
+                {state.isSidebarOpen ? <Icon name="close" /> : <Icon name="bars"  />}
                 </Menu.Item>
             </React.Fragment>
         )}
@@ -120,7 +117,7 @@ export const LeftComputerNav = () => (
                             </Link>
                         )}
                         <Responsive maxWidth={991} as={React.Fragment}>
-                            <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>
+                        {isEmptyObj(state.login) ? <AuthLayout/> : <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>}
                         </Responsive>
                     </React.Fragment>
                 )}
@@ -141,10 +138,10 @@ const LeftNav = () => (
 )
 
 const Nav = () => (
-    <Menu inverted fixed="top" className="appNav fresheats-light-green-bg">
+    <ContextAPI.Consumer>
+    {({state}) => (
+    <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible) ? "transparent" : ""}`}>
         <Container className="nav-container">
-            <ContextAPI.Consumer>
-                {({state}) => (
                     <React.Fragment>
                         <LeftNav />
                     
@@ -154,9 +151,11 @@ const Nav = () => (
                             </Menu.Menu>
                         }
                     </React.Fragment>
-                )}
-            </ContextAPI.Consumer>
         </Container>
     </Menu>
+    )}
+    </ContextAPI.Consumer>
 )
 export default Nav
+
+//please fix button sign in sign out
