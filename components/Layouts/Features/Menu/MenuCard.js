@@ -63,7 +63,7 @@ class menu_card extends React.Component {
                         <Header className="header-sub-head">The Ingredients</Header>
                         {ingredients.map(item => {
                             return (
-                                <Label className="ingredient-styling">
+                                <Label key={item._id} className="ingredient-styling">
                                     {item}
                                 </Label>
                             )
