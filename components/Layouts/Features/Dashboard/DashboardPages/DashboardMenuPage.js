@@ -1,7 +1,28 @@
 import React from 'react'
 import { Form, Label, Input, Button, Checkbox } from 'semantic-ui-react'
+import ContextAPI from '../../../../../src/config/ContextAPI';
+import api from "../../../../../src/providers/APIRequest"
 
 class DashboardMenuPage extends React.Component{
+
+  constructor(props)
+    {
+        super(props)
+    }
+
+    getMenu = async () => {
+        const data = await api.menu.menu_items()
+
+        if (data.status === 200) {
+          console.log(data)
+        } else {
+          console.log(data)
+        }
+    }
+
+    componentDidMount(){
+        this.getMenu()
+    }
 
   render(){
     return(
@@ -19,6 +40,12 @@ class DashboardMenuPage extends React.Component{
             ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
             Curabitur ullamcorper ultricies nisi.
           </p>
+
+          <ContextAPI.Consumer>
+            {({state}) => 
+                <pre>{JSON.stringify(state, "", 1)}</pre>
+            }
+          </ContextAPI.Consumer>
         </div>
       </div>
     )

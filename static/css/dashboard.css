@@ -27,8 +27,8 @@
 }
 
 .header-content{
-    font-size: 16px;
-    color: #c59c70;
+    font-size: 16px !important;
+    color: #c59c70 !important;
 }
 
 .dash-board-pages {
