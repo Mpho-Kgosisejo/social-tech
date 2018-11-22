@@ -5,6 +5,7 @@ import DashboardMainPage from './DashboardPages/DashboardMainPage';
 import DashboardMenuPage from './DashboardPages/DashboardMenuPage';
 import DashboardAboutsPage from './DashboardPages/DashboardAboutsPage'
 import DashboardOrdersPage from './DashboardPages/DashboardOrdersPage'
+import { RightNav } from '../../Nav';
 
 
 class DashboardSidebar extends React.Component{
@@ -57,8 +58,20 @@ class DashboardSidebar extends React.Component{
     render(){
         const {activePage, openSidebar} = this.state
         return (
-            <div className="show-below-nav">
-
+            <div>
+                <div className="dashboard-page-header fresheats-light-green-bg">
+                    <Menu secondary>
+                        <Menu.Item onClick={this.showSideBars}> 
+                            <Icon className="header-content" name={openSidebar ? 'close' : 'bars'}/>
+                        </Menu.Item>
+                        <Menu.Item>
+                            <h1 className="header-content">DASHBOARD</h1>
+                        </Menu.Item>
+                        <Menu.Menu position="right">
+                            <RightNav />
+                        </Menu.Menu>
+                    </Menu>
+                </div> 
                 <Sidebar.Pushable className="dashboard-sidebar-pushable">
                     <Sidebar 
                         as={Menu}
@@ -67,39 +80,29 @@ class DashboardSidebar extends React.Component{
                         vertical
                         visible={openSidebar}
                         //width='thin'
-                        className="dashboard-sidebar"
+                        className="dashboard-sidebar fresheats-light-green-bg"
                     >
 
-                    <Menu.Item as='a' onClick={() => { this.changeActivePage("home") }}>
+                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("home") }}>
                         <Icon name='home' />
                         Home
                     </Menu.Item>
-                    <Menu.Item as='a' onClick={() => { this.changeActivePage("orders")}}>
+                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("orders")}}>
                         <Icon name='food' />
                         Orders
                     </Menu.Item>
                     <Divider/>
-                    <Menu.Item as='a' onClick={() => { this.changeActivePage("menu") }}>
+                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("menu") }}>
                         <Icon name='clipboard' />
                         Menu
                     </Menu.Item>
-                    <Menu.Item as='a' onClick={() => { this.changeActivePage("about") }}>
+                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("about") }}>
                         <Icon name='clipboard' />
                         About
                     </Menu.Item>
                     </Sidebar>
 
-                    <Sidebar.Pusher className="dashboard-sidebar-pushable dash-board-pages">
-                        <div className="dashboard-page-header">
-                            <Menu secondary>
-                                <Menu.Item onClick={this.showSideBars}> 
-                                    <Icon className="header-content" name={openSidebar ? 'close' : 'bars'}/>
-                                </Menu.Item>
-                                <Menu.Item>
-                                    <h1 className="header-content">DASHBOARD</h1>
-                                </Menu.Item>
-                            </Menu>
-                        </div>  
+                    <Sidebar.Pusher className="dashboard-sidebar-pushable"> 
                         <div className="mainLayout">
                             { this.renderPage(activePage) }
 

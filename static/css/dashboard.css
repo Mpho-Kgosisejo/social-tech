@@ -5,7 +5,7 @@
 }
 
 .dashboard-sidebar{
-    width: 200px !important;
+    /* width: 200px !important; */
 }
 
 .show-below-nav {
@@ -14,11 +14,16 @@
 }
 
 .dashboard-page-header {
-    min-height: 40px;
+    min-height: 45px;
     margin: 0px;
     padding: 0px 15px;
     background: #ffffff;
     border-bottom: 0px;
+    width: 100% !important;
+}
+
+.dashboard-menu-items {
+    color: #ffffff !important;
 }
 
 .header-content{
@@ -27,7 +32,7 @@
 }
 
 .dash-board-pages {
-    width: 100vw !important;
+    /* width: 100vw !important; */
 }
 
 .menu-upload-container{

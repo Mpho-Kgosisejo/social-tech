@@ -58,7 +58,7 @@ class Dashoard extends React.Component {
         return(
             <ContextAPI.Consumer>
                 {({state}) => (
-                    <Layout title="Dashboard" includeContainer={false} includeFooter={false}>
+                    <Layout title="Dashboard" includeContainer={false} includeFooter={false} includeNav={false}>
                         {(!state.root_loading && !loading) && (
                             <React.Fragment>
                                 

@@ -36,7 +36,7 @@ const handleAboutDropdown = ({dispatch, aboutState, index}) => {
 
 const ResponsiveFragmentBugFix = () => (<></>)
 
-const RightNav = () => (
+export const RightNav = () => (
     <ContextAPI.Consumer>
         {({state}) => (
             <React.Fragment>
