@@ -303,6 +303,14 @@
     {
         text-align: center !important;
     }
+    .pull-left
+    {
+        float: left !important;
+    }
+    .pull-right
+    {
+        float: right !important;
+    }
     /* .veritcal-stack
     {
         width: 100% !important;
@@ -743,7 +751,6 @@
     .index-menu-row
     {
         margin: 0 -15px;
-        background-color: blue;
     
     }
 
