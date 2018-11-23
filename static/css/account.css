@@ -1,13 +1,19 @@
 .account-header
 {
-    height: 500px;
-    background: pink;
-    width: 100%;
+    padding: 100px 50px;
 }
 
 .account-header-container
 {
-    height: 500px;
-    background: pink;
-    width: 100%;
+}
+
+.account-tabs
+{
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.account-personal-details
+{
+    
 }

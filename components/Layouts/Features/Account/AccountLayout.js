@@ -1,5 +1,6 @@
 import React from 'react'
 import AccountHeader from './AccoutHeader';
+import AccountTabs from './AccountTabs';
 
 class AccountLayout extends React.Component
 {
@@ -8,6 +9,7 @@ class AccountLayout extends React.Component
         return(
             <React.Fragment>
                 <AccountHeader />
+                <AccountTabs />
             </React.Fragment>
         )
     }

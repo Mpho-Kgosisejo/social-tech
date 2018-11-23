@@ -9,7 +9,7 @@ const Menu = (props) => (
         <Layout title="Menu" includeContainer={false}>
             <div className="MenuImageContainerDiv">
                 <Container>
-                    <span className="menu-header-back-span" >Taste the best</span>
+                    {/* <span className="menu-header-back-span" >Taste the best</span> */}
                     <h3 className="menu-header-back-h3">Fresh Ingredients, Tasty Meals</h3>
                 </Container>
             </div>
