@@ -1,6 +1,7 @@
 /* Global styling */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
 
 *{
     font-family: 'Raleway', sans-serif;
@@ -194,6 +195,10 @@
 }
 
  /* #endregion */
+
+ .ui.secondary.pointing.menu{
+    /* overflow: auto; */
+ }
 
  /*#region Footer styling */
 
@@ -561,11 +566,329 @@
 
 /* #region Semantic UI: Media Queries breakpoints */
 
+.zero-border
+{
+    border: transparent !important
+}
+
+.marginTopBottom {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* #endregion */
+
+/* #region Index Steps */
+
+    .index-steps
+    {
+        /* height: 432px; */
+        width: 100%;
+        padding: 50px 0 50px 0;
+    }
+
+    .index-steps-container
+    {
+        /* height: 212px; */
+        padding: 0 15px;
+    }
+
+    .index-steps-row
+    {
+        /* height: 212px; */
+        margin: 0 -15px !important;
+        /* background-color: #fff; */
+    }
+    
+    .index-step-sub
+    {
+        font-size: 29px;
+        font-family: 'Great Vibes', cursive;
+        color: #c59c70;
+    }
+
+    .index-steps-row h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px;
+        color:  #000000 !important;
+    }
+
+    .index-step-column-h3
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 25px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color:  #082908 !important;
+    }
+
+    .index-step-column-desc
+    {
+        color: #424242;
+        font-family: 'Raleway', 'sans-serif';
+        font-size: 15px !important;
+    }
+
+    .index-step-get-started-btn
+    {
+        margin-top: 30px !important;
+    }
+
+/* #endregion */
+
+/* #region Index Banner */
+    
+    .col1
+    {
+        padding-right: 25px !important;
+    }
+
+    .index-banner
+    {
+        /* height: 632px; */
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .index-banner-container
+    {
+        /* height: 412px; */
+        margin: 0 13px;
+        padding: 0 15px;
+    }
+
+    .index-banner-row
+    {
+        /* margin: -15px; */
+        /* height: 412px; */
+    }
+
+    .index-banner-content
+    {
+        /* margin-top: 60px; */
+        /* height: 240px; */
+    }
+
+    .index-banner-content-subtitle
+    {
+        color: #c59d5f;
+        font-family: 'Great Vibes', cursive;
+        font-size: 35px;
+        font-style: italic;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+
+    .index-banner-content-title{
+        font-family: 'Kaushan Script', cursive !important;
+        color: #424242 !important;
+        font-size: 45px;
+        font-weight: 400;
+        line-height: 1 !important;
+        margin-bottom: 25px !important;
+    }
+
+    .index-banner-content-desc
+    {
+        font-family: 'Raleway', sans-serif;
+        color: #a5a5a5;
+        font-size: 15px;
+        padding: 0 40px;
+    }
+
+    .index-banner-btn 
+    {
+        margin-top: 40px !important;
+    }
+
+    .btn-color-dfm
+    {
+        color: #082908 !important;
+    }
+
+    .index-banner-img
+    {
+        width: 100% !important    
+    }
+
+/* #endregion */
+
+/* #region Index Bottom Body */
+
+    .index-bottom-body
+    {
+        padding-bottom: 110px; 
+    }
+
+    .index-bottom-body-main-div
+    {
+        background-image: url("http://themearth.com/demo/html/restaura/view/assets/img/menu/menu2.jpg");
+        /* height: 642px !important; */
+        width: 100% !important;
+        /* background-repeat: no-repeat; */
+
+    }
+
+    .index-bottom-body-container
+    {
+        /* height: 85px !important; */
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .index-bottom-body-row
+    {
+        /* height: 85px; */
+        margin: 0 -15px !important;
+        /* background-color: red; */
+    }
+
+    .index-bottom-body-heading
+    {
+        padding: 0 15px !important;
+    }
+
+    .index-bottom-body-desc
+    {
+        /* height: 85px; */
+    }
+    
+    .index-bottom-body-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+
+    .index-bottom-body-desc h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        color: #fff !important;
+    }
+
+/* #endregion */
+
+/* #region Index Frequently Ordered */
+
+    .index-frequently-ordered
+    {
+        /* height: 626px; */
+        padding-top: 50px;
+    }
+
+    .frequently-ordered-container
+    {
+        /* height: 626px; */
+        padding: 0 15px;
+    }
+
+    .frequently-ordered-row
+    {
+        /* height: 626px; */
+        margin:  0 -15px;
+    }
+
+
+/* #endregion */
+
+/* #region Index Today's Special */
+
+    .index-todays-special-desc h2
+    {
+        font-size: 45px !important;
+        color: white !important;
+        font-family: 'Kaushan Script', cursive !important;
+    }
+
+    .index-todays-special-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+/* #endregion */
+
+
+/* #region How to use */
+
+.index-how-to-use-div 
+{
+    background-image: url("https://demos.hogash.com/phaeton-restaurant-html/images/bestservice.jpg");
+    height: 642px !important;
+    width: 100% !important;
+    /* background-repeat: no-repeat; */
+
+}
+
+/* #endregion */
+
+/* #region Index Menu */
+
+    .index-menu
+    {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .index-menu-container
+    {
+        margin: 0 13px;
+        padding: 0 15px;
+    }
+
+    .index-menu-row
+    {
+        margin: 0 -15px;
+    
+    }
+
+    
+
+
+/* #endregion */
+
+
 @media ( max-width: 480px) {
     .breakpoints-test{
         background: #5999c2!important;
     }
 
+    .header-main-div
+    {
+        margin-top: 0px !important;
+    }
+
+    .index-banner {
+        /* height: 890px !important; */
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+
+    .index-banner-content-title
+    {
+        font-size: 34px !important;
+    }
+
+    .index-steps-row h2
+    {
+        font-size: 34px !important;
+    }
+    .col1
+    {
+        /* height: 480px !important; */
+        width: 100% !important;
+        padding-bottom: 15px !important
+    }
+    .col2
+    {
+        /* height: 350px !important; */
+        width: 100% !important;
+        padding-top: 15px !important
+    }
+ 
     .slider-container .de-slider .slider-item .quotes{
         width: 100%;
     }
@@ -580,6 +903,22 @@
 
     .slider-container .de-slider .slider-item h5{
         font-size: 1.5em;
+    }
+
+    .frequently-ordered-section {
+        height: 1610px !important;
+        width: 100% !important;
+    }
+
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
+    .padding-zero
+    {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 
     .mainLayout
@@ -612,6 +951,11 @@
     .footer_wideget
     {
         height: 478px !important;
+    }
+
+    .veritcal-stack
+    {
+        width: 100% !important;
     }
 
     .footer_social_container {
@@ -663,15 +1007,28 @@
     .footer{
         height: 600px !important;
     }
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
     .footer_container{
         margin-left: 20px !important;
         margin-right: 20px !important;
     }
+    
 
     .ui.grid>[class*="three column"].row>.column
     {
         width: 100% !important;
     }
+
+    /* .index-steps
+    {
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+        height:  890px !important
+    } */
 
     .footer_wideget
     {
@@ -698,7 +1055,8 @@
 
     .breakpoints-test{
         background: #77c394 !important;
-    }    
+    }
+
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
@@ -706,20 +1064,11 @@
         background: #df6656 !important;
     }
 }
+
 @media (min-width: 991px) and (max-width: 1200px) {
     .breakpoints-test{
         background: #e8d692 !important;
     }
-}
-
-.zero-border
-{
-    border: transparent !important
-}
-
-.marginTopBottom {
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 @media (min-width: 1201px) {
@@ -727,5 +1076,3 @@
         background: yellow !important;
     }
 }
-
-/* #endregion */
