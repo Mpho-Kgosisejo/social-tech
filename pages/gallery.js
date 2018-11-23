@@ -41,6 +41,8 @@ class Gallery extends React.Component {
 
     componentDidMount() {
         this.getData()
+
+        this.props.dispatch({type: "SIDEBAR", payload: false})
     }
 
     myIncludes = (str) => {

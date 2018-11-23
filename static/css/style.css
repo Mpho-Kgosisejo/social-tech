@@ -198,6 +198,10 @@
 
  /* #endregion */
 
+ .ui.secondary.pointing.menu{
+    /* overflow: auto; */
+ }
+
  /*#region Footer styling */
 
  .footer
@@ -1085,12 +1089,185 @@
         padding-bottom: 100px;
     }
 
-    .index-service-banner-container
+/*#endregion--------------- */
+
+/* #endregion */
+
+/* #region Global */
+
+    .align-iterms-center
     {
-        height: 486px;
-        width: 100%;
-        padding: 0 15px;
-        margin: 0 10px;
+        text-align: center !important;
+    }
+    .pull-left
+    {
+        float: left !important;
+    }
+    .pull-right
+    {
+        float: right !important;
+    }
+    /* .veritcal-stack
+    {
+        width: 100% !important;
+    } */
+
+    .padding-zero
+    {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+/* #endregion */
+
+/* #region Index Header stylying Thato */
+
+    .header-main-div
+    {
+        margin-top: 50px;
+        padding: 50px 0px !important;
+        border: 0px !important;
+        
+    }
+    .header-container
+    {
+        padding: 0px 15px !important;
+        border: 0px !important;
+    }
+    .header-row
+    {
+        padding: 0px -15px !important;
+        border: 0px !important;
+    }
+    .header-sub
+    {
+        font-size: 29px;
+        font-family: 'Great Vibes', cursive;
+        color: #c59c70;
+    }
+
+    .header-row h2
+    {
+        font-size: 45px;
+        font-weight: 400 !important;
+        font-family: "Kaushan Script", 'cursive' !important;
+    }
+
+    .header-divider
+    {
+        margin: 20px 0  !important;
+        /* height: 14px !important; */
+        color: #c59c70 !important;
+    }
+
+    .header-desc
+    {
+        color: #a5a5a5;
+        font-family: 'Raleway', 'sans-serif';
+        font-size: 1.25em;
+        font-weight: 100;
+    }
+
+    .header-signature
+    {
+        margin-top: 30px !important;
+    }
+    .signImg
+    {
+        width: 99px !important;
+        height: 49px !important;
+        
+    }
+/* #endregion */
+
+/* #region Index Body */
+
+    .index-body
+    {
+        padding-bottom: 110px; 
+    }
+
+    .index-background-img-div
+    {
+        /* background-image: url("http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg"); */
+        /* height: 642px !important; */
+        width: 100% !important;
+        /* background-repeat: no-repeat; */
+
+    }
+
+    .section-divider2
+    {
+        padding-top: 250px !important;
+        padding-bottom: 275px !important;
+        background-repeat: none !important;
+        background-position: center !important;
+        background-size: cover;
+    }
+
+    .bg-parallax
+    {
+        background-attachment: fixed !important;
+    }
+
+    .bg-overlay-dark4:before
+    {
+        background-color: rgba(27, 26, 26, 0.65) !important;
+    }
+
+    .bg-overlay:before {
+        content: "" !important;
+        display: inline-block !important;
+        height: 100% !important;
+        left: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        width: 100% !important;
+        z-index: -1 !important;
+    }
+
+    .bg-section
+    {
+        position: relative !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .index-body-container
+    {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .index-body-row
+    {
+        margin: 0 -15px !important;
+        /* background-color: red; */
+    }
+
+    .index-body-heading
+    {
+        padding: 0 15px !important;
+    }
+
+    
+    .index-body-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+    /* color: #c59c70; */
+
+    .index-body-desc h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        color: #fff !important;
     }
 
     .index-service-row
@@ -1101,49 +1278,494 @@
     }
 /* #endregion */
 
-/* #region resturant-history */
-    
-    .resturant-history-section
-    {
-        margin-top: 50px;
-        height: 571px;
-        width: 100%;
-        padding: 0 26px;
+/* #region Index Steps */
 
-    }
-    .resturant-history-section-about
+    .index-steps
     {
-        background-image: url('http://themearth.com/demo/html/restaura/view/assets/img/about-bg.jpg');
-        height: 571px;
+        /* height: 432px; */
         width: 100%;
-        background-size: cover !important;
-        background-repeat: no-repeat;
-        background-repeat: none !important;
-        background-position: center !important;
+        padding: 50px 0 50px 0;
     }
 
-    .resturant-history-inner
+    .index-steps-container
     {
-        padding: 132px 0;
-        height: 307px;
-        width: 100%;
-    }
-
-    .resturant-history-container
-    {
-        margin: 0 237px;
+        /* height: 212px; */
         padding: 0 15px;
-        height: 352px;
-        /* background-color: blue; */
     }
 
-    .resturant-history-row
+    .index-steps-row
+    {
+        /* height: 212px; */
+        margin: 0 -15px !important;
+        /* background-color: #fff; */
+    }
+    
+    .index-step-sub
+    {
+        font-size: 29px;
+        font-family: 'Great Vibes', cursive;
+        color: #c59c70;
+    }
+
+    .index-steps-row h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px;
+        color:  #000000 !important;
+    }
+
+    .index-step-column-h3
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 25px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color:  #082908 !important;
+    }
+
+    .index-step-column-desc
+    {
+        color: #424242;
+        font-family: 'Raleway', 'sans-serif';
+        font-size: 15px !important;
+    }
+
+    .index-step-get-started-btn
+    {
+        margin-top: 30px !important;
+    }
+
+/* #endregion */
+
+/* #region Index Banner */
+    
+    .col1
+    {
+        padding-right: 25px !important;
+    }
+
+    .index-banner
+    {
+        /* height: 632px; */
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .index-banner-container
+    {
+        /* height: 412px; */
+        margin: 0 13px;
+        padding: 0 15px;
+    }
+
+    .index-banner-row
+    {
+        /* margin: -15px; */
+        /* height: 412px; */
+    }
+
+    .index-banner-content
+    {
+        /* margin-top: 60px; */
+        /* height: 240px; */
+    }
+
+    .index-banner-content-subtitle
+    {
+        color: #c59d5f;
+        font-family: 'Great Vibes', cursive;
+        font-size: 35px;
+        font-style: italic;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+
+    .index-banner-content-title{
+        font-family: 'Kaushan Script', cursive !important;
+        color: #424242 !important;
+        font-size: 45px;
+        font-weight: 400;
+        line-height: 1 !important;
+        margin-bottom: 25px !important;
+    }
+
+    .index-banner-content-desc
+    {
+        font-family: 'Raleway', sans-serif;
+        color: #a5a5a5;
+        font-size: 15px;
+        padding: 0 40px;
+    }
+
+    .index-banner-btn 
+    {
+        margin-top: 40px !important;
+    }
+
+    .btn-color-dfm
+    {
+        color: #082908 !important;
+    }
+
+    .index-banner-img
+    {
+        width: 100% !important    
+    }
+
+/* #endregion */
+
+/* #region Index Bottom Body */
+
+    .index-bottom-body
+    {
+        padding-bottom: 110px; 
+    }
+
+    .index-bottom-body-main-div
+    {
+        background-image: url("http://themearth.com/demo/html/restaura/view/assets/img/menu/menu2.jpg");
+        /* height: 642px !important; */
+        width: 100% !important;
+        /* background-repeat: no-repeat; */
+
+    }
+
+    .index-bottom-body-container
+    {
+        /* height: 85px !important; */
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .index-bottom-body-row
+    {
+        /* height: 85px; */
+        margin: 0 -15px !important;
+        /* background-color: red; */
+    }
+
+    .index-bottom-body-heading
+    {
+        padding: 0 15px !important;
+    }
+    
+    .index-bottom-body-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+
+    .index-bottom-body-desc h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        color: #fff !important;
+    }
+
+/* #endregion */
+
+/* #region Index Frequently Ordered */
+
+    .index-frequently-ordered
+    {
+        /* height: 626px; */
+        padding-top: 50px;
+    }
+
+    .frequently-ordered-container
+    {
+        /* height: 626px; */
+        padding: 0 15px;
+    }
+
+    .frequently-ordered-row
+    {
+        /* height: 626px; */
+        margin:  0 -15px;
+    }
+
+
+/* #endregion */
+
+/* #region Index Today's Special */
+
+    .index-todays-special-desc h2
+    {
+        font-size: 45px !important;
+        color: white !important;
+        font-family: 'Kaushan Script', cursive !important;
+    }
+
+    .index-todays-special-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+/* #endregion */
+
+
+/* #region How to use */
+
+.index-how-to-use-div 
+{
+    background-image: url("https://demos.hogash.com/phaeton-restaurant-html/images/bestservice.jpg");
+    height: 642px !important;
+    width: 100% !important;
+    /* background-repeat: no-repeat; */
+
+}
+
+/* #endregion */
+
+/* #region Index Menu */
+
+    .index-menu
+    {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .index-menu-container
+    {
+        margin: 0 13px;
+        padding: 0 15px;
+    }
+
+    .index-menu-row
     {
         margin: 0 -15px;
-        height: 352px;
+    
     }
 
-    .resturant-history-section5
+/* #endregion */
+
+
+@media ( max-width: 480px) {
+    .breakpoints-test{
+        background: #5999c2!important;
+    }
+
+    .header-main-div
     {
-
+        margin-top: 0px !important;
     }
+
+    .index-banner {
+        /* height: 890px !important; */
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
+    }
+
+    .index-banner-content-title
+    {
+        font-size: 34px !important;
+    }
+
+    .index-steps-row h2
+    {
+        font-size: 34px !important;
+    }
+    .col1
+    {
+        /* height: 480px !important; */
+        width: 100% !important;
+        padding-bottom: 15px !important
+    }
+    .col2
+    {
+        /* height: 350px !important; */
+        width: 100% !important;
+        padding-top: 15px !important
+    }
+ 
+    .slider-container .de-slider .slider-item .quotes{
+        width: 100%;
+    }
+
+    .slider-container .static-caption h1{
+        font-size: 3.5em;
+    }
+    
+    .slider-container .static-caption h5{
+        font-size: 1.5em;
+    }
+
+    .slider-container .de-slider .slider-item h5{
+        font-size: 1.5em;
+    }
+
+    .frequently-ordered-section {
+        height: 1610px !important;
+        width: 100% !important;
+    }
+
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
+    .padding-zero
+    {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .mainLayout
+    {
+        padding-bottom: 650px;
+    }
+
+    .footer{
+        height: 600px !important;
+    }
+    .footer_container{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+
+    .ui.grid>[class*="three column"].row>.column
+    {
+        width: 100% !important;
+    }
+
+    .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column
+    {
+        width: 100% !important;
+    }
+
+    .display-felx{
+        display: flex !important;
+    }
+
+    .footer_wideget
+    {
+        height: 478px !important;
+    }
+
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
+    .footer_social_container {
+        height: 28px;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .footer_social_row
+    {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .footer_wideget
+    {
+        padding-top: 20px !important;
+    }
+
+    .breakpoints-test{
+        background: #5999c2!important;
+    }
+
+    .slider-container .de-slider .slider-item .quotes{
+        width: 100%;
+    }
+
+    .slider-container .static-caption h1{
+        font-size: 3.5em;
+    }
+    
+    .slider-container .static-caption h5{
+        font-size: 1.5em;
+    }
+
+    .slider-container .de-slider .slider-item h5{
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .mainLayout
+    {
+        padding-bottom: 600px;
+    }
+
+    .footer{
+        height: 600px !important;
+    }
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
+    .footer_container{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+    
+
+    .ui.grid>[class*="three column"].row>.column
+    {
+        width: 100% !important;
+    }
+
+    /* .index-steps
+    {
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+        height:  890px !important
+    } */
+
+    .footer_wideget
+    {
+        height: 478px !important;
+    }
+
+    .footer_social_container {
+        height: 28px;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .footer_social_row
+    {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .footer_wideget
+    {
+        padding-top: 20px !important;
+    }
+
+    .breakpoints-test{
+        background: #77c394 !important;
+    }
+
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    .breakpoints-test{
+        background: #df6656 !important;
+    }
+}
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .breakpoints-test{
+        background: #e8d692 !important;
+    }
+}
+
+@media (min-width: 1201px) {
+    .breakpoints-test{
+        background: yellow !important;
+    }
+}

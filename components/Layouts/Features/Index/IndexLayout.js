@@ -1,21 +1,21 @@
 import React from 'react'
 
-import ResturantHistory from "./ResturantHistory";
-
+import IndexHeader from "./IndexHeader";
+import IndexSteps from "./IndexSteps";
+import IndexBanner from "./IndexBanner";
+import IndexFrequentlyOrdered from './IndexFrequentlyOrdered';
+import IndexMenu from './IndexMenu';
 
 class IndexLayout extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <p></p>
-                <ResturantHistory />
-                {/* <IndexSteps />
-                <IndexServiceBanner />
-                <IndexService />
-                <IndexTodaysSpecial />
-                <IndexNewDish />
-                <IndexBottomBody />
-                <IndexSlider /> */}
+                <IndexHeader />
+                <IndexSteps />
+                <IndexMenu />
+                <IndexBanner />
+                {/* <IndexBottomBody /> */}
+                <IndexFrequentlyOrdered />
             </React.Fragment>
         )
     }
