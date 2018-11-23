@@ -35,41 +35,46 @@ class menu_card extends React.Component {
         const { image, available, name, price, description, _id, ingredients } = this.props
         return (
             <Modal key={_id} size='small' trigger={<Card className="zero-border">
-                <div className="zero-border menuCardImage" style={{ background: `url(${image})` }}>
-                </div>
-                <Card.Content className="menuCard zero-border">
+                <div className="menuCardImage-p">
+                    <div className="zero-border menuCardImage" style={{ background: `url(${image})`, filter: `grayscale(${available ? 0 : 100}%)` }} />
                     {available ? null :
                         <Label className="availabilityLabel" style={{ background: MILKY_RED }} horizontal>
-
                             Unavailable
-                </Label>
+                        </Label>
                     }
+                </div>
+                <Card.Content className="menuCard zero-border">
                     <Card.Header>{name}</Card.Header>
                     <Card.Description>{description}</Card.Description>
                 </Card.Content>
-
-
             </Card>
             } closeIcon>
+
                 <Modal.Content image className="menu-modal-content">
-                    <Image className="menu-img" size='large' src={image} />
+                    {/* <Image className="menu-img" size='large' src={image} /> */}
+                    <Image className="menu-img">
+                        <div className="menu-img" style={{background: `url(${image})`}}></div>
+                    </Image>
                     <Modal.Description>
-                        <Header className="header-name">{name}</Header>
-                        <Divider />
-                        <p className='food-price'>R{price}</p>
-                        <Header className="header-sub-head">How It Is Prepared</Header>
-                        <p>{description}</p>
-                        <Header className="header-sub-head">The Ingredients</Header>
-                        {ingredients.map(item => {
-                            return (
-                                <Label className="ingredient-styling">
-                                    {item}
-                                </Label>
-                            )
-                        })}
+                        <div className="header-container">
+                            <Header className="header-name">{name}</Header>
+                        </div>
+                        <div className="desc-conatiner">
+                            <p className='food-price'>R{price}</p>
+                            <Header className="header-sub-head">How It Is Prepared</Header>
+                            <p>{description}</p>
+                            <Header className="header-sub-head">The Ingredients</Header>
+                            {ingredients.map(item => {
+                                return (
+                                    <Label key={item} className="ingredient-styling">
+                                        {item}
+                                    </Label>
+                                )
+                            })}
+                        </div>
                     </Modal.Description>
                 </Modal.Content>
-                <Modal.Actions>
+                <Modal.Actions className="no-border">
                     <div className="quantity-div">
                         <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
                             onClick={() => { this.doDecrement() }} />

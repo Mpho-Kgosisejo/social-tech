@@ -20,16 +20,16 @@ const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
 
     switch (index) {
         case 0:
-            Router.push({ pathname: "/about", query: { tab: 'ourstory' } })
+            Router.replace({ pathname: "/about", query: { tab: 'ourstory' } })
             break;
         case 1:
-            Router.push({ pathname: "/about", query: { tab: 'ourchefs' } })
+            Router.replace({ pathname: "/about", query: { tab: 'ourchefs' } })
             break;
         case 2:
-            Router.push({ pathname: "/about", query: { tab: 'ourcontacts' } })
+            Router.replace({ pathname: "/about", query: { tab: 'ourcontacts' } })
             break;
         case 3:
-            Router.push({ pathname: "/about", query: { tab: 'ourfaqs' } })
+            Router.replace({ pathname: "/about", query: { tab: 'ourfaqs' } })
             break;
     }
 }

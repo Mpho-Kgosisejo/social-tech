@@ -1,4 +1,5 @@
 import "../static/css/index.css"
+import "../static/css/style.css"
 import Layout from "../components/Layouts/Layout"
 
 import Slider from "react-slick"

@@ -28,6 +28,10 @@ export default class MyApp extends App {
             isSidebarOpen: false,
             main_layout_calculations: {},
             active_page: "",
+            menu: {
+                index: 0,
+                data: []
+            },
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
