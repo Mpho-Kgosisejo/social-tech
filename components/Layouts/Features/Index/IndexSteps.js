@@ -1,11 +1,14 @@
 import React from 'react'
 import { Header, Grid, Image, Icon, Button } from 'semantic-ui-react';
+import IndexBannerHeader from './IndexBannerHeader';
 
 class IndexSteps extends React.Component {
 
     render() {
         return (
             <React.Fragment>
+                <IndexBannerHeader desc="Here's how you use it" image="https://demos.hogash.com/phaeton-restaurant-html/images/bestservice.jpg" header="Easy to use"/>
+                
                 <div className="index-steps">
                     <div className="index-steps-container">
                         <div className="index-steps-row align-iterms-center">

@@ -26,6 +26,7 @@ class Dashoard extends React.Component {
     }
 
     componentDidMount(){
+        this.props.dispatch({type: "SIDEBAR", payload: false})
         const login = getLogin()
 
         if (isEmptyObj(login)){

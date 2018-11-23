@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Router from "next/router"
-import {Container, Menu, Image, Placeholder, Grid, Icon, Sidebar, Segment, Header, Responsive, Dropdown} from "semantic-ui-react"
+import {Container, Menu, Image, Grid, Icon, Responsive, Dropdown} from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
@@ -13,6 +13,25 @@ const handleLogout = (dispatch) => {
     Router.push({pathname: "/"})
     dispatch({type: "LOGIN", payload: {}})
     dispatch({type: "ALERT_PORTAL", payload: {type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true}})
+}
+
+const handleAboutDropdown = ({dispatch, aboutState, index}) => {
+    dispatch({type: "ABOUT", payload: {...aboutState, index}})
+
+    switch (index) {
+        case 0:
+            Router.push({pathname: "/about", query: { tab: 'ourstory' }})
+            break;
+        case 1:
+            Router.push({pathname: "/about", query: { tab: 'ourchefs' }})       
+            break;
+        case 2:
+        Router.push({pathname: "/about", query: { tab: 'ourcontacts' }})
+            break;
+        case 3:
+        Router.push({pathname: "/about", query: { tab: 'ourfaqs' }})
+            break;
+    }
 }
 
 const ResponsiveFragmentBugFix = () => (<></>)
@@ -35,10 +54,10 @@ const RightNav = () => (
                                 {state.login.username}
                             </span>
                         }
-                        pointing='top left'
+                        // pointing='top left'
                         // icon={null}
                     >
-                        <Dropdown.Menu>
+                        <Dropdown.Menu className="fresheats-light-green-bg">
                             <Link href="/profile" prefetch passHref>
                                 <Menu.Item as="a">
                                     <Icon name="user" />
@@ -79,8 +98,19 @@ export const LeftComputerNav = () => (
                 <Link href="/" prefetch passHref>
                     <Menu.Item as="a" className="fresheats-brown-color">Home</Menu.Item>
                 </Link>
-                <Link href="/about" prefetch passHref>
-                    <Menu.Item as="a" className="fresheats-brown-color">About</Menu.Item>
+                <Link href="/menu" prefetch passHref>
+                    <Menu.Item as="a" className="fresheats-brown-color">Menu</Menu.Item>
+                </Link>
+                <Dropdown text='About' className='link item fresheats-brown-color'>
+                    <Dropdown.Menu className="fresheats-light-green-bg">
+                        <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 0})}>Our Story</Dropdown.Item>
+                        <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 1})}>Our Chefs</Dropdown.Item>
+                        <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 2})}>Contact Us</Dropdown.Item>
+                        <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({dispatch: state.dispatch, aboutState: state.about, index: 3})}>FAQs</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                <Link href="/gallery" prefetch passHref>
+                    <Menu.Item as="a" className="fresheats-brown-color">Gallery</Menu.Item>
                 </Link>
                 {(state.login) && (
                     <React.Fragment>
@@ -89,7 +119,7 @@ export const LeftComputerNav = () => (
                                 <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
                         )}
-                        <Responsive maxWidth={991} as={ResponsiveFragmentBugFix}>
+                        <Responsive maxWidth={991} as={React.Fragment}>
                             <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>
                         </Responsive>
                     </React.Fragment>
@@ -111,7 +141,7 @@ const LeftNav = () => (
 )
 
 const Nav = () => (
-    <Menu inverted fixed="top" className="appNav fresheats-green-bg">
+    <Menu inverted fixed="top" className="appNav fresheats-light-green-bg">
         <Container className="nav-container">
             <ContextAPI.Consumer>
                 {({state}) => (
@@ -129,5 +159,4 @@ const Nav = () => (
         </Container>
     </Menu>
 )
-
 export default Nav

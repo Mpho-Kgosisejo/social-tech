@@ -8,7 +8,7 @@ const AlertPortal = () => {
         }, 3000)
     }
 
-    const Alert = ({type = "normal", header = "", message = ""}) => (
+    const Alert = ({header = "", message = ""}) => (
         <React.Fragment>
             {header && (
                 <>
@@ -26,9 +26,9 @@ const AlertPortal = () => {
                 const {open, type, header, message} = state.alertPortal
                 
                 return (message && (
-                    <Portal open={open} onMount={() => close(state.dispatch)} className="alert-portal">
-                        <Segment style={{ left: '5%', top: '5%', position: 'fixed', zIndex: 1000 }}>
-                            <Alert type={type} header={header} message={message} />
+                    <Portal open={open} onMount={() => close(state.dispatch)}>
+                        <Segment className={`alert-portal ${(type === "success" ? "success" : (type === "error") ? "error" : "normal")}`} >
+                            <Alert header={header} message={message} />
                         </Segment>
                     </Portal>
                 ))

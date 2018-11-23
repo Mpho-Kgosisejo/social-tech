@@ -1,11 +1,13 @@
 import Layout from "../../Layout"
 import { List, Image, Grid, Header } from "semantic-ui-react";
 import React from 'react'
+import IndexBannerHeader from "./IndexBannerHeader";
 
 class IndexMenu extends React.Component {
     render() {
         return (
             <React.Fragment>
+                <IndexBannerHeader desc="Discover the taste" header="Explore our menu" image= "http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg" />
                 <div className="index-menu">
                     <div className="index-menu-container">
                         <div className="index-menu-row">

@@ -11,6 +11,7 @@ import {getLogin} from "../src/providers/LoginSession"
 export default class MyApp extends App {
     constructor(props){
         super(props)
+        
 
         this.state = {
             test: "Hello NextJS!",
@@ -21,8 +22,12 @@ export default class MyApp extends App {
                 header: "",
                 message: ""
             },
+            about: {
+                index: 0
+            },
             login: {},
             isSidebarOpen: false,
+            main_layout_calculations: {},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
