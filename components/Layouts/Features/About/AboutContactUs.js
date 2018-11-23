@@ -17,8 +17,7 @@ class AboutContactUs extends React.Component {
         const data = await api.web.about()
 
         this.setState({ aboutData: data })
-        console.log(this.state.aboutData)
-        console.log(data.data.chefs)
+        
         if (data.status === 200) {
             this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.contact_us })
         } else {
