@@ -79,6 +79,7 @@ schema.methods.generateResetPasswordToken = function generateResetPasswordToken(
 
 schema.methods.generateJWT = function generateJWT(){
     return (jwt.sign({
+        key: this._id,
         email: this.email,
         isAdmin: this.admin
     }, process.env.JWT_SECRET))
