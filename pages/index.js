@@ -1,3 +1,4 @@
+import "../static/css/index.css"
 import Layout from "../components/Layouts/Layout"
 
 import Slider from "react-slick"
@@ -53,8 +54,25 @@ const sliderImages = [
 ]
 
 class Index extends React.Component {
+    constructor(props)
+    {
+        super(props)
+    }
     componentDidMount(){
-        this.props.dispatch({type: "SIDEBAR", payload: false})
+        setTimeout(() => {
+            this.props.dispatch({type: "SIDEBAR", payload: false})
+            this.props.dispatch({type: "PAGE", payload: "index"})
+            window.scrollTo({
+                top: 1,
+                behavior: "smooth"
+            })
+            setTimeout(() =>{
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })
+            }, 50)
+        }, 50) 
     }
     
     render (){

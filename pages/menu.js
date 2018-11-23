@@ -7,6 +7,7 @@ import MenuItems from "../components/Layouts/Features/Menu/MenuItems"
 class Menu extends React.Component{
     componentDidMount(){
         this.props.dispatch({type: "SIDEBAR", payload: false})
+        this.props.dispatch({type: "PAGE", payload: "menu"})
     }
 
     render(){

@@ -9,33 +9,26 @@
 /*#region Navbar styling */
 
 .appNav{
-    height: 54px;
+    height: 58px;
     /* background-color: #000 !important; */
 }
-.appNav.transparent *{
-    color: #c59c70 !important;
-    font-weight: 400 !important;
-}
 
-.appNav.transparent{
-    background: transparent !important;
-}
 .ui.labeled.icon.menu .item>.icon:not(.dropdown).cart-icon{
     font-size: 1.2rem !important;
     padding-top: 10px !important;
 }
 .ui.menu .item>i.icon.cart-icon-nav{
-    font-size: 1.4rem !important;
+    font-size: 1.2rem !important;
 }
 .nav-logo{
-    font-size: 35px !important;
+    font-size: 20px !important;
+    padding-top: 20px !important;
 }
 
 .ui.menu .item:before
 {
     content: none !important;
 }
-
 .content-none
 {
     content: none !important;

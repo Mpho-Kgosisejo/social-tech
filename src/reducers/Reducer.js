@@ -28,6 +28,10 @@ export const reducer = (state, action) => {
             ...state,
             test: action.payload
         })
+        case "PAGE": return ({
+            ...state,
+            active_page: action.payload
+        })
         default:
             return (state)
     }
