@@ -167,6 +167,10 @@
 
  /* #endregion */
 
+ .ui.secondary.pointing.menu{
+    /* overflow: auto; */
+ }
+
  /*#region Footer styling */
 
  .footer
