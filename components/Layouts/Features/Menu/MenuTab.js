@@ -14,7 +14,6 @@ class menu_tab extends React.Component {
 
         dispatch({ type: "MENU", payload: { index, data: menu } })
 
-        console.log("de name: ")
         Router.replace({ pathname: "/menu", query: { tab } })
     }
 
