@@ -1,4 +1,4 @@
-import {Menu, Button, Modal, Tab} from "semantic-ui-react"
+import {Menu, Button, Modal, Tab, Item} from "semantic-ui-react"
 
 import SignInForm from "./SignInForm"
 import SignUpForm from "./SignUpForm";
@@ -73,16 +73,10 @@ class AuthLayout extends React.Component {
                         <Tab menu={{secondary: true, pointing: true}} panes={tabPanes} activeIndex={activeTabIndex} onTabChange={this.taggleTab} />
                     </Modal.Content>
                 </Modal>
-
-                <Menu.Item>
-                    <Button.Group size="tiny">
-                        <Button basic color="grey" onClick={() => this.openModal(0)}>Sign In</Button>
-                        <Button basic color="grey" onClick={() => this.openModal(1)}>Sign Up</Button>
-                    </Button.Group>
-                </Menu.Item>
+                    <Menu.Item className="item fresheats-brown-color" onClick={() => this.openModal(0)}>Sign In</Menu.Item>
+                    <Menu.Item className="item fresheats-brown-color" onClick={() => this.openModal(1)}>Sign Up</Menu.Item>
             </React.Fragment>
         )
     }
 }
-
 export default AuthLayout

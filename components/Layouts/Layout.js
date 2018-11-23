@@ -1,5 +1,5 @@
 import Head from "next/head"
-import {Container, Sidebar, Menu, Icon, Responsive, Visibility} from "semantic-ui-react"
+import {Container, Sidebar, Menu, Icon, Responsive, Visibility, Dimmer} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -8,6 +8,8 @@ import AlertPortal from "../utils/AlertPortal";
 import {LeftComputerNav} from "./Nav"
 
 import "../../static/css/style.css"
+import "../../static/css/gallery.css";
+import "../../static/css/menu.css";
 
 const handleUpdateLayout = ({calculations, state}) => {
     const {dispatch} = state
@@ -38,6 +40,8 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
         
         <ContextAPI.Consumer>
             {({state}) => (
+                <>
+                    {includeNav && <Nav />}
                 <Sidebar.Pushable>
                     {/* <Responsive maxWidth={991} as={React.Fragment}> */}
                     <Sidebar
@@ -49,16 +53,12 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                         inverted
                         visible={state.isSidebarOpen}
                         width='thin'
-                        className="fresheats-green-bg"
+                        className="fresheats-green-bg push-sidebar"
                     >
-                        <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({type: "SIDEBAR"})}>
-                            <Icon name="close" size="mini" />
-                        </Menu.Item>
                         <Menu.Item as="a" className="fresheats-brown-color"></Menu.Item>
                         <LeftComputerNav />
                     </Sidebar>
                     {/* </Responsive> */}
-        
                     <Sidebar.Pusher>
                         <Visibility fireOnMount onUpdate={(e, {calculations}) => handleUpdateLayout({state, calculations})}>
                             <div className="mainLayout">
@@ -71,11 +71,12 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                                 {includeFooter && <Footer />}
                             </div>
                         </Visibility>
+                        <Dimmer active={state.isSidebarOpen} onClickOutside={() => state.dispatch({type: "SIDEBAR"})}  />
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
+            </>
             )}
         </ContextAPI.Consumer>
     </React.Fragment>
 )
-
 export default Layout
