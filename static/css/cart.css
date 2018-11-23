@@ -1,3 +1,17 @@
 .cart{
     
 }
+
+.cart .segment {
+    margin-bottom: 14px !important;
+}
+
+.cart .input.qty input{
+    width: 85px !important;
+}
+
+.cart .label.price{
+    margin: 0 !important;
+    font-weight: bold !important;
+    font-size: 1em;
+}
