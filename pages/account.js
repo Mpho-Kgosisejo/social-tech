@@ -1,7 +1,7 @@
 import React from 'react';
-import {Header, Icon, Image, Menu, Segment, Sidebar} from 'semantic-ui-react';
 
 import Layout from '../components/Layouts/Layout';
+import AccountLayout from '../components/Layouts/Features/Account/AccountLayout';
 
 class account extends React.Component{
 
@@ -9,7 +9,8 @@ class account extends React.Component{
         return(
           <Layout>
             <React.Fragment>
-                <ProfileLayout />
+                {/* <ProfileLayout /> */}
+                <AccountLayout />
             </React.Fragment>
           </Layout>
 

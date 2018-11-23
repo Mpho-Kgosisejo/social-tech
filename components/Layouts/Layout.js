@@ -24,7 +24,9 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
 
             {/* If you offline... */}
             {/* <link rel="stylesheet" href="/static/css/semantic-2.3.0.min.css" /> */}
-            <link ref="stylesheet" href="/static/css/style.css" />
+            <link ref="stylesheet" href="/static/css/account.css" />
+            {/* <link ref="stylesheet" href="/static/css/style.css" /> */}
+
             
             <title>{title}</title>
         </Head>
