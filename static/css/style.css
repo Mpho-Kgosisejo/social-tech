@@ -6,6 +6,16 @@
     font-family: 'Raleway', sans-serif;
 }
 
+.padding-b-t-fifty
+{
+    padding: 50px 0 !important;
+}
+
+.center
+{
+    text-align: center !important;
+}
+
 /*#region Navbar styling */
 
 .appNav{
@@ -86,7 +96,7 @@
 }
 
 .mainLayout .childLayout{
-    padding-top: 75px;
+    padding-top: 50px;
 }
 
 .appNav .nav-container{
@@ -718,5 +728,38 @@
         background: yellow !important;
     }
 }
+
+/* #endregion */
+
+/* #region - Account page */
+
+    .profile-header
+    {
+        /* height: 500px; */
+        width: 100%;
+    }
+
+    .profile-header-container
+    {
+        padding: 0 15px;
+        margin: 0 15px;
+    }
+
+    .profile-header-row
+    {
+        padding: 100px 0;
+        margin: 0 -15px;
+    }
+
+    .profile-name-header
+    {
+        /* padding: 100px 0 !important; */
+        text-align: center !important;
+    }
+
+    .profile-name
+    {
+        font-size: 45px !important;        
+    }
 
 /* #endregion */
