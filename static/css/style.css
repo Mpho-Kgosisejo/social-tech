@@ -2,9 +2,20 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
 @import url('https://fonts.googleapis.com/css?family=Great+Vibes');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet');
 
 *{
     font-family: 'Raleway', sans-serif;
+}
+
+.padding-b-t-fifty
+{
+    padding: 50px 0 !important;
+}
+
+.center
+{
+    text-align: center !important;
 }
 
 /*#region Navbar styling */
@@ -96,7 +107,7 @@
 }
 
 .mainLayout .childLayout{
-    padding-top: 75px;
+    padding-top: 50px;
 }
 
 .appNav .nav-container{
@@ -566,6 +577,399 @@
 
 /* #region Semantic UI: Media Queries breakpoints */
 
+@media ( max-width: 480px) {
+
+       /* #region FOOTER */
+       .mainLayout
+       {
+           padding-bottom: 650px;
+       }
+
+       .footer{
+           height: 600px !important;
+       }
+       .footer_container{
+           margin-left: 20px !important;
+           margin-right: 20px !important;
+       }
+
+       .ui.grid>[class*="three column"].row>.column
+       {
+           width: 100% !important;
+       }
+
+       .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column
+       {
+           width: 100% !important;
+       }
+
+       .display-felx{
+           display: flex !important;
+       }
+
+       .footer_wideget
+       {
+           height: 478px !important;
+       }
+
+       .footer_social_container {
+           height: 28px;
+           margin-right: 0px;
+           margin-left: 0px;
+           padding-left: 0px;
+           padding-right: 0px;
+       }
+
+       .footer_social_row
+       {
+           margin-left: 0 !important;
+           margin-right: 0 !important;
+       }
+       .footer_wideget
+       {
+           padding-top: 20px !important;
+       }
+
+       .breakpoints-test{
+           background: #5999c2!important;
+       }
+   
+       .slider-container .de-slider .slider-item .quotes{
+           width: 100%;
+       }
+   
+       .slider-container .static-caption h1{
+           font-size: 3.5em;
+       }
+       
+       .slider-container .static-caption h5{
+           font-size: 1.5em;
+       }
+   
+       .slider-container .de-slider .slider-item h5{
+           font-size: 1.5em;
+       }
+   /* #endregion */
+
+    .breakpoints-test{
+        background: #5999c2!important;
+    }
+
+    .header-main-div
+    {
+        height: 590px !important;
+        margin-top: 0px !important;
+    }
+
+    .index-banner {
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+        height: 910px !important;
+    }
+
+    .index-steps
+    {
+        height: 490px !important;
+    }
+
+    .index-slider-div
+    {
+        height: 1130px !important;
+        padding: 30px;
+    }
+    .col1
+    {
+        height: 480px !important;
+        width: 100% !important;
+    }
+    .col2
+    {
+        height: 350px !important;
+    }
+
+    .index-banner-content
+    {
+        height: 321px !important;
+    }
+
+    .slider-container .de-slider .slider-item .quotes{
+        width: 100%;
+    }
+
+    .slider-container .static-caption h1{
+        font-size: 3.5em;
+    }
+    
+    .slider-container .static-caption h5{
+        font-size: 1.5em;
+    }
+
+    .slider-container .de-slider .slider-item h5{
+        font-size: 1.5em;
+    }
+    .index-step-column-desc
+    {
+        font-size: 13px !important;
+    }
+    .index-step-column-h3
+    {
+        font-size: 16px !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .breakpoints-test{
+        background: #77c394 !important;
+    }
+
+    .slider-container .de-slider .slider-item .quotes{
+        width: 100%;
+    }
+
+    .slider-container .static-caption h1{
+        font-size: 4em;
+    }
+    
+    .slider-container .static-caption h5{
+        font-size: 2em;
+    }
+
+    .mainLayout
+    {
+        padding-bottom: 650px;
+    }
+
+    .footer{
+        height: 600px !important;
+    }
+    .footer_container{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+
+    .ui.grid>[class*="three column"].row>.column
+    {
+        width: 100% !important;
+        padding-bottom: 110px; 
+    }
+
+    .index-body-main-div
+    {
+        background-image: url("https://demo.kallyas.net/phaeton-restaurant-bar-pub/wp-content/uploads/sites/7/2016/06/tasty-deserts.jpg");
+        height: 642px !important;
+        width: 100% !important;
+        background-repeat: no-repeat;
+
+    }
+
+    .section-divider2
+    {
+        padding-top: 297px !important;
+        padding-bottom: 275px !important;
+        background-repeat: none !important;
+        background-position: center !important;
+        background-size: cover;
+    }
+
+    .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column
+    {
+        width: 100% !important;
+    }
+
+    .display-felx{
+        display: flex !important;
+    }
+
+    .footer_wideget
+    {
+        height: 478px !important;
+    }
+
+    .footer_social_container {
+        height: 28px;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .footer_social_row
+    {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .footer_wideget
+    {
+        padding-top: 20px !important;
+    }
+
+    .breakpoints-test{
+        background: #5999c2!important;
+    }
+
+    .slider-container .de-slider .slider-item .quotes{
+        width: 100%;
+        height: 85px;
+    }
+    
+    .index-body-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+    /* color: #c59c70; */
+
+    .index-body-desc h2
+    {
+        font-family: 'Amatic SC', cursive !important;
+        font-size: 45px !important;
+        /* font-weight: 400 !important; */
+        /* line-height: 1 !important; */
+        color: #fff !important;
+    }
+
+/* #endregion */
+
+/* #region Index Steps */
+
+    .index-steps
+    {
+        height: 432px;
+        width: 100% !important;    
+    }
+
+    .index-steps-container
+    {
+        height: 212px;
+        padding: 0 15px;
+        margin: 0 13px;
+    }
+
+    .index-steps-row
+    {
+        height: 212px;
+        margin: 0 -15px !important;
+        /* background-color: #fff; */
+    }
+    
+    .index-step-sub
+    {
+        font-size: 29px;
+        font-family: 'Great Vibes', cursive;
+        color: #c59c70;
+    }
+
+    .index-steps-row h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color:  #000000 !important;
+    }
+    .index-step-grid
+    {
+        margin-top: 40px !important;
+    }
+
+    .index-step-column-h3
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 25px;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color:  #082908 !important;
+    }
+
+    .index-step-column-desc
+    {
+        color: #424242;
+        font-family: 'Raleway', 'sans-serif';
+        font-size: 15px;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        margin-bottom: 25px !important;
+    }
+
+    .slider-container .static-caption h1{
+        font-size: 3.5em;
+    }
+    
+    .slider-container .static-caption h5{
+        font-size: 1.5em;
+    }
+
+    .slider-container .de-slider .slider-item h5{
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .mainLayout
+    {
+        padding-bottom: 600px;
+    }
+
+    .footer{
+        height: 600px !important;
+    }
+    .footer_container{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+
+    .ui.grid>[class*="three column"].row>.column
+    {
+        width: 100% !important;
+    }
+
+    .footer_wideget
+    {
+        height: 478px !important;
+    }
+
+    .footer_social_container {
+        height: 28px;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .footer_social_row
+    {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        position: absolute !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-size: cover !important;
+    }
+    .footer_wideget
+    {
+        padding-top: 20px !important;
+    }
+
+    .breakpoints-test{
+        background: #77c394 !important;
+    }    
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    .breakpoints-test{
+        background: #df6656 !important;
+    }
+}
+@media (min-width: 991px) and (max-width: 1200px) {
+    .breakpoints-test{
+        background: #e8d692 !important;
+    }
+}
+
 .zero-border
 {
     border: transparent !important
@@ -575,6 +979,312 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+@media (min-width: 1201px) {
+    .breakpoints-test{
+        background: yellow !important;
+    }
+}
+
+/* #endregion */
+
+/* #region - Account page */
+
+    .profile-header
+    {
+        /* height: 500px; */
+        width: 100%;
+    }
+
+    .profile-header-container
+    {
+        padding: 0 15px;
+        margin: 0 15px;
+    }
+
+    .profile-header-row
+    {
+        padding: 100px 0;
+        margin: 0 -15px;
+    }
+
+    .profile-name-header
+    {
+        /* padding: 100px 0 !important; */
+        text-align: center !important;
+    }
+
+    .profile-name
+    {
+        font-size: 45px !important;        
+    }
+
+/* #endregion */
+    .header-title
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color: #000000 !important;
+    }
+/* #endregion */
+
+/* #region Index Service Banner */
+
+    .index-service-banner
+    {
+        padding-bottom: 110px; 
+    }
+
+    .index-service-banner-main-div
+    {
+        background-image: url("https://demo.kallyas.net/phaeton-restaurant-bar-pub/wp-content/uploads/sites/7/2016/06/bestservice.jpg") !important;
+        height: 642px !important;
+        width: 100% !important;
+        /* background-repeat: no-repeat; */
+
+    }
+
+    .index-service-banner-container
+    {
+        height: 632px;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .index-service-banner-row
+    {
+        height: 85px;
+        margin: 0 -15px !important;
+        /* background-color: red; */
+    }
+
+    .index-service-banner-heading
+    {
+        padding: 0 15px !important;
+    }
+
+    .index-bottom-body-desc
+    {
+        height: 85px;
+    }
+
+    .index-bottom-body-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+
+    .index-bottom-body-desc h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        color: #fff !important;
+    }
+/* #endregion */
+
+/* #region Index Service */
+    .index-service
+    {
+        height: 656px;
+        width: 100%;
+        padding-top: 110px;
+        padding-bottom: 100px;
+    }
+
+/*#endregion--------------- */
+
+/* #endregion */
+
+/* #region Global */
+
+    .align-iterms-center
+    {
+        text-align: center !important;
+    }
+    .pull-left
+    {
+        float: left !important;
+    }
+    .pull-right
+    {
+        float: right !important;
+    }
+    /* .veritcal-stack
+    {
+        width: 100% !important;
+    } */
+
+    .padding-zero
+    {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+/* #endregion */
+
+/* #region Index Header stylying Thato */
+
+    .header-main-div
+    {
+        margin-top: 50px;
+        padding: 50px 0px !important;
+        border: 0px !important;
+        
+    }
+    .header-container
+    {
+        padding: 0px 15px !important;
+        border: 0px !important;
+    }
+    .header-row
+    {
+        padding: 0px -15px !important;
+        border: 0px !important;
+    }
+    .header-sub
+    {
+        font-size: 29px;
+        font-family: 'Great Vibes', cursive;
+        color: #c59c70;
+    }
+
+    .header-row h2
+    {
+        font-size: 45px;
+        font-weight: 400 !important;
+        font-family: "Kaushan Script", 'cursive' !important;
+    }
+
+    .header-divider
+    {
+        margin: 20px 0  !important;
+        /* height: 14px !important; */
+        color: #c59c70 !important;
+    }
+
+    .header-desc
+    {
+        color: #a5a5a5;
+        font-family: 'Raleway', 'sans-serif';
+        font-size: 1.25em;
+        font-weight: 100;
+    }
+
+    .header-signature
+    {
+        margin-top: 30px !important;
+    }
+    .signImg
+    {
+        width: 99px !important;
+        height: 49px !important;
+        
+    }
+/* #endregion */
+
+/* #region Index Body */
+
+    .index-body
+    {
+        padding-bottom: 110px; 
+    }
+
+    .index-background-img-div
+    {
+        /* background-image: url("http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg"); */
+        /* height: 642px !important; */
+        width: 100% !important;
+        /* background-repeat: no-repeat; */
+
+    }
+
+    .section-divider2
+    {
+        padding-top: 250px !important;
+        padding-bottom: 275px !important;
+        background-repeat: none !important;
+        background-position: center !important;
+        background-size: cover;
+    }
+
+    .bg-parallax
+    {
+        background-attachment: fixed !important;
+    }
+
+    .bg-overlay-dark4:before
+    {
+        background-color: rgba(27, 26, 26, 0.65) !important;
+    }
+
+    .bg-overlay:before {
+        content: "" !important;
+        display: inline-block !important;
+        height: 100% !important;
+        left: 0 !important;
+        position: absolute !important;
+        top: 0 !important;
+        width: 100% !important;
+        z-index: -1 !important;
+    }
+
+    .bg-section
+    {
+        position: relative !important;
+        overflow: hidden !important;
+        z-index: 1 !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .index-body-container
+    {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .index-body-row
+    {
+        margin: 0 -15px !important;
+        /* background-color: red; */
+    }
+
+    .index-body-heading
+    {
+        padding: 0 15px !important;
+    }
+
+    
+    .index-body-desc p
+    {
+        color: #c59c70 !important;
+        font-size: 35px;
+        font-family: 'Great Vibes', cursive;
+    }
+    /* color: #c59c70; */
+
+    .index-body-desc h2
+    {
+        font-family: 'Kaushan Script', cursive !important;
+        font-size: 45px !important;
+        color: #fff !important;
+    }
+
+    .index-service-row
+    {
+        height: 486px;
+        width: 100%;
+        margin: 0 -15px;
+    }
 /* #endregion */
 
 /* #region Index Steps */
@@ -749,11 +1459,6 @@
     {
         padding: 0 15px !important;
     }
-
-    .index-bottom-body-desc
-    {
-        /* height: 85px; */
-    }
     
     .index-bottom-body-desc p
     {
@@ -844,9 +1549,6 @@
         margin: 0 -15px;
     
     }
-
-    
-
 
 /* #endregion */
 
