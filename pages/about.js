@@ -18,10 +18,9 @@ class About extends React.Component {
             index: 0,
             panes: [
                 {
-                    menuItem: 'Our Story', render: () => <Tab.Pane className="zero-border">
+                    menuItem: 'Our Storyes', render: () => <Tab.Pane className="zero-border">
                         <ContextAPI.Consumer>
                             {({ state }) => (
-
                                 <React.Fragment>
                                     {/* <pre>{JSON.stringify(state, "", 2)}</pre> */}
                                     {!isEmptyObj(state.about.our_story) ? <AboutOurStory /> : <Message

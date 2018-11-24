@@ -24,6 +24,10 @@ export const reducer = (state, action) => {
             ...state,
             main_layout_calculations: action.payload
         })
+        case "MENU": return ({
+            ...state,
+            menu: action.payload
+        })
         case "TEST": return ({
             ...state,
             test: action.payload

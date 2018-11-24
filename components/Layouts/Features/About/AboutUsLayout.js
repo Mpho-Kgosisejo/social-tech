@@ -64,7 +64,7 @@ class AboutUsLayout extends React.Component
                 data: data.data
             })
         }else{
-            console.log("err", error)
+            console.error("err", error)
         }
     }
 
