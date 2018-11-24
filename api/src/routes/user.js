@@ -3,6 +3,9 @@ import express from "express"
 import UserModel from "../models/User"
 import parseErrors from "../utils/parseErrors"
 import {sendConfirmationEmail} from "../mailer/mailer"
+import checkAuth from "../middleware/checkAuth"
+import * as controller from "../controllers/user"
+import {multerUpload} from "../utils/multerImageHandler"
 
 const router = express.Router()
 
@@ -38,5 +41,9 @@ router.post("/", (req, res) => {
         }
     })
 })
+
+router.patch("/", checkAuth, controller.update_info)
+
+router.patch("/avator", checkAuth, multerUpload.single("avator"), controller.update_avator)
 
 export default router
