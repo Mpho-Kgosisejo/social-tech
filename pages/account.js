@@ -5,6 +5,9 @@ import AccountLayout from '../components/Layouts/Features/Account/AccountLayout'
 
 class account extends React.Component{
 
+    componentDidMount(){
+        this.props.dispatch({type: "PAGE", payload: "account"})
+    }
     render(){
         return(
           <Layout>
@@ -14,7 +17,7 @@ class account extends React.Component{
             </React.Fragment>
           </Layout>
 
-          ) 
+          )
     }
 }
 export default account
