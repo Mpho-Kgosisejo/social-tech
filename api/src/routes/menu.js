@@ -1,7 +1,6 @@
 import express from "express"
 import CategoryModel from "../models/MenuCategory"
 import ProductModel from "../models/Product"
-import MenuModel from "../models/Menu"
 
 const router  = express.Router()
 
