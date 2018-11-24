@@ -3,7 +3,6 @@ import { Card, Button, Header, Divider, Container } from 'semantic-ui-react'
 
 import {PlaceholderMediumParagraph} from "../components/utils/Placeholders"
 import Layout from "../components/Layouts/Layout"
-import "../static/css/gallery.css";
 import api from '../src/providers/APIRequest';
 import { isEmptyObj } from "../src/utils/Objs";
 
