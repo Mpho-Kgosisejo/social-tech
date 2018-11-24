@@ -1,4 +1,5 @@
-import { Grid, Segment, Header, Icon, Divider, Table, Image, Input, Button } from "semantic-ui-react";
+import { Grid, Segment, Header, Icon, Divider, Table, Button, Message } from "semantic-ui-react";
+import Link from "next/link"
 
 import Layout from "../components/Layouts/Layout"
 import TableItem from "../components/Layouts/Features/Cart/TableItem"
@@ -55,6 +56,16 @@ const OrderSummary = () => (
     </React.Fragment>
 )
 
+const EmptyCart = () => (
+    <Message >
+        {/* <Icon name="world"/> */}
+        <Message.Content>
+            <Message.Header>Empty Cart</Message.Header>
+            Go to <Link href="/menu" ><a>menu page</a></Link> and add items
+        </Message.Content>
+    </Message>
+)
+
 class Cart extends React.Component {
     constructor(){
         super()
@@ -87,21 +98,23 @@ class Cart extends React.Component {
                             <Grid.Row>
                                 <Grid.Column computer={10} tablet={16} mobile={16}>
                                     <Segment>
-                                        <Table basic="very" celled >
                                             {loading ?
                                                 <>
-                                                    <CartTablePlaceholder />
+                                                    <Table basic="very" celled>
+                                                        <CartTablePlaceholder />
+                                                    </Table>
                                                 </> :
                                                 <>
                                                     {state.cart.length > 0 ? 
                                                         state.cart.map(item => (
-                                                            <TableItem key={item.count} quantity={item.quantity} {...item.item} />
+                                                            <Table basic="very" celled>
+                                                                <TableItem key={item.count} quantity={item.quantity} {...item.item} />
+                                                            </Table>
                                                         )) :
-                                                        "Cart Empty..."
+                                                        <EmptyCart />
                                                     }
                                                 </>
                                             }
-                                        </Table>
                                     </Segment>
                                         
                                 </Grid.Column>
