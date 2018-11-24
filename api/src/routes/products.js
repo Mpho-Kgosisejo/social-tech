@@ -1,7 +1,7 @@
 import express from "express"
 
 import Product from "../models/Product"
-import MenuModel from "../models/Menu"
+import {multerUpload} from "../utils/multerImageHandler"
 
 const router  = express.Router()
 
@@ -40,7 +40,7 @@ router.get("/:id", (req, res) => {
     })
 })
 
-router.post("/", (req, res) => {
+router.post("/", multerUpload.single('productImage'), (req, res) => {
     const {price, available, name, image, description, menuCategoryId, ingredients} = req.body
     const newProduct = new Product({
         price,
@@ -57,25 +57,6 @@ router.post("/", (req, res) => {
             product,
             message : "successfully added the product"
         })
-        // const menuModel = new MenuModel({
-        //     category: menuCategoryId,
-        //     items: product._id
-        // })
-        // menuModel.save().then(menu => {
-        //     res.status(200).json({
-        //         product,
-        //         menu,
-        //         message: "OK"
-        //     })
-        // })
-        // .catch(err => {
-        //     res.status(500).json({
-        //         error : {
-        //             catch: err,
-        //             message : "error"
-        //         }
-        //     })
-        // })
     })
     .catch(err => {
         res.status(500).json({
