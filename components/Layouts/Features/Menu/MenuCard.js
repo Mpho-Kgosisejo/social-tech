@@ -2,6 +2,8 @@ import React from 'react'
 import { Image, Card, Label, Modal, Header, Divider, Button, Icon, Form, Input } from "semantic-ui-react"
 
 import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
+import ContextAPI from '../../../../src/config/ContextAPI';
+import * as cartHandler from "../../../../src/providers/CartHandler"
 
 class menu_card extends React.Component {
 
@@ -29,6 +31,28 @@ class menu_card extends React.Component {
         this.setState({
             value: this.state.value + 1,
         });
+    }
+
+    removeFromCart = (state) => {
+        const new_item = {
+            quantity: this.state.value,
+            item: {
+                ...this.props
+            }
+        }
+
+        cartHandler.remove({state, item: new_item})
+    }
+
+    addToCart = (state) => {
+        const new_item = {
+            quantity: this.state.value,
+            item: {
+                ...this.props
+            }
+        }
+
+        cartHandler.add({state, new_item})
     }
 
     render() {
@@ -81,9 +105,18 @@ class menu_card extends React.Component {
                         <Input className="quantity-input" value={this.state.value} disabled />
                         <Button size="mini" circular icon='add' className="increase-button dec-inc" onClick={() => { this.doIncrement() }} />
                     </div>
-                    <Button className="add-button" size="tiny">
-                        <Icon name='shop' /> Add to cart
-                    </Button>
+                    <ContextAPI.Consumer>
+                        {({state}) => (
+                            <>
+                                <Button className="add-button" size="tiny" onClick={() => this.addToCart(state)}>
+                                    <Icon name='shop' /> Add to cart
+                                </Button>
+                                <Button className="add-button" size="tiny" onClick={() => this.removeFromCart(state)}>
+                                    <Icon name='shop' /> Remove from cart
+                                </Button>
+                            </>
+                        )}
+                    </ContextAPI.Consumer>
                 </Modal.Actions>
             </Modal>
         )

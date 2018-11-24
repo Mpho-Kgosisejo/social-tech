@@ -32,6 +32,7 @@ export default class MyApp extends App {
                 index: 0,
                 data: []
             },
+            cart: [],
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }

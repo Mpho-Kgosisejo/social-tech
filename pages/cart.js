@@ -1,66 +1,119 @@
-import Layout from "../components/Layouts/Layout"
-import { Grid, Segment, Header, Icon, Divider, Table, Image, Label, Input } from "semantic-ui-react";
+import { Grid, Segment, Header, Icon, Divider, Table, Image, Input, Button } from "semantic-ui-react";
 
-import "../static/css/cart.css"
+import Layout from "../components/Layouts/Layout"
+import TableItem from "../components/Layouts/Features/Cart/TableItem"
+import { CartTablePlaceholder } from "../components/utils/Placeholders";
+import ContextAPI from "../src/config/ContextAPI";
+
+const OrderSummary = () => (
+    <React.Fragment>
+        <Header as="h3">Order Summary</Header>
+        <Divider />
+        <Grid columns="equal">
+            <Grid.Row>
+                <Grid.Column>
+                    <Header as="h3">Sub. total (5)</Header>
+                </Grid.Column>
+                <Grid.Column textAlign="right">
+                    <Header>R24.99</Header>
+                </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+                <Grid.Column>
+                    <Header as="h3">TAX</Header>
+                </Grid.Column>
+                <Grid.Column textAlign="right">
+                    <Header>R24.99</Header>
+                </Grid.Column>
+            </Grid.Row>
+            <Divider />
+            <Grid.Row className="total">
+                <Grid.Column>
+                    <Header as="h3">Total</Header>
+                </Grid.Column>
+                <Grid.Column textAlign="right">
+                    <Header>R24.99</Header>
+                </Grid.Column>
+            </Grid.Row>
+            <Divider />
+            <Grid.Row>
+                <Grid.Column>
+                    <Button fluid icon labelPosition="right" color="black">
+                        Process Checkout
+                        <Icon name="right arrow"/>
+                    </Button>
+                </Grid.Column>
+            </Grid.Row>
+            {/* <Divider />
+            <Grid.Row className="addons">
+                <Grid.Column>
+                    Some text...
+                </Grid.Column>
+            </Grid.Row> */}
+            <Divider hidden />
+        </Grid>
+    </React.Fragment>
+)
 
 class Cart extends React.Component {
+    constructor(){
+        super()
+
+        this.state = {
+            loading: true
+        }
+    }
+
+    componentDidMount(){
+        this.setState({loading: false})
+    }
+
     render(){
+        const {loading} = this.state
+
         return (
             <Layout>
+                <Divider hidden />
                 <Header as="h3" color="grey">
-                    <Icon name="cart"/>
+                    <Icon name="cart" size="mini"/>
                     My Cart (5)
                 </Header>
 
                 <Divider />
 
-                <Grid className="cart">
-                    <Grid.Row>
-                        <Grid.Column computer={10} tablet={16} mobile={16}>
-                            <Segment>
-                                <Table basic="very" celled >
-                                    <Table.Header>
-                                        <Table.Row>
-                                            <Table.HeaderCell>Image</Table.HeaderCell>
-                                            <Table.HeaderCell>Qty</Table.HeaderCell>
-                                            <Table.HeaderCell>Price</Table.HeaderCell>
-                                        </Table.Row>
-                                    </Table.Header>
-
-                                    <Table.Body>
-                                        <Table.Row>
-                                            <Table.Cell>
-                                                <Header as="h3" image>
-                                                    <Image src="https://react.semantic-ui.com/images/avatar/small/lena.png" />
-                                                    <Header.Content>
-                                                        Header
-                                                        <Header.Subheader><a>View Item</a></Header.Subheader>
-                                                    </Header.Content>
-                                                </Header>
-                                                <Divider/>
-                                                {"Cras vulputate eget odio egestas rutrum. Aliquam molestie felis quis nulla eleifend, quis sollicitudin lorem varius. Etiam odio ex, pulvinar a ullamcorper non, ullamcorper malesuada elit. Mauris a leo tortor. Nunc elementum commodo metus, a posuere mauris porta sit amet."}
-                                            </Table.Cell>
-                                            <Table.Cell>
-                                                <Input className="qty" value="0"  type="number" min="1" />
-                                            </Table.Cell>
-                                            <Table.Cell>
-                                                <Label.Group circular>
-                                                    <Label className="price">{`R${9.99}`}</Label>
-                                                </Label.Group>
-                                            </Table.Cell>
-                                        </Table.Row>
-                                    </Table.Body>
-                                </Table>
-                            </Segment>    
-                        </Grid.Column>
-                        <Grid.Column computer={6} tablet={16} mobile={16}>
-                            <Segment>
-                                Prices
-                            </Segment>
-                        </Grid.Column>
-                            
-                    </Grid.Row>
-                </Grid>
+                <ContextAPI.Consumer>
+                    {({state}) => (
+                        <Grid className="cart">
+                            <Grid.Row>
+                                <Grid.Column computer={10} tablet={16} mobile={16}>
+                                    <Segment>
+                                        <Table basic="very" celled >
+                                            {loading ?
+                                                <>
+                                                    <CartTablePlaceholder />
+                                                </> :
+                                                <>
+                                                    {state.cart.length > 0 ? 
+                                                        state.cart.map(item => (
+                                                            <TableItem key={item.count} quantity={item.quantity} {...item.item} />
+                                                        )) :
+                                                        "Cart Empty..."
+                                                    }
+                                                </>
+                                            }
+                                        </Table>
+                                    </Segment>
+                                        
+                                </Grid.Column>
+                                <Grid.Column computer={6} tablet={16} mobile={16}>
+                                    <Segment className="order">
+                                        <OrderSummary />
+                                    </Segment>
+                                </Grid.Column>  
+                            </Grid.Row>
+                        </Grid>
+                    )}
+                </ContextAPI.Consumer>
             </Layout>
         )
     }

@@ -28,6 +28,14 @@ export const reducer = (state, action) => {
             ...state,
             menu: action.payload
         })
+        case "CART_ADD": return ({
+            ...state,
+            cart: state.cart.concat([action.payload])
+        })
+        case "CART": return ({
+            ...state,
+            cart: action.payload
+        })
         case "TEST": return ({
             ...state,
             test: action.payload
