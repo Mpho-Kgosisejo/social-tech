@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, Card, Label, Modal, Header, Divider, Button, Icon, Form, Input } from "semantic-ui-react"
-
+import Config from "react-global-configuration"
 import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
 
 class menu_card extends React.Component {

@@ -14,6 +14,7 @@ router.get("/", (req, res) => {
         })
     })
     .catch(error =>{
+        console.log(error)
         res.status(500).json({
             error : {
                 message : "Error while trying to retrieve products"
@@ -32,6 +33,7 @@ router.get("/:id", (req, res) => {
         })
     })
     .catch(err => {
+        console.log(err)
         res.status(500).json({
             error: {
                 message : "product could not be found"
@@ -41,7 +43,9 @@ router.get("/:id", (req, res) => {
 })
 
 router.post("/", multerUpload.single('productImage'), (req, res) => {
-    const {price, available, name, image, description, menuCategoryId, ingredients} = req.body
+    const {price, available, name, description, menuCategoryId, ingredients} = req.body
+    const image =  `${process.env.HOST}/${req.file.path}`
+    console.log(image)
     const newProduct = new Product({
         price,
         available,

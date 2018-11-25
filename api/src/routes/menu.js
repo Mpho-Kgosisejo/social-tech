@@ -7,7 +7,7 @@ const router  = express.Router()
 // this will return all the menus
 router.get("/", (req, res) => {
 
-    var findCategories = new Promise((resolve, reject) => {
+    const findCategories = new Promise((resolve, reject) => {
         CategoryModel.find({}, function(err, CategoryData) {
             if (err) reject(err);
             resolve(CategoryData)                   
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
   
       // Find all prducts
       // the query action below is not executed, just return PromiseObject for now
-      var findProducts = new Promise((resolve, reject) => {
+      const findProducts = new Promise((resolve, reject) => {
         ProductModel.find({}, function(err, productData) {
             if (err) reject(err);
             resolve(productData)
@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
 
     return Promise.all([findCategories, findProducts])
     .then(data => {            
-        var menuWithProducts = [];
+        const menuWithProducts = [];
         
         data[0].forEach(ctrgry => {
             data[1].forEach(prdct => { 
