@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Button, Header, Divider, Container } from 'semantic-ui-react'
 
-import {PlaceholderMediumParagraph} from "../components/utils/Placeholders"
+import {PlaceholderMediumParagraph, PlaceHolderGallery, PlaceHolderGallerySub} from "../components/utils/Placeholders"
 import Layout from "../components/Layouts/Layout"
 import api from '../src/providers/APIRequest';
 import { isEmptyObj } from "../src/utils/Objs";
@@ -113,7 +113,11 @@ class Gallery extends React.Component {
                                     )
                                 })}
                             </Card.Group>
-                        </>: <PlaceholderMediumParagraph />
+                        </> : <div>
+                          <PlaceHolderGallery/>
+                          <Divider hidden/>
+                          <PlaceHolderGallerySub/>
+                        </div> 
                     }
                 </Layout>
             </>

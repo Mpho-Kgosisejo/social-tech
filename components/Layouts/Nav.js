@@ -7,6 +7,7 @@ import ContextAPI from "../../src/config/ContextAPI"
 import { logout } from "../../src/providers/LoginSession"
 import { isEmptyObj } from "../../src/utils/Objs"
 import * as MessageTypes from "../../src/Types/MessageTypes"
+import { PlaceHolderGallery } from "../utils/Placeholders";
 
 const handleLogout = (dispatch) => {
     logout()
@@ -74,6 +75,7 @@ const RightNav = () => (
             </React.Fragment>
         )}
     </ContextAPI.Consumer>
+
 )
 
 const LeftTabletNav = () => (
