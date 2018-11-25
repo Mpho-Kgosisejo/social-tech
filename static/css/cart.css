@@ -68,3 +68,17 @@
 .cart .order .addons{
     color: rgb(184, 184, 184);
 }
+
+
+.ui.menu .item i.cart {
+    position: relative !important;
+}
+
+.ui.menu .item i.cart .label{
+    position: absolute !important;
+    top: -10px;
+    right: -10px;
+
+    color: #FFF !important;
+    font-weight: bold !important;
+}

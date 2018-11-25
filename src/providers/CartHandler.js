@@ -28,6 +28,23 @@ export const remove = ({state, item}) => {
     return (cart.items.length !== new_cart.length)
 }
 
+export const update = ({state, item}) => {
+    const {cart, dispatch} = state
+    let new_items = []
+
+    for (var i in cart.items){
+        const original_item = cart.items[i]
+
+        if (original_item._id === item._id)
+            new_items.push({...original_item, ...item})
+        else
+            new_items.push(original_item)
+    }
+    
+    dispatch({type: "CART", payload: new_items})
+    return (new_items)
+}
+
 export const details = ({cart}) => {
     let data = {
         itemsCount: cart.length,
@@ -40,7 +57,7 @@ export const details = ({cart}) => {
     for (var i in cart){
         const item = cart[i]
 
-        data.totalItemsCount = (data.totalItemsCount + item.quantity)
+        data.totalItemsCount = parseInt(data.totalItemsCount + item.quantity)
         data.subTotal = (data.subTotal + (item.quantity * parseFloat(item.price)))
     }
     if (data.subTotal){

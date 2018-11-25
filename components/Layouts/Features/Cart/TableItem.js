@@ -1,7 +1,7 @@
 import {Table, Header, Input, Icon, Button, Image} from "semantic-ui-react"
 
 import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
-import { remove } from "../../../../src/providers/CartHandler";
+import { remove, update } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
 
 const TableItem = ({price, _id, image, name, description, quantity}) => {
@@ -10,6 +10,20 @@ const TableItem = ({price, _id, image, name, description, quantity}) => {
             _id
         }
         remove({state, item})
+    }
+
+    const handleQuantityChange = ({state, value}) => {
+        value = (!parseInt(value) || parseInt(value) <= 0) ? 1 : parseInt(value)
+        const item = {
+            _id,
+            price,
+            image,
+            name,
+            description,
+            quantity: value
+        }
+
+        update({state, item})
     }
 
     return (
@@ -30,7 +44,7 @@ const TableItem = ({price, _id, image, name, description, quantity}) => {
                         </Table.Cell>
                         <Table.Cell textAlign="center" width={2}>
                             <p>Quantity</p>
-                            <Input className="qty" value={quantity}  type="number" min="1" />
+                            <Input className="qty" value={quantity}  type="number" min="1" onChange={(e, {value}) => handleQuantityChange({value, state})} />
                         </Table.Cell>
                         <Table.Cell textAlign="center" width={2}>
                             <p>({quantity}xR{price})</p>
