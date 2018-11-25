@@ -11,6 +11,7 @@ import "../../static/css/style.css"
 import "../../static/css/account.css"
 import "../../static/css/gallery.css";
 import "../../static/css/menu.css";
+import "../../static/css/cart.css"
 
 const handleUpdateLayout = ({calculations, state}) => {
     const {dispatch} = state

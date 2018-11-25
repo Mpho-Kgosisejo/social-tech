@@ -2,6 +2,8 @@ import React from 'react'
 import { Image, Card, Label, Modal, Header, Divider, Button, Icon, Form, Input } from "semantic-ui-react"
 import Config from "react-global-configuration"
 import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
+import ContextAPI from '../../../../src/config/ContextAPI';
+import * as cartHandler from "../../../../src/providers/CartHandler"
 
 class menu_card extends React.Component {
 
@@ -29,6 +31,24 @@ class menu_card extends React.Component {
         this.setState({
             value: this.state.value + 1,
         });
+    }
+
+    removeFromCart = (state) => {
+        const new_item = {
+            ...this.props,
+            quantity: this.state.value
+        }
+
+        cartHandler.remove({state, item: new_item})
+    }
+
+    addToCart = (state) => {
+        const new_item = {
+            ...this.props,
+            quantity: this.state.value
+        }
+
+        cartHandler.add({state, new_item})
     }
 
     render() {
@@ -75,15 +95,32 @@ class menu_card extends React.Component {
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions className="no-border">
-                    <div className="quantity-div">
-                        <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
-                            onClick={() => { this.doDecrement() }} />
-                        <Input className="quantity-input" value={this.state.value} disabled />
-                        <Button size="mini" circular icon='add' className="increase-button dec-inc" onClick={() => { this.doIncrement() }} />
-                    </div>
-                    <Button className="add-button" size="tiny">
-                        <Icon name='shop' /> Add to cart
-                    </Button>
+                <ContextAPI.Consumer>
+                        {({state}) => (
+                            <>
+                                {!cartHandler.isInCart({cart: state.cart.items, item: {_id}}) && (
+                                    <div className="quantity-div">
+                                        <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
+                                            onClick={() => { this.doDecrement() }} />
+                                        <Input className="quantity-input" value={this.state.value} disabled />
+                                        <Button size="mini" circular icon='add' className="increase-button dec-inc" onClick={() => { this.doIncrement() }} />
+                                    </div>
+                                )}
+
+                                {cartHandler.isInCart({cart: state.cart.items, item: {_id}}) ?
+                                    <Button className="add-button" size="tiny" onClick={() => this.removeFromCart(state)}>
+                                        <Icon name='shop' />
+                                        Remove from Cart
+                                    </Button>
+                                    :
+                                    <Button className="add-button" size="tiny" onClick={() => this.addToCart(state)}>
+                                        <Icon name='shop' />
+                                        Add to Cart
+                                    </Button>
+                                }
+                            </>
+                        )}
+                    </ContextAPI.Consumer>
                 </Modal.Actions>
             </Modal>
         )

@@ -1,4 +1,4 @@
-import {Placeholder} from "semantic-ui-react"
+import {Placeholder, Table} from "semantic-ui-react"
 
 export const PlaceholderSmallParagraph = ({withImage = false}) => (
     <Placeholder fluid>
@@ -36,4 +36,28 @@ export const PlaceholderMediumParagraph = ({withImage = false}) => (
 
 export const PlaceholderSmallParagraphImage = () => (
     <PlaceholderSmallParagraph withImage={true} />
+)
+
+export const CartTablePlaceholder = () => (
+    <Table.Body className="items">
+        <Table.Row>
+            <Table.Cell width={2}>
+                <Placeholder>
+                    <Placeholder.Image square />
+                </Placeholder>
+            </Table.Cell>
+            <Table.Cell width={8}>
+                <PlaceholderSmallParagraph />
+            </Table.Cell>
+            <Table.Cell width={2}>
+                <PlaceholderSmallParagraph />
+            </Table.Cell>
+            <Table.Cell width={2}>
+                <PlaceholderSmallParagraph />
+            </Table.Cell>
+            <Table.Cell width={2}>
+                <PlaceholderSmallParagraph />
+            </Table.Cell>
+        </Table.Row>
+    </Table.Body>
 )
