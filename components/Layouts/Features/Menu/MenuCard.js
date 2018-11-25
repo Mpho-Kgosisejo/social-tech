@@ -35,10 +35,8 @@ class menu_card extends React.Component {
 
     removeFromCart = (state) => {
         const new_item = {
-            quantity: this.state.value,
-            item: {
-                ...this.props
-            }
+            ...this.props,
+            quantity: this.state.value
         }
 
         cartHandler.remove({state, item: new_item})
@@ -46,10 +44,8 @@ class menu_card extends React.Component {
 
     addToCart = (state) => {
         const new_item = {
-            quantity: this.state.value,
-            item: {
-                ...this.props
-            }
+            ...this.props,
+            quantity: this.state.value
         }
 
         cartHandler.add({state, new_item})

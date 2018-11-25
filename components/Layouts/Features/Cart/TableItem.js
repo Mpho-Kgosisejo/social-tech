@@ -7,9 +7,7 @@ import ContextAPI from "../../../../src/config/ContextAPI";
 const TableItem = ({price, _id, image, name, description, quantity}) => {
     const handleOnRemove = (state) => {
         const item = {
-            item: {
-                _id
-            }
+            _id
         }
         remove({state, item})
     }
@@ -19,10 +17,10 @@ const TableItem = ({price, _id, image, name, description, quantity}) => {
             {({state}) => (
                 <Table.Body className="items">
                     <Table.Row>
-                        <Table.Cell width={2}>
+                        <Table.Cell width={2} textAlign="center">
                             <Image src={image} width="125" />
                         </Table.Cell>
-                        <Table.Cell width={8}>
+                        <Table.Cell width={8} textAlign="center">
                             <Header>
                                 <a>{name}</a>
                                 <Header.Subheader>
@@ -34,8 +32,9 @@ const TableItem = ({price, _id, image, name, description, quantity}) => {
                             <p>Quantity</p>
                             <Input className="qty" value={quantity}  type="number" min="1" />
                         </Table.Cell>
-                        <Table.Cell textAlign="right" width={2}>
-                            <Header as="h3" color="grey" className="price">{`R ${price}`}</Header>
+                        <Table.Cell textAlign="center" width={2}>
+                            <p>({quantity}xR{price})</p>
+                            <Header as="h3" color="grey" className="price">{`R${quantity * price}`}</Header>
                         </Table.Cell>
                         <Table.Cell textAlign="center" width={2}>
                             <Button icon size="mini" style={{backgroundColor: MILKY_RED}} onClick={() => handleOnRemove(state)}>
