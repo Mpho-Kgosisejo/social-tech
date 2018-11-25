@@ -1,13 +1,13 @@
 import Link from "next/link"
 import Router from "next/router"
-import { Container, Menu, Image, Grid, Icon, Responsive, Dropdown } from "semantic-ui-react"
+import { Container, Menu, Image, Grid, Icon, Responsive, Dropdown, Label } from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
 import { logout } from "../../src/providers/LoginSession"
 import { isEmptyObj } from "../../src/utils/Objs"
 import * as MessageTypes from "../../src/Types/MessageTypes"
-import { PlaceHolderGallery } from "../utils/Placeholders";
+import { LIGHT_RED } from "../../src/Types/ColorsTypes";
 
 const handleLogout = (dispatch) => {
     logout()
@@ -125,11 +125,18 @@ export const LeftComputerNav = () => (
                         )}
                         <Responsive maxWidth={991} as={React.Fragment}>
                             {isEmptyObj(state.login) ? <AuthLayout /> : <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>}
-                            <Link href="/cart" prefetch passHref>
-                                <Menu.Item className="fresheats-brown-color cart-icon">
-                                    View Cart<Icon className="cart-icon" name="cart" />
-                                </Menu.Item>
-                            </Link>
+                        <Link href="/cart" prefetch passHref>
+                            <Menu.Item className="fresheats-brown-color cart-icon">
+                                <Icon className="cart-icon-" name="cart" size="mini">
+                                    {state.cart.details.itemsCount > 0 &&
+                                        <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                            {state.cart.details.itemsCount}
+                                        </Label>
+                                    }
+                                </Icon>
+                                View Cart
+                            </Menu.Item>
+                        </Link>
                         </Responsive>
                     </React.Fragment>
                 )}
@@ -161,12 +168,18 @@ const Nav = () => (
                                 {!isEmptyObj(state.login) ? <RightNav /> : <Responsive minWidth={992} as={React.Fragment}><AuthLayout /></Responsive>}
                             </Menu.Menu>
                         }
-                        <Responsive minWidth={992} as={React.Fragment}>
-                            <Link href="/cart" prefetch passHref>
-                                <Menu.Item className="fresheats-brown-color">
-                                    <Icon className="cart-icon-nav" name="cart" />
-                                </Menu.Item>
-                            </Link>
+                         <Responsive minWidth={992} as={React.Fragment}>
+                        <Link href="/cart" prefetch passHref>
+                            <Menu.Item className="fresheats-brown-color">
+                              <Icon className="cart-icon-nav" name="cart">
+                                {state.cart.details.itemsCount > 0 &&
+                                    <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                        {state.cart.details.itemsCount}
+                                    </Label>
+                                }
+                              </Icon>
+                            </Menu.Item>
+                        </Link>
                         </Responsive>
                     </React.Fragment>
                 </Container>
