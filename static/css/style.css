@@ -1,5 +1,7 @@
 /* Global styling */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Raleway:100');
+@import url('https://fonts.googleapis.com/css?family=Yeseva+One');
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
 @import url('https://fonts.googleapis.com/css?family=Great+Vibes');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet');
@@ -18,11 +20,16 @@
     text-align: center !important;
 }
 
+.about-content .dropdown{
+    display: none !important;
+}
+
 /*#region Navbar styling */
 
 .appNav{
     height: 58px;
     /* background-color: #000 !important; */
+    transition: ease-in-out .25s !important;
 }
 
 .ui.labeled.icon.menu .item>.icon:not(.dropdown).cart-icon{
@@ -35,6 +42,12 @@
 .nav-logo{
     font-size: 20px !important;
     padding-top: 20px !important;
+}
+.appNav.transparent .menu.profile{
+    background: transparent !important;
+    border: 1px solid #c59c70 !important;
+    border-top: 0 !important;
+
 }
 
 .ui.menu .item:before
@@ -144,72 +157,11 @@
 
  /*#endregion */
 
- /* #region Alert-portal */
-
-/* style={{ left: '5%', top: '5%', position: 'fixed', zIndex: 1000 }} */
-
-.alert-portal{
-    position: fixed !important;
-    z-index: 1000;
-    top: 42px;
-    left: 42px;
-
-    border-radius: 0 !important;
-    font-weight: 100 !important;
-    font-size: .95em !important;
-    
-    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.25) !important;
-    border: 0 !important;
-    background: rgb(40, 40, 46) !important;
-    transition: ease 2s !important;
-}
-
-.alert-portal, .alert-portal *{
-    color: rgb(196, 196, 196) !important;
-    font-weight: 100 !important;
-}
-
-.alert-portal.success, .alert-portal.success *{
-    background: #8cd29e !important;
-    color: #39804b !important;
-}
-
-.alert-portal.success .divider{
-    border-bottom: 1px solid #3e8a51 !important;
-}
-
-.alert-portal.error, .alert-portal.error *{
-    background: #ce7d7a !important;
-    color: #8f4b49 !important;
-}
-
-.alert-portal.error .divider{
-    border-bottom: 1px solid #98504d !important;
-}
-
-.alert-portal .divider{
-    margin: 10px 0;
-    border: 0px #fff !important;
-    border-bottom: 1px solid rgb(106, 106, 106) !important;
-}
-
-.alert-portal .header{
-    margin: 0;
-    font-size: 1.4em !important;    
-}
-
- /* #endregion */
-
- .ui.secondary.pointing.menu{
-    /* overflow: auto; */
- }
-
  /*#region Footer styling */
 
  .footer
  {
     width: 100%;
-    height: 479px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -224,7 +176,6 @@
 
 .footer_wideget
 {
-    height: 264px;
     width: 100%;
     padding-top: 100px !important;  
 }
@@ -236,44 +187,37 @@
     margin-right: 70px !important;
     padding-left: 15px;
     padding-right: 15px;
-    height: 164px !important;
 }
 
 .footer_row
 {
     margin-left: -15px;
     margin-right: -15px;
-    height: 164px;
 }
 
 .footer_col_1
 {
     padding: 0 15px;
-    height: 164px;
 }
 
 .footer_col_2
 {
     padding: 0 15px;
-    height: 164px;
 }
 
 .footer_col_3
 {
     padding: 0 15px;
-    height: 164px;
 }
 
 .footer_social
 {
     width: 100%;
-    height: 122px;
     padding: 40px 0;
 }
 
 .footer_social_container
 {
-    height: 42px;
     margin-right: 70px;
     margin-left: 70px;
     padding-left: 15px;
@@ -282,7 +226,6 @@
 
 .footer_social_row
 {
-    height: 42px;
     margin-left: -15px;
     margin-right: -15px;
     padding-top: 0 !important;
@@ -292,18 +235,11 @@
 {
     margin: 0 !important;
     padding: 0 !important;
-    height: 42px !important;
 }
 .footer .ui.grid>.row
 {
     padding-bottom: 0 !important;
     padding-top: 0 !important;
-}
-
-.social_media_icons
-{
-    float: left;
-    height: 42px;
 }
 
 .footer_subscriber
@@ -314,7 +250,6 @@
     background-color: #082908 !important;
     color: #8a8a8a !important;
     font-style: italic  !important;
-    height: 42px !important;
     width: 100% !important;
     line-height: 42px  !important;
     border-radius: 42px  !important;
@@ -333,27 +268,25 @@
     color: #000  !important;
     position: absolute  !important;
     right: 10px !important;
-    top: 0 !important;
+    top: 0;
     bottom: 0 !important;
     margin-bottom: 0 !important;
+    height: 42px !important;
 }
 
 .subscribe_to_newsletter
 {
     float: right;
-    height: 42px;
 }
 
 .footer_copywrite
 {
-    height: 93px;
     background-color: #082908 !important;
     padding: 38px 0;
 }
 
 .footer_copywriter_container
 {
-    height: 19px;
     /* background-color: blueviolet; */
     margin-left: 70px;
     margin-right: 70px;
@@ -488,7 +421,7 @@
     height: 100%;
     position: relative;
 
-    background-color: rgba(0, 0, 0, .25);
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .slider-container h1, .slider-container h5{
@@ -516,6 +449,7 @@
 .slider-container .de-slider .slider-item .header{
     text-align: right;
     padding: 0 25px;
+    color : rgb(212, 195, 176) !important;
 }
 
 .slider-container .de-slider .slider-item h1{
@@ -544,20 +478,22 @@
 }
 
 .slider-container .static-caption .header{
-    color: rgb(212, 195, 176);
-    /* text-align: center; */
     font-weight: 500;
-    font-family: 'Raleway', sans-serif;
 }
 
 .slider-container .static-caption h1{
     font-size: 6em;
     margin-bottom: 0;
+    font-family: 'Yeseva One' !important;
+    color: #c59c70 !important;
 }
 
 .slider-container .static-caption h5{
     margin-top: 0;
     font-size: 2.8em;
+    font-family: 'Raleway' !important;
+    font-weight: 100 !important;
+    color : rgb(212, 195, 176) !important;
 }
 .slick-dots li button:before
 {
@@ -568,400 +504,6 @@
 
 /* #endregion */
 
-/* #region Semantic UI: Media Queries breakpoints */
-
-@media ( max-width: 480px) {
-
-       /* #region FOOTER */
-       .mainLayout
-       {
-           padding-bottom: 650px;
-       }
-
-       .footer{
-           height: 600px !important;
-       }
-       .footer_container{
-           margin-left: 20px !important;
-           margin-right: 20px !important;
-       }
-
-       .ui.grid>[class*="three column"].row>.column
-       {
-           width: 100% !important;
-       }
-
-       .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column
-       {
-           width: 100% !important;
-       }
-
-       .display-felx{
-           display: flex !important;
-       }
-
-       .footer_wideget
-       {
-           height: 478px !important;
-       }
-
-       .footer_social_container {
-           height: 28px;
-           margin-right: 0px;
-           margin-left: 0px;
-           padding-left: 0px;
-           padding-right: 0px;
-       }
-
-       .footer_social_row
-       {
-           margin-left: 0 !important;
-           margin-right: 0 !important;
-       }
-       .footer_wideget
-       {
-           padding-top: 20px !important;
-       }
-
-       .breakpoints-test{
-           background: #5999c2!important;
-       }
-   
-       .slider-container .de-slider .slider-item .quotes{
-           width: 100%;
-       }
-   
-       .slider-container .static-caption h1{
-           font-size: 3.5em;
-       }
-       
-       .slider-container .static-caption h5{
-           font-size: 1.5em;
-       }
-   
-       .slider-container .de-slider .slider-item h5{
-           font-size: 1.5em;
-       }
-   /* #endregion */
-
-    .breakpoints-test{
-        background: #5999c2!important;
-    }
-
-    .header-main-div
-    {
-        height: 590px !important;
-        margin-top: 0px !important;
-    }
-
-    .index-banner {
-        padding-top: 30px !important;
-        padding-bottom: 30px !important;
-        height: 910px !important;
-    }
-
-    .index-steps
-    {
-        height: 490px !important;
-    }
-
-    .index-slider-div
-    {
-        height: 1130px !important;
-        padding: 30px;
-    }
-    .col1
-    {
-        height: 480px !important;
-        width: 100% !important;
-    }
-    .col2
-    {
-        height: 350px !important;
-    }
-
-    .index-banner-content
-    {
-        height: 321px !important;
-    }
-
-    .slider-container .de-slider .slider-item .quotes{
-        width: 100%;
-    }
-
-    .slider-container .static-caption h1{
-        font-size: 3.5em;
-    }
-    
-    .slider-container .static-caption h5{
-        font-size: 1.5em;
-    }
-
-    .slider-container .de-slider .slider-item h5{
-        font-size: 1.5em;
-    }
-    .index-step-column-desc
-    {
-        font-size: 13px !important;
-    }
-    .index-step-column-h3
-    {
-        font-size: 16px !important;
-    }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-    .breakpoints-test{
-        background: #77c394 !important;
-    }
-
-    .slider-container .de-slider .slider-item .quotes{
-        width: 100%;
-    }
-
-    .slider-container .static-caption h1{
-        font-size: 4em;
-    }
-    
-    .slider-container .static-caption h5{
-        font-size: 2em;
-    }
-
-    .mainLayout
-    {
-        padding-bottom: 650px;
-    }
-
-    .footer{
-        height: 600px !important;
-    }
-    .footer_container{
-        margin-left: 20px !important;
-        margin-right: 20px !important;
-    }
-
-    .ui.grid>[class*="three column"].row>.column
-    {
-        width: 100% !important;
-        padding-bottom: 110px; 
-    }
-
-    .index-body-main-div
-    {
-        background-image: url("https://demo.kallyas.net/phaeton-restaurant-bar-pub/wp-content/uploads/sites/7/2016/06/tasty-deserts.jpg");
-        height: 642px !important;
-        width: 100% !important;
-        background-repeat: no-repeat;
-
-    }
-
-    .section-divider2
-    {
-        padding-top: 297px !important;
-        padding-bottom: 275px !important;
-        background-repeat: none !important;
-        background-position: center !important;
-        background-size: cover;
-    }
-
-    .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column
-    {
-        width: 100% !important;
-    }
-
-    .display-felx{
-        display: flex !important;
-    }
-
-    .footer_wideget
-    {
-        height: 478px !important;
-    }
-
-    .footer_social_container {
-        height: 28px;
-        margin-right: 0px;
-        margin-left: 0px;
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-
-    .footer_social_row
-    {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-    .footer_wideget
-    {
-        padding-top: 20px !important;
-    }
-
-    .breakpoints-test{
-        background: #5999c2!important;
-    }
-
-    .slider-container .de-slider .slider-item .quotes{
-        width: 100%;
-        height: 85px;
-    }
-    
-    .index-body-desc p
-    {
-        color: #c59c70 !important;
-        font-size: 35px;
-        font-family: 'Great Vibes', cursive;
-    }
-    /* color: #c59c70; */
-
-    .index-body-desc h2
-    {
-        font-family: 'Amatic SC', cursive !important;
-        font-size: 45px !important;
-        /* font-weight: 400 !important; */
-        /* line-height: 1 !important; */
-        color: #fff !important;
-    }
-
-/* #endregion */
-
-/* #region Index Steps */
-
-    .index-steps
-    {
-        height: 432px;
-        width: 100% !important;    
-    }
-
-    .index-steps-container
-    {
-        height: 212px;
-        padding: 0 15px;
-        margin: 0 13px;
-    }
-
-    .index-steps-row
-    {
-        height: 212px;
-        margin: 0 -15px !important;
-        /* background-color: #fff; */
-    }
-    
-    .index-step-sub
-    {
-        font-size: 29px;
-        font-family: 'Great Vibes', cursive;
-        color: #c59c70;
-    }
-
-    .index-steps-row h2
-    {
-        font-family: 'Kaushan Script', cursive !important;
-        font-size: 45px !important;
-        font-weight: 400 !important;
-        line-height: 1 !important;
-        color:  #000000 !important;
-    }
-    .index-step-grid
-    {
-        margin-top: 40px !important;
-    }
-
-    .index-step-column-h3
-    {
-        font-family: 'Kaushan Script', cursive !important;
-        font-size: 25px;
-        font-weight: 400 !important;
-        line-height: 1 !important;
-        color:  #082908 !important;
-    }
-
-    .index-step-column-desc
-    {
-        color: #424242;
-        font-family: 'Raleway', 'sans-serif';
-        font-size: 15px;
-        font-weight: 400 !important;
-        line-height: 1 !important;
-        margin-bottom: 25px !important;
-    }
-
-    .slider-container .static-caption h1{
-        font-size: 3.5em;
-    }
-    
-    .slider-container .static-caption h5{
-        font-size: 1.5em;
-    }
-
-    .slider-container .de-slider .slider-item h5{
-        font-size: 1.5em;
-    }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-
-    .mainLayout
-    {
-        padding-bottom: 600px;
-    }
-
-    .footer{
-        height: 600px !important;
-    }
-    .footer_container{
-        margin-left: 20px !important;
-        margin-right: 20px !important;
-    }
-
-    .ui.grid>[class*="three column"].row>.column
-    {
-        width: 100% !important;
-    }
-
-    .footer_wideget
-    {
-        height: 478px !important;
-    }
-
-    .footer_social_container {
-        height: 28px;
-        margin-right: 0px;
-        margin-left: 0px;
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-
-    .footer_social_row
-    {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        position: absolute !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-size: cover !important;
-    }
-    .footer_wideget
-    {
-        padding-top: 20px !important;
-    }
-
-    .breakpoints-test{
-        background: #77c394 !important;
-    }    
-}
-
-@media (min-width: 769px) and (max-width: 991px) {
-    .breakpoints-test{
-        background: #df6656 !important;
-    }
-}
-@media (min-width: 991px) and (max-width: 1200px) {
-    .breakpoints-test{
-        background: #e8d692 !important;
-    }
-}
 
 .zero-border
 {
@@ -971,12 +513,6 @@
 .marginTopBottom {
     margin-top: 20px;
     margin-bottom: 20px;
-}
-
-@media (min-width: 1201px) {
-    .breakpoints-test{
-        background: yellow !important;
-    }
 }
 
 /* #endregion */
@@ -1013,6 +549,8 @@
     }
 
 /* #endregion */
+
+/* region */
     .header-title
     {
         font-family: 'Kaushan Script', cursive !important;
@@ -1020,6 +558,10 @@
         font-weight: 400 !important;
         line-height: 1 !important;
         color: #000000 !important;
+    }
+    .menu-content
+    {
+        width: 100% !important;
     }
 /* #endregion */
 
@@ -1033,7 +575,6 @@
     .index-service-banner-main-div
     {
         background-image: url("https://demo.kallyas.net/phaeton-restaurant-bar-pub/wp-content/uploads/sites/7/2016/06/bestservice.jpg") !important;
-        height: 642px !important;
         width: 100% !important;
         /* background-repeat: no-repeat; */
 
@@ -1041,7 +582,6 @@
 
     .index-service-banner-container
     {
-        height: 632px;
         padding-right: 15px;
         padding-left: 15px;
         margin-right: auto !important;
@@ -1050,7 +590,6 @@
 
     .index-service-banner-row
     {
-        height: 85px;
         margin: 0 -15px !important;
         /* background-color: red; */
     }
@@ -1058,11 +597,6 @@
     .index-service-banner-heading
     {
         padding: 0 15px !important;
-    }
-
-    .index-bottom-body-desc
-    {
-        height: 85px;
     }
 
     .index-bottom-body-desc p
@@ -1085,7 +619,6 @@
 /* #region Index Service */
     .index-service
     {
-        height: 656px;
         width: 100%;
         padding-top: 110px;
         padding-bottom: 100px;
@@ -1274,7 +807,6 @@
 
     .index-service-row
     {
-        height: 486px;
         width: 100%;
         margin: 0 -15px;
     }
@@ -1358,18 +890,6 @@
         /* height: 412px; */
         margin: 0 13px;
         padding: 0 15px;
-    }
-
-    .index-banner-row
-    {
-        /* margin: -15px; */
-        /* height: 412px; */
-    }
-
-    .index-banner-content
-    {
-        /* margin-top: 60px; */
-        /* height: 240px; */
     }
 
     .index-banner-content-subtitle
@@ -1475,6 +995,7 @@
     {
         /* height: 626px; */
         padding-top: 50px;
+        padding-bottom: 50px;
     }
 
     .frequently-ordered-container
@@ -1515,7 +1036,6 @@
 .index-how-to-use-div 
 {
     background-image: url("https://demos.hogash.com/phaeton-restaurant-html/images/bestservice.jpg");
-    height: 642px !important;
     width: 100% !important;
     /* background-repeat: no-repeat; */
 
@@ -1546,9 +1066,21 @@
 /* #endregion */
 
 
-@media ( max-width: 480px) {
+@media ( max-width: 480px) and (orientation: landscape) {
     .breakpoints-test{
         background: #5999c2!important;
+    }
+
+    .about-content .dropdown{
+        display: block !important;
+    }
+    .slider-container .de-slider .slider-item .header{
+        font-size: 0;
+        /* bottom: 0; */
+    }
+    
+    .about-content .about-tab .menu{
+        display: none !important;
     }
 
     .header-main-div
@@ -1588,14 +1120,6 @@
         width: 100%;
     }
 
-    .slider-container .static-caption h1{
-        font-size: 3.5em;
-    }
-    
-    .slider-container .static-caption h5{
-        font-size: 1.5em;
-    }
-
     .slider-container .de-slider .slider-item h5{
         font-size: 1.5em;
     }
@@ -1621,8 +1145,185 @@
         padding-bottom: 650px;
     }
 
+    .footer_container{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+
+    .ui.grid>[class*="three column"].row>.column
+    {
+        width: 100% !important;
+    }
+
+    .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column
+    {
+        width: 100% !important;
+    }
+
+    .display-felx{
+        display: flex !important;
+    }
+
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
+    .footer_social_container {
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .footer_social_row
+    {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .footer_wideget
+    {
+        padding-top: 20px !important;
+    }
+
+    .footer_button_icon
+    {
+        top: 60px !important;
+    }
+
+    .breakpoints-test{
+        background: #5999c2!important;
+    }
+
+    .slider-container .de-slider .slider-item .quotes{
+        width: 100%;
+    }
+
+    .slider-container .static-caption h1{
+        font-size: 3.5em;
+    }
+    
+    .slider-container .static-caption h5{
+        font-size: 1.5em;
+    }
+
+    .slider-container .de-slider .slider-item h5{
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
+
+    .about-content .dropdown{
+        display: block !important;
+    }
+    .slider-container .de-slider .slider-item .header{
+        font-size: 0;
+        /* bottom: 0; */
+    }
+    
+    .about-content .about-tab .menu{
+        display: none !important;
+    }
+
+    .mainLayout
+    {
+        padding-bottom: 600px;
+    }
+
+    .veritcal-stack
+    {
+        width: 100% !important;
+    }
+
+    .footer_container{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+    
+    .footer_button_icon
+    {
+        top: 60px !important;
+    }
+
+    .ui.grid>[class*="three column"].row>.column
+    {
+        width: 100% !important;
+    }
+
+    /* .index-steps
+    {
+        margin-top: 30px !important;
+        margin-bottom: 30px !important;
+        height:  890px !important
+    } */
+
+    .footer_social_container {
+        margin-right: 0px;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .footer_social_row
+    {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .footer_wideget
+    {
+        padding-top: 20px !important;
+    }
+
+    .breakpoints-test{
+        background: #77c394 !important;
+    }
+
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    .breakpoints-test{
+        background: #df6656 !important;
+    }
+    .footer_button_icon
+    {
+        top: 60px !important;
+    }
+}
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    .breakpoints-test{
+        background: #e8d692 !important;
+    }
+    .footer_button_icon
+    {
+        top: 60px !important;
+    }
+}
+
+@media (min-width: 1201px) {
+    .breakpoints-test{
+        background: yellow !important;
+    }
+    .footer_button_icon
+    {
+        top: 60px !important;
+    }
+}
+
+/* #region Semantic UI: Media Queries breakpoints */
+
+@media ( max-width: 480px) {
+
+    /* #region FOOTER */
+    .mainLayout
+    {
+        padding-bottom: 650px;
+    }
+    
     .footer{
-        height: 600px !important;
+        /* height: 600px !important; */
     }
     .footer_container{
         margin-left: 20px !important;
@@ -1645,16 +1346,11 @@
 
     .footer_wideget
     {
-        height: 478px !important;
-    }
-
-    .veritcal-stack
-    {
-        width: 100% !important;
+        /* height: 478px !important; */
     }
 
     .footer_social_container {
-        height: 28px;
+        /* height: 28px; */
         margin-right: 0px;
         margin-left: 0px;
         padding-left: 0px;
@@ -1690,84 +1386,313 @@
     .slider-container .de-slider .slider-item h5{
         font-size: 1.5em;
     }
+/* #endregion */
+
+ .breakpoints-test{
+     background: #5999c2!important;
+ }
+
+ .header-main-div
+ {
+     margin-top: 0px !important;
+ }
+
+ .index-banner {
+     padding-top: 30px !important;
+     padding-bottom: 30px !important;
+ }
+
+
+ .index-slider-div
+ {
+     padding: 30px;
+ }
+ .col1
+ {
+     width: 100% !important;
+ }
+ .col2
+ {
+     height: 350px !important;
+ }
+
+ .index-banner-content
+ {
+     /* height: 321px !important; */
+ }
+
+ .slider-container .de-slider .slider-item .quotes{
+     width: 100%;
+ }
+
+ .slider-container .static-caption h1{
+     font-size: 3.5em;
+ }
+ 
+ .slider-container .static-caption h5{
+     font-size: 1.5em;
+ }
+
+ .slider-container .de-slider .slider-item h5{
+     font-size: 1.5em;
+ }
+ .index-step-column-desc
+ {
+     font-size: 13px !important;
+ }
+ .index-step-column-h3
+ {
+     font-size: 16px !important;
+ }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+ .breakpoints-test{
+     background: #77c394 !important;
+ }
+
+ .slider-container .de-slider .slider-item .quotes{
+     width: 100%;
+ }
+
+ .slider-container .static-caption h1{
+     font-size: 4em;
+ }
+ 
+ .slider-container .static-caption h5{
+     font-size: 2em;
+ }
+
+ .mainLayout
+ {
+     padding-bottom: 650px;
+ }
+
+ .footer{
+     /* height: 600px !important; */
+ }
+ .footer_container{
+     margin-left: 20px !important;
+     margin-right: 20px !important;
+ }
+
+ .ui.grid>[class*="three column"].row>.column
+ {
+     width: 100% !important;
+     padding-bottom: 110px; 
+ }
+
+ .index-body-main-div
+ {
+     background-image: url("https://demo.kallyas.net/phaeton-restaurant-bar-pub/wp-content/uploads/sites/7/2016/06/tasty-deserts.jpg");
+     height: 642px !important;
+     width: 100% !important;
+     background-repeat: no-repeat;
+
+ }
+
+ .section-divider2
+ {
+     padding-top: 297px !important;
+     padding-bottom: 275px !important;
+     background-repeat: none !important;
+     background-position: center !important;
+     background-size: cover;
+ }
+
+ .ui[class*="two column"].grid>.column:not(.row), .ui[class*="two column"].grid>.row>.column
+ {
+     width: 100% !important;
+ }
+
+ .display-felx{
+     display: flex !important;
+ }
+
+ .footer_social_container {
+     margin-right: 0px;
+     margin-left: 0px;
+     padding-left: 0px;
+     padding-right: 0px;
+ }
+
+ .footer_social_row
+ {
+     margin-left: 0 !important;
+     margin-right: 0 !important;
+ }
+ .footer_wideget
+ {
+     padding-top: 20px !important;
+ }
+
+ .breakpoints-test{
+     background: #5999c2!important;
+ }
+
+ .slider-container .de-slider .slider-item .quotes{
+     width: 100%;
+ }
+ 
+ .index-body-desc p
+ {
+     color: #c59c70 !important;
+     font-size: 35px;
+     font-family: 'Great Vibes', cursive;
+ }
+ /* color: #c59c70; */
+
+ .index-body-desc h2
+ {
+     font-family: 'Amatic SC', cursive !important;
+     font-size: 45px !important;
+     /* font-weight: 400 !important; */
+     /* line-height: 1 !important; */
+     color: #fff !important;
+ }
+
+/* #endregion */
+
+/* #region Index Steps */
+
+ .index-steps
+ {
+     width: 100% !important;    
+ }
+
+ .index-steps-container
+ {
+     padding: 0 15px;
+     margin: 0 13px;
+ }
+
+ .index-steps-row
+ {
+     margin: 0 -15px !important;
+     /* background-color: #fff; */
+ }
+ 
+ .index-step-sub
+ {
+     font-size: 29px;
+     font-family: 'Great Vibes', cursive;
+     color: #c59c70;
+ }
+
+ .index-steps-row h2
+ {
+     font-family: 'Kaushan Script', cursive !important;
+     font-size: 45px !important;
+     font-weight: 400 !important;
+     line-height: 1 !important;
+     color:  #000000 !important;
+ }
+ .index-step-grid
+ {
+     margin-top: 40px !important;
+ }
+
+ .index-step-column-h3
+ {
+     font-family: 'Kaushan Script', cursive !important;
+     font-size: 25px;
+     font-weight: 400 !important;
+     line-height: 1 !important;
+     color:  #082908 !important;
+ }
+
+ .index-step-column-desc
+ {
+     color: #424242;
+     font-family: 'Raleway', 'sans-serif';
+     font-size: 15px;
+     font-weight: 400 !important;
+     line-height: 1 !important;
+     margin-bottom: 25px !important;
+ }
+
+ .slider-container .static-caption h1{
+     font-size: 3.5em;
+ }
+ 
+ .slider-container .static-caption h5{
+     font-size: 1.5em;
+ }
+
+ .slider-container .de-slider .slider-item h5{
+     font-size: 1.5em;
+ }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
 
-    .mainLayout
-    {
-        padding-bottom: 600px;
-    }
+ .mainLayout
+ {
+     padding-bottom: 600px;
+ }
 
-    .footer{
-        height: 600px !important;
-    }
-    .veritcal-stack
-    {
-        width: 100% !important;
-    }
+ .footer_container{
+     margin-left: 20px !important;
+     margin-right: 20px !important;
+ }
 
-    .footer_container{
-        margin-left: 20px !important;
-        margin-right: 20px !important;
-    }
-    
+ .ui.grid>[class*="three column"].row>.column
+ {
+     width: 100% !important;
+ }
 
-    .ui.grid>[class*="three column"].row>.column
-    {
-        width: 100% !important;
-    }
+ .footer_social_container {
+     margin-right: 0px;
+     margin-left: 0px;
+     padding-left: 0px;
+     padding-right: 0px;
+ }
 
-    /* .index-steps
-    {
-        margin-top: 30px !important;
-        margin-bottom: 30px !important;
-        height:  890px !important
-    } */
+ .footer_social_row
+ {
+     margin-left: 0 !important;
+     margin-right: 0 !important;
+     width: 100% !important;
+     height: 100% !important;
+     position: absolute !important;
+     background-repeat: no-repeat !important;
+     background-position: center !important;
+     background-size: cover !important;
+ }
+ .footer_wideget
+ {
+     padding-top: 20px !important;
+ }
 
-    .footer_wideget
-    {
-        height: 478px !important;
-    }
-
-    .footer_social_container {
-        height: 28px;
-        margin-right: 0px;
-        margin-left: 0px;
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-
-    .footer_social_row
-    {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-    .footer_wideget
-    {
-        padding-top: 20px !important;
-    }
-
-    .breakpoints-test{
-        background: #77c394 !important;
-    }
-
+ .breakpoints-test{
+     background: #77c394 !important;
+ }    
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
-    .breakpoints-test{
-        background: #df6656 !important;
-    }
+ .breakpoints-test{
+     background: #df6656 !important;
+ }
 }
 
 @media (min-width: 991px) and (max-width: 1200px) {
+ .breakpoints-test{
+     background: #e8d692 !important;
+ }
+}
+
+@media (min-width: 769px) and (max-width: 991px) and (orientation: landscape){
     .breakpoints-test{
-        background: #e8d692 !important;
+        background: #df6656 !important;
+    }
+    .slider-container .de-slider .slider-item .header{
+        font-size: 0;
+        /* bottom: 0; */
     }
 }
 
 @media (min-width: 1201px) {
-    .breakpoints-test{
-        background: yellow !important;
-    }
+ .breakpoints-test{
+     background: yellow !important;
+ }
 }

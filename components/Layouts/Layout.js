@@ -12,6 +12,7 @@ import "../../static/css/account.css"
 import "../../static/css/gallery.css";
 import "../../static/css/menu.css";
 import "../../static/css/cart.css"
+import "../../static/css/alertportal.css"
 
 const handleUpdateLayout = ({calculations, state}) => {
     const {dispatch} = state
@@ -67,8 +68,6 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                         <Visibility fireOnMount onUpdate={(e, {calculations}) => handleUpdateLayout({state, calculations})}>
                             <div className="mainLayout">
                                 {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
-                    
-                                {!state.root_loading && includeNav && <Nav />}
                     
                                 {includeContainer ? <Container className="childLayout" children={children} /> : children}
 

@@ -1,12 +1,13 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import Config from "react-global-configuration"
+
 import devConfig from "../src/config/devConfig"
 import prodConfig from "../src/config/prodConfig"
-
 import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
 import {getLogin} from "../src/providers/LoginSession"
+import * as CartHandler from "../src/providers/CartHandler"
 
 export default class MyApp extends App {
     constructor(props){
@@ -62,6 +63,7 @@ export default class MyApp extends App {
     componentDidMount(){
         const login = getLogin()
 
+        CartHandler.restore_cart({dispatch: this.state.dispatch})
         if (process.browser){
             this.setState({
                 ...this.state,

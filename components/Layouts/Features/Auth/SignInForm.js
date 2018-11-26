@@ -95,7 +95,8 @@ class SignInForm extends React.Component{
             login(loginPayload)
             this.resetInputs()
             dispatch({type: "LOGIN", payload: loginPayload})
-            dispatch({type: "ALERT_PORTAL", payload: {type: "success", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_IN, open: true}})
+            dispatch({type: "ALERT_PORTAL", payload: {header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_IN, open: true}})
+            dispatch({type: "SIDEBAR", payload: false})
         }
         else if (res.status === 401){
             this.setState({
