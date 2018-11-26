@@ -1,0 +1,9 @@
+.appNav.transparent *{
+    color: #c59c70 !important;
+    font-weight: 400 !important;
+    
+}
+
+.appNav.transparent{
+    background: transparent !important;
+}

@@ -73,18 +73,10 @@ class AuthLayout extends React.Component {
                         <Tab menu={{secondary: true, pointing: true}} panes={tabPanes} activeIndex={activeTabIndex} onTabChange={this.taggleTab} />
                     </Modal.Content>
                 </Modal>
-
-                <Menu.Item>
-                    {/* <Button.Group size="tiny">
-                        <Button className="signIn-button" onClick={() => this.openModal(0)}>Sign In</Button>
-                        <Button className="signIn-button" onClick={() => this.openModal(1)}>Sign Up</Button>
-                    </Button.Group> */}
                     <Menu.Item className="item fresheats-brown-color" onClick={() => this.openModal(0)}>Sign In</Menu.Item>
-                    {/* <Item onClick={() => this.openModal(1)}>Sign Up</Item> */}
-                </Menu.Item>
+                    <Menu.Item className="item fresheats-brown-color" onClick={() => this.openModal(1)}>Sign Up</Menu.Item>
             </React.Fragment>
         )
     }
 }
-
 export default AuthLayout

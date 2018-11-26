@@ -5,9 +5,13 @@
 .menu-img{
     width: 400px !important;
     height: 400px !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
 }
 .menu-modal-content.content{
     padding: 0% !important;
+    /* overflow: hidden; */
 }
 .ui.header:first-child{
     margin-top: 1rem !important;
@@ -19,10 +23,49 @@
     align-items: center;
 }
 
-.menuCard .availabilityLabel{
+.availabilityLabel{
     position: absolute;
-    top: 14px;
-    right: 14px;
+    bottom : 10px;
+    right: 10px;
+}
+/* padding on menu small device */
+/* .ui.modal>.content {
+    padding: 0 !important;
+} */
+
+.ui.modal>.content .description {
+    padding: 0px !important
+}
+
+.menu-modal-content .description{
+    height: 400px;
+    position: relative;
+}
+
+.menu-modal-content .header-container{
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width: calc(100% - 28px);
+    border-bottom: 1px solid lightgray !important; 
+    margin: 0 14px 0 14px  !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.no-border{
+    border-top: 0 !important;
+}
+
+.menu-modal-content .desc-conatiner{
+    height: 350px;
+    margin-top: 50px;
+    overflow: auto;
+    padding: 14px !important;
+}
+
+.menuCardImage-p{
+    position: relative;
 }
 
 .menuCardImage {
@@ -30,6 +73,8 @@
     background-position: center !important;
 	background-repeat: no-repeat !important;
     background-size: cover !important;
+
+    /* filter: grayscale(100%); */
 }
 
 .menu-card-group {
@@ -103,7 +148,8 @@
 }
 .ingredient-styling{
     background-color: #f1e7dc !important;
-    padding: 3px 15px !important;
+    padding: 4px 15px !important;
+    margin: 0 4px 4px 0 !important;
     font-weight: normal !important;
 }
 .food-price{
@@ -144,3 +190,26 @@
 .ui.modal>.close{
     color: #c59c70 !important;
 }
+
+@media ( max-width: 480px) {
+    .menu-img{
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    
+}
+
+@media (min-width: 991px) and (max-width: 1200px) {
+    
+}
+
+@media (min-width: 1201px) {
+    
+}
+

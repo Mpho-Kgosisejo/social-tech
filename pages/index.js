@@ -1,3 +1,5 @@
+import "../static/css/index.css"
+import "../static/css/style.css"
 import Layout from "../components/Layouts/Layout"
 
 import Slider from "react-slick"
@@ -18,7 +20,7 @@ const settings = {
 const sliderImages = [
     {
         id: 1,
-        url: "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b2794212b6a288644565104/1529320490905/IMG_1057-2.jpg?format=500w",
+        url: "http://7oroof.com/tfdemos/wp-granny/wp-content/uploads/2017/06/granny-bg-parallax9.jpg",
         caption:
         {
             title: "",
@@ -27,7 +29,7 @@ const sliderImages = [
     },
     {
         id: 2,
-        url: " https://www.publicdomainpictures.net/pictures/220000/velka/food-kitchenspices-spoon-wood.jpg",
+        url: "https://www.bistrotheque.com/files/_mediumImage/bistrotheque_menus_1.jpg",
         caption:
         {
             title: "",
@@ -36,7 +38,7 @@ const sliderImages = [
     },
     {
         id: 3,
-        url: "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd3bcdb29d6afc4c3c266/1500304324793/Mondiall-8.jpg?format=750w",
+        url: "http://braesideeatery.com/wp-content/uploads/2015/05/stacks_image_2681.jpg",
         caption:
         {
             title: "",
@@ -45,7 +47,7 @@ const sliderImages = [
     },
     {
         id: 4,
-        url: "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
+        url: "http://theemptyglasslimerick.com/wp-content/uploads/2017/02/Stocksy_txpcd1dc0eemKP100_Medium_1292869.jpg",
         caption:
         {
             title: "",
@@ -55,8 +57,25 @@ const sliderImages = [
 ]
 
 class Index extends React.Component {
-    componentDidMount() {
-        this.props.dispatch({ type: "SIDEBAR", payload: false })
+    constructor(props)
+    {
+        super(props)
+    }
+    componentDidMount(){
+        setTimeout(() => {
+            this.props.dispatch({type: "SIDEBAR", payload: false})
+            this.props.dispatch({type: "PAGE", payload: "index"})
+            window.scrollTo({
+                top: 1,
+                behavior: "smooth"
+            })
+            setTimeout(() =>{
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                })
+            }, 50)
+        }, 50) 
     }
 
     render() {
@@ -66,7 +85,7 @@ class Index extends React.Component {
                     <Slider {...settings} className="de-slider">
                         {sliderImages.map(image => (
                             <div key={image.id} className="de-slider-item">
-                                <div key={image.key} className="slider-bg" style={{ backgroundImage: `url(${image.url})` }}>
+                                <div key={image.key} className="slider-bg" style={{ background : `url(${image.url})` }}>
                                     <div className="slider-dimmer">
                                         <div className="slider-item">
                                             <Container>
@@ -84,7 +103,7 @@ class Index extends React.Component {
                 <div className="static-caption">
                         <Container>
                             <Header as="h1">Fresh Eats</Header>
-                            <Header as="h5">Fresh eats something fresh all the time...</Header>
+                            <Header as="h5">something fresh all the time...</Header>
                         </Container>
                 </div>
                 </div>

@@ -26,6 +26,9 @@
       height: 60vh;
       width: 100%;
   }
+  .border-card{
+      border-radius: 0 !important;
+  }
   
   .slides{
       position: relative;

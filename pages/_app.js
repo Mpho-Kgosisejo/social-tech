@@ -12,7 +12,6 @@ export default class MyApp extends App {
     constructor(props){
         super(props)
         
-
         this.state = {
             test: "Hello NextJS!",
             root_loading: true,
@@ -28,6 +27,21 @@ export default class MyApp extends App {
             login: {},
             isSidebarOpen: false,
             main_layout_calculations: {},
+            active_page: "",
+            menu: {
+                index: 0,
+                data: []
+            },
+            cart: {
+                details: {
+                    itemsCount: 0,
+                    totalItemsCount: 0,
+                    subTotal: 0,
+                    total: 0,
+                    tax: 0
+                },
+                items: []
+            },
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
@@ -63,7 +77,7 @@ export default class MyApp extends App {
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)
         }
-        // console.log("_app.getInitialProps():", pageProps)
+        // console.log("_app.getInitialProps():", Component)
         return ({pageProps})
     }
 

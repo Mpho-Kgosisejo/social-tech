@@ -6,7 +6,7 @@ class IndexBanner extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <IndexBannerHeader desc="What's trending 👅 " header="Today's speciality" image="http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg" />
+                <IndexBannerHeader desc="What's trending" header="Today's speciality" image="http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg" />
                 <div className="index-banner">
                     <div className="index-banner-container">
                         <Grid columns="equal">

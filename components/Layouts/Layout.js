@@ -1,5 +1,5 @@
 import Head from "next/head"
-import {Container, Sidebar, Menu, Icon, Responsive, Visibility, Dimmer} from "semantic-ui-react"
+import {Container, Sidebar, Menu, Icon, Responsive, Visibility, Dimmer, PlaceholderLine} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -9,7 +9,9 @@ import {LeftComputerNav} from "./Nav"
 
 import "../../static/css/style.css"
 import "../../static/css/account.css"
-
+import "../../static/css/gallery.css";
+import "../../static/css/menu.css";
+import "../../static/css/cart.css"
 
 const handleUpdateLayout = ({calculations, state}) => {
     const {dispatch} = state
@@ -43,7 +45,7 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
         <ContextAPI.Consumer>
             {({state}) => (
                 <>
-                    {includeNav && <Nav />}
+                    {!state.root_loading ? includeNav && <Nav /> : <PlaceholderLine/>}
                 <Sidebar.Pushable>
                     {/* <Responsive maxWidth={991} as={React.Fragment}> */}
                     <Sidebar
@@ -70,7 +72,7 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                     
                                 {includeContainer ? <Container className="childLayout" children={children} /> : children}
 
-                                {includeFooter && <Container  className="childLayout"><Footer /></Container>}
+                                {includeFooter && <Footer />}
                             </div>
                         </Visibility>
                         <Dimmer active={state.isSidebarOpen} onClickOutside={() => state.dispatch({type: "SIDEBAR"})}  />
@@ -81,5 +83,4 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
         </ContextAPI.Consumer>
     </React.Fragment>
 )
-
 export default Layout
