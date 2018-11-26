@@ -75,8 +75,6 @@ const API = {
             }
             return (
                 axios.get(`${Config.get("api.endpoint")}/menus`)
-                .then(res => res)
-                .catch(err => err.response)
             )
         },
         menu_products : () => {
@@ -93,6 +91,21 @@ const API = {
             }
             return (
                 axios.get(`${Config.get("api.endpoint")}/menus/menu-categories`)
+            )
+        },
+        upload_product : (uploadBody) => {
+            const fileData = new FormData()
+            fileData.append('name', uploadBody.name)
+            fileData.append('description', uploadBody.description)
+            fileData.append('price', uploadBody.price)
+            fileData.append('available', uploadBody.available)
+            fileData.append('ingredients', uploadBody.ingredients)
+            fileData.append('menuCategoryId', uploadBody.menuCategoryId)
+            fileData.append('productImage',uploadBody.image, uploadBody.image.name)
+            return (
+                axios.post(`${Config.get("api.endpoint")}/products`, fileData)
+                .then(res => res)
+                .catch(err => err.response)
             )
         }
     },

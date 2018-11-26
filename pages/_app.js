@@ -6,6 +6,7 @@ import prodConfig from "../src/config/prodConfig"
 
 import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
+import axios from 'axios'
 import {getLogin} from "../src/providers/LoginSession"
 
 export default class MyApp extends App {
@@ -63,6 +64,8 @@ export default class MyApp extends App {
         const login = getLogin()
 
         if (process.browser){
+            axios.defaults.headers.authorization = `Bearer ${login.token}`
+
             this.setState({
                 ...this.state,
                 root_loading: false,

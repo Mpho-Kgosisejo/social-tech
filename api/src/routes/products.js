@@ -2,6 +2,7 @@ import express from "express"
 
 import Product from "../models/Product"
 import {multerUpload} from "../utils/multerImageHandler"
+import checkAuth from "../middleware/checkAuth"
 
 const router  = express.Router()
 
@@ -42,10 +43,9 @@ router.get("/:id", (req, res) => {
     })
 })
 
-router.post("/", multerUpload.single('productImage'), (req, res) => {
+router.post("/", checkAuth, multerUpload.single('productImage'), (req, res) => {
     const {price, available, name, description, menuCategoryId, ingredients} = req.body
     const image =  `${process.env.HOST}/${req.file.path}`
-    console.log(image)
     const newProduct = new Product({
         price,
         available,
@@ -55,6 +55,7 @@ router.post("/", multerUpload.single('productImage'), (req, res) => {
         menuCategoryId,
         ingredients
     })
+
 
     newProduct.save().then(product => {
         res.status(200).json({

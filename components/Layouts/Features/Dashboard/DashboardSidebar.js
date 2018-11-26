@@ -2,7 +2,7 @@ import React from 'react'
 import { Icon, Menu, Sidebar, Dropdown, Divider, Container } from 'semantic-ui-react'
 import "../../../../static/css/dashboard.css"
 import DashboardMainPage from './DashboardPages/DashboardMainPage';
-import DashboardMenuPage from './DashboardPages/DashboardMenuPage';
+import DashboardMenuPage from './DashboardPages/DashBoardMenuPage/DashboardMenuPage';
 import DashboardAboutsPage from './DashboardPages/DashboardAboutsPage'
 import DashboardOrdersPage from './DashboardPages/DashboardOrdersPage'
 import { RightNav } from '../../Nav';
