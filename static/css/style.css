@@ -27,6 +27,7 @@
 .appNav{
     height: 58px;
     /* background-color: #000 !important; */
+    transition: ease-in-out .25s !important;
 }
 
 .ui.labeled.icon.menu .item>.icon:not(.dropdown).cart-icon{
@@ -39,6 +40,12 @@
 .nav-logo{
     font-size: 20px !important;
     padding-top: 20px !important;
+}
+.appNav.transparent .menu.profile{
+    background: transparent !important;
+    border: 1px solid #c59c70 !important;
+    border-top: 0 !important;
+
 }
 
 .ui.menu .item:before
@@ -147,10 +154,6 @@
 }
 
  /*#endregion */
-
- .ui.secondary.pointing.menu{
-    /* overflow: auto; */
- }
 
  /*#region Footer styling */
 
@@ -416,7 +419,7 @@
     height: 100%;
     position: relative;
 
-    background-color: rgba(0, 0, 0, .25);
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .slider-container h1, .slider-container h5{
@@ -882,18 +885,6 @@
         /* height: 412px; */
         margin: 0 13px;
         padding: 0 15px;
-    }
-
-    .index-banner-row
-    {
-        /* margin: -15px; */
-        /* height: 412px; */
-    }
-
-    .index-banner-content
-    {
-        /* margin-top: 60px; */
-        /* height: 240px; */
     }
 
     .index-banner-content-subtitle

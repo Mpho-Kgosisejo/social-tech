@@ -27,6 +27,16 @@ const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
 
 const ResponsiveFragmentBugFix = () => (<></>)
 
+const pushSideBar =({dispatch}) =>
+{
+    dispatch({ type: "SIDEBAR" })
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    })
+}
+
 const RightNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
@@ -48,7 +58,7 @@ const RightNav = () => (
                     // pointing='top left'
                     // icon={null}
                     >
-                        <Dropdown.Menu className="fresheats-light-green-bg">
+                        <Dropdown.Menu className="profile fresheats-light-green-bg">
                             <Link href="/account" prefetch passHref>
                                 <Menu.Item as="a">
                                     <Icon name="user" />
@@ -72,7 +82,7 @@ const LeftTabletNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
-                <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({ type: "SIDEBAR" })}>
+                <Menu.Item as="a" className="fresheats-brown-color" onClick={() => pushSideBar({dispatch: state.dispatch}) }>
                     {state.isSidebarOpen ? <Icon name="close" /> : <Icon name="bars" />}
                 </Menu.Item>
             </React.Fragment>
@@ -149,7 +159,7 @@ const LeftNav = () => (
 const Nav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
-            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible && state.active_page === "index") ? "transparent" : ""}`}>
+            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${state.isSidebarOpen && "is-sidebar-open"} ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible && state.active_page === "index") ? "transparent" : ""}`}>
                 <Container className="nav-container">
                     <React.Fragment>
                         <LeftNav />

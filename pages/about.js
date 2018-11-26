@@ -178,7 +178,7 @@ class About extends React.Component {
                                         onChange={(e, {value}) => this.changeTab(state.about, value)}
                                         options={[
                                             {
-                                                text: "Our Storyes",
+                                                text: "Our Story",
                                                 value: 0
                                             },
                                             {

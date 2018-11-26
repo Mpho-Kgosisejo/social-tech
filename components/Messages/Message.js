@@ -15,6 +15,9 @@ export const WarningMessage = ({header = "", icon= null, message}) => (
 export const InfoMessage = ({header = "", icon= null, message}) => (
     <Message info header={header} icon={icon} content={message} />
 )
+export const GreyMessage = ({header = "", icon= null, message}) => (
+    <Message header={header} icon={icon} content={message} />
+)
 
 export const MainMessage = ({type = "info", icon= null, header = "", message}) => {
     if (type === "error"){

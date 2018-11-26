@@ -46,7 +46,7 @@ class IndexSteps extends React.Component {
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>
-                            <Button className="index-step-get-started-btn" basic color='green'>
+                            <Button href="/menu" className="index-step-get-started-btn" basic color='green'>
                                 GET STARTED
                             </Button>
                         </div>

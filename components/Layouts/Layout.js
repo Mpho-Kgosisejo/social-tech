@@ -69,8 +69,6 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                             <div className="mainLayout">
                                 {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
                     
-                                {!state.root_loading && includeNav && <Nav />}
-                    
                                 {includeContainer ? <Container className="childLayout" children={children} /> : children}
 
                                 {includeFooter && <Footer />}
