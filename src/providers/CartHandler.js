@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken"
+import Config from "react-global-configuration"
 
 export const add = ({state, new_item}) => {
     for (var i in state.cart.items) {
@@ -64,5 +66,21 @@ export const details = ({cart}) => {
         data.tax = (42 + 0)
         data.total = (data.subTotal + data.tax)
     }
+    store_cart({cart})
     return (data)
+}
+
+const store_cart = ({cart}) => {
+    const jwtCart = jwt.sign({items: cart}, Config.get("jwt.secret"))
+    localStorage.setItem(Config.get("jwt.cartKey"), jwtCart)
+}
+
+export const restore_cart = ({dispatch}) => {
+    try {
+        const cartDecode = jwt.verify(localStorage.getItem(Config.get("jwt.cartKey")), Config.get("jwt.secret"))
+        
+        setTimeout(() => {
+            dispatch({type: "CART", payload: cartDecode.items})
+        }, 10)
+    } catch (error) {}
 }

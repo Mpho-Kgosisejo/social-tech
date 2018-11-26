@@ -5,7 +5,6 @@ import Layout from "../components/Layouts/Layout"
 import TableItem from "../components/Layouts/Features/Cart/TableItem"
 import { CartTablePlaceholder } from "../components/utils/Placeholders";
 import ContextAPI from "../src/config/ContextAPI";
-import { details } from "../src/providers/CartHandler";
 
 const OrderSummary = () => (
     <ContextAPI.Consumer>
