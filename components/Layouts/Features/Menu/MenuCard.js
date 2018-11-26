@@ -94,34 +94,36 @@ class menu_card extends React.Component {
                         </div>
                     </Modal.Description>
                 </Modal.Content>
-                <Modal.Actions className="no-border">
-                <ContextAPI.Consumer>
-                        {({state}) => (
-                            <>
-                                {!cartHandler.isInCart({cart: state.cart.items, item: {_id}}) && (
-                                    <div className="quantity-div">
-                                        <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
-                                            onClick={() => { this.doDecrement() }} />
-                                        <Input className="quantity-input" value={this.state.value} disabled />
-                                        <Button size="mini" circular icon='add' className="increase-button dec-inc" onClick={() => { this.doIncrement() }} />
-                                    </div>
-                                )}
-
-                                {cartHandler.isInCart({cart: state.cart.items, item: {_id}}) ?
-                                    <Button className="add-button" size="tiny" onClick={() => this.removeFromCart(state)}>
-                                        <Icon name='shop' />
-                                        Remove from Cart
-                                    </Button>
-                                    :
-                                    <Button className="add-button" size="tiny" onClick={() => this.addToCart(state)}>
-                                        <Icon name='shop' />
-                                        Add to Cart
-                                    </Button>
-                                }
-                            </>
-                        )}
-                    </ContextAPI.Consumer>
-                </Modal.Actions>
+                {available && (
+                    <Modal.Actions className="no-border">
+                    <ContextAPI.Consumer>
+                            {({state}) => (
+                                <>
+                                    {!cartHandler.isInCart({cart: state.cart.items, item: {_id}}) && (
+                                        <div className="quantity-div">
+                                            <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
+                                                onClick={() => { this.doDecrement() }} />
+                                            <Input className="quantity-input" value={this.state.value} disabled />
+                                            <Button size="mini" circular icon='add' className="increase-button dec-inc" onClick={() => { this.doIncrement() }} />
+                                        </div>
+                                    )}
+    
+                                    {cartHandler.isInCart({cart: state.cart.items, item: {_id}}) ?
+                                        <Button className="add-button" size="tiny" onClick={() => this.removeFromCart(state)}>
+                                            <Icon name='shop' />
+                                            Remove from Cart
+                                        </Button>
+                                        :
+                                        <Button className="add-button" size="tiny" onClick={() => this.addToCart(state)}>
+                                            <Icon name='shop' />
+                                            Add to Cart
+                                        </Button>
+                                    }
+                                </>
+                            )}
+                        </ContextAPI.Consumer>
+                    </Modal.Actions>
+                )}
             </Modal>
         )
     }
