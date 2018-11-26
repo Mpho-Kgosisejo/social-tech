@@ -46,7 +46,7 @@ const Footer = () => (
                 <Grid className="footer_social_grid" columns="equal">
                     <Grid.Row className="footer_social_row">
                         <Grid.Column className="social_media_icons">
-                            <List horizontal relaxed>
+                            <List horizontal>
                                 <List.Item>
                                     <Icon name="instagram" size="big"/>
                                 </List.Item>
