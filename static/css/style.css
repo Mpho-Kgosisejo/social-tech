@@ -1,5 +1,7 @@
 /* Global styling */
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Raleway:100');
+@import url('https://fonts.googleapis.com/css?family=Yeseva+One');
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script');
 @import url('https://fonts.googleapis.com/css?family=Great+Vibes');
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet');
@@ -447,6 +449,7 @@
 .slider-container .de-slider .slider-item .header{
     text-align: right;
     padding: 0 25px;
+    color : rgb(212, 195, 176) !important;
 }
 
 .slider-container .de-slider .slider-item h1{
@@ -475,20 +478,22 @@
 }
 
 .slider-container .static-caption .header{
-    color: rgb(212, 195, 176);
-    /* text-align: center; */
     font-weight: 500;
-    font-family: 'Raleway', sans-serif;
 }
 
 .slider-container .static-caption h1{
     font-size: 6em;
     margin-bottom: 0;
+    font-family: 'Yeseva One' !important;
+    color: #c59c70 !important;
 }
 
 .slider-container .static-caption h5{
     margin-top: 0;
     font-size: 2.8em;
+    font-family: 'Raleway' !important;
+    font-weight: 100 !important;
+    color : rgb(212, 195, 176) !important;
 }
 .slick-dots li button:before
 {
@@ -1061,13 +1066,17 @@
 /* #endregion */
 
 
-@media ( max-width: 480px) {
+@media ( max-width: 480px) and (orientation: landscape) {
     .breakpoints-test{
         background: #5999c2!important;
     }
 
     .about-content .dropdown{
         display: block !important;
+    }
+    .slider-container .de-slider .slider-item .header{
+        font-size: 0;
+        /* bottom: 0; */
     }
     
     .about-content .about-tab .menu{
@@ -1109,14 +1118,6 @@
  
     .slider-container .de-slider .slider-item .quotes{
         width: 100%;
-    }
-
-    .slider-container .static-caption h1{
-        font-size: 3.5em;
-    }
-    
-    .slider-container .static-caption h5{
-        font-size: 1.5em;
     }
 
     .slider-container .de-slider .slider-item h5{
@@ -1212,10 +1213,14 @@
     }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
+@media (min-width: 481px) and (max-width: 768px) and (orientation: landscape) {
 
     .about-content .dropdown{
         display: block !important;
+    }
+    .slider-container .de-slider .slider-item .header{
+        font-size: 0;
+        /* bottom: 0; */
     }
     
     .about-content .about-tab .menu{
@@ -1674,6 +1679,16 @@
  .breakpoints-test{
      background: #e8d692 !important;
  }
+}
+
+@media (min-width: 769px) and (max-width: 991px) and (orientation: landscape){
+    .breakpoints-test{
+        background: #df6656 !important;
+    }
+    .slider-container .de-slider .slider-item .header{
+        font-size: 0;
+        /* bottom: 0; */
+    }
 }
 
 @media (min-width: 1201px) {
