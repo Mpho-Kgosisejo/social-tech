@@ -27,6 +27,7 @@
 .appNav{
     height: 58px;
     /* background-color: #000 !important; */
+    transition: ease-in-out .25s !important;
 }
 
 .ui.labeled.icon.menu .item>.icon:not(.dropdown).cart-icon{
