@@ -18,6 +18,10 @@
     text-align: center !important;
 }
 
+.about-content .dropdown{
+    display: none !important;
+}
+
 /*#region Navbar styling */
 
 .appNav{
@@ -143,62 +147,6 @@
 }
 
  /*#endregion */
-
- /* #region Alert-portal */
-
-/* style={{ left: '5%', top: '5%', position: 'fixed', zIndex: 1000 }} */
-
-.alert-portal{
-    position: fixed !important;
-    z-index: 1000;
-    top: 42px;
-    left: 42px;
-
-    border-radius: 0 !important;
-    font-weight: 100 !important;
-    font-size: .95em !important;
-    
-    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.25) !important;
-    border: 0 !important;
-    background: rgb(40, 40, 46) !important;
-    transition: ease 2s !important;
-}
-
-.alert-portal, .alert-portal *{
-    color: rgb(196, 196, 196) !important;
-    font-weight: 100 !important;
-}
-
-.alert-portal.success, .alert-portal.success *{
-    background: #8cd29e !important;
-    color: #39804b !important;
-}
-
-.alert-portal.success .divider{
-    border-bottom: 1px solid #3e8a51 !important;
-}
-
-.alert-portal.error, .alert-portal.error *{
-    background: #ce7d7a !important;
-    color: #8f4b49 !important;
-}
-
-.alert-portal.error .divider{
-    border-bottom: 1px solid #98504d !important;
-}
-
-.alert-portal .divider{
-    margin: 10px 0;
-    border: 0px #fff !important;
-    border-bottom: 1px solid rgb(106, 106, 106) !important;
-}
-
-.alert-portal .header{
-    margin: 0;
-    font-size: 1.4em !important;    
-}
-
- /* #endregion */
 
  .ui.secondary.pointing.menu{
     /* overflow: auto; */
@@ -1127,6 +1075,14 @@
         background: #5999c2!important;
     }
 
+    .about-content .dropdown{
+        display: block !important;
+    }
+    
+    .about-content .about-tab .menu{
+        display: none !important;
+    }
+
     .header-main-div
     {
         margin-top: 0px !important;
@@ -1266,6 +1222,14 @@
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
+
+    .about-content .dropdown{
+        display: block !important;
+    }
+    
+    .about-content .about-tab .menu{
+        display: none !important;
+    }
 
     .mainLayout
     {
