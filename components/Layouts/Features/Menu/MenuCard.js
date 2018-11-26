@@ -74,6 +74,11 @@ class menu_card extends React.Component {
                     {/* <Image className="menu-img" size='large' src={image} /> */}
                     <Image className="menu-img">
                         <div className="menu-img" style={{background: `url(${image})`}}></div>
+                        {available ? null :
+                        <Label className="availabilityLabel" style={{ background: MILKY_RED }} horizontal>
+                            Unavailable
+                        </Label>
+                    }
                     </Image>
                     <Modal.Description>
                         <div className="header-container">

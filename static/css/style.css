@@ -154,10 +154,6 @@
 
  /*#endregion */
 
- .ui.secondary.pointing.menu{
-    /* overflow: auto; */
- }
-
  /*#region Footer styling */
 
  .footer
@@ -1312,18 +1308,6 @@
         /* height: 412px; */
         margin: 0 13px;
         padding: 0 15px;
-    }
-
-    .index-banner-row
-    {
-        /* margin: -15px; */
-        /* height: 412px; */
-    }
-
-    .index-banner-content
-    {
-        /* margin-top: 60px; */
-        /* height: 240px; */
     }
 
     .index-banner-content-subtitle
