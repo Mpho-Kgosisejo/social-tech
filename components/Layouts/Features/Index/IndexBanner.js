@@ -19,7 +19,7 @@ class IndexBanner extends React.Component {
                                         <p className="index-banner-content-desc">Monkfish, onion, paella rice, garlic & smoked paprika, creamy chesapeake crab dip with artichoke, baked and topped with cheddar cheese, with crusty bread for dipping.</p>
                                     </div>
                                     <div className="index-banner-btn  align-iterms-center">
-                                        <Button className="btn-color-dfm" basic>
+                                        <Button className="btn-color-dfm" basic >
                                             DISCOVER FULL MENU
                                         </Button>
                                     </div>
