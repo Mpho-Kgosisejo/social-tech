@@ -2,6 +2,7 @@ import React from 'react'
 import api from "../../../../../../src/providers/APIRequest"
 import MenuUploadForm from './components/MenuUploadForm'
 import MenuListEdit from './components/MenuListEdit'
+import CategoryListEdit from './components/CategoryListEdit'
 
 class DashboardMenuPage extends React.Component {
 
@@ -65,6 +66,7 @@ class DashboardMenuPage extends React.Component {
         const { products, categories} = this.state
         return ( 
           <div> { /* ========================= */ } 
+            <CategoryListEdit categories={categories} products={products}/>
             <MenuUploadForm categories={categories} />
             <MenuListEdit products={products} />
           </div>

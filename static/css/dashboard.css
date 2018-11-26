@@ -61,3 +61,7 @@
     /* width: 150px !important; */
     /* height: 100px !important; */
 }
+
+.category-table-add-row {
+    width: 100px !important;
+}

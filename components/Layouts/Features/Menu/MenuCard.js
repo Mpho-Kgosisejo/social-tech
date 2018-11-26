@@ -84,20 +84,20 @@ class menu_card extends React.Component {
                             <Header className="header-sub-head">How It Is Prepared</Header>
                             <p>{description}</p>
                             <Header className="header-sub-head">The Ingredients</Header>
-                            {ingredients.map(item => {
+                            {/* {ingredients.map(item => {
                                 return (
                                     <Label key={item} className="ingredient-styling">
                                         {item}
                                     </Label>
                                 )
-                            })}
+                            })} */}
                         </div>
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions className="no-border">
                 <ContextAPI.Consumer>
                         {({state}) => (
-                            <>
+                            <div>
                                 {!cartHandler.isInCart({cart: state.cart.items, item: {_id}}) && (
                                     <div className="quantity-div">
                                         <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
@@ -118,7 +118,7 @@ class menu_card extends React.Component {
                                         Add to Cart
                                     </Button>
                                 }
-                            </>
+                            </div>
                         )}
                     </ContextAPI.Consumer>
                 </Modal.Actions>
