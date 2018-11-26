@@ -1,4 +1,4 @@
-import { Tab, Header, Icon, Divider, Message } from "semantic-ui-react"
+import { Tab, Header, Icon, Divider, Message, Dropdown } from "semantic-ui-react"
 
 import {PlaceholderMediumParagraph} from "../components/utils/Placeholders"
 import Layout from "../components/Layouts/Layout"
@@ -9,13 +9,13 @@ import AboutFAQs from "../components/Layouts/Features/About/AboutFAQ"
 import api from "../src/providers/APIRequest";
 import ContextAPI from "../src/config/ContextAPI";
 import { isEmptyObj } from "../src/utils/Objs"
+import { RouterHandler } from "../components/Layouts/Features/About/Helper";
 
 class About extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            index: 0,
             panes: [
                 {
                     menuItem: 'Our Storyes', render: () => <Tab.Pane className="zero-border">
@@ -106,11 +106,11 @@ class About extends React.Component {
         }
     }
 
-    getData = async () => {
+    getData = async ({index}) => {
         const data = await api.web.about()
 
         if (data.status === 200) {
-            this.props.dispatch({ type: "ABOUT", payload: {index: this.state.index, ...data.data} })
+            this.props.dispatch({ type: "ABOUT", payload: {index, ...data.data} })
             this.setState({ loading: false })
         } else {
             this.setState({ loading: false })
@@ -120,21 +120,20 @@ class About extends React.Component {
     componentDidMount() {
         const { tab } = this.props.router.query
         this.props.dispatch({type: "SIDEBAR", payload: false})
-        this.getData()
-
+        
         if (tab) {
             switch (tab) {
                 case "ourstory":
-                    this.setState({ index: 0 })
+                    this.getData({index: 0})
                     break;
                 case "ourchefs":
-                    this.setState({ index: 1 })
+                    this.getData({index: 1})
                     break;
                 case "ourcontacts":
-                    this.setState({ index: 2 })
+                    this.getData({index: 2})
                     break;
                 case "ourfaqs":
-                    this.setState({ index: 3 })
+                    this.getData({index: 3})
                     break;
             }
         }
@@ -143,6 +142,11 @@ class About extends React.Component {
     changeTab = (stateAbout, index) => {
         this.setState({ index })
         this.props.dispatch({type: "ABOUT", payload: {...stateAbout, index}})
+        RouterHandler({index})
+    }
+
+    test = (stateAbout, index) => {
+        console.log(">>", index)
     }
 
     render() {
@@ -156,13 +160,44 @@ class About extends React.Component {
                     {({state}) => (
                         <React.Fragment>
                             <div className="aboutsPageWelcomeMessage">
-                                <Header as='h1' icon textAlign='center'>
-                                    <Icon name='food' circular />
+                                <Header as='h1' textAlign='center'>
                                     <Header.Content>Welcome to Fresh Eats</Header.Content>
                                 </Header>
                             </div>
+
                             <Divider hidden />
-                            {loading ? <PlaceholderMediumParagraph />  : <Tab menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} />}
+
+                            {loading ?
+                                <PlaceholderMediumParagraph />
+                                :
+                                <div className="about-content">
+                                    <Dropdown
+                                        fluid
+                                        selection
+                                        defaultValue={state.about.index}
+                                        onChange={(e, {value}) => this.changeTab(state.about, value)}
+                                        options={[
+                                            {
+                                                text: "Our Storyes",
+                                                value: 0
+                                            },
+                                            {
+                                                text: "Our Chefs",
+                                                value: 1
+                                            },
+                                            {
+                                                text: "Contact Us",
+                                                value: 2
+                                            },
+                                            {
+                                                text: "FAQs",
+                                                value: 3
+                                            }
+                                        ]}
+                                    />
+                                    <Tab className="about-tab" menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} />
+                                </div>
+                            }
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>
