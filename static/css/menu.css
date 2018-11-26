@@ -28,10 +28,10 @@
     bottom : 10px;
     right: 10px;
 }
-
-.ui.modal>.content {
+/* padding on menu small device */
+/* .ui.modal>.content {
     padding: 0 !important;
-}
+} */
 
 .ui.modal>.content .description {
     padding: 0px !important
@@ -47,7 +47,7 @@
     top: 0;
     height: 50px;
     width: calc(100% - 28px);
-    border-bottom: 1px solid lightgray; 
+    border-bottom: 1px solid lightgray !important; 
     margin: 0 14px 0 14px  !important;
     overflow: hidden;
     white-space: nowrap;

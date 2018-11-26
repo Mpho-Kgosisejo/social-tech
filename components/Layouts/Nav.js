@@ -65,17 +65,13 @@ const RightNav = () => (
             </React.Fragment>
         )}
     </ContextAPI.Consumer>
+
 )
 
 const LeftTabletNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
-                {/* <Link href="/" prefetch passHref>
-                    <Menu.Item as="a" className="fresheats-brown-color">
-                        <img src="../static/imgs/Fresh-Eats-2.png"></img>
-                    </Menu.Item>
-                </Link> */}
                 <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({ type: "SIDEBAR" })}>
                     {state.isSidebarOpen ? <Icon name="close" /> : <Icon name="bars" />}
                 </Menu.Item>
@@ -88,9 +84,9 @@ export const LeftComputerNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
-                 <Link href="/" prefetch passHref>
-                    <Menu.Item as="a" className="fresheats-brown-color nav-logo">
-                        <img src="../static/imgs/Fresh-Eats-2.png"></img>
+                <Link href="/" prefetch passHref>
+                    <Menu.Item className="fresheats-brown-color nav-logo">
+                        <img src="../static/imgs/Fresh-Eats-1.png"></img>
                     </Menu.Item>
                 </Link>
                 <Link href="/" prefetch passHref>
@@ -153,7 +149,7 @@ const LeftNav = () => (
 const Nav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
-            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible) ? "transparent" : ""}`}>
+            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible && state.active_page === "index") ? "transparent" : ""}`}>
                 <Container className="nav-container">
                     <React.Fragment>
                         <LeftNav />
@@ -182,6 +178,3 @@ const Nav = () => (
     </ContextAPI.Consumer>
 )
 export default Nav
-
-
-//add transparent styles to new file index-transparent.css to layout

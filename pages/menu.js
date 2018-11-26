@@ -6,6 +6,7 @@ import Layout from "../components/Layouts/Layout"
 import MenuTab from "../components/Layouts/Features/Menu/MenuTab"
 import api from "../src/providers/APIRequest"
 import { MainMessage } from "../components/Messages/Message";
+import { PlaceholderSmallParagraphImage, PlaceHolderMenu } from "../components/utils/Placeholders";
 
 class Menu extends React.Component {
 
@@ -42,6 +43,8 @@ class Menu extends React.Component {
     componentDidMount() {
         const { tab } = this.props.router.query
         this.props.dispatch({ type: "SIDEBAR", payload: false })
+        this.props.dispatch({type: "PAGE", payload: "menu"})
+
 
         this.getMenu(tab)
     }
@@ -64,7 +67,7 @@ class Menu extends React.Component {
                         </div>
                         <Divider />
                         {
-                            this.state.isLoadingData ? <Loader active inline='centered'>Loading Menu</Loader> :
+                            this.state.isLoadingData ? <PlaceHolderMenu active inline='centered'>Loading Menu</PlaceHolderMenu> :
                                 <ContextAPI.Consumer>
                                     {({ state }) => (
                                         state.menu.data.length > 0 ? <MenuTab /> : <MainMessage type="error" icon="exclamation" header="Menu Error" message={this.state.errorMessage} />

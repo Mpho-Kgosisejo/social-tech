@@ -1,5 +1,5 @@
 import Head from "next/head"
-import {Container, Sidebar, Menu, Icon, Responsive, Visibility, Dimmer} from "semantic-ui-react"
+import {Container, Sidebar, Menu, Icon, Responsive, Visibility, Dimmer, PlaceholderLine} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -46,7 +46,7 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
         <ContextAPI.Consumer>
             {({state}) => (
                 <>
-                    {includeNav && <Nav />}
+                    {!state.root_loading ? includeNav && <Nav /> : <PlaceholderLine/>}
                 <Sidebar.Pushable>
                     {/* <Responsive maxWidth={991} as={React.Fragment}> */}
                     <Sidebar
