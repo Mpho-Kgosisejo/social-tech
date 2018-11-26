@@ -3,11 +3,12 @@
         "dev": "next",
         "build": "next build",
         "start": "next start -p $PORT",
-	"heroku-postbuild": "next build"
+        "heroku-postbuild": "next build"
     },
     "dependencies": {
         "@zeit/next-css": "^1.0.1",
         "axios": "^0.18.0",
+        "common": "^0.2.5",
         "jsonwebtoken": "^8.3.0",
         "morgan": "^1.9.1",
         "next": "^7.0.2",
