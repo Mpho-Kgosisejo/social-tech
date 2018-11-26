@@ -40,6 +40,12 @@
     font-size: 20px !important;
     padding-top: 20px !important;
 }
+.appNav.transparent .menu.profile{
+    background: transparent !important;
+    border: 1px solid #c59c70 !important;
+    border-top: 0 !important;
+
+}
 
 .ui.menu .item:before
 {
@@ -436,7 +442,7 @@
     height: 100%;
     position: relative;
 
-    background-color: rgba(0, 0, 0, .25);
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .slider-container h1, .slider-container h5{

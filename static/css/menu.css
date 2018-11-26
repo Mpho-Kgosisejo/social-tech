@@ -28,10 +28,6 @@
     bottom : 10px;
     right: 10px;
 }
-/* padding on menu small device */
-/* .ui.modal>.content {
-    padding: 0 !important;
-} */
 
 .ui.modal>.content .description {
     padding: 0px !important

@@ -58,7 +58,7 @@ const RightNav = () => (
                     // pointing='top left'
                     // icon={null}
                     >
-                        <Dropdown.Menu className="fresheats-light-green-bg">
+                        <Dropdown.Menu className="profile fresheats-light-green-bg">
                             <Link href="/account" prefetch passHref>
                                 <Menu.Item as="a">
                                     <Icon name="user" />
