@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form} from 'semantic-ui-react'
+import {Form, Button, Divider} from 'semantic-ui-react'
 
 
 class AccountPersonalDetails extends React.Component {
@@ -36,7 +36,12 @@ class AccountPersonalDetails extends React.Component {
                             <label>Bio:</label>
                             <textarea />
                         </Form.Field>
-
+                        <Divider />
+                        <Form.Field>
+                            <label>Password:</label>
+                            <input />
+                        </Form.Field>
+                        <Button type='submit'>Submit</Button>
                     </Form>
                 </div>
             </React.Fragment>
