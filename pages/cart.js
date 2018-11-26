@@ -86,6 +86,8 @@ class Cart extends React.Component {
 
     componentDidMount(){
         this.setState({loading: false})
+
+        this.props.dispatch({type: "SIDEBAR", payload: false})
     }
 
     render(){

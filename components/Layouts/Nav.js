@@ -8,31 +8,21 @@ import { logout } from "../../src/providers/LoginSession"
 import { isEmptyObj } from "../../src/utils/Objs"
 import * as MessageTypes from "../../src/Types/MessageTypes"
 import { LIGHT_RED } from "../../src/Types/ColorsTypes";
+import * as AboutHelper from "./Features/About/Helper"
 
 const handleLogout = (dispatch) => {
     logout()
     Router.push({ pathname: "/" })
     dispatch({ type: "LOGIN", payload: {} })
     dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
+    dispatch({type: "SIDEBAR", payload: false})
 }
 
 const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
     dispatch({ type: "ABOUT", payload: { ...aboutState, index } })
+    dispatch({type: "SIDEBAR", payload: false})
 
-    switch (index) {
-        case 0:
-            Router.replace({ pathname: "/about", query: { tab: 'ourstory' } })
-            break;
-        case 1:
-            Router.replace({ pathname: "/about", query: { tab: 'ourchefs' } })
-            break;
-        case 2:
-            Router.replace({ pathname: "/about", query: { tab: 'ourcontacts' } })
-            break;
-        case 3:
-            Router.replace({ pathname: "/about", query: { tab: 'ourfaqs' } })
-            break;
-    }
+    AboutHelper.RouterHandler({index})
 }
 
 const ResponsiveFragmentBugFix = () => (<></>)

@@ -36,7 +36,7 @@ class menu_tab extends React.Component {
                             <Tab className="centered-element zero-border" activeIndex={state.menu.index} onTabChange={(e, { activeIndex }) => this.handleTabChange({ index: activeIndex, state })} menu={{ pointing: true, secondary: true }} panes={
                                 state.menu.data.map(item => (
                                     item.show ?
-                                        { menuItem: item.title } : console.log("Not showing ", item.title)
+                                        { menuItem: item.title } : null
                                 ))
                             } />
                         </Responsive>
