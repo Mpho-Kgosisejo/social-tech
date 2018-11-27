@@ -121,6 +121,7 @@ class About extends React.Component {
     componentDidMount() {
         const { tab } = this.props.router.query
         this.props.dispatch({type: "SIDEBAR", payload: false})
+        this.props.dispatch({type: "PAGE", payload: "about"})
         
         if (tab) {
             switch (tab) {
