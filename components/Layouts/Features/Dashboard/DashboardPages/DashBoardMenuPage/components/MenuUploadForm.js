@@ -168,7 +168,7 @@ class MenuUploadForm extends React.Component {
               <div className = "menu-upload-header">
                 <h3> Upload Menu </h3> 
               </div> 
-            <div className = "menu-upload-form">
+            <div className = "upload-contents">
 
             <Form>
               <Form.Field error = {!isEmptyObj(errorBody.name)}>
@@ -236,9 +236,9 @@ class MenuUploadForm extends React.Component {
               </div> 
             </div>
             { /* ===================== */ }
-              {/* <pre>{ JSON.stringify(this.state.productUploadBody, null, 2) }</pre> 
+              <pre>{ JSON.stringify(this.state.productUploadBody, null, 2) }</pre> 
               <pre>{ JSON.stringify(this.state.errorBody, null, 2)}</pre> 
-              <pre>{ JSON.stringify(this.state.inputIngredientError, null, 2) }</pre> */}
+              <pre>{ JSON.stringify(this.state.inputIngredientError, null, 2) }</pre>
             </div>
           )
   }

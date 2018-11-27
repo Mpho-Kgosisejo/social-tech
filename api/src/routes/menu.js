@@ -1,6 +1,7 @@
 import express from "express"
 import CategoryModel from "../models/MenuCategory"
 import ProductModel from "../models/Product"
+import checkAuth from "../middleware/checkAuth"
 
 const router  = express.Router()
 
@@ -42,23 +43,6 @@ router.get("/", (req, res) => {
         })
     })
 
-    // MenuModel.find()
-    // .populate("category", "name title show")
-    // .populate("items", "menuCategoryId ingredients description image available price")
-    // .exec()
-    // .then(categories => {
-    //     res.status(200).json({
-    //         categories
-    //     })
-    // })
-    // .catch(err => {
-    //     res.status(404).json({
-    //         error: {
-    //             message : "error getting menu"   
-    //         }
-    //     })
-    // })
-
 })
 
 
@@ -74,14 +58,14 @@ router.get("/menu-categories", (req, res) => {
     .catch(err => {
         res.status(404).json({
             error: {
-                message: "error..."
+                message: err
             }
         })
     })
 })
 
 // this will create a new menu
-router.post("/", (req, res) => {
+router.post("/", checkAuth, (req, res) => {
     const {name, title, show} = req.body
 
     const newMenu = CategoryModel({
@@ -95,10 +79,11 @@ router.post("/", (req, res) => {
         })
     })
     .catch(err => {
-        console.log(err)
-        res.status(500).json({
+        // console.log(err.errors.message)
+
+        res.status(501).json({
             error : {
-                message : "couldnt post this menu category to the database"
+                message : err.errors.message
             }
         })
     });

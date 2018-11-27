@@ -107,7 +107,14 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
-        }
+        },
+        upload_menu : (uploadBody) => {
+            return (
+                axios.post(`${Config.get("api.endpoint")}/menus`, uploadBody)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        } 
     },
     web:{
         about: () => {
