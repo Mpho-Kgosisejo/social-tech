@@ -1,10 +1,11 @@
 .account-header
 {
-    padding: 100px 50px;
+    padding: 50px 50px;
 }
 
 .account-header-container
 {
+    padding: 0 100px;
 }
 
 .account-tabs

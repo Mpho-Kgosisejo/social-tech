@@ -37,6 +37,7 @@ const pushSideBar =({dispatch}) =>
     })
 }
 
+
 const RightNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
@@ -106,7 +107,7 @@ export const LeftComputerNav = () => (
                     <Menu.Item as="a" className="fresheats-brown-color">Menu</Menu.Item>
                 </Link>
                 <Dropdown text='About' className='link item fresheats-brown-color'>
-                    <Dropdown.Menu className="fresheats-light-green-bg">
+                    <Dropdown.Menu className="about fresheats-light-green-bg">
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 0 })}>Our Story</Dropdown.Item>
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 1 })}>Our Chefs</Dropdown.Item>
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 2 })}>Contact Us</Dropdown.Item>

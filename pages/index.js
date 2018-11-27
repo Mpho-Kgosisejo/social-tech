@@ -102,7 +102,7 @@ class Index extends React.Component {
                     </Slider>
                 <div className="static-caption">
                         <Container>
-                            <Header as="h1">fresh eats</Header>
+                            <Header as="h1">fresh eats.</Header>
                             <Header as="h5">Something fresh all the time...</Header>
                         </Container>
                 </div>

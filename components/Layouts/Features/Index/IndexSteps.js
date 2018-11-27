@@ -16,33 +16,33 @@ class IndexSteps extends React.Component {
                             <Header as="h2">Heres how you use it:</Header> */}
                             <Grid columns={4} divided className="index-step-grid">
                                 <Grid.Row>
-                                    <Grid.Column  className="veritcal-stack">
-                                        <div className="index-step-grid-column">
+                                    <Grid.Column  className="index-step-grid-column veritcal-stack">
+                                        {/* <div className=""> */}
                                             <Icon name="laptop" size="huge" />
                                             <Header className="index-step-column-h3" as="h3">Order</Header>
                                             <p className="index-step-column-desc">Choose your favourite options</p>
-                                        </div>
+                                        {/* </div> */}
                                     </Grid.Column>
-                                    <Grid.Column  className="veritcal-stack">
-                                        <div className="index-step-grid-column">
+                                    <Grid.Column  className=" index-step-grid-column veritcal-stack">
+                                        {/* <div className="index-step-grid-column"> */}
                                             <Icon name="payment" size="huge" />
                                             <Header className="index-step-column-h3" as="h3">Billing</Header>
                                             <p className="index-step-column-desc">Enter billing information</p>
-                                        </div>
+                                        {/* </div> */}
                                     </Grid.Column>
-                                    <Grid.Column  className="veritcal-stack">
-                                        <div className="index-step-grid-column">
+                                    <Grid.Column  className="index-step-grid-column veritcal-stack">
+                                        {/* <div className="index-step-grid-column"> */}
                                             <Icon name="truck" size="huge" />
                                             <Header className="index-step-column-h3" as="h3">Shipping</Header>
                                             <p className="index-step-column-desc">Food delivery</p>
-                                        </div>
+                                        {/* </div> */}
                                     </Grid.Column>
-                                    <Grid.Column className="veritcal-stack">
-                                        <div className="index-step-grid-column">
+                                    <Grid.Column className="index-step-grid-column veritcal-stack">
+                                        {/* <div className="index-step-grid-column"> */}
                                             <Icon name="info" size="huge" />
                                             <Header className="index-step-column-h3" as="h3">Confirm</Header>
                                             <p className="index-step-column-desc">'Once delivered confirmation will be sent</p>
-                                        </div>
+                                        {/* </div> */}
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>

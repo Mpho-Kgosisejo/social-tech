@@ -121,6 +121,7 @@ class About extends React.Component {
     componentDidMount() {
         const { tab } = this.props.router.query
         this.props.dispatch({type: "SIDEBAR", payload: false})
+        this.props.dispatch({type: "PAGE", payload: "about"})
         
         if (tab) {
             switch (tab) {
@@ -155,7 +156,9 @@ class About extends React.Component {
 
         return (
             <Layout title="About Us" includeContainer={false}>
-                <PageHeader title="Welcome to Fresh Eats" />
+                <PageHeader 
+                    color="rgb(212, 195, 176)"
+                    title="Welcome to Fresh Eats" />
                 
                 <Container>
                     <ContextAPI.Consumer>
