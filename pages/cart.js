@@ -5,7 +5,6 @@ import Layout from "../components/Layouts/Layout"
 import TableItem from "../components/Layouts/Features/Cart/TableItem"
 import { CartTablePlaceholder } from "../components/utils/Placeholders";
 import ContextAPI from "../src/config/ContextAPI";
-import { details } from "../src/providers/CartHandler";
 
 const OrderSummary = () => (
     <ContextAPI.Consumer>
@@ -86,6 +85,9 @@ class Cart extends React.Component {
 
     componentDidMount(){
         this.setState({loading: false})
+
+        this.props.dispatch({type: "SIDEBAR", payload: false})
+        this.props.dispatch({type: "PAGE", payload: "cart"})
     }
 
     render(){

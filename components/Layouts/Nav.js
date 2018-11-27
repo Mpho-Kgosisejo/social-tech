@@ -8,34 +8,35 @@ import { logout } from "../../src/providers/LoginSession"
 import { isEmptyObj } from "../../src/utils/Objs"
 import * as MessageTypes from "../../src/Types/MessageTypes"
 import { LIGHT_RED } from "../../src/Types/ColorsTypes";
+import * as AboutHelper from "./Features/About/Helper"
 
 const handleLogout = (dispatch) => {
     logout()
     Router.push({ pathname: "/" })
     dispatch({ type: "LOGIN", payload: {} })
     dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
+    dispatch({type: "SIDEBAR", payload: false})
 }
 
 const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
     dispatch({ type: "ABOUT", payload: { ...aboutState, index } })
+    dispatch({type: "SIDEBAR", payload: false})
 
-    switch (index) {
-        case 0:
-            Router.replace({ pathname: "/about", query: { tab: 'ourstory' } })
-            break;
-        case 1:
-            Router.replace({ pathname: "/about", query: { tab: 'ourchefs' } })
-            break;
-        case 2:
-            Router.replace({ pathname: "/about", query: { tab: 'ourcontacts' } })
-            break;
-        case 3:
-            Router.replace({ pathname: "/about", query: { tab: 'ourfaqs' } })
-            break;
-    }
+    AboutHelper.RouterHandler({index})
 }
 
-const ResponsiveFragmentBugFix = () => (<></>)
+const ResponsiveFragmentBugFix = () => (<div></div>)
+
+const pushSideBar =({dispatch}) =>
+{
+    dispatch({ type: "SIDEBAR" })
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    })
+}
+
 
 export const RightNav = () => (
     <ContextAPI.Consumer>
@@ -58,7 +59,7 @@ export const RightNav = () => (
                     // pointing='top left'
                     // icon={null}
                     >
-                        <Dropdown.Menu className="fresheats-light-green-bg">
+                        <Dropdown.Menu className="profile fresheats-light-green-bg">
                             <Link href="/account" prefetch passHref>
                                 <Menu.Item as="a">
                                     <Icon name="user" />
@@ -75,18 +76,14 @@ export const RightNav = () => (
             </React.Fragment>
         )}
     </ContextAPI.Consumer>
+
 )
 
 const LeftTabletNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
-                {/* <Link href="/" prefetch passHref>
-                    <Menu.Item as="a" className="fresheats-brown-color">
-                        <img src="../static/imgs/Fresh-Eats-2.png"></img>
-                    </Menu.Item>
-                </Link> */}
-                <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({ type: "SIDEBAR" })}>
+                <Menu.Item as="a" className="fresheats-brown-color" onClick={() => pushSideBar({dispatch: state.dispatch}) }>
                     {state.isSidebarOpen ? <Icon name="close" /> : <Icon name="bars" />}
                 </Menu.Item>
             </React.Fragment>
@@ -98,9 +95,9 @@ export const LeftComputerNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
-                 <Link href="/" prefetch passHref>
-                    <Menu.Item as="a" className="fresheats-brown-color nav-logo">
-                        <img src="../static/imgs/Fresh-Eats-2.png"></img>
+                <Link href="/" prefetch passHref>
+                    <Menu.Item className="fresheats-brown-color nav-logo">
+                        <img src="../static/imgs/Fresh-Eats-1.png"></img>
                     </Menu.Item>
                 </Link>
                 <Link href="/" prefetch passHref>
@@ -110,7 +107,7 @@ export const LeftComputerNav = () => (
                     <Menu.Item as="a" className="fresheats-brown-color">Menu</Menu.Item>
                 </Link>
                 <Dropdown text='About' className='link item fresheats-brown-color'>
-                    <Dropdown.Menu className="fresheats-light-green-bg">
+                    <Dropdown.Menu className="about fresheats-light-green-bg">
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 0 })}>Our Story</Dropdown.Item>
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 1 })}>Our Chefs</Dropdown.Item>
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 2 })}>Contact Us</Dropdown.Item>
@@ -163,7 +160,7 @@ const LeftNav = () => (
 const Nav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
-            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible) ? "transparent" : ""}`}>
+            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${state.isSidebarOpen && "is-sidebar-open"} ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible && state.active_page === "index") ? "transparent" : ""}`}>
                 <Container className="nav-container">
                     <React.Fragment>
                         <LeftNav />
@@ -192,6 +189,3 @@ const Nav = () => (
     </ContextAPI.Consumer>
 )
 export default Nav
-
-
-//add transparent styles to new file index-transparent.css to layout

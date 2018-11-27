@@ -1,6 +1,7 @@
 .cart .segment{
     border-radius: 0 !important;
     box-shadow: 3px 3px 10px rgb(138, 138, 138, .25) !important;
+    margin-bottom: 14px !important;
 }
 /* .cart .items .row {
     margin-bottom: 14px !important;

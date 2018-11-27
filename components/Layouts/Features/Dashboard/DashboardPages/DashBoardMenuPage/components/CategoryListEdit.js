@@ -1,4 +1,4 @@
-import { Table, Modal , Icon, Button, Checkbox, Input } from 'semantic-ui-react'
+import { Table, Modal, Header , Icon, Button, Checkbox, Input } from 'semantic-ui-react'
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import validator from 'validator'
 import * as MessageTypes from "../../../../../../../src/Types/MessageTypes"
@@ -24,7 +24,7 @@ class CategoryListEdit extends React.Component {
             },
             newCategoryList : [],
             errorBody : [],
-            isDelete : false,
+            modalOpen : false,
         }
     }
 
@@ -133,17 +133,41 @@ class CategoryListEdit extends React.Component {
         }
     }
 
-    openConfirm = (ctgry) => {
-        if (this.state.isDelete)
-            this.setState({ isDelete : false})
+    openCloseConfirm = () => {
+        if (this.state.modalOpen)
+            this.setState({ modalOpen : false})
         else
-            this.setState({ isDelete : true})
+            this.setState({ modalOpen : true })
+    }
+
+    confirmDelete = async (ctgry, dispatch) => {
+        const response = await api.menu.delete_category(ctgry)
+        if (response.status === 200)
+        {   
+            this.setState({
+                newCategoryList : response.data.data
+            })
+            dispatch({type : "ALERT_PORTAL", payload : {
+                open : true, 
+                type : 'success',
+                message : "Successfully delete the category and its items."
+            }})
+        }
+        else
+        {
+            dispatch({type : "ALERT_PORTAL", payload : {
+                open : true, 
+                type : 'error',
+                message : "Could not delet the category."
+            }})
+        }
+        this.setState({ modalOpen : false })
     }
 
     render ()
     {
         const { categories, products } = this.props
-        const { isAddingCategory, newCategory, newCategoryList, errorBody, isDelete} = this.state
+        const { isAddingCategory, newCategory, newCategoryList, errorBody, modalOpen} = this.state
         return (
             <div> { /* ========================= */ } 
                 <div className = "dashboard-menu-page-container">
@@ -207,25 +231,32 @@ class CategoryListEdit extends React.Component {
                                             <Icon size='small' name='pencil'/>
                                         </Button>
                                         <Modal 
+                                            basic
+                                            open={modalOpen}
                                             trigger={
-                                                <Button onClick={() => this.openConfirm(ctgry)} icon size='small'>
+                                                <Button onClick={() => this.openCloseConfirm()} icon size='small'>
                                                     <Icon size='small' name='delete'/>
                                                 </Button>
-                                            } basic size='small'>
+                                            }  size='small'>
 
                                                 <Header icon='archive' content='Archive Old Messages' />
                                                 <Modal.Content>
                                                 <p>
-                                                    Your inbox is getting full, would you like us to enable automatic archiving of old messages?
+                                                    This category has {this.count_item_number(ctgry, products)} products in it, delete it anyway?
                                                 </p>
                                                 </Modal.Content>
                                                 <Modal.Actions>
-                                                <Button basic color='red' inverted>
-                                                    <Icon name='remove' /> No
-                                                </Button>
-                                                <Button color='green' inverted>
-                                                    <Icon name='checkmark' /> Yes
-                                                </Button>
+                                                    <Button onClick={() => this.openCloseConfirm()} basic color='red' inverted>
+                                                        <Icon name='remove' /> No
+                                                    </Button>
+                                                    <ContextApi.Consumer>
+                                                        {({state}) => (
+                                                            <Button onClick={() => this.confirmDelete(ctgry, state.dispatch)} color='green' inverted>
+                                                                <Icon name='checkmark' /> Yes
+                                                            </Button>
+                                                        )}
+                                                    </ContextApi.Consumer>
+                                                    
                                                 </Modal.Actions>
                                         </Modal>
                                     </Table.Cell>
@@ -249,12 +280,12 @@ class CategoryListEdit extends React.Component {
                                                 <Button onClick={() => this.openConfirm(ctgry)} icon size='small'>
                                                     <Icon size='small' name='delete'/>
                                                 </Button>
-                                            } basic size='small'>
+                                            } basic size='small' closeIcon>
 
                                                 <Header icon='archive' content='Archive Old Messages' />
                                                 <Modal.Content>
                                                 <p>
-                                                    This category has {this.count_item_number(ctgry, products)} products in it, are you sure ?
+                                                    This category has {this.count_item_number(ctgry, products)} products in it, delete it anyway?
                                                 </p>
                                                 </Modal.Content>
                                                 <Modal.Actions>

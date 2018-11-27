@@ -50,7 +50,7 @@ router.get("/", (req, res) => {
 router.get("/menu-categories", (req, res) => {
     CategoryModel.find()
     .then(data => {
-        res.json({
+        res.status(200).json({
             data,
             message: "OK"
         })
@@ -76,7 +76,7 @@ router.post("/", checkAuth, (req, res) => {
     newMenu.save().then(menu => {
         CategoryModel.find()
             .then(data => {
-                res.json({
+                res.status(200).json({
                     data,
                     message: "OK"
                 })
@@ -96,6 +96,48 @@ router.post("/", checkAuth, (req, res) => {
             }
         })
     });
+})
+
+router.delete("/", checkAuth, (req, res) => {
+    console.log(req.body._id)
+
+    CategoryModel.findByIdAndRemove(req.body._id)
+    .then(result => {
+        ProductModel.deleteMany({menuCategoryId : req.body._id})
+        .then(_result => {
+            CategoryModel.find()
+            .then(data => {
+                res.status(200).json({
+                    data,
+                    message: "OK"
+                })
+            })
+            .catch(err => {
+                res.status(404).json({
+                    error: {
+                        message: err
+                    }
+                })
+            })
+        })
+        .catch(err => {
+            res.status(501).json({
+                error : {
+                    message : "Couldnt delete category's items",
+                    ress : req.body,
+                }
+            })
+        })
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(501).json({
+            error : {
+                message : "Couldnt delete the category",
+                ress : req.body,
+            }
+        })
+    })
 })
 
 export default router

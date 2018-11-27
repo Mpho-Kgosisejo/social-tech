@@ -12,7 +12,7 @@
                     "id": 1,
                     "name": "Mpumi",
                     "specialty": "Executive Chef",
-                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become an Accountant.",
+                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
                     "image_url":  "https://react.semantic-ui.com/images/avatar/large/matthew.png",
                     "rating": 6
                 },
@@ -20,7 +20,7 @@
                     "id": 2,
                     "name": "Thato",
                     "specialty": "Pastery Chef",
-                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become an Accountant.",
+                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
                     "image_url":  "https://react.semantic-ui.com/images/avatar/large/nan.jpg",
                     "rating": 9
                 },
@@ -28,7 +28,7 @@
                     "id": 3,
                     "name": "Melissa",
                     "specialty": "Sours Chef",
-                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become an Accountant.",
+                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
                     "image_url":  "https://react.semantic-ui.com/images/avatar/large/jenny.jpg",
                     "rating": 6
                 }

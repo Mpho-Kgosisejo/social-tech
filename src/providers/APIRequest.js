@@ -114,6 +114,13 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
+        },
+        delete_category : (deleteBody) => {
+            return (
+                axios.delete(`${Config.get("api.endpoint")}/menus`, { data : deleteBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
         } 
     },
     web:{

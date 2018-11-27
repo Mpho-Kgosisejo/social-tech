@@ -1,9 +1,9 @@
-import { Tab, Card, Responsive, Dropdown, Segment, Container } from "semantic-ui-react"
+import { Tab, Card, Responsive, Dropdown, Segment, Container, Message } from "semantic-ui-react"
 import Router from "next/router"
 
 import MenuCard from "./MenuCard"
 import { isEmptyObj } from "../../../../src/utils/Objs"
-import { ErrorMessage } from "../../../Messages/Message"
+import { ErrorMessage, WarningMessage, InfoMessage, GreyMessage } from "../../../Messages/Message"
 import ContextAPI from "../../../../src/config/ContextAPI";
 
 class menu_tab extends React.Component {
@@ -36,14 +36,14 @@ class menu_tab extends React.Component {
                             <Tab className="centered-element zero-border" activeIndex={state.menu.index} onTabChange={(e, { activeIndex }) => this.handleTabChange({ index: activeIndex, state })} menu={{ pointing: true, secondary: true }} panes={
                                 state.menu.data.map(item => (
                                     item.show ?
-                                        { menuItem: item.title } : console.log("Not showing ", item.title)
+                                        { menuItem: item.title } : null
                                 ))
                             } />
                         </Responsive>
                         <div className="zero-border marginTopBottom">
                             <Card.Group doubling itemsPerRow={3} stackable>
                                 {isEmptyObj(state.menu.data[state.menu.index].items) ?
-                                    <Container><ErrorMessage icon="exclamation" header="Menu Error!" message={`Unfortunately the ${state.menu.data[state.menu.index].title} category has no products`} /></Container>
+                                    <Container><GreyMessage icon="exclamation" header="Menu Error!" message={`Unfortunately the ${state.menu.data[state.menu.index].title} category has no products`} /></Container>
                                     :
                                     state.menu.data[state.menu.index].items.map(product => (
                                         <MenuCard key={product._id} {...product} />
