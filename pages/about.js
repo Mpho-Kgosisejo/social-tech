@@ -1,4 +1,4 @@
-import { Tab, Header, Icon, Divider, Message, Dropdown } from "semantic-ui-react"
+import { Tab, Header, Icon, Divider, Message, Dropdown, Container } from "semantic-ui-react"
 
 import {PlaceholderMediumParagraph} from "../components/utils/Placeholders"
 import Layout from "../components/Layouts/Layout"
@@ -10,6 +10,7 @@ import api from "../src/providers/APIRequest";
 import ContextAPI from "../src/config/ContextAPI";
 import { isEmptyObj } from "../src/utils/Objs"
 import { RouterHandler } from "../components/Layouts/Features/About/Helper";
+import PageHeader from "../components/utils/PageHeader"
 
 class About extends React.Component {
     constructor(props) {
@@ -153,54 +154,51 @@ class About extends React.Component {
         const { panes, loading } = this.state
 
         return (
-            <Layout title="About Us">
-                <p></p>
+            <Layout title="About Us" includeContainer={false}>
+                <PageHeader title="Welcome to Fresh Eats" />
                 
-                <ContextAPI.Consumer>
-                    {({state}) => (
-                        <React.Fragment>
-                            <div className="aboutsPageWelcomeMessage">
-                                <Header as='h1' textAlign='center'>
-                                    <Header.Content>Welcome to Fresh Eats</Header.Content>
-                                </Header>
-                            </div>
+                <Container>
+                    <ContextAPI.Consumer>
+                        {({state}) => (
+                            <React.Fragment>
 
-                            <Divider hidden />
+                                <Divider hidden />
 
-                            {loading ?
-                                <PlaceholderMediumParagraph />
-                                :
-                                <div className="about-content">
-                                    <Dropdown
-                                        fluid
-                                        selection
-                                        defaultValue={state.about.index}
-                                        onChange={(e, {value}) => this.changeTab(state.about, value)}
-                                        options={[
-                                            {
-                                                text: "Our Story",
-                                                value: 0
-                                            },
-                                            {
-                                                text: "Our Chefs",
-                                                value: 1
-                                            },
-                                            {
-                                                text: "Contact Us",
-                                                value: 2
-                                            },
-                                            {
-                                                text: "FAQs",
-                                                value: 3
-                                            }
-                                        ]}
-                                    />
-                                    <Tab className="about-tab" menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} />
-                                </div>
-                            }
-                        </React.Fragment>
-                    )}
-                </ContextAPI.Consumer>
+                                {loading ?
+                                    <PlaceholderMediumParagraph />
+                                    :
+                                    <div className="about-content">
+                                        <Dropdown
+                                            fluid
+                                            selection
+                                            defaultValue={state.about.index}
+                                            onChange={(e, {value}) => this.changeTab(state.about, value)}
+                                            options={[
+                                                {
+                                                    text: "Our Story",
+                                                    value: 0
+                                                },
+                                                {
+                                                    text: "Our Chefs",
+                                                    value: 1
+                                                },
+                                                {
+                                                    text: "Contact Us",
+                                                    value: 2
+                                                },
+                                                {
+                                                    text: "FAQs",
+                                                    value: 3
+                                                }
+                                            ]}
+                                        />
+                                        <Tab className="about-tab" menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} />
+                                    </div>
+                                }
+                            </React.Fragment>
+                        )}
+                    </ContextAPI.Consumer>
+                </Container>
             </Layout>
         )
     }

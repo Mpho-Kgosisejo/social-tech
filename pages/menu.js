@@ -7,6 +7,7 @@ import MenuTab from "../components/Layouts/Features/Menu/MenuTab"
 import api from "../src/providers/APIRequest"
 import { MainMessage } from "../components/Messages/Message";
 import { PlaceholderSmallParagraphImage, PlaceHolderMenu } from "../components/utils/Placeholders";
+import PageHeader from "../components/utils/PageHeader"
 
 class Menu extends React.Component {
 
@@ -53,12 +54,12 @@ class Menu extends React.Component {
         return (
             <div className="menuPageDiv" >
                 <Layout title="Menu" includeContainer={false}>
-                    <div className="MenuImageContainerDiv">
-                        <Container>
-                            <span className="menu-header-back-span" >Taste the best</span>
-                            <h3 className="menu-header-back-h3">Fresh Ingredients, Tasty Meals</h3>
-                        </Container>
-                    </div>
+                    <PageHeader
+                        color="rgb(212, 195, 176)"
+                        title="Taste the best"
+                        subtitle="Fresh Ingredients, Tasty Meals"
+                        image="https://s3.envato.com/files/128199564/Restaurant%20Identity%20Branding%20Mock-Up_Previews%20Image%20Set/01_preview1.jpg"
+                    />
                     <Divider hidden />
                     <Container>
                         <div className="centered-element">

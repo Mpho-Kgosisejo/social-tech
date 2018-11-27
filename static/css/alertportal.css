@@ -1,8 +1,8 @@
 .alert-portal{
     position: fixed !important;
     z-index: 1000;
-    top: 42px;
-    left: 42px;
+    top: 50px;
+    left: 50px;
     max-width: calc(100% - 84px);
 
     border-radius: 0 !important;
