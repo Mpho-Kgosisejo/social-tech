@@ -5,6 +5,7 @@ import Layout from "../components/Layouts/Layout"
 import TableItem from "../components/Layouts/Features/Cart/TableItem"
 import { CartTablePlaceholder } from "../components/utils/Placeholders";
 import ContextAPI from "../src/config/ContextAPI";
+import PlaceSearch from "../components/Layouts/Features/Cart/PlaceSearch"
 
 const OrderSummary = () => (
     <ContextAPI.Consumer>
@@ -30,6 +31,20 @@ const OrderSummary = () => (
                             </Grid.Column>
                             <Grid.Column textAlign="right">
                                 <Header>R{!subTotal? "0" : `${tax}`}</Header>
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Divider />
+                        <Grid.Row className="total">
+                            <Grid.Column>
+                                <PlaceSearch />
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row className="total">
+                            <Grid.Column>
+                                <Header as="h3">??</Header>
+                            </Grid.Column>
+                            <Grid.Column textAlign="right">
+                                <Header>{`R0`}</Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Divider />
