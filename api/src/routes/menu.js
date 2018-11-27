@@ -74,16 +74,25 @@ router.post("/", checkAuth, (req, res) => {
         show
     })
     newMenu.save().then(menu => {
-        res.status(200).json({
-            menu
-        })
+        CategoryModel.find()
+            .then(data => {
+                res.json({
+                    data,
+                    message: "OK"
+                })
+            })
+            .catch(err => {
+                res.status(404).json({
+                    error: {
+                        message: err
+                    }
+                })
+            })
     })
     .catch(err => {
-        // console.log(err.errors.message)
-
         res.status(501).json({
             error : {
-                message : err.errors.message
+                message : "Couldnt add category to the database"
             }
         })
     });

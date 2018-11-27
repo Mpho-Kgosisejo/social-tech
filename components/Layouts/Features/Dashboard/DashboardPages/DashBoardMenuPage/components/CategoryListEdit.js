@@ -1,9 +1,10 @@
-import { Table, Image, Icon, Button, Checkbox, Input } from 'semantic-ui-react'
+import { Table, Modal , Icon, Button, Checkbox, Input } from 'semantic-ui-react'
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import validator from 'validator'
 import * as MessageTypes from "../../../../../../../src/Types/MessageTypes"
 import { InLineError } from '../../../../../../Messages/InLineMessage'
 import api from "../../../../../../../src/providers/APIRequest"
+import ContextApi from '../../../../../../../src/config/ContextAPI'
 
 class CategoryListEdit extends React.Component {
     constructor ()
@@ -16,8 +17,14 @@ class CategoryListEdit extends React.Component {
                 title : '',
                 show : false
             },
+            deleteCategory : {
+                name : '',
+                title : '',
+                show : false
+            },
             newCategoryList : [],
-            errorBody : []
+            errorBody : [],
+            isDelete : false,
         }
     }
 
@@ -73,7 +80,7 @@ class CategoryListEdit extends React.Component {
         return index
     }
 
-    uploadCategory = () => {
+    uploadCategory = async (dispatch) => {
 
         const errors = {}
 
@@ -81,35 +88,62 @@ class CategoryListEdit extends React.Component {
         {
             errors.title = MessageTypes.FIELD_CANT_BE_EMPTY
             this.setState({
-                errorBody : {
-                    ...this.state.errorBody,
-                    errors
-                }
+                errorBody : errors
             })
         }
         else 
         {
-            const res = api.menu.upload_menu(this.state.newCategory)
+            const res = await api.menu.upload_menu(this.state.newCategory)
             console.log(res)
 
-            let newArr = [...this.state.newCategoryList, this.state.newCategory]
+            if(res.status === 200){
+                let newArr = res.data.data
         
-            this.setState({
-                newCategoryList : newArr,
-                isAddingCategory : false,
-                newCategory : {
-                    name : "", 
-                    title : "",
-                    show : false
-                }
-            })
+                this.setState({
+                    newCategoryList : newArr,
+                    isAddingCategory : false,
+                    newCategory : {
+                        name : "", 
+                        title : "",
+                        show : false
+                    },
+                    errorBody : []
+                })
+
+                dispatch({type : "ALERT_PORTAL", payload : {
+                    open : true, 
+                    type : 'success',
+                    message : "Successfully added a new category"
+                }}) 
+            }
+            else if (res.status === 501){
+                dispatch({type : "ALERT_PORTAL", payload : {
+                    open : true, 
+                    type : 'error',
+                    message : "The title you selected already exists."
+                }}) 
+                this.setState({
+                    newCategory : {
+                        name : "", 
+                        title : "",
+                        show : false
+                    }
+                })
+            }
         }
+    }
+
+    openConfirm = (ctgry) => {
+        if (this.state.isDelete)
+            this.setState({ isDelete : false})
+        else
+            this.setState({ isDelete : true})
     }
 
     render ()
     {
         const { categories, products } = this.props
-        const { isAddingCategory, newCategory, newCategoryList} = this.state
+        const { isAddingCategory, newCategory, newCategoryList, errorBody, isDelete} = this.state
         return (
             <div> { /* ========================= */ } 
                 <div className = "dashboard-menu-page-container">
@@ -117,6 +151,9 @@ class CategoryListEdit extends React.Component {
                     <h3> Create a new menu category </h3> 
                 </div> 
                 <div className = "upload-contents">
+
+                {/* <----------------------- MODAL -----------------------> */}
+
                 <Table celled>
                     <Table.Header>
                         <Table.Row textAlign='center'>
@@ -136,6 +173,7 @@ class CategoryListEdit extends React.Component {
                             <Table.Row textAlign='center'>
                                 <Table.Cell>
                                     <Input name='addNewItem' value = { newCategory.title } onChange = { iVT => this.onChange(iVT)} fluid rows={1}/>
+                                    { errorBody.title && < InLineError message = {errorBody.title}/>} 
                                 </Table.Cell>
                                 <Table.Cell disabled>
                                     0
@@ -144,34 +182,21 @@ class CategoryListEdit extends React.Component {
                                     <Checkbox onChange = { this.handleCheckBoxChange } />
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <Button onClick={this.uploadCategory} icon basic size='small'>
-                                        <Icon size='small' name='save'/>
-                                        Save
-                                    </Button>
+                                    <ContextApi.Consumer>
+                                        {({state}) => (
+                                            <Button onClick={ () => this.uploadCategory(state.dispatch)} icon basic size='small'>
+                                                <Icon size='small' name='save'/>
+                                                Save
+                                            </Button>
+                                        )}
+                                    </ContextApi.Consumer>
                                 </Table.Cell>
                             </Table.Row>
                             : null 
                         }
-                        { categories.map( ctgry => (
-                            <Table.Row key={ctgry._id} textAlign='center'>
-                                <Table.Cell>{ctgry.title}</Table.Cell>
-                                <Table.Cell>{this.count_item_number(ctgry, products)}</Table.Cell>
-                                <Table.Cell>
-                                    <Checkbox disabled defaultChecked={ctgry.show ? true : false }/>
-                                </Table.Cell>
-                                <Table.Cell>
-                                    <Button icon size='small'>
-                                        <Icon size='small' name='pencil'/>
-                                    </Button>
-                                    <Button icon size='small'>
-                                        <Icon size='small' name='delete'/>
-                                    </Button>
-                                </Table.Cell>
-                            </Table.Row>
-                        ))}
-                        {!isEmptyObj(newCategoryList) ? 
-                            newCategoryList.map( ctgry => (
-                                <Table.Row key={ctgry.name} textAlign='center'>
+                        {isEmptyObj(newCategoryList) ? 
+                             categories.map( ctgry => (
+                                <Table.Row key={ctgry._id} textAlign='center'>
                                     <Table.Cell>{ctgry.title}</Table.Cell>
                                     <Table.Cell>{this.count_item_number(ctgry, products)}</Table.Cell>
                                     <Table.Cell>
@@ -181,9 +206,66 @@ class CategoryListEdit extends React.Component {
                                         <Button icon size='small'>
                                             <Icon size='small' name='pencil'/>
                                         </Button>
-                                        <Button icon size='small'>
-                                            <Icon size='small' name='delete'/>
+                                        <Modal 
+                                            trigger={
+                                                <Button onClick={() => this.openConfirm(ctgry)} icon size='small'>
+                                                    <Icon size='small' name='delete'/>
+                                                </Button>
+                                            } basic size='small'>
+
+                                                <Header icon='archive' content='Archive Old Messages' />
+                                                <Modal.Content>
+                                                <p>
+                                                    Your inbox is getting full, would you like us to enable automatic archiving of old messages?
+                                                </p>
+                                                </Modal.Content>
+                                                <Modal.Actions>
+                                                <Button basic color='red' inverted>
+                                                    <Icon name='remove' /> No
+                                                </Button>
+                                                <Button color='green' inverted>
+                                                    <Icon name='checkmark' /> Yes
+                                                </Button>
+                                                </Modal.Actions>
+                                        </Modal>
+                                    </Table.Cell>
+                                </Table.Row>
+                            )) : null
+                        }
+                        {!isEmptyObj(newCategoryList) ? 
+                            newCategoryList.map( ctgry => (
+                                <Table.Row key={ctgry._id} textAlign='center'>
+                                    <Table.Cell>{ctgry.title}</Table.Cell>
+                                    <Table.Cell>{this.count_item_number(ctgry, products)}</Table.Cell>
+                                    <Table.Cell>
+                                        <Checkbox disabled defaultChecked={ctgry.show ? true : false }/>
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                    <Button icon size='small'>
+                                            <Icon size='small' name='pencil'/>
                                         </Button>
+                                        <Modal 
+                                            trigger={
+                                                <Button onClick={() => this.openConfirm(ctgry)} icon size='small'>
+                                                    <Icon size='small' name='delete'/>
+                                                </Button>
+                                            } basic size='small'>
+
+                                                <Header icon='archive' content='Archive Old Messages' />
+                                                <Modal.Content>
+                                                <p>
+                                                    This category has {this.count_item_number(ctgry, products)} products in it, are you sure ?
+                                                </p>
+                                                </Modal.Content>
+                                                <Modal.Actions>
+                                                <Button basic color='red' inverted>
+                                                    <Icon name='remove' /> No
+                                                </Button>
+                                                <Button color='green' inverted>
+                                                    <Icon name='checkmark' /> Yes
+                                                </Button>
+                                                </Modal.Actions>
+                                        </Modal>
                                     </Table.Cell>
                                 </Table.Row>
                             ))

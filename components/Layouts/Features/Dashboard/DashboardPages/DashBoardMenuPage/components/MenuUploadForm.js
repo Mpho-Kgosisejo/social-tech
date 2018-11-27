@@ -146,10 +146,10 @@ class MenuUploadForm extends React.Component {
         return (errors)
     }
 
-    uploadMenu = () => {
+    uploadMenu = async () => {
         const errors = this.validate()
         if (isEmptyObj(errors)) {
-            const res = api.menu.upload_product(this.state.productUploadBody)
+            const res = await api.menu.upload_product(this.state.productUploadBody)
             console.log(res)
         } else {
             this.setState({
