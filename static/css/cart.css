@@ -107,3 +107,11 @@
 .autocomplete-dropdown-container .suggestion-item-active{
     background: #FAFAFA;
 }
+
+.cart .map{
+    background: rgb(55, 54, 70);
+    height: 280px;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+}
