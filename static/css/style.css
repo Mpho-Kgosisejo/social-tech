@@ -44,11 +44,13 @@
     padding-top: 20px !important;
 }
 .appNav.transparent .menu.profile{
-    background: transparent !important;
-    border: 1px solid #c59c70 !important;
-    border-top: 0 !important;
+    background: #082908a5   !important;
 
 }
+.appNav.transparent .menu.about{
+    background: #082908a5   !important;
+}
+
 
 .ui.menu .item:before
 {
