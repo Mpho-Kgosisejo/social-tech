@@ -12,11 +12,11 @@ class AccountPaymentDetails extends React.Component {
                 </Form.Field>
                 <Form.Field>
                     <label>Address:</label>
-                    <input value="Thato" readOnly />
+                    <input value="2237 Bottom Lane Gasport NY 1406" readOnly />
                 </Form.Field>
                 <Form.Field>
                     <label>City:</label>
-                    <input value="Thato" readOnly />
+                    <input value="Johannesburg" readOnly />
                 </Form.Field>
                 <Form.Group widths='equal'>
                     <Form.Field control={Input} label='Expiration date' placeholder='MM/YY' />
@@ -33,11 +33,11 @@ class AccountPaymentDetails extends React.Component {
                 <Divider hidden/>
                 <Form.Field>
                     <label>Card Number:</label>
-                    <input value="Thato" readOnly />
+                    <input value="125 *** *****" readOnly />
                 </Form.Field>
                 <Form.Field>
                     <label>Name on Card:</label>
-                    <input value="Thato" readOnly />
+                    <input value="Mr Mekwa" readOnly />
                 </Form.Field>
             </Form>
         )
