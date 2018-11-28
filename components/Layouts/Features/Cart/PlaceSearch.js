@@ -1,5 +1,6 @@
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-autocomplete"
 import { Input } from "semantic-ui-react";
+import React from "react"
 
 import GoogleMaps from "../../../utils/GoogleMaps"
 
@@ -34,9 +35,6 @@ class PlaceSearch extends React.Component {
     render() {
         return (
             <>
-                <div className="map">
-                    <GoogleMaps destination={"destination"} />    
-                </div>  
                 <PlacesAutocomplete
                     value={this.state.address}
                     onChange={this.handleChange}
@@ -69,6 +67,7 @@ class PlaceSearch extends React.Component {
                         </div>
                     )}
                 </PlacesAutocomplete>
+                <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script> 
             </>
         );
     }

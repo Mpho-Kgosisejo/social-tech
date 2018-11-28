@@ -1,7 +1,13 @@
 import {GoogleApiWrapper, Map, Marker} from "google-maps-react"
+import { Input, Form, Divider, Segment, Header, Icon } from "semantic-ui-react";
 
 const LoadingContainer = () => (
-    <div>Loading Google Map...</div>
+    <Segment placeholder className="googlemaps-loading">
+        <Header icon>
+        <Icon name='map outline' />
+            Google Maps loading...
+        </Header>
+  </Segment>
 )
 
 export class GoogleMaps extends React.Component {
@@ -9,32 +15,45 @@ export class GoogleMaps extends React.Component {
         super(props)
 
         this.state = {
-            company: {
-                title: "Wethinkcode_ (JHB Campus)",
-                position: {
-                    lat: -26.2049385,
-                    lng: 28.040159000000017
-                }
-            },
-            destination: {
-                title: "23-68 Steve Biko Rd",
-                position: {
-                    lat: -25.751616,
-                    lng: 28.203509
-                }
-            }
+            loadingAutoComplete: false
         }
 
         this.map = null
+        this.marker = null
     }
 
-    handleDistanceCompute = ({}) => {
+    componentDidMount(){
+    }
+
+    findCoords = ({address = ""}) => {
+        const {Geocoder, Marker} = this.props.google.maps
+        const geocoder = new Geocoder()
+        
+        this.setState({loadingAutoComplete: true})
+        geocoder.geocode({address}, (result, status) => {
+            if (status === "OK"){
+                const location = result[0].geometry.location
+                this.marker = new Marker({
+                    map: this.map,
+                    position: location
+                })
+                
+                this.map.setCenter(location)
+            }else{
+                console.log("error findCoords()")
+            }
+            this.setState({loadingAutoComplete: false})
+        })
+    }
+
+    handleDistanceCompute = ({destination = ""}) => {
         const {Map, DistanceMatrixService, LatLng, DirectionsService, DirectionsRenderer} = this.props.google.maps
-        const origin = new LatLng(this.state.company.position.lat, this.state.company.position.lng)
-        const destination = new LatLng(this.state.destination.position.lat, this.state.destination.position.lng)
+        const origin = this.props.initialAddress
 
         const directionsRenderer = new DirectionsRenderer()
         const directionsService = new DirectionsService()
+
+        this.marker.setMap(null)
 
         new DistanceMatrixService().getDistanceMatrix({
             origins: [origin],
@@ -53,8 +72,6 @@ export class GoogleMaps extends React.Component {
                 const {distance, duration, status} = rows[0].elements[0]
 
                 if (status === "OK"){
-                    console.log("distance", distance)
-                    console.log("duration", duration)
                     var request = {
                         origin,
                         destination,
@@ -62,10 +79,9 @@ export class GoogleMaps extends React.Component {
                       };
 
                     directionsRenderer.setMap(this.map)
-                    console.log("-_-", this.map)
                     directionsService.route(request, (result, status) => {
                         if (status === "OK"){
-                            console.log("Directions OK")
+                            console.log("Directions success")
                             directionsRenderer.setDirections(result)
                         }
                     })
@@ -78,33 +94,65 @@ export class GoogleMaps extends React.Component {
         }))
     }
 
-    readyMap = (mapProps, map) => {
+    initMap = (mapProps, map) => {
         this.map = map
-        console.log(">", this.map)
-        this.handleDistanceCompute({})  
+        
+        this.findCoords({address: this.props.initialAddress})
+        if (this.props.destination){
+            this.handleDistanceCompute({destination: this.props.destination})
+        }
+        this.initAutoComplete()
+    }
+
+    initAutoComplete = () => {
+        const {google} = this.props
+
+        if (!google || !this.map) return
+
+        const autocomplete = new google.maps.places.Autocomplete(this.autocomplete)
+        autocomplete.bindTo("bounds", this.map)
+        autocomplete.addListener("place_changed", () => {
+            const place = autocomplete.getPlace()
+            
+            if (!place.formatted_address) {
+                console.log("No address found!")
+                return
+            }
+
+            this.handleDistanceCompute({destination: place.formatted_address})
+        })
     }
 
     render(){
         return(
-            <Map
-                google={this.props.google}
-                zoom={15}
-                style={{
-                    width: "100%",
-                    height: "100%"
-                }}
-                initialCenter={this.state.company.position}
-                fullscreenControl={false}
-                mapTypeControl={false}
-                streetViewControl={false}
-                // draggable={false}
+            <div className="map">
+                <Map
+                    google={this.props.google}
+                    zoom={17.5}
+                    style={{
+                        width: "100%",
+                        height: "280px"
+                    }}
+                    
+                    // initialCenter={this.state.company.position}
+                    
+                    fullscreenControl={false}
+                    mapTypeControl={false}
+                    streetViewControl={false}
+                    draggable={false}
+                    zoomControl={false}
 
-                bounds={this.MapBounds}
+                    bounds={this.MapBounds}
 
-                onReady={this.readyMap}
-            >
-                <Marker {...this.state.company} />
-            </Map>
+                    onReady={this.initMap}
+                />
+
+                <Form loading={this.state.loadingAutoComplete}>
+                    <Form.Field>
+                        <input ref={ref => (this.autocomplete = ref)} />
+                    </Form.Field>
+                </Form>
+            </div>
         )
     }
 }

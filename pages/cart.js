@@ -7,6 +7,8 @@ import { CartTablePlaceholder } from "../components/utils/Placeholders";
 import ContextAPI from "../src/config/ContextAPI";
 import PlaceSearch from "../components/Layouts/Features/Cart/PlaceSearch"
 
+import GoogleMaps from "../components/utils/GoogleMaps"
+
 const OrderSummary = () => (
     <ContextAPI.Consumer>
         {({state}) => {
@@ -36,7 +38,12 @@ const OrderSummary = () => (
                         <Divider />
                         <Grid.Row className="total">
                             <Grid.Column>
-                                <PlaceSearch />
+                            <div className="map-container">
+                                <GoogleMaps
+                                    initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
+                                    destination={null}
+                                />
+                            </div>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row className="total">
@@ -158,7 +165,7 @@ class Cart extends React.Component {
                         )
                     }}
                 </ContextAPI.Consumer>
-                <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script> 
+                {/* <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script>  */}
             </Layout>
         )
     }

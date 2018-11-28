@@ -108,10 +108,20 @@
     background: #FAFAFA;
 }
 
-.cart .map{
-    background: rgb(55, 54, 70);
-    height: 280px;
+.cart .map-container{
+    height: 328px;
     width: 100%;
     margin-bottom: 10px;
     position: relative;
+    /* background: rgb(154, 153, 152) */
+}
+
+.cart .map-container .form{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.cart .googlemaps-loading{
+    height: 100%;
 }
