@@ -99,12 +99,13 @@ router.post("/", checkAuth, (req, res) => {
 })
 
 router.delete("/", checkAuth, (req, res) => {
-    console.log(req.body._id)
 
     CategoryModel.findByIdAndRemove(req.body._id)
     .then(result => {
+        console.log(result)
         ProductModel.deleteMany({menuCategoryId : req.body._id})
         .then(_result => {
+            console.log(res)
             CategoryModel.find()
             .then(data => {
                 res.status(200).json({
@@ -121,10 +122,10 @@ router.delete("/", checkAuth, (req, res) => {
             })
         })
         .catch(err => {
+            console.log(err)
             res.status(501).json({
                 error : {
                     message : "Couldnt delete category's items",
-                    ress : req.body,
                 }
             })
         })
@@ -134,7 +135,39 @@ router.delete("/", checkAuth, (req, res) => {
         res.status(501).json({
             error : {
                 message : "Couldnt delete the category",
-                ress : req.body,
+            }
+        })
+    })
+})
+
+router.patch("/", checkAuth, (req, res) => {
+    const updateModel = req.body.data
+    const updateModel_id = req.body.data._id
+    console.log(req.body)
+
+    CategoryModel.findByIdAndUpdate(updateModel_id, updateModel, {new : true})
+    .then(_data => {
+        console.log(_data)
+        CategoryModel.find()
+            .then(data => {
+                res.status(200).json({
+                    data,
+                    message: "OK"
+                })
+            })
+            .catch(err => {
+                res.status(404).json({
+                    error: {
+                        message: err
+                    }
+                })
+            })
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(501).json({
+            error : {
+                message : "Couldnt delete category's items",
             }
         })
     })

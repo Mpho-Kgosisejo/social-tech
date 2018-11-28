@@ -25,6 +25,13 @@ class CategoryListEdit extends React.Component {
             newCategoryList : [],
             errorBody : [],
             modalOpen : false,
+            isEditing : false,
+            editCategory : {
+                name : '',
+                title : '',
+                show : false
+            },
+            edit_Id : ""
         }
     }
 
@@ -55,6 +62,23 @@ class CategoryListEdit extends React.Component {
                 })
             }
         }
+        else if (this.state.isEditing) {
+            if (this.state.editCategory.show) {
+                this.setState({
+                    editCategory: {
+                        ...this.state.editCategory,
+                        show: false
+                    }
+                })
+            } else {
+                this.setState({
+                    editCategory: {
+                        ...this.state.editCategory,
+                        show: true
+                    }
+                })
+            }
+        }
     }
 
     onChange = (iVT) => {
@@ -64,6 +88,16 @@ class CategoryListEdit extends React.Component {
             this.setState({
                 newCategory: {
                     ...this.state.newCategory,
+                    name : split_lower, 
+                    title : iVT.target.value
+                }
+            })
+        }
+        if (iVT.target.name == "editCategory") {
+            let split_lower = iVT.target.value.toLowerCase().split(" ").join("")
+            this.setState({
+                editCategory: {
+                    ...this.state.editCategory,
                     name : split_lower, 
                     title : iVT.target.value
                 }
@@ -133,15 +167,17 @@ class CategoryListEdit extends React.Component {
         }
     }
 
-    openCloseConfirm = () => {
+    openCloseConfirm = (ctgry) => {
         if (this.state.modalOpen)
             this.setState({ modalOpen : false})
         else
-            this.setState({ modalOpen : true })
+        {
+            this.setState({ deleteCategory : ctgry , modalOpen : true}) 
+        }
     }
 
-    confirmDelete = async (ctgry, dispatch) => {
-        const response = await api.menu.delete_category(ctgry)
+    confirmDelete = async (dispatch) => {
+        const response = await api.menu.delete_category(this.state.deleteCategory)
         if (response.status === 200)
         {   
             this.setState({
@@ -158,16 +194,60 @@ class CategoryListEdit extends React.Component {
             dispatch({type : "ALERT_PORTAL", payload : {
                 open : true, 
                 type : 'error',
-                message : "Could not delet the category."
+                message : "Could not delete the category."
             }})
         }
         this.setState({ modalOpen : false })
     }
 
+    saveEdit = async (dispatch) => {
+        const errors = {}
+
+        if (validator.isEmpty(this.state.editCategory.title, { ignore_whitespace: true })) {
+            errors.title = MessageTypes.FIELD_CANT_BE_EMPTY
+            this.setState({
+                errorBody : errors
+            })
+        }
+        else {
+            const response = await api.menu.update_category(this.state.editCategory)
+            if (response.status === 200)
+            {   
+                this.setState({
+                    newCategoryList : response.data.data,
+                    editCategory : {},
+                    edit_Id : ""
+                })
+                dispatch({type : "ALERT_PORTAL", payload : {
+                    open : true, 
+                    type : 'success',
+                    message : "Successfully updated the category."
+                }})
+            }
+            else
+            {
+                dispatch({type : "ALERT_PORTAL", payload : {
+                    open : true, 
+                    type : 'error',
+                    message : "Could not update the category."
+                }})
+            }
+            this.setState({ isEditing : false })
+        }
+    }
+
+    startEditingCategory = (ctgry) => {
+        this.setState({
+            isEditing : true,
+            editCategory : ctgry, 
+            edit_Id : ctgry._id
+        })
+    }
+
     render ()
     {
         const { categories, products } = this.props
-        const { isAddingCategory, newCategory, newCategoryList, errorBody, modalOpen} = this.state
+        const { isAddingCategory, newCategory, newCategoryList, errorBody, modalOpen, isEditing, edit_Id, editCategory} = this.state
         return (
             <div> { /* ========================= */ } 
                 <div className = "dashboard-menu-page-container">
@@ -219,20 +299,41 @@ class CategoryListEdit extends React.Component {
                             : null 
                         }
                         {isEmptyObj(newCategoryList) ? 
-                             categories.map( ctgry => (
+                            categories.map( ctgry => (
                                 <Table.Row key={ctgry._id} textAlign='center'>
-                                    <Table.Cell>{ctgry.title}</Table.Cell>
+                                    { (isEditing && validator.equals(ctgry._id, edit_Id)) ? 
+                                        <Table.Cell>
+                                            <Input name='editCategory' value = { editCategory.title } onChange = { iVT => this.onChange(iVT)} fluid rows={1}/> 
+                                            { errorBody.title && < InLineError message = {errorBody.title}/>} 
+                                        </Table.Cell> :  
+                                        <Table.Cell>{ctgry.title}</Table.Cell> 
+                                    }
                                     <Table.Cell>{this.count_item_number(ctgry, products)}</Table.Cell>
                                     <Table.Cell>
-                                        <Checkbox disabled defaultChecked={ctgry.show ? true : false }/>
+                                        { (isEditing && validator.equals(ctgry._id, edit_Id)) ? 
+                                            <Checkbox onChange = { this.handleCheckBoxChange }  defaultChecked={ctgry.show ? true : false }/> 
+                                            :  
+                                            <Checkbox disabled defaultChecked={ctgry.show ? true : false }/>
+                                        }
+                                        
                                     </Table.Cell>
                                     <Table.Cell>
-                                        <Button icon size='small'>
-                                            <Icon size='small' name='pencil'/>
-                                        </Button>
+                                        { (isEditing && validator.equals(ctgry._id, edit_Id)) ?
+                                            <ContextApi.Consumer>
+                                                {({state}) => (
+                                                    <Button icon size='small' onClick={() => this.saveEdit(state.dispatch)}>
+                                                    <Icon size='small' name='check'/>
+                                                </Button>
+                                                )}
+                                            </ContextApi.Consumer>
+                                            : 
+                                            <Button icon size='small' onClick={() => this.startEditingCategory(ctgry)}>
+                                                <Icon size='small' name='pencil'/>
+                                            </Button> 
+                                        }
                                         <Modal 
                                             basic
-                                            open={modalOpen}
+                                                open={modalOpen}
                                             trigger={
                                                 <Button onClick={() => this.openCloseConfirm()} icon size='small'>
                                                     <Icon size='small' name='delete'/>
@@ -242,7 +343,7 @@ class CategoryListEdit extends React.Component {
                                                 <Header icon='archive' content='Archive Old Messages' />
                                                 <Modal.Content>
                                                 <p>
-                                                    This category has {this.count_item_number(ctgry, products)} products in it, delete it anyway?
+                                                    This category might have products in it, do you want to delete it anyway?
                                                 </p>
                                                 </Modal.Content>
                                                 <Modal.Actions>
@@ -251,7 +352,7 @@ class CategoryListEdit extends React.Component {
                                                     </Button>
                                                     <ContextApi.Consumer>
                                                         {({state}) => (
-                                                            <Button onClick={() => this.confirmDelete(ctgry, state.dispatch)} color='green' inverted>
+                                                            <Button onClick={() => this.confirmDelete(state.dispatch)} color='green' inverted>
                                                                 <Icon name='checkmark' /> Yes
                                                             </Button>
                                                         )}
@@ -266,35 +367,63 @@ class CategoryListEdit extends React.Component {
                         {!isEmptyObj(newCategoryList) ? 
                             newCategoryList.map( ctgry => (
                                 <Table.Row key={ctgry._id} textAlign='center'>
-                                    <Table.Cell>{ctgry.title}</Table.Cell>
+                                    { (isEditing && validator.equals(ctgry._id, edit_Id)) ? 
+                                        <Table.Cell>
+                                            <Input name='editCategory' value = { editCategory.title } onChange = { iVT => this.onChange(iVT)} fluid rows={1}/> 
+                                            { errorBody.title && < InLineError message = {errorBody.title}/>} 
+                                        </Table.Cell> :  
+                                        <Table.Cell>{ctgry.title}</Table.Cell> 
+                                    }
                                     <Table.Cell>{this.count_item_number(ctgry, products)}</Table.Cell>
                                     <Table.Cell>
-                                        <Checkbox disabled defaultChecked={ctgry.show ? true : false }/>
+                                        { (isEditing && validator.equals(ctgry._id, edit_Id)) ? 
+                                            <Checkbox onChange = { this.handleCheckBoxChange }  defaultChecked={ctgry.show ? true : false }/> 
+                                            :  
+                                            <Checkbox disabled defaultChecked={ctgry.show ? true : false }/>
+                                        }
+                                        
                                     </Table.Cell>
                                     <Table.Cell>
-                                    <Button icon size='small'>
-                                            <Icon size='small' name='pencil'/>
-                                        </Button>
+                                        { (isEditing && validator.equals(ctgry._id, edit_Id)) ?
+                                            <ContextApi.Consumer>
+                                                {({state}) => (
+                                                    <Button icon size='small' onClick={() => this.saveEdit(state.dispatch)}>
+                                                    <Icon size='small' name='check'/>
+                                                </Button>
+                                                )}
+                                            </ContextApi.Consumer>
+                                            : 
+                                            <Button icon size='small' onClick={() => this.startEditingCategory(ctgry)}>
+                                                <Icon size='small' name='pencil'/>
+                                            </Button> 
+                                        }
                                         <Modal 
+                                            basic
+                                                open={modalOpen}
                                             trigger={
-                                                <Button onClick={() => this.openConfirm(ctgry)} icon size='small'>
+                                                <Button onClick={() => this.openCloseConfirm()} icon size='small'>
                                                     <Icon size='small' name='delete'/>
                                                 </Button>
-                                            } basic size='small' closeIcon>
+                                            }  size='small'>
 
                                                 <Header icon='archive' content='Archive Old Messages' />
                                                 <Modal.Content>
                                                 <p>
-                                                    This category has {this.count_item_number(ctgry, products)} products in it, delete it anyway?
+                                                    This category might have products in it, do you want to delete it anyway?
                                                 </p>
                                                 </Modal.Content>
                                                 <Modal.Actions>
-                                                <Button basic color='red' inverted>
-                                                    <Icon name='remove' /> No
-                                                </Button>
-                                                <Button color='green' inverted>
-                                                    <Icon name='checkmark' /> Yes
-                                                </Button>
+                                                    <Button onClick={() => this.openCloseConfirm()} basic color='red' inverted>
+                                                        <Icon name='remove' /> No
+                                                    </Button>
+                                                    <ContextApi.Consumer>
+                                                        {({state}) => (
+                                                            <Button onClick={() => this.confirmDelete(state.dispatch)} color='green' inverted>
+                                                                <Icon name='checkmark' /> Yes
+                                                            </Button>
+                                                        )}
+                                                    </ContextApi.Consumer>
+                                                    
                                                 </Modal.Actions>
                                         </Modal>
                                     </Table.Cell>

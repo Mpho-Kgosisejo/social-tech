@@ -121,7 +121,14 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
-        } 
+        }, 
+        update_category : (updateBody) => {
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/menus`, { data : updateBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }
     },
     web:{
         about: () => {
