@@ -1,0 +1,94 @@
+.dashboard-sidebar-pushable{
+    background-color: whitesmoke !important;
+    height: 100% !important;
+    max-height: 100%;
+}
+
+.dashboard-sidebar{
+    /* width: 200px !important; */
+}
+
+.show-below-nav {
+    position: fixed;
+    top: 54px !important;
+}
+
+.dashboard-page-header {
+    min-height: 45px;
+    margin: 0px;
+    padding: 0px 15px;
+    background: #ffffff;
+    border-bottom: 0px;
+    width: 100% !important;
+}
+
+.dashboard-menu-items {
+    color: #ffffff !important;
+}
+
+.header-content{
+    font-size: 16px !important;
+    color: #c59c70 !important;
+}
+
+.dash-board-pages {
+    /* width: 100vw !important; */
+}
+
+.dashboard-page-container{
+    background-color: #ffffff !important;
+    margin: 15px 15px 15px 15px !important;
+    padding: 20px 20px 20px 20px !important;
+}
+
+.form-upload-header{
+}
+
+.menu-upload-form{
+    margin: 15px 15px 15px 50px !important;
+}
+
+.category-available-upload-div {
+    margin-bottom: 15px !important;
+}
+
+.toggle-checkbox {
+    margin-left: 15px !important;
+    margin-top: 15px !important;
+}
+.form-button-submit{
+    background-color: #c59c70 !important;
+    color: white !important;
+}
+
+
+/* REGION: DASHBOARD ORDERS PAAGE */
+
+.dashboard-orders-table{
+
+    background-color: #ffffff !important;
+    margin: 15px 15px 15px 15px !important;
+    padding: 20px 20px 20px 20px !important;
+    border-radius: 0 !important;
+}
+
+.table-header{
+    background-color: #c59c70 !important;
+}
+
+.ui.table thead th , .table-header{
+    color: #fff !important;
+}
+.ui.table tr td {
+    border-top: none !important;
+}
+
+
+
+
+
+
+
+
+
+/* END REGION ORDERS PAGE */

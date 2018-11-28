@@ -79,12 +79,20 @@ const API = {
                 .catch(err => err.response)
             )
         },
-        menu_product : (productID) => {
+        menu_products : () => {
             if (Config.get("api.isMock")){
                 return(mock.menu().then(res => res))
             }
             return (
-                axios.get(`${Config.get("api.endpoint")}/menus/${productID}`)
+                axios.get(`${Config.get("api.endpoint")}/products`)
+            )
+        },
+        menu_categories : () => {
+            if (Config.get("api.isMock")){
+                return(mock.menu().then(res => res))
+            }
+            return (
+                axios.get(`${Config.get("api.endpoint")}/menus/menu-categories`)
             )
         }
     },
@@ -105,6 +113,13 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
+        }
+    },
+    dashboard_orders: {
+        get_orders : () => {
+            if (Config.get("api.isMock")){
+                return (mock.dashboard_orders().then(res => res))
+            }
         }
     }
 }

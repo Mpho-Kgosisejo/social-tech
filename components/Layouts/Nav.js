@@ -38,7 +38,7 @@ const pushSideBar =({dispatch}) =>
 }
 
 
-const RightNav = () => (
+export const RightNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>

@@ -9,11 +9,16 @@ router.get("/", (req, res) => {
     Product.find()
     .then(items => {
         res.status(200).json({
-            items
+            items,
+            message : "successfully retrieved products"
         })
     })
-    .catch({
-
+    .catch(error =>{
+        res.status(500).json({
+            error : {
+                message : "Error while trying to retrieve products"
+            }
+        }) 
     })
 })
 
@@ -49,7 +54,8 @@ router.post("/", (req, res) => {
 
     newProduct.save().then(product => {
         res.status(200).json({
-            product
+            product,
+            message : "successfully added the product"
         })
         // const menuModel = new MenuModel({
         //     category: menuCategoryId,
