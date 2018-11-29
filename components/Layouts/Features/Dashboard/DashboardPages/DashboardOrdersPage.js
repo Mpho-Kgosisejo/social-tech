@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Table } from 'semantic-ui-react'
 import api from '../../../../../src/providers/APIRequest';
 
+
 class DashboardOrdersPage extends React.Component {
 
     constructor() {
@@ -39,7 +40,7 @@ class DashboardOrdersPage extends React.Component {
                             <Table.Row>
                                 <Table.HeaderCell>Customer</Table.HeaderCell>
                                 <Table.HeaderCell>Order ID</Table.HeaderCell>
-                                <Table.HeaderCell>Menu Name</Table.HeaderCell>
+                                <Table.HeaderCell></Table.HeaderCell>
                                 <Table.HeaderCell>Price</Table.HeaderCell>
                                 <Table.HeaderCell>Quantity</Table.HeaderCell>
                                 <Table.HeaderCell>Status</Table.HeaderCell>
@@ -50,8 +51,8 @@ class DashboardOrdersPage extends React.Component {
                                 return (
                                     <Table.Row key={el.id}>
                                         <Table.Cell>{el.customer}</Table.Cell>
-                                        <Table.Cell>{el.orderID}</Table.Cell>
-                                        <Table.Cell>{el.menu_name}</Table.Cell>
+                                        <Table.Cell><a>{el.orderID}</a></Table.Cell>
+                                        <Table.Cell></Table.Cell>
                                         <Table.Cell>{el.price}</Table.Cell>
                                         <Table.Cell>{el.quantity}</Table.Cell>
                                         <Table.Cell>{(el.status) == "approved" ? <p style={{color: "#3CB371"}}>{el.status}</p> : (el.status) == "pending" ? <p style={{color: "#ffa900"}}>{el.status}</p> : <p style={{color: "#FF0000"}}>{el.status}</p> }</Table.Cell>
