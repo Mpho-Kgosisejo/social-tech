@@ -68,7 +68,7 @@ class DashboardMenuPage extends React.Component {
           <div> { /* ========================= */ } 
             <CategoryListEdit categories={categories} products={products}/>
             <MenuUploadForm categories={categories} />
-            <MenuListEdit products={products} />
+            <MenuListEdit products={products} categories={categories}/>
           </div>
         )
   }

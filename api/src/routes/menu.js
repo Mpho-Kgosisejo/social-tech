@@ -67,6 +67,7 @@ router.get("/menu-categories", (req, res) => {
 // this will create a new menu
 router.post("/", checkAuth, (req, res) => {
     const {name, title, show} = req.body
+    console.log(req.body)
 
     const newMenu = CategoryModel({
         name,
@@ -90,6 +91,7 @@ router.post("/", checkAuth, (req, res) => {
             })
     })
     .catch(err => {
+        console.log(err)
         res.status(501).json({
             error : {
                 message : "Couldnt add category to the database"
@@ -99,13 +101,13 @@ router.post("/", checkAuth, (req, res) => {
 })
 
 router.delete("/", checkAuth, (req, res) => {
-
+    console.log(req.body)
     CategoryModel.findByIdAndRemove(req.body._id)
     .then(result => {
-        console.log(result)
+        // console.log(result)
         ProductModel.deleteMany({menuCategoryId : req.body._id})
         .then(_result => {
-            console.log(res)
+            // console.log(res)
             CategoryModel.find()
             .then(data => {
                 res.status(200).json({

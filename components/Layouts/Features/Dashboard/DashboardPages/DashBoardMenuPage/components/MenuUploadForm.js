@@ -26,12 +26,14 @@ class MenuUploadForm extends React.Component {
 
     addIngredients = () => {
         let newIngrArr = this.state.productUploadBody.ingredients
+        let check = false
 
         newIngrArr.forEach(ingr => {
             if (ingr === this.state.inputIngredient) {
                 this.setState({
                     inputIngredientError: `The item ${ingr} already exists in the ingredient list.`
                 })
+                check = true
             }
         })
 
@@ -41,13 +43,14 @@ class MenuUploadForm extends React.Component {
             this.setState({
                 inputIngredientError: "Ingredient name cannot be empty!"
             })
-        } else {
+        } else if (check != true){
             newIngrArr.push(this.state.inputIngredient)
             this.setState({
                 productUploadBody: {
                     ...this.state.productUploadBody,
                     ingredients: newIngrArr
-                }
+                },
+                inputIngredientError : ""
             })
         }
     }
@@ -135,9 +138,7 @@ class MenuUploadForm extends React.Component {
                 inputIngredientError: "You have to add at least 1 ingredient."
             })
         }
-        if (!validator.isInt(price.toString(), {
-                min: 1
-            }) || !validator.isFloat(price.toString())) {
+        if (!validator.isInt(price.toString(), { min: 1 }) && !validator.isFloat(price.toString()) && !validator.isDecimal(price.toString())) {
             errors.price = "Please put in a valid number, which is not less than R 0.5"
         }
         if (validator.isEmpty(menuCategoryId)) {
@@ -236,9 +237,9 @@ class MenuUploadForm extends React.Component {
               </div> 
             </div>
             { /* ===================== */ }
-              <pre>{ JSON.stringify(this.state.productUploadBody, null, 2) }</pre> 
-              <pre>{ JSON.stringify(this.state.errorBody, null, 2)}</pre> 
-              <pre>{ JSON.stringify(this.state.inputIngredientError, null, 2) }</pre>
+              {/* <pre>{ JSON.stringify(this.state, " ", 2) }</pre>  */}
+              {/* <pre>{ JSON.stringify(this.state.errorBody, " ", 2)}</pre> 
+              <pre>{ JSON.stringify(this.state.inputIngredientError, " ", 2) }</pre> */}
             </div>
           )
   }

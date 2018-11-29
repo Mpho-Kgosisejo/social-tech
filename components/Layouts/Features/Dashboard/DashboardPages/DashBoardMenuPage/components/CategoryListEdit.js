@@ -5,6 +5,7 @@ import * as MessageTypes from "../../../../../../../src/Types/MessageTypes"
 import { InLineError } from '../../../../../../Messages/InLineMessage'
 import api from "../../../../../../../src/providers/APIRequest"
 import ContextApi from '../../../../../../../src/config/ContextAPI'
+import { jsUcfirst } from '../../../../../../../src/utils/jsUcfirst';
 
 class CategoryListEdit extends React.Component {
     constructor ()
@@ -81,6 +82,10 @@ class CategoryListEdit extends React.Component {
         }
     }
 
+    capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    }
+
     onChange = (iVT) => {
 
         if (iVT.target.name == "addNewItem") {
@@ -89,7 +94,7 @@ class CategoryListEdit extends React.Component {
                 newCategory: {
                     ...this.state.newCategory,
                     name : split_lower, 
-                    title : iVT.target.value
+                    title :  iVT.target.value
                 }
             })
         }
@@ -127,8 +132,11 @@ class CategoryListEdit extends React.Component {
         }
         else 
         {
-            const res = await api.menu.upload_menu(this.state.newCategory)
-            console.log(res)
+            let ctgry = this.state.newCategory
+            ctgry.title = jsUcfirst(ctgry.title)
+            const res = await api.menu.upload_menu(ctgry)
+
+            console.log(ctgry)
 
             if(res.status === 200){
                 let newArr = res.data.data
@@ -181,12 +189,13 @@ class CategoryListEdit extends React.Component {
         if (response.status === 200)
         {   
             this.setState({
-                newCategoryList : response.data.data
+                newCategoryList : response.data.data,
+                deleteCategory : {}
             })
             dispatch({type : "ALERT_PORTAL", payload : {
                 open : true, 
                 type : 'success',
-                message : "Successfully delete the category and its items."
+                message : "Successfully deleted the category and its items."
             }})
         }
         else
@@ -210,7 +219,9 @@ class CategoryListEdit extends React.Component {
             })
         }
         else {
-            const response = await api.menu.update_category(this.state.editCategory)
+            let ctgry = this.state.editCategory
+            ctgry.title = jsUcfirst(ctgry.title)
+            const response = await api.menu.update_category(ctgry)
             if (response.status === 200)
             {   
                 this.setState({
@@ -335,12 +346,12 @@ class CategoryListEdit extends React.Component {
                                             basic
                                                 open={modalOpen}
                                             trigger={
-                                                <Button onClick={() => this.openCloseConfirm()} icon size='small'>
+                                                <Button onClick={() => this.openCloseConfirm(ctgry)} icon size='small'>
                                                     <Icon size='small' name='delete'/>
                                                 </Button>
                                             }  size='small'>
 
-                                                <Header icon='archive' content='Archive Old Messages' />
+                                                <Header content='Delete' />
                                                 <Modal.Content>
                                                 <p>
                                                     This category might have products in it, do you want to delete it anyway?
@@ -401,12 +412,12 @@ class CategoryListEdit extends React.Component {
                                             basic
                                                 open={modalOpen}
                                             trigger={
-                                                <Button onClick={() => this.openCloseConfirm()} icon size='small'>
+                                                <Button onClick={() => this.openCloseConfirm(ctgry)} icon size='small'>
                                                     <Icon size='small' name='delete'/>
                                                 </Button>
                                             }  size='small'>
 
-                                                <Header icon='archive' content='Archive Old Messages' />
+                                                <Header content='Delete' />
                                                 <Modal.Content>
                                                 <p>
                                                     This category might have products in it, do you want to delete it anyway?
@@ -428,14 +439,13 @@ class CategoryListEdit extends React.Component {
                                         </Modal>
                                     </Table.Cell>
                                 </Table.Row>
-                            ))
-                            : null 
+                            )) : null
                         }
                     </Table.Body>   
                 </Table>
                 </div>
                 </div>
-                <pre>{ JSON.stringify(this.state, "", 2) }</pre> 
+                <pre>{ JSON.stringify(this.state.newCategory, "", 2) }</pre> 
             </div>
         )
     }
