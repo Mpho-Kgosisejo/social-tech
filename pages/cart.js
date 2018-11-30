@@ -1,4 +1,4 @@
-import { Grid, Segment, Header, Icon, Divider, Table, Button, Message } from "semantic-ui-react";
+import { Grid, Segment, Header, Icon, Divider, Table, Button, Message, Checkbox } from "semantic-ui-react";
 import Link from "next/link"
 
 import Layout from "../components/Layouts/Layout"
@@ -8,11 +8,13 @@ import ContextAPI from "../src/config/ContextAPI";
 import PlaceSearch from "../components/Layouts/Features/Cart/PlaceSearch"
 
 import GoogleMaps from "../components/utils/GoogleMaps"
+import { readyToProcessDelivery } from "../src/providers/CartHandler";
 
-const OrderSummary = () => (
+const OrderSummary = ({deliveryObj}) => (
     <ContextAPI.Consumer>
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
+            const {distance, cost} = state.cart.delivery
 
             return (
                 <React.Fragment>
@@ -21,7 +23,7 @@ const OrderSummary = () => (
                     <Grid columns="equal">
                         <Grid.Row>
                             <Grid.Column>
-                                <Header as="h3">Sub. total ({totalItemsCount})</Header>
+                                <Header as="h3">Sub. total ({totalItemsCount}):</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
                                 <Header>{`R${subTotal}`}</Header>
@@ -29,31 +31,47 @@ const OrderSummary = () => (
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column>
-                                <Header as="h3">TAX</Header>
+                                <Header as="h3">TAX:</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
                                 <Header>R{!subTotal? "0" : `${tax}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Divider />
-                        <Grid.Row className="total">
-                            <Grid.Column>
-                            <div className="map-container">
-                                <GoogleMaps
-                                    initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
-                                    destination={null}
-                                />
-                            </div>
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row className="total">
-                            <Grid.Column>
-                                <Header as="h3">??</Header>
+                        <Grid.Row>
+                            <Grid.Column >
+                                <Header className="zero-margin">Delivery? <span>({deliveryObj.delivery ? "On" : "Off"})</span></Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
-                                <Header>{`R0`}</Header>
+                                <Checkbox toggle disabled={(total <= 0)} onChange={() => deliveryObj.toggleDelivery(state.dispatch)} />
                             </Grid.Column>
                         </Grid.Row>
+                        {deliveryObj.delivery && (
+                                <>
+                                    <Grid.Row className="total">
+                                        <Grid.Column>
+                                        <div className="map-container">
+                                            <GoogleMaps
+                                                initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
+                                                destination={null}
+                                            />
+                                        </div>
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                    <Grid.Row className="total">
+                                        <Grid.Column>
+                                            <Header as="h3">
+                                                Delivery cost:<br/>
+                                                <span>Distance of: <b>{distance ? distance.text : "0 km"}</b></span>
+                                            </Header>
+                                        </Grid.Column>
+                                        <Grid.Column textAlign="right">
+                                            <Header>{`R${cost ? cost : "0"}`}</Header>
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                </>
+                            )
+                        }
                         <Divider />
                         <Grid.Row className="total">
                             <Grid.Column>
@@ -66,8 +84,8 @@ const OrderSummary = () => (
                         <Divider />
                         <Grid.Row>
                             <Grid.Column>
-                                <Button fluid icon labelPosition="right" color="black">
-                                    Process Checkout
+                                <Button disabled={!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})} fluid icon labelPosition="right" color="black">
+                                    Process Checkout {`> ${!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})}`}
                                     <Icon name="right arrow"/>
                                 </Button>
                             </Grid.Column>
@@ -101,8 +119,18 @@ class Cart extends React.Component {
         super(props)
 
         this.state = {
-            loading: true
+            loading: true,
+            delivery: false
         }
+    }
+
+    toggleDelivery = (dispatch) => {
+        if (this.state.delivery){
+            dispatch({type: "CART_DELIVERY", payload: {}})
+            this.setState({delivery: false})
+        }
+        else
+            this.setState({delivery: true})
     }
 
     componentDidMount(){
@@ -113,7 +141,7 @@ class Cart extends React.Component {
     }
 
     render(){
-        const {loading} = this.state
+        const {loading, delivery} = this.state
 
         return (
             <Layout>
@@ -156,7 +184,7 @@ class Cart extends React.Component {
                                         </Grid.Column>
                                         <Grid.Column computer={6} tablet={16} mobile={16}>
                                             <Segment className="order">
-                                                <OrderSummary />
+                                                <OrderSummary deliveryObj={{delivery, toggleDelivery: this.toggleDelivery}} />
                                             </Segment>
                                         </Grid.Column>  
                                     </Grid.Row>

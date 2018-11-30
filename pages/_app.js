@@ -41,6 +41,7 @@ export default class MyApp extends App {
                     total: 0,
                     tax: 0
                 },
+                delivery: {},
                 items: []
             },
             dispatch: (action) => this.setState(state => reducer(state, action))

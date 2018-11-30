@@ -125,3 +125,8 @@
 .cart .googlemaps-loading{
     height: 100%;
 }
+
+.cart .zero-margin.ui.header:first-child{
+    margin: 0 !important;
+    font-size: 1.1em !important;
+}
