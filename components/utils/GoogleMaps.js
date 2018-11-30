@@ -36,10 +36,10 @@ export class GoogleMaps extends React.Component {
         geocoder.geocode({address}, (result, status) => {
             if (status === "OK"){
                 const location = result[0].geometry.location
-                this.marker = new Marker({
-                    map: this.map,
-                    position: location
-                })
+                // this.marker = new Marker({
+                //     map: this.map,
+                //     position: location
+                // })
                 
                 this.map.setCenter(location)
             }else{
@@ -56,7 +56,8 @@ export class GoogleMaps extends React.Component {
         const directionsRenderer = new DirectionsRenderer()
         const directionsService = new DirectionsService()
 
-        this.marker.setMap(null)
+        // if (this.marker)
+        //     this.marker.setMap(null)
 
         new DistanceMatrixService().getDistanceMatrix({
             origins: [origin],
@@ -138,12 +139,14 @@ export class GoogleMaps extends React.Component {
     }
 
     render(){
+        const {goole, destination} = this.props
+
         return(
             <ContextAPI.Consumer>
                 {({state}) => (
                     <div className="map">
                         <Map
-                            google={this.props.google}
+                            google={google}
                             zoom={17.5}
                             style={{
                                 width: "100%",
@@ -165,7 +168,7 @@ export class GoogleMaps extends React.Component {
         
                         <Form loading={this.state.loadingAutoComplete}>
                             <Form.Field>
-                                <input ref={ref => (this.autocomplete = ref)} />
+                                <input ref={ref => (this.autocomplete = ref)} value={destination} />
                             </Form.Field>
                         </Form>
                     </div>

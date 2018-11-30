@@ -2,14 +2,12 @@ import PlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-places-auto
 import { Input } from "semantic-ui-react";
 import React from "react"
 
-import GoogleMaps from "../../../utils/GoogleMaps"
-
 class PlaceSearch extends React.Component {
     constructor(props) {
         super(props);
+        
         this.state = {
-            address: '',
-            destination: {}
+            address: ''
         };
     }
 

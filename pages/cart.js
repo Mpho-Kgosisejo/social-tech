@@ -1,108 +1,12 @@
-import { Grid, Segment, Header, Icon, Divider, Table, Button, Message, Checkbox } from "semantic-ui-react";
+import { Grid, Segment, Header, Icon, Divider, Table, Message, Modal, Button } from "semantic-ui-react";
 import Link from "next/link"
 
 import Layout from "../components/Layouts/Layout"
 import TableItem from "../components/Layouts/Features/Cart/TableItem"
 import { CartTablePlaceholder } from "../components/utils/Placeholders";
 import ContextAPI from "../src/config/ContextAPI";
-import PlaceSearch from "../components/Layouts/Features/Cart/PlaceSearch"
 
-import GoogleMaps from "../components/utils/GoogleMaps"
-import { readyToProcessDelivery } from "../src/providers/CartHandler";
-
-const OrderSummary = ({deliveryObj}) => (
-    <ContextAPI.Consumer>
-        {({state}) => {
-            const {subTotal, total, totalItemsCount, tax} = state.cart.details
-            const {distance, cost} = state.cart.delivery
-
-            return (
-                <React.Fragment>
-                    <Header as="h3">Order Summary</Header>
-                    <Divider />
-                    <Grid columns="equal">
-                        <Grid.Row>
-                            <Grid.Column>
-                                <Header as="h3">Sub. total ({totalItemsCount}):</Header>
-                            </Grid.Column>
-                            <Grid.Column textAlign="right">
-                                <Header>{`R${subTotal}`}</Header>
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column>
-                                <Header as="h3">TAX:</Header>
-                            </Grid.Column>
-                            <Grid.Column textAlign="right">
-                                <Header>R{!subTotal? "0" : `${tax}`}</Header>
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Divider />
-                        <Grid.Row>
-                            <Grid.Column >
-                                <Header className="zero-margin">Delivery? <span>({deliveryObj.delivery ? "On" : "Off"})</span></Header>
-                            </Grid.Column>
-                            <Grid.Column textAlign="right">
-                                <Checkbox toggle disabled={(total <= 0)} onChange={() => deliveryObj.toggleDelivery(state.dispatch)} />
-                            </Grid.Column>
-                        </Grid.Row>
-                        {deliveryObj.delivery && (
-                                <>
-                                    <Grid.Row className="total">
-                                        <Grid.Column>
-                                        <div className="map-container">
-                                            <GoogleMaps
-                                                initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
-                                                destination={null}
-                                            />
-                                        </div>
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                    <Grid.Row className="total">
-                                        <Grid.Column>
-                                            <Header as="h3">
-                                                Delivery cost:<br/>
-                                                <span>Distance of: <b>{distance ? distance.text : "0 km"}</b></span>
-                                            </Header>
-                                        </Grid.Column>
-                                        <Grid.Column textAlign="right">
-                                            <Header>{`R${cost ? cost : "0"}`}</Header>
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                </>
-                            )
-                        }
-                        <Divider />
-                        <Grid.Row className="total">
-                            <Grid.Column>
-                                <Header as="h3">Total</Header>
-                            </Grid.Column>
-                            <Grid.Column textAlign="right">
-                                <Header>{`R${total}`}</Header>
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Divider />
-                        <Grid.Row>
-                            <Grid.Column>
-                                <Button disabled={!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})} fluid icon labelPosition="right" color="black">
-                                    Process Checkout {`> ${!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})}`}
-                                    <Icon name="right arrow"/>
-                                </Button>
-                            </Grid.Column>
-                        </Grid.Row>
-                        {/* <Divider />
-                        <Grid.Row className="addons">
-                            <Grid.Column>
-                                Some text...
-                            </Grid.Column>
-                        </Grid.Row> */}
-                        <Divider hidden />
-                    </Grid>
-                </React.Fragment>    
-            )
-        }}
-    </ContextAPI.Consumer>
-)
+import OrderSummary from "../components/Layouts/Features/Cart/OrderSummary"
 
 const EmptyCart = () => (
     <Message >
@@ -114,23 +18,58 @@ const EmptyCart = () => (
     </Message>
 )
 
+const Confirm = ({open, address, func}) => (
+    <Modal open={open} basic size="small">
+        <Header>Use your current saved address ?</Header>
+        <Modal.Content>
+            Address: <b>{address}</b>
+        </Modal.Content>
+
+        <Modal.Actions>
+            <Button basic color="red" inverted onClick={() => func(false)}>
+                <Icon name="remove" />
+                No
+            </Button>
+            <Button basic color="green" inverted onClick={() => func(true)}>
+                <Icon name="checkmark" />
+                Yes
+            </Button>
+        </Modal.Actions>
+    </Modal>
+)
+
 class Cart extends React.Component {
     constructor(props){
         super(props)
 
         this.state = {
             loading: true,
-            delivery: false
+            delivery: false,
+            openConfirm: false,
+            useSavedAddress: null
         }
     }
 
-    toggleDelivery = (dispatch) => {
+    toggleDelivery = ({state}) => {
+        const {dispatch, login} = state
+
         if (this.state.delivery){
             dispatch({type: "CART_DELIVERY", payload: {}})
             this.setState({delivery: false})
         }
+        else{
+            if (Object.keys(login).length > 0)
+                this.setState({delivery: true, openConfirm: true})
+            else
+                this.setState({delivery: true, useSavedAddress: false})
+        }
+    }
+
+    confirm = (confirm) => {
+        if (confirm)
+            this.setState({useSavedAddress: true, openConfirm: false})
         else
-            this.setState({delivery: true})
+            this.setState({useSavedAddress: false, openConfirm: false})
     }
 
     componentDidMount(){
@@ -141,16 +80,19 @@ class Cart extends React.Component {
     }
 
     render(){
-        const {loading, delivery} = this.state
+        const {loading, delivery, openConfirm, useSavedAddress} = this.state
 
         return (
-            <Layout>
+            <Layout title="Cart">
                 <ContextAPI.Consumer>
                     {({state}) => {
                         const {cart} = state
+                        const {address} = state.account.personal_details
 
                         return(
                             <>
+                                <Confirm open={openConfirm} address={address} func={this.confirm} />
+
                                 <Divider hidden />
                                 <Header as="h3" color="grey">
                                     <Icon name="cart" size="mini"/>
@@ -184,7 +126,7 @@ class Cart extends React.Component {
                                         </Grid.Column>
                                         <Grid.Column computer={6} tablet={16} mobile={16}>
                                             <Segment className="order">
-                                                <OrderSummary deliveryObj={{delivery, toggleDelivery: this.toggleDelivery}} />
+                                                <OrderSummary useSavedAddress={useSavedAddress} deliveryObj={{delivery, toggleDelivery: this.toggleDelivery}} />
                                             </Segment>
                                         </Grid.Column>  
                                     </Grid.Row>
