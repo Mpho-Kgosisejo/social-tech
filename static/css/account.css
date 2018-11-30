@@ -35,6 +35,12 @@
     padding: 30px 30px !important;
 }
 
+.account-placeholder
+{
+    margin-top: 50px !important;
+    /* padding: 50px 50px !important; */
+}
+
 @media ( max-width: 480px){
     .account-tabs
     {

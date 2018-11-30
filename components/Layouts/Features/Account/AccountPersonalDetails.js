@@ -1,52 +1,61 @@
 import React from 'react'
 import { Form, Button, Divider } from 'semantic-ui-react'
 
+import ContextAPI from "../../../../src/config/ContextAPI"
 
 class AccountPersonalDetails extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoading: true
+        }
+    }
+
     render() {
+        // const { isLoading } = this.state
+
         return (
-            <React.Fragment>
-                <Form>
-                    <Form.Field>
-                        <label>First name:</label>
-                        <input value="Thato" readOnly />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Last name:</label>
-                        <input value="Mekwa" readOnly />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Username:</label>
-                        <input value="tmekwa" readOnly />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Email address:</label>
-                        <input value="tmekwa@gmail.com" readOnly />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Phone:</label>
-                        <input value="0123456789" readOnly />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Delivery address:</label>
-                        <input value="2237 Bottom Lane Gasport NY 1406" readOnly />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Occupation:</label>
-                        <input value="Student" readOnly />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Bio:</label>
-                        <textarea value="Pickle Rick oooooooooo motherfuckers im alive and im coming to your school bitch argh and we going to make more seasons bitch in your face wrinkled scrotum bitch from Mars im coming for you hahahahahahah nine for seasons bitch yea nine more and im get that sauce" readOnly />
-                    </Form.Field>
-                    <Divider />
-                    <Form.Field>
-                        <label>Password:</label>
-                        <input value="************" readOnly />
-                    </Form.Field>
-                    <Button type='submit'>Submit</Button>
-                </Form>
-            </React.Fragment>
+            <ContextAPI.Consumer>
+                {({ state }) =>
+                <React.Fragment>
+                    {/* <pre>{JSON.stringify(state.account.personal_details.first_name, "", 1)}</pre> */}
+                    {/* { isLoading ? < pla} */}
+                    <Form>
+                        <Form.Field>
+                            <label>First name:</label>
+                            <input value={state.account.personal_details.first_name} readOnly />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Last name:</label>
+                            <input value={state.account.personal_details.last_name} readOnly />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Username:</label>
+                            <input value={state.account.personal_details.username} readOnly />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Email address:</label>
+                            <input value={state.account.personal_details.email_address}readOnly />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Phone:</label>
+                            <input value={state.account.personal_details.phone} readOnly />
+                        </Form.Field>
+                        <Form.Field>
+                            <label>Delivery address:</label>
+                            <input value={state.account.personal_details.delivery_address} readOnly />
+                        </Form.Field>
+                        <Divider />
+                        <Form.Field>
+                            <label>Password:</label>
+                            <input value={state.account.personal_details.password} readOnly />
+                        </Form.Field>
+                        <Button type='submit'>Submit</Button>
+                    </Form>
+                </React.Fragment>
+                }
+                     </ContextAPI.Consumer>
         )
     }
 }

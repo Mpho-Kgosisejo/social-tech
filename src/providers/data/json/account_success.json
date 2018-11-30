@@ -3,14 +3,13 @@
     "data":
     {
         "personal_details":{
+            "img_url": "http://i.pravatar.cc/100",
             "first_name": "Thato",
             "last_name": "Mekwa",
             "username": "tmekwa",
             "email_address": "tmekwa@mail.com",
             "phone": "0123456789",
             "delivery_address": "2237 Bottom Lane Gasport NY 1406",
-            "occupation": "Student",
-            "Bio": "Pickle Rick oooooooooo motherfuckers im alive and im coming to your school bitch argh and we going to make more seasons bitch in your face wrinkled scrotum bitch from Mars im coming for you hahahahahahah nine for seasons bitch yea nine more and im get that sauce",
             "password": "*************"
         },
         "order_history":

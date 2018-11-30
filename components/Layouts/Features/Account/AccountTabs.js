@@ -8,7 +8,7 @@ import AccountHistory from './AccountHistory';
 
 const panes = [
   { menuItem: 'Personal details', render: () => <Tab.Pane><AccountPersonalDetails /></Tab.Pane> },
-  { menuItem: 'Order history', render: () => <Tab.Pane><AccountHistory /></Tab.Pane> },
+  { menuItem: 'Order history', render: () => <Tab.Pane><AccountHistory /></Tab.Pane> }
 ]
 
 
