@@ -108,6 +108,9 @@ const API = {
                 .catch(err => err.response)
             )
         },
+        delete_product : (deleteBody) => {
+
+        },
         upload_menu : (uploadBody) => {
             return (
                 axios.post(`${Config.get("api.endpoint")}/menus`, uploadBody)

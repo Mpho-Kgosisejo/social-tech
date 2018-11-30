@@ -445,7 +445,7 @@ class CategoryListEdit extends React.Component {
                 </Table>
                 </div>
                 </div>
-                <pre>{ JSON.stringify(this.state.newCategory, "", 2) }</pre> 
+                {/* <pre>{ JSON.stringify(this.state.newCategory, "", 2) }</pre>  */}
             </div>
         )
     }
