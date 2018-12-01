@@ -15,6 +15,8 @@ const fileFilter = (req, file, cb) => {
         cb(new Error("Only images of *.jpeg and *.png are allowed"), false)
     }
 }
+
+
 export const multerUpload = multer({
     storage,
     fileFilter,

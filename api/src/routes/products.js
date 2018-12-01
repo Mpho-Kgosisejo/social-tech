@@ -1,7 +1,7 @@
 import express from "express"
 
 import Product from "../models/Product"
-import {multerUpload} from "../utils/multerImageHandler"
+import { multerUpload } from "../utils/multerImageHandler"
 import checkAuth from "../middleware/checkAuth"
 
 const router  = express.Router()
@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
         res.status(200).json({
             items,
             message : "successfully retrieved products"
-        })
+        }) 
     })
     .catch(error =>{
         console.log(error)
@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
             error : {
                 message : "Error while trying to retrieve products"
             }
-        }) 
+        })
     })
 })
 
@@ -64,10 +64,33 @@ router.post("/", checkAuth, multerUpload.single('productImage'), (req, res) => {
         })
     })
     .catch(err => {
-        res.status(500).json({
+        res.status(501).json({
             error : {
                 catch: err,
                 message : "could not add this product to the database"
+            }
+        })
+    })
+})
+
+router.delete("/", checkAuth, (req, res) => {
+
+
+    Product.findByIdAndRemove(req.body._id)
+    .then (result => {
+        Product.find()
+        .then (data => {
+            res.status(200).json({
+                data,
+                message : "successfully delete the product from the database"
+            })
+        })
+    })
+    .catch (err => {
+        res.status(501).json({
+            error : {
+                catch : err,
+                message : "failed to delete this product from the database. :("
             }
         })
     })
