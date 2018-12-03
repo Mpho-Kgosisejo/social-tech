@@ -1,11 +1,11 @@
 import React from 'react'
 import { Card, Button, Header, Divider, Container } from 'semantic-ui-react'
 
-import {PlaceholderMediumParagraph} from "../components/utils/Placeholders"
+import {PlaceholderMediumParagraph, PlaceHolderGallery, PlaceHolderGallerySub} from "../components/utils/Placeholders"
 import Layout from "../components/Layouts/Layout"
-import "../static/css/gallery.css";
 import api from '../src/providers/APIRequest';
 import { isEmptyObj } from "../src/utils/Objs";
+import PageHeader from '../components/utils/PageHeader';
 
 //const API = 'https://graph.facebook.com/v3.2/114272482259035?fields=posts.limit(200){full_picture}&access_token=EAACqlwR17REBAORh8KWT7X0hE66TAnl4XYodGSDJ8byZBg1q8vT2p6CMag8BGc3mUTzWevAH8QKj3MizN1W6P75kax7c3Ig21D3JD3vjO7evXnQCaQpsiPq6s2EyfTk5NpRzM914XeOsvDut6bx7ZByYqVJkskB7O3CbMewwZDZD';
 //const API = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=4568877052.1677ed0.a60877d3a14849cbaf47fb1acb2a88ad';
@@ -43,6 +43,8 @@ class Gallery extends React.Component {
         this.getData()
 
         this.props.dispatch({type: "SIDEBAR", payload: false})
+        this.props.dispatch({type: "PAGE", payload: "gallery"})
+
     }
 
     myIncludes = (str) => {
@@ -75,11 +77,16 @@ class Gallery extends React.Component {
 
         return (
                 <>
-                <Layout title="Gallery">
-                    <Header as='h2' textAlign='center'>
-                        Our Gallery
-                    </Header>
-
+                <Layout title="Gallery" includeContainer={false}>
+                <PageHeader 
+                    color="rgb(212, 195, 176)"
+                    title="Our Gallery"
+                    subtitle="First we eat, then we do everything else"/>
+                <Container>
+                <div className="header-row align-iterms-center">
+                    <p className="header-sub"></p>
+                    <Header as="h2">Once upon a time...</Header>
+                </div>
                     <i ref={this.s} />
                     <Divider />
                     
@@ -112,8 +119,13 @@ class Gallery extends React.Component {
                                     )
                                 })}
                             </Card.Group>
-                        </>: <PlaceholderMediumParagraph />
+                        </> : <div>
+                          <PlaceHolderGallery/>
+                          <Divider hidden/>
+                          <PlaceHolderGallerySub/>
+                        </div> 
                     }
+                    </Container>
                 </Layout>
             </>
         )

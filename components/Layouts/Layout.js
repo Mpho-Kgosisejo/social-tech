@@ -1,5 +1,5 @@
 import Head from "next/head"
-import {Container, Sidebar, Menu, Icon, Responsive, Visibility} from "semantic-ui-react"
+import {Container, Sidebar, Menu, Visibility, Dimmer, PlaceholderLine} from "semantic-ui-react"
 
 import Nav from "./Nav";
 import Footer from "./Footer";
@@ -8,6 +8,12 @@ import AlertPortal from "../utils/AlertPortal";
 import {LeftComputerNav} from "./Nav"
 
 import "../../static/css/style.css"
+import "../../static/css/account.css"
+import "../../static/css/gallery.css";
+import "../../static/css/menu.css";
+import "../../static/css/cart.css"
+import "../../static/css/alertportal.css"
+import "../../static/css/pageheader.css"
 
 const handleUpdateLayout = ({calculations, state}) => {
     const {dispatch} = state
@@ -30,7 +36,9 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
 
             {/* If you offline... */}
             {/* <link rel="stylesheet" href="/static/css/semantic-2.3.0.min.css" /> */}
+            {/* <link ref="stylesheet" href="/static/css/account.css" /> */}
             <link ref="stylesheet" href="/static/css/style.css" />
+
             
             <title>{title}</title>
         </Head>
@@ -38,6 +46,8 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
         
         <ContextAPI.Consumer>
             {({state}) => (
+                <>
+                    {!state.root_loading ? includeNav && <Nav /> : <PlaceholderLine/>}
                 <Sidebar.Pushable>
                     {/* <Responsive maxWidth={991} as={React.Fragment}> */}
                     <Sidebar
@@ -49,33 +59,34 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
                         inverted
                         visible={state.isSidebarOpen}
                         width='thin'
-                        className="fresheats-green-bg"
+                        className="fresheats-green-bg push-sidebar"
                     >
-                        <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({type: "SIDEBAR"})}>
-                            <Icon name="close" size="mini" />
-                        </Menu.Item>
                         <Menu.Item as="a" className="fresheats-brown-color"></Menu.Item>
                         <LeftComputerNav />
                     </Sidebar>
                     {/* </Responsive> */}
-        
                     <Sidebar.Pusher>
                         <Visibility fireOnMount onUpdate={(e, {calculations}) => handleUpdateLayout({state, calculations})}>
                             <div className="mainLayout">
                                 {(!state.root_loading && state.alertPortal.message) && <AlertPortal />}
-                    
-                                {!state.root_loading && includeNav && <Nav />}
-                    
-                                {includeContainer ? <Container className="childLayout" children={children} /> : children}
+
+                                {includeContainer ?
+                                    <Container className="childLayout">
+                                        {children}
+                                    </Container>
+                                    :
+                                    children
+                                }
 
                                 {includeFooter && <Footer />}
                             </div>
                         </Visibility>
+                        <Dimmer active={state.isSidebarOpen} onClickOutside={() => state.dispatch({type: "SIDEBAR"})}  />
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
+            </>
             )}
         </ContextAPI.Consumer>
     </React.Fragment>
 )
-
 export default Layout
