@@ -85,7 +85,7 @@ const OrderSummary = ({deliveryObj, useSavedAddress}) => (
                         <Grid.Row>
                             <Grid.Column>
                                 <Button disabled={!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})} fluid icon labelPosition="right" color="black">
-                                    Process Checkout {`> ${!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})}`}
+                                    Checkout
                                     <Icon name="right arrow"/>
                                 </Button>
                             </Grid.Column>
