@@ -45,6 +45,7 @@ router.get("/:id", (req, res) => {
 
 router.post("/", checkAuth, multerUpload.single('productImage'), (req, res) => {
     const {price, available, name, description, menuCategoryId, ingredients} = req.body
+    const newIngredients = JSON.parse(ingredients)
     const image =  `${process.env.HOST}/${req.file.path}`
     const newProduct = new Product({
         price,
@@ -53,7 +54,7 @@ router.post("/", checkAuth, multerUpload.single('productImage'), (req, res) => {
         image,
         description,
         menuCategoryId,
-        ingredients
+        ingredients : newIngredients
     })
 
 
