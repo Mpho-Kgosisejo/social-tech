@@ -2,11 +2,13 @@ import UserModel from "../models/User"
 
 export const update_info = (req, res) => {
     const {key} = req.auth_data
-    const {firstname, lastname} = req.body
+    const {firstname, lastname, phone, address} = req.body
 
     UserModel.findByIdAndUpdate({_id: key}, {
         firstname,
-        lastname
+        lastname,
+        phone,
+        address
     }, {new: true})
     .then(user => {
         res.json({
