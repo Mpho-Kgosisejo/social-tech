@@ -3,7 +3,6 @@ import { Tab, Dropdown } from 'semantic-ui-react'
 
 import Layout from '../../Layout';
 import AccountPersonalDetails from './AccountPersonalDetails';
-import AccountPaymentDetails from './AccountPaymentDetails';
 import AccountHistory from './AccountHistory';
 
 const panes = [

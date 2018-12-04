@@ -24,32 +24,31 @@ class AccountPersonalDetails extends React.Component {
                     <Form>
                         <Form.Field>
                             <label>First name:</label>
-                            <input value={state.account.personal_details.first_name} readOnly />
+                            <input value={state.account.personal_details.first_name}  />
                         </Form.Field>
                         <Form.Field>
                             <label>Last name:</label>
-                            <input value={state.account.personal_details.last_name} readOnly />
+                            <input value={state.account.personal_details.last_name}  />
                         </Form.Field>
                         <Form.Field>
                             <label>Username:</label>
-                            <input value={state.account.personal_details.username} readOnly />
+                            <input value={state.account.personal_details.username}  />
                         </Form.Field>
                         <Form.Field>
                             <label>Email address:</label>
-                            <input value={state.account.personal_details.email_address}readOnly />
+                            <input value={state.account.personal_details.email_address} />
                         </Form.Field>
                         <Form.Field>
                             <label>Phone:</label>
-                            <input value={state.account.personal_details.phone} readOnly />
+                            <input value={state.account.personal_details.phone}  />
                         </Form.Field>
                         <Form.Field>
                             <label>Delivery address:</label>
-                            <input value={state.account.personal_details.delivery_address} readOnly />
+                            <input value={state.account.personal_details.delivery_address}  />
                         </Form.Field>
                         <Divider />
                         <Form.Field>
-                            <label>Password:</label>
-                            <input value={state.account.personal_details.password} readOnly />
+                            <a href="forgot-password">Change Password</a>
                         </Form.Field>
                         <Button type='submit'>Submit</Button>
                     </Form>
