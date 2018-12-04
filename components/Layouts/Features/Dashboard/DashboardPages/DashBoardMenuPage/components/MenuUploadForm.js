@@ -151,7 +151,9 @@ class MenuUploadForm extends React.Component {
         const errors = this.validate()
         if (isEmptyObj(errors)) {
             const res = await api.menu.upload_product(this.state.productUploadBody)
-            console.log(res)
+            this.setState({
+                errorBody : {}
+            })
         } else {
             this.setState({
                 errorBody: errors
@@ -237,7 +239,7 @@ class MenuUploadForm extends React.Component {
               </div> 
             </div>
             { /* ===================== */ }
-              <pre>{ JSON.stringify(this.state, " ", 2) }</pre> 
+              {/* <pre>{ JSON.stringify(this.state, " ", 2) }</pre>  */}
               {/* <pre>{ JSON.stringify(this.state.errorBody, " ", 2)}</pre> 
               <pre>{ JSON.stringify(this.state.inputIngredientError, " ", 2) }</pre> */}
             </div>

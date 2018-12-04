@@ -75,8 +75,6 @@ router.post("/", checkAuth, multerUpload.single('productImage'), (req, res) => {
 })
 
 router.delete("/", checkAuth, (req, res) => {
-
-
     Product.findByIdAndRemove(req.body._id)
     .then (result => {
         Product.find()
@@ -91,10 +89,40 @@ router.delete("/", checkAuth, (req, res) => {
         res.status(501).json({
             error : {
                 catch : err,
-                message : "failed to delete this product from the database. :("
+                message : "failed to delete this product from the database."
             }
         })
     })
+})
+
+router.patch("/", checkAuth, multerUpload.single('productImage'), (req, res) => {
+    if (typeof(req.body.oldImagePath) !== 'undefined') {
+        const imageToBeDeleted = req.body.oldImagePath
+        console.log(imageToBeDeleted)
+    }
+    else {
+        const updateModel = req.body
+
+        Product.findByIdAndUpdate(req.body._id, updateModel, {new : true})
+        .then (data => {
+            console.log(data)
+            Product.find()
+            .then (result => {
+                res.status(200).json({
+                    result,
+                    message : "successfully updated the product."
+                })
+            })
+        })
+        .catch(error => {
+            res.status(501).json({
+                error : {
+                    catch : error,
+                    message : "failed to update the product."
+                }
+            })
+        })
+    }
 })
 
 export default router

@@ -1,4 +1,4 @@
-import { Form, Button, Dropdown, Input, Label, Checkbox, Segment, TextArea } from 'semantic-ui-react'
+import { Form, Button, Dropdown, Input, Label, Checkbox, Segment, TextArea, Image } from 'semantic-ui-react'
 import api from "../../../../../../../src/providers/APIRequest"
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import validator from 'validator'
@@ -21,7 +21,9 @@ class MenuEditForm extends React.Component {
             },
             errorBody: {},
             inputIngredient: "",
-            inputIngredientError: ""
+            inputIngredientError: "",
+            isImageEdited : false,
+            newDisplayImage : ""
         }
     }
 
@@ -101,12 +103,20 @@ class MenuEditForm extends React.Component {
                 inputIngredient: iVT.target.value
             })
         } else if (iVT.target.name === "image") {
-            console.log("before ===", iVT.target.files[0])
+            if (iVT.target.files && iVT.target.files[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.setState({ newDisplayImage : e.target.result});
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            }
             this.setState({
                 editBody: {
                     ...this.state.editBody,
-                    image: iVT.target.files[0]
-                }
+                    oldImagePath : this.state.editBody.image,
+                    image: iVT.target.files[0],
+                },
+                isImageEdited : true
             })
         } else {
             this.setState({
@@ -157,11 +167,14 @@ class MenuEditForm extends React.Component {
         return (errors)
     }
 
-    uploadMenu = async () => {
+    uploadEditedMenu = async () => {
         const errors = this.validate()
         if (isEmptyObj(errors)) {
-            const res = await api.menu.upload_product(this.state.editBody)
+            const res = await api.menu.update_product(this.state.editBody, this.state.isImageEdited)
             console.log(res)
+            this.setState({
+                errorBody : {}
+            })
         } else {
             this.setState({
                 errorBody: errors
@@ -170,26 +183,23 @@ class MenuEditForm extends React.Component {
     }
 
     render() {
-        const { editBody, inputIngredient, inputIngredientError, errorBody } = this.state
+        const { editBody, inputIngredient, inputIngredientError, errorBody, isImageEdited, newDisplayImage } = this.state
         const { categories, productId} = this.props
 
         return ( 
           <div> { /* ========================= */ } 
             <div className = "dashboard-menu-page-container">
               <div className = "menu-upload-header">
-                <h3> Edit Menu {productId} </h3> 
+                <h3> Edit Menu Product {productId} </h3> 
               </div> 
-            <div className = "upload-contents">
-
             <Form>
               <Form.Field error = {!isEmptyObj(errorBody.name)}>
-                <label > Product Name {productId} </label>  
+                <label > Product Name</label>  
                 <Input name = "name" value = { editBody.name } onChange = { iVT => this.onChange(iVT)} placeholder = 'Name' autoComplete="off"/> 
                 { errorBody.name && < InLineError message = {errorBody.name}/>} 
               </Form.Field>
               <Form.Field error = {!isEmptyObj(errorBody.description)}>
                 <label > Product Description </label> 
-                {/* <Input name = "description" value = { editBody.description } onChange = {iVT => this.onChange(iVT)} placeholder = 'Description'/>  */}
                 <TextArea name = "description"  value = { editBody.description } onChange = {iVT => this.onChange(iVT)} placeholder='Description' autoComplete="off"/> 
                 { errorBody.description && <InLineError message = { errorBody.description }/> } 
               </Form.Field> 
@@ -197,12 +207,7 @@ class MenuEditForm extends React.Component {
                 <label > Price </label>
                 <Input name = "price" value = { editBody.price } onChange = { iVT => this.onChange(iVT) } label = {{ basic: true, content: 'R'}} labelPosition = 'left' type = 'text' placeholder = 'Amount' autoComplete="off"/> 
                 { errorBody.price && < InLineError message = { errorBody.price } />} 
-              </Form.Field> 
-              < Form.Field error = {!isEmptyObj(errorBody.image)}>
-                <label > Product Image </label>
-                <Input name = "image" onChange = {iVT => this.onChange(iVT)} type = 'file'/> 
-                { errorBody.image && < InLineError message = {errorBody.image} /> } 
-              </Form.Field> 
+              </Form.Field>
               <Form.Field error={!isEmptyObj(inputIngredientError)}> 
                 <label>Ingredients</label> 
                 <Input name="product_ingredient" value={inputIngredient} onChange={iVT => this.onChange(iVT) } action={<Button negative={!isEmptyObj(inputIngredientError)} onClick={this.addIngredients} >Add</Button>} autoComplete="off"></Input>
@@ -242,10 +247,18 @@ class MenuEditForm extends React.Component {
                 </div> 
                 { errorBody.menuCategoryId && <InLineError message = {errorBody.menuCategoryId}/> } 
                 </Form.Field> 
-                <Form.Button size = 'large' primary onClick = { this.uploadMenu}> Save </Form.Button> 
+                <Form.Field>
+                    <label > Product Image </label>
+                    <div>
+                        <Image size='small' src={ isImageEdited ? newDisplayImage : editBody.image }></Image>
+                        <input name="image" style={{display : 'none'}} type='file' onChange={iVT => this.onChange(iVT)} ref={fileInput => this.fileInput = fileInput}></input>
+                        <Button onClick={() => this.fileInput.click()}>Edit</Button>
+                    </div>
+                </Form.Field>
+                
+                <Form.Button size ='large' primary onClick = { this.uploadEditedMenu}> Save </Form.Button> 
                 </Form> 
               </div> 
-            </div>
             { /* ===================== */ }
               <pre>{ JSON.stringify(this.state, " ", 2) }</pre> 
               {/* <pre>{ JSON.stringify(this.state.errorBody, " ", 2)}</pre> 

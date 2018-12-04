@@ -113,6 +113,36 @@ const API = {
                 .catch(err => err.response)
             )
         },
+        update_product : (editBody, isImageEdited) => {
+            
+            if (isImageEdited)
+            {
+                const fileData = new FormData()
+                fileData.append('name', editBody.name)
+                fileData.append('description', editBody.description)
+                fileData.append('price', editBody.price)
+                fileData.append('available', editBody.available)
+                fileData.append('ingredients', JSON.stringify(editBody.ingredients))
+                fileData.append('menuCategoryId', editBody.menuCategoryId)
+                fileData.append('productImage', editBody.image, editBody.image.name)
+                fileData.append('oldImagePath', editBody.oldImagePath)
+                return (
+                    axios.patch(`${Config.get("api.endpoint")}/products`, fileData )
+                    .then(res => res)
+                    .catch(err => err.response)
+                )
+            }
+            else 
+            {
+                return (
+                    axios.patch(`${Config.get("api.endpoint")}/products`, editBody)
+                    .then(res => res)
+                    .catch(err => err.response)
+                )
+            }
+
+            
+        },
         delete_product : (deleteBody) => {
             return (
                 axios.delete(`${Config.get("api.endpoint")}/products`, { data : deleteBody})

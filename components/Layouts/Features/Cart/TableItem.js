@@ -36,7 +36,7 @@ const TableItem = ({price, _id, image, name, description, quantity}) => {
                         </Table.Cell>
                         <Table.Cell width={8} textAlign="center">
                             <Header>
-                                <a>{name}</a>
+                                <b><a>{name}</a></b>
                                 <Header.Subheader>
                                     {description}
                                 </Header.Subheader>

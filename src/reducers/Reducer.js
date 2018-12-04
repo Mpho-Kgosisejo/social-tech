@@ -33,6 +33,7 @@ export const reducer = (state, action) => {
         case "CART_ADD": return ({
             ...state,
             cart: {
+                ...state.cart,
                 details: details({cart: state.cart.items.concat([action.payload])}),
                 items: state.cart.items.concat([action.payload])
             }
@@ -40,8 +41,17 @@ export const reducer = (state, action) => {
         case "CART": return ({
             ...state,
             cart: {
+                ...state.cart,
                 details: details({cart: action.payload}),
                 items: action.payload
+            }
+        })
+        case "CART_DELIVERY": return ({
+            ...state,
+            cart: {
+                ...state.cart,
+                details: details({cart: state.cart.items, delivery_cost: action.payload.cost}),
+                delivery: action.payload
             }
         })
         case "TEST": return ({

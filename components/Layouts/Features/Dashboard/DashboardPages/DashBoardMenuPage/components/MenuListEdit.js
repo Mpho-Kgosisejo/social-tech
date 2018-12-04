@@ -104,15 +104,12 @@ class MenuListEdit extends React.Component {
                                             </Card.Content>
                                             <Card.Content extra>
                                             <Button.Group fluid>
-                                                <Modal open={isEditModalOpen} basic size='small' trigger={
+                                                <Modal open={isEditModalOpen}  size='small' trigger={
                                                     <Button onClick={() => this.handleEditModal(product._id)} basic color='green'>
                                                         Edit
                                                     </Button>
                                                 }>
                                                     <MenuEditForm productId={editId} categories={categories}/>
-                                                    <Button onClick={() => this.handleEditModal()} basic color='green'>
-                                                        Cancel
-                                                    </Button>
                                                 </Modal>
                                                 
                                                 
@@ -186,7 +183,7 @@ class MenuListEdit extends React.Component {
                         </ContextApi.Consumer>
                     </div>
                 </div>
-                <pre>{ JSON.stringify(this.state, null, 2) }</pre> 
+                {/* <pre>{ JSON.stringify(this.state, null, 2) }</pre>  */}
             </div>
         )
     }

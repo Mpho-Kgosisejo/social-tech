@@ -44,6 +44,14 @@ const schema = new mongoose.Schema({
     image: {
         type: String,
         default: ""
+    },
+    phone: {
+        type: String,
+        default: ""
+    },
+    address: {
+        type: String,
+        default: ""
     }
 }, {timestamps: true})
 
