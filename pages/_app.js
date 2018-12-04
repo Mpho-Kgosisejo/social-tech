@@ -1,7 +1,7 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import Config from "react-global-configuration"
-import axios from "axios"
+// import axios from "axios"
 
 import devConfig from "../src/config/devConfig"
 import prodConfig from "../src/config/prodConfig"
