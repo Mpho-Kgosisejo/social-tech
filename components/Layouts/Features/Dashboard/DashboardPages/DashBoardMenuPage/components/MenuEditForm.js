@@ -30,6 +30,7 @@ class MenuEditForm extends React.Component {
     getProduct = async () => {
         const product = await api.menu.get_single_product(this.state.editId)
         this.setState({editBody : product.data.data})
+        // console.log("this.state.editBody", product.data.data)
     }
 
     componentDidMount() {
@@ -171,12 +172,17 @@ class MenuEditForm extends React.Component {
         const errors = this.validate()
         if (isEmptyObj(errors)) {
             const res = await api.menu.update_product(this.state.editBody, this.state.isImageEdited)
-            console.log(res)
+            this.props.refreshState({
+                products : res.data.result
+            })
+            this.props.handleEditModal()
             this.setState({
+                ...this.state,
                 errorBody : {}
             })
         } else {
             this.setState({
+                ...this.state,
                 errorBody: errors
             })
         }
@@ -184,13 +190,13 @@ class MenuEditForm extends React.Component {
 
     render() {
         const { editBody, inputIngredient, inputIngredientError, errorBody, isImageEdited, newDisplayImage } = this.state
-        const { categories, productId} = this.props
+        const { categories, handleEditModal} = this.props
 
         return ( 
           <div> { /* ========================= */ } 
             <div className = "dashboard-menu-page-container">
               <div className = "menu-upload-header">
-                <h3> Edit Menu Product {productId} </h3> 
+                <h3> Edit Product </h3> 
               </div> 
             <Form>
               <Form.Field error = {!isEmptyObj(errorBody.name)}>
@@ -256,13 +262,13 @@ class MenuEditForm extends React.Component {
                     </div>
                 </Form.Field>
                 
-                <Form.Button size ='large' primary onClick = { this.uploadEditedMenu}> Save </Form.Button> 
+                <Form.Button size ='medium' primary onClick = { () => this.uploadEditedMenu()}> Save </Form.Button> 
+                <Button size ='medium' primary onClick={() => handleEditModal()}> Cancel </Button> 
                 </Form> 
               </div> 
             { /* ===================== */ }
               <pre>{ JSON.stringify(this.state, " ", 2) }</pre> 
-              {/* <pre>{ JSON.stringify(this.state.errorBody, " ", 2)}</pre> 
-              <pre>{ JSON.stringify(this.state.inputIngredientError, " ", 2) }</pre> */}
+              {/* <pre>{ JSON.stringify(this.state.errorBody, " ", 2)}</pre> */}
             </div>
           )
   }

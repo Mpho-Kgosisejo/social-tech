@@ -19,6 +19,14 @@ class DashboardMenuPage extends React.Component {
       }
     }
 
+    refreshState = (newObject) => {
+      console.log("okay cool cool cool save it", newObject)
+      this.setState({
+          ...this.state,
+          ...newObject
+      })
+    }
+
     // <------------------- BEGIN API CALL ------------------------>
     getMenu = async () => {
       const data = await api.menu.menu_products()
@@ -66,9 +74,9 @@ class DashboardMenuPage extends React.Component {
         const { products, categories} = this.state
         return ( 
           <div> { /* ========================= */ } 
-            <CategoryListEdit categories={categories} products={products}/>
-            <MenuUploadForm categories={categories} />
-            <MenuListEdit products={products} categories={categories}/>
+            <CategoryListEdit refreshState={this.refreshState} categories={categories} products={products}/>
+            {/* <MenuUploadForm categories={categories} /> */}
+            <MenuListEdit refreshState={this.refreshState} products={products} categories={categories}/>
           </div>
         )
   }

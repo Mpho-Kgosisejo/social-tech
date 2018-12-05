@@ -6,8 +6,8 @@ import * as MessageTypes from "../../../../../../../src/Types/MessageTypes"
 import { InLineError } from '../../../../../../Messages/InLineMessage'
 
 class MenuUploadForm extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             productUploadBody: {
                 name: "" ,
@@ -151,6 +151,10 @@ class MenuUploadForm extends React.Component {
         const errors = this.validate()
         if (isEmptyObj(errors)) {
             const res = await api.menu.upload_product(this.state.productUploadBody)
+            this.props.refreshState({
+                products : res.data.products
+            })
+            this.props.handleUploadModal()
             this.setState({
                 errorBody : {}
             })
@@ -169,7 +173,7 @@ class MenuUploadForm extends React.Component {
           <div> { /* ========================= */ } 
             <div className = "dashboard-menu-page-container">
               <div className = "menu-upload-header">
-                <h3> Upload Menu </h3> 
+                <h3> Upload a New Product </h3> 
               </div> 
             <div className = "upload-contents">
 

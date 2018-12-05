@@ -8,9 +8,9 @@ import ContextApi from '../../../../../../../src/config/ContextAPI'
 import { jsUcfirst } from '../../../../../../../src/utils/jsUcfirst';
 
 class CategoryListEdit extends React.Component {
-    constructor ()
+    constructor (props)
     {
-        super()
+        super(props)
         this.state = {
             isAddingCategory : false,
             newCategory : {
@@ -120,7 +120,6 @@ class CategoryListEdit extends React.Component {
     }
 
     uploadCategory = async (dispatch) => {
-
         const errors = {}
 
         if (validator.isEmpty(this.state.newCategory.title, { ignore_whitespace: true })) 
@@ -141,6 +140,10 @@ class CategoryListEdit extends React.Component {
             if(res.status === 200){
                 let newArr = res.data.data
         
+                this.props.refreshState ({
+                    categories : newArr
+                })
+
                 this.setState({
                     newCategoryList : newArr,
                     isAddingCategory : false,
@@ -263,7 +266,7 @@ class CategoryListEdit extends React.Component {
             <div> { /* ========================= */ } 
                 <div className = "dashboard-menu-page-container">
                 <div className = "menu-upload-header">
-                    <h3> Create a new menu category </h3> 
+                    <h3> Menu Categories </h3> 
                 </div> 
                 <div className = "upload-contents">
 
@@ -309,7 +312,7 @@ class CategoryListEdit extends React.Component {
                             </Table.Row>
                             : null 
                         }
-                        {isEmptyObj(newCategoryList) ? 
+                        {
                             categories.map( ctgry => (
                                 <Table.Row key={ctgry._id} textAlign='center'>
                                     { (isEditing && validator.equals(ctgry._id, edit_Id)) ? 
@@ -373,9 +376,9 @@ class CategoryListEdit extends React.Component {
                                         </Modal>
                                     </Table.Cell>
                                 </Table.Row>
-                            )) : null
+                            ))
                         }
-                        {!isEmptyObj(newCategoryList) ? 
+                        {/* {!isEmptyObj(newCategoryList) ? 
                             newCategoryList.map( ctgry => (
                                 <Table.Row key={ctgry._id} textAlign='center'>
                                     { (isEditing && validator.equals(ctgry._id, edit_Id)) ? 
@@ -440,7 +443,7 @@ class CategoryListEdit extends React.Component {
                                     </Table.Cell>
                                 </Table.Row>
                             )) : null
-                        }
+                        } */}
                     </Table.Body>   
                 </Table>
                 </div>

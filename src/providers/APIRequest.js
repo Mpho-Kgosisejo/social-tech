@@ -119,6 +119,7 @@ const API = {
             {
                 const fileData = new FormData()
                 fileData.append('name', editBody.name)
+                fileData.append('_id', editBody._id)
                 fileData.append('description', editBody.description)
                 fileData.append('price', editBody.price)
                 fileData.append('available', editBody.available)
@@ -134,6 +135,7 @@ const API = {
             }
             else 
             {
+                // editBody.ingredients = JSON.stringify(editBody.ingredients)
                 return (
                     axios.patch(`${Config.get("api.endpoint")}/products`, editBody)
                     .then(res => res)
