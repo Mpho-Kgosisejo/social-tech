@@ -3,7 +3,7 @@ import "../static/css/style.css"
 import Layout from "../components/Layouts/Layout"
 
 import Slider from "react-slick"
-import { Container, Header } from "semantic-ui-react";
+import { Container, Header, Image } from "semantic-ui-react";
 import IndexLayout from "../components/Layouts/Features/Index/IndexLayout";
 
 
@@ -102,8 +102,8 @@ class Index extends React.Component {
                     </Slider>
                 <div className="static-caption">
                         <Container>
-                            <Header as="h1">Fresh Eats</Header>
-                            <Header as="h5">something fresh all the time...</Header>
+                            <Header as="h1">fresh eats.</Header>
+                            <Header as="h5">Something fresh all the time...</Header>
                         </Container>
                 </div>
                 </div>

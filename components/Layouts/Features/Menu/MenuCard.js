@@ -2,6 +2,8 @@ import React from 'react'
 import { Image, Card, Label, Modal, Header, Divider, Button, Icon, Form, Input } from "semantic-ui-react"
 
 import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
+import ContextAPI from '../../../../src/config/ContextAPI';
+import * as cartHandler from "../../../../src/providers/CartHandler"
 
 class menu_card extends React.Component {
 
@@ -31,6 +33,24 @@ class menu_card extends React.Component {
         });
     }
 
+    removeFromCart = (state) => {
+        const new_item = {
+            ...this.props,
+            quantity: this.state.value
+        }
+
+        cartHandler.remove({state, item: new_item})
+    }
+
+    addToCart = (state) => {
+        const new_item = {
+            ...this.props,
+            quantity: this.state.value
+        }
+
+        cartHandler.add({state, new_item})
+    }
+
     render() {
         const { image, available, name, price, description, _id, ingredients } = this.props
         return (
@@ -54,6 +74,11 @@ class menu_card extends React.Component {
                     {/* <Image className="menu-img" size='large' src={image} /> */}
                     <Image className="menu-img">
                         <div className="menu-img" style={{background: `url(${image})`}}></div>
+                        {available ? null :
+                        <Label className="availabilityLabel" style={{ background: MILKY_RED }} horizontal>
+                            Unavailable
+                        </Label>
+                    }
                     </Image>
                     <Modal.Description>
                         <div className="header-container">
@@ -74,17 +99,36 @@ class menu_card extends React.Component {
                         </div>
                     </Modal.Description>
                 </Modal.Content>
-                <Modal.Actions className="no-border">
-                    <div className="quantity-div">
-                        <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
-                            onClick={() => { this.doDecrement() }} />
-                        <Input className="quantity-input" value={this.state.value} disabled />
-                        <Button size="mini" circular icon='add' className="increase-button dec-inc" onClick={() => { this.doIncrement() }} />
-                    </div>
-                    <Button className="add-button" size="tiny">
-                        <Icon name='shop' /> Add to cart
-                    </Button>
-                </Modal.Actions>
+                {available && (
+                    <Modal.Actions className="no-border">
+                    <ContextAPI.Consumer>
+                            {({state}) => (
+                                <>
+                                    {!cartHandler.isInCart({cart: state.cart.items, item: {_id}}) && (
+                                        <div className="quantity-div">
+                                            <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
+                                                onClick={() => { this.doDecrement() }} />
+                                            <Input className="quantity-input" value={this.state.value} disabled />
+                                            <Button size="mini" circular icon='add' className="increase-button dec-inc" onClick={() => { this.doIncrement() }} />
+                                        </div>
+                                    )}
+    
+                                    {cartHandler.isInCart({cart: state.cart.items, item: {_id}}) ?
+                                        <Button className="add-button" size="tiny" onClick={() => this.removeFromCart(state)}>
+                                            <Icon name='shop' />
+                                            Remove from Cart
+                                        </Button>
+                                        :
+                                        <Button className="add-button" size="tiny" onClick={() => this.addToCart(state)}>
+                                            <Icon name='shop' />
+                                            Add to Cart
+                                        </Button>
+                                    }
+                                </>
+                            )}
+                        </ContextAPI.Consumer>
+                    </Modal.Actions>
+                )}
             </Modal>
         )
     }

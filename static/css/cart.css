@@ -1,0 +1,132 @@
+.cart .segment{
+    border-radius: 0 !important;
+    box-shadow: 3px 3px 10px rgb(138, 138, 138, .25) !important;
+    margin-bottom: 14px !important;
+}
+/* .cart .items .row {
+    margin-bottom: 14px !important;
+} */
+
+.cart .items .button{
+    border-radius: 50%;
+    color: #000 !important;
+    /* background: red !important; */
+}
+
+.cart .items .button .icon{
+    color: #fff !important;
+}
+
+.cart .items .header{
+    font-weight: 100;
+}
+
+.cart .items p{
+    color: rgb(184, 184, 184);
+}
+
+/* .cart .segment.items .header.price{
+    font-size: 1.5em;
+} */
+
+.cart .input.qty input{
+    width: 85px !important;
+}
+
+.cart .label.price{
+    margin: 0 !important;
+    font-weight: bold !important;
+    font-size: 1em;
+}
+
+.cart .order .button{
+    /* margin-bottom: 14px; */
+    border-radius: 0 !important
+}
+
+.cart .order .row{
+    padding: 0 !important;
+}
+
+.cart .order .header{
+    font-weight: 100;
+    color: rgb(111, 111, 111) !important; 
+}
+
+.cart .order .row .header {
+    font-size: 1.15em;
+}
+
+.cart .order .row h3{
+    color: rgb(184, 184, 184) !important;
+    font-size: 1em !important;
+}
+
+.cart .order .row.total .header{
+    margin: 0 !important;
+}
+
+.cart .order .addons{
+    color: rgb(184, 184, 184);
+}
+
+
+.ui.menu .item i.cart {
+    position: relative !important;
+}
+
+.ui.menu .item i.cart .label{
+    position: absolute !important;
+    top: -10px;
+    right: -10px;
+
+    color: #FFF !important;
+    font-weight: bold !important;
+}
+
+.autocomplete-dropdown-container{
+    border: 1px solid #EEEEEE;
+    border-top: 0;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 10px;
+}
+
+.autocomplete-dropdown-container div{
+    padding: 8px 14px ;
+    cursor: pointer;
+}
+
+.autocomplete-dropdown-container .suggestion-item.loading{
+    background: rgb(244, 245, 247);
+}
+
+.autocomplete-dropdown-container .suggestion-item{
+    
+}
+
+.autocomplete-dropdown-container .suggestion-item-active{
+    background: #FAFAFA;
+}
+
+.cart .map-container{
+    height: 328px;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+    /* background: rgb(154, 153, 152) */
+}
+
+.cart .map-container .form{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.cart .googlemaps-loading{
+    height: 100%;
+}
+
+.cart .zero-margin.ui.header:first-child{
+    margin: 0 !important;
+    font-size: 1.1em !important;
+}

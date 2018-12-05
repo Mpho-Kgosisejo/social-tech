@@ -1,40 +1,42 @@
 import Link from "next/link"
 import Router from "next/router"
-import { Container, Menu, Image, Grid, Icon, Responsive, Dropdown } from "semantic-ui-react"
+import { Container, Menu, Image, Grid, Icon, Responsive, Dropdown, Label } from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
 import { logout } from "../../src/providers/LoginSession"
 import { isEmptyObj } from "../../src/utils/Objs"
 import * as MessageTypes from "../../src/Types/MessageTypes"
+import { LIGHT_RED } from "../../src/Types/ColorsTypes";
+import * as AboutHelper from "./Features/About/Helper"
 
 const handleLogout = (dispatch) => {
     logout()
     Router.push({ pathname: "/" })
     dispatch({ type: "LOGIN", payload: {} })
     dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
+    dispatch({type: "SIDEBAR", payload: false})
 }
 
 const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
     dispatch({ type: "ABOUT", payload: { ...aboutState, index } })
+    dispatch({type: "SIDEBAR", payload: false})
 
-    switch (index) {
-        case 0:
-            Router.replace({ pathname: "/about", query: { tab: 'ourstory' } })
-            break;
-        case 1:
-            Router.replace({ pathname: "/about", query: { tab: 'ourchefs' } })
-            break;
-        case 2:
-            Router.replace({ pathname: "/about", query: { tab: 'ourcontacts' } })
-            break;
-        case 3:
-            Router.replace({ pathname: "/about", query: { tab: 'ourfaqs' } })
-            break;
-    }
+    AboutHelper.RouterHandler({index})
 }
 
 const ResponsiveFragmentBugFix = () => (<></>)
+
+const pushSideBar =({dispatch}) =>
+{
+    dispatch({ type: "SIDEBAR" })
+
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    })
+}
+
 
 export const RightNav = () => (
     <ContextAPI.Consumer>
@@ -57,7 +59,7 @@ export const RightNav = () => (
                     // pointing='top left'
                     // icon={null}
                     >
-                        <Dropdown.Menu className="fresheats-light-green-bg">
+                        <Dropdown.Menu className="profile fresheats-light-green-bg">
                             <Link href="/account" prefetch passHref>
                                 <Menu.Item as="a">
                                     <Icon name="user" />
@@ -74,13 +76,14 @@ export const RightNav = () => (
             </React.Fragment>
         )}
     </ContextAPI.Consumer>
+
 )
 
 const LeftTabletNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
-                <Menu.Item as="a" className="fresheats-brown-color" onClick={() => state.dispatch({ type: "SIDEBAR" })}>
+                <Menu.Item as="a" className="fresheats-brown-color" onClick={() => pushSideBar({dispatch: state.dispatch}) }>
                     {state.isSidebarOpen ? <Icon name="close" /> : <Icon name="bars" />}
                 </Menu.Item>
             </React.Fragment>
@@ -104,7 +107,7 @@ export const LeftComputerNav = () => (
                     <Menu.Item as="a" className="fresheats-brown-color">Menu</Menu.Item>
                 </Link>
                 <Dropdown text='About' className='link item fresheats-brown-color'>
-                    <Dropdown.Menu className="fresheats-light-green-bg">
+                    <Dropdown.Menu className="about fresheats-light-green-bg">
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 0 })}>Our Story</Dropdown.Item>
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 1 })}>Our Chefs</Dropdown.Item>
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 2 })}>Contact Us</Dropdown.Item>
@@ -123,11 +126,18 @@ export const LeftComputerNav = () => (
                         )}
                         <Responsive maxWidth={991} as={React.Fragment}>
                             {isEmptyObj(state.login) ? <AuthLayout /> : <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>}
-                            <Link href="/cart" prefetch passHref>
-                                <Menu.Item className="fresheats-brown-color cart-icon">
-                                    View Cart<Icon className="cart-icon" name="cart" />
-                                </Menu.Item>
-                            </Link>
+                        <Link href="/cart" prefetch passHref>
+                            <Menu.Item className="fresheats-brown-color cart-icon">
+                                <Icon className="cart-icon-" name="cart" size="mini">
+                                    {state.cart.details.itemsCount > 0 &&
+                                        <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                            {state.cart.details.itemsCount}
+                                        </Label>
+                                    }
+                                </Icon>
+                                View Cart
+                            </Menu.Item>
+                        </Link>
                         </Responsive>
                     </React.Fragment>
                 )}
@@ -150,7 +160,7 @@ const LeftNav = () => (
 const Nav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
-            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible && state.active_page === "index") ? "transparent" : ""}`}>
+            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${state.isSidebarOpen && "is-sidebar-open"} ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible && state.active_page === "index") ? "transparent" : ""}`}>
                 <Container className="nav-container">
                     <React.Fragment>
                         <LeftNav />
@@ -159,12 +169,18 @@ const Nav = () => (
                                 {!isEmptyObj(state.login) ? <RightNav /> : <Responsive minWidth={992} as={React.Fragment}><AuthLayout /></Responsive>}
                             </Menu.Menu>
                         }
-                        <Responsive minWidth={992} as={React.Fragment}>
-                            <Link href="/cart" prefetch passHref>
-                                <Menu.Item className="fresheats-brown-color">
-                                    <Icon className="cart-icon-nav" name="cart" />
-                                </Menu.Item>
-                            </Link>
+                         <Responsive minWidth={992} as={React.Fragment}>
+                        <Link href="/cart" prefetch passHref>
+                            <Menu.Item className="fresheats-brown-color">
+                              <Icon className="cart-icon-nav" name="cart">
+                                {state.cart.details.itemsCount > 0 &&
+                                    <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                        {state.cart.details.itemsCount}
+                                    </Label>
+                                }
+                              </Icon>
+                            </Menu.Item>
+                        </Link>
                         </Responsive>
                     </React.Fragment>
                 </Container>

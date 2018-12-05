@@ -1,3 +1,5 @@
+import { details } from "../providers/CartHandler";
+
 export const reducer = (state, action) => {
     switch (action.type){
         case "NEW_OBJ": return ({
@@ -27,6 +29,30 @@ export const reducer = (state, action) => {
         case "MENU": return ({
             ...state,
             menu: action.payload
+        })
+        case "CART_ADD": return ({
+            ...state,
+            cart: {
+                ...state.cart,
+                details: details({cart: state.cart.items.concat([action.payload])}),
+                items: state.cart.items.concat([action.payload])
+            }
+        })
+        case "CART": return ({
+            ...state,
+            cart: {
+                ...state.cart,
+                details: details({cart: action.payload}),
+                items: action.payload
+            }
+        })
+        case "CART_DELIVERY": return ({
+            ...state,
+            cart: {
+                ...state.cart,
+                details: details({cart: state.cart.items, delivery_cost: action.payload.cost}),
+                delivery: action.payload
+            }
         })
         case "TEST": return ({
             ...state,

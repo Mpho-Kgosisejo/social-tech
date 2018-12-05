@@ -1,0 +1,43 @@
+.parent-page-header{
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important;
+    
+    height: 100%;
+}
+
+.parent-page-header>div{
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .35) 95%, rgb(255, 255, 255) 100%);
+}
+
+.parent-page-header .gradient{
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 255) 100%);
+}
+
+.page-header{
+    position: relative;
+    /* margin-top: 58px; */
+    padding: 123px 0 65px 0;
+}
+
+.page-header.padding-top{
+    padding: 123px 0 65px 0;
+}
+
+.page-header h1, .page-header h3{
+    /* color: #c59c70; */
+    text-shadow: 0px  0px 8px rgba(0, 0, 0, .5);
+
+    font-family: 'Raleway', sans-serif;
+}
+
+.page-header h1{
+    font-size: 3.5em;
+    font-family: 'Kaushan Script', cursive !important;
+    
+}
+
+.page-header h3{
+    font-size: 1.5em;
+    font-weight: 100;
+}
