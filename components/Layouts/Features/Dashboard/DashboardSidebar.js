@@ -7,6 +7,7 @@ import DashboardAboutsPage from './DashboardPages/DashboardAboutsPage'
 import DashboardOrdersPage from './DashboardPages/DashboardOrdersPage'
 import DashboardOrderIDPage from './DashboardPages/DashboardOrderIDPage';
 import { RightNav } from '../../Nav';
+import ContextAPI from '../../../../src/config/ContextAPI';
 
 
 class DashboardSidebar extends React.Component {
@@ -118,7 +119,11 @@ class DashboardSidebar extends React.Component {
                         <div className="mainLayout">
                             {this.renderPage(activePage)}
 
-                            <pre>{JSON.stringify(this.state, "", 1)}</pre>
+                            <ContextAPI.Consumer>
+                                {({state}) => (
+                                    <pre>{JSON.stringify(state.router, "", 1)}</pre>
+                                )}
+                            </ContextAPI.Consumer>
                         </div>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>

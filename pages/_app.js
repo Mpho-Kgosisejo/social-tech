@@ -43,8 +43,15 @@ export default class MyApp extends App {
                 },
                 items: []
             },
+            router: {
+                asPath: props.router.asPath,
+                route: props.router.route,
+                query: props.router.query
+            },
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
+
+        console.log(">>", props.router)
     }
 
     UNSAFE_componentWillMount(){
