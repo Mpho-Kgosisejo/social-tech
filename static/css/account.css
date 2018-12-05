@@ -46,6 +46,12 @@
     {
         padding: 0 !important;
     }
+
+    .padding-account-dropdown
+    {
+        padding-top: 30px;
+    }
+    
     .account-header-container
     {
         padding: 0 !important;
@@ -102,6 +108,12 @@
     {
         padding: 0 !important;
     }
+
+    .padding-account-dropdown
+    {
+        padding-top: 30px;
+    }
+
     .account-img-col
     {
         align-content: center !important;

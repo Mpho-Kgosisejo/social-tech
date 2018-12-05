@@ -11,10 +11,10 @@ const panes = [
 ]
 
 
-const AccountTabs = () =>
+const AccountTabs = ({index, onTabChange}) =>
   (
     <div className="account-tabs">
-      <Tab menu={{ fluid: true, vertical: true, tabular: true}} panes={panes} />
+      <Tab onTabChange={(e, d) => onTabChange(d.activeIndex)} menu={{ fluid: true, vertical: true, tabular: true}} activeIndex={index} panes={panes} />
     </div>
   )
 

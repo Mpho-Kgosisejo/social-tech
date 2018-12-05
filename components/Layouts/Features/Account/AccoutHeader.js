@@ -47,23 +47,6 @@ class AccountHeader extends React.Component {
                                 </Grid>
                             </div>
                         </div>
-                        <div className="about-content">
-                            <Dropdown
-                                fluid
-                                selection
-                                options={[
-                                    {
-                                        text: "Personal information",
-                                        value: 0
-                                    },
-                                    {
-                                        text: "Order history",
-                                        value: 1
-                                    },
-                                ]}
-                            />
-                            {/* <Tab className="about-tab" menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} /> */}
-                        </div>
                     </React.Fragment>
                 }
             </ContextAPI.Consumer>
