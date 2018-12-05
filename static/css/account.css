@@ -14,7 +14,126 @@
     padding-right: 50px;
 }
 
-.account-personal-details
+.pull-left
 {
-    
+    float: left;
+}
+
+.pull-right
+{
+    float: right;
+}
+
+.padding-thirty
+{
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+.modal-desc
+{
+    padding: 30px 30px !important;
+}
+
+.account-placeholder
+{
+    margin-top: 50px !important;
+    /* padding: 50px 50px !important; */
+}
+
+@media ( max-width: 480px){
+    .account-tabs
+    {
+        padding: 0 !important;
+    }
+    .account-header-container
+    {
+        padding: 0 !important;
+    }
+    .account-img-col
+    {
+        align-content: center !important;
+    }
+
+    .ui.grid>.stretched.column:not(.row), .ui.grid>.stretched.row>.column, .ui.stretched.grid>.column, .ui.stretched.grid>.row>.column 
+    {
+        width: 100% !important;
+    }
+
+    .account-header
+    {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        text-align: center !important;
+    }
+    .profile-img
+    {
+        border-radius: 0px !important;
+        display: initial !important;
+    }
+    .account-tabs .menu
+    {
+        display: none !important;
+        width: 0 !important;
+    }
+    .width-zero
+    {
+        width: 0 !important;
+    }
+
+    .width-hundred
+    {
+        width: 100% !important;
+    }
+    .stretched 
+    {
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+
+    .account-tabs
+    {
+        padding: 0 !important;
+    }
+    .account-header-container
+    {
+        padding: 0 !important;
+    }
+    .account-img-col
+    {
+        align-content: center !important;
+    }
+
+    .ui.grid>.stretched.column:not(.row), .ui.grid>.stretched.row>.column, .ui.stretched.grid>.column, .ui.stretched.grid>.row>.column 
+    {
+        width: 100% !important;
+    }
+    .profile-img
+    {
+        border-radius: 0px !important;
+        display: initial !important;
+    }
+    .account-tabs .menu
+    {
+        display: none !important;
+        width: 0 !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+    .account-tabs
+    {
+        padding: 0 !important;
+    }
+    .account-header-container
+    {
+        padding: 0 !important;
+    }
+    .account-img-col
+    {
+        align-content: center !important;
+    }
 }

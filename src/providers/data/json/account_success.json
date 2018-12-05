@@ -1,0 +1,54 @@
+{
+    "status": 200,
+    "data":
+    {
+        "personal_details":{
+            "img_url": "https://images-na.ssl-images-amazon.com/images/I/71vOUEsnaGL._SX425_.jpg",
+            "first_name": "",
+            "last_name": "",
+            "username": "tmekwa",
+            "email_address": "tmekwa@mail.com",
+            "phone": "0123456789",
+            "delivery_address": "Johannesburg",
+            "password": ""
+        },
+        "order_history":
+        {
+            "ordered_number": 4,
+            "items_ordered":[
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_1.jpg",
+                    "date": "24/November/2019",
+                    "name": "FRIED POTATOES WITH GARLIC",
+                    "recipe": "Potatoes / Rice / Garlic",
+                    "category": "Food",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inc_id_idunt ut labore et dolore magna aliqua"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_2.jpg",
+                    "date": "30/November/2019",                    
+                    "name": "SALTED FRIED CHICKEN",
+                    "recipe": "Chicken / Rice / Stew",
+                    "category": "Food",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inc_id_idunt ut labore et dolore magna aliqua"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_3.jpg",
+                    "name": "TUNA ROAST SOURCE",
+                    "date": "14/September/2019",
+                    "recipe": "Crab / Potatoes / Rice",
+                    "category": "Food",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inc_id_idunt ut labore et dolore magna aliqua"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_4.jpg",
+                    "name": "ROAST BEEF (4 STICKS)",
+                    "date": "22/May/2019",
+                    "recipe": "Crab / Potatoes / Rice / Stew",
+                    "category": "Food",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor inc_id_idunt ut labore et dolore magna aliqua"
+                }
+            ]
+        }
+    }
+}

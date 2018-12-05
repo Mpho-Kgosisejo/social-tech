@@ -13,19 +13,6 @@ class AboutOurChefs extends React.Component {
         }
     }
 
-    // getData = async () => {
-    //     const data = await api.web.about()
-
-    //     this.setState({ aboutData: data })
-    //     console.log(this.state.aboutData)
-    //     console.log(data.data.chefs)
-    //     if (data.status === 200) {
-    //         this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.chefs })
-    //     } else {
-    //         this.setState({ responseMessage: data.error.message, isLoadingData: false })
-    //     }
-    // }
-
     componentDidMount() {
         // this.getData()
     }

@@ -30,6 +30,10 @@ export const reducer = (state, action) => {
             ...state,
             menu: action.payload
         })
+        case "ACCOUNT": return({
+            ...state,
+            account: action.payload
+        })
         case "CART_ADD": return ({
             ...state,
             cart: {

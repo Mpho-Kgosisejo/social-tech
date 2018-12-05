@@ -125,16 +125,17 @@ router.post("/validate-token", (req, res) => {
 router.post("/change-password", (req, res) => {
     const {password, token} = req.body
 
+    console.log(req.body)
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err){
             res.status(401).json({
                 error: {
-                    message: "Invalid token"
+                    message: "Invalid token [1]"
                 }
             })
         }else{
             UserModel.findOne({
-                _id: decoded._id
+                _id: decoded.key
             })
             .then(user => {
                 if (user){
@@ -148,7 +149,7 @@ router.post("/change-password", (req, res) => {
                 }else{
                     res.status(404).json({
                         error: {
-                            message: "Invalid token"
+                            message: "Invalid token [2]"
                         }
                     })
                 }
@@ -156,6 +157,7 @@ router.post("/change-password", (req, res) => {
             .catch(err => {
                 res.status(500).json({
                     error: {
+                        catch: err,
                         message: "Something went wrong"
                     }
                 })

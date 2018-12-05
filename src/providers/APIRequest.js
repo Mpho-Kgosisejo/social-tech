@@ -106,6 +106,11 @@ const API = {
                 .catch(err => err.response)
             )
         }
+    },
+    profile: {
+        account: () => {
+            return (mock.account().then(res => res))
+        }
     }
 }
 

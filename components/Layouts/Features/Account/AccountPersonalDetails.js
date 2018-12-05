@@ -1,50 +1,61 @@
 import React from 'react'
-import {Form, Button, Divider} from 'semantic-ui-react'
+import { Form, Button, Divider } from 'semantic-ui-react'
 
+import ContextAPI from "../../../../src/config/ContextAPI"
+import LoggedChangePassword from "../ChangePassword/LoggedChangePassword"
 
 class AccountPersonalDetails extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoading: true
+        }
+    }
+
     render() {
+        // const { isLoading } = this.state
+
         return (
-            <React.Fragment>
-                <div className="account-personal-details">
+            <ContextAPI.Consumer>
+                {({ state }) =>
+                <React.Fragment>
+                    {/* <pre>{JSON.stringify(state.account.personal_details.first_name, "", 1)}</pre> */}
+                    {/* { isLoading ? < pla} */}
                     <Form>
                         <Form.Field>
                             <label>First name:</label>
-                            <input value="Thato" readOnly/>
+                            <input value={state.account.personal_details.first_name}  />
                         </Form.Field>
                         <Form.Field>
                             <label>Last name:</label>
-                            <input value="Mekwa" readOnly/>
+                            <input value={state.account.personal_details.last_name}  />
                         </Form.Field>
                         <Form.Field>
                             <label>Username:</label>
-                            <input value="tmekwa" readOnly/>
+                            <input value={state.account.personal_details.username}  />
                         </Form.Field>
                         <Form.Field>
                             <label>Email address:</label>
-                            <input value="tmekwa@gmail.com" readOnly/>
+                            <input value={state.account.personal_details.email_address} />
                         </Form.Field>
                         <Form.Field>
                             <label>Phone:</label>
-                            <input value="0123456789" readOnly/>
+                            <input value={state.account.personal_details.phone}  />
                         </Form.Field>
                         <Form.Field>
-                            <label>Occupation:</label>
-                            <input value="Student" readOnly/>
-                        </Form.Field>
-                        <Form.Field>
-                            <label>Bio:</label>
-                            <textarea value="Pickle Rick oooooooooo motherfuckers im alive and im coming to your school bitch argh and we going to make more seasons bitch in your face wrinkled scrotum bitch from Mars im coming for you hahahahahahah nine for seasons bitch yea nine more and im get that sauce" readOnly/>
+                            <label>Delivery address:</label>
+                            <input value={state.account.personal_details.delivery_address}  />
                         </Form.Field>
                         <Divider />
                         <Form.Field>
-                            <label>Password:</label>
-                            <input value="************" readOnly/>
+                            <LoggedChangePassword />
                         </Form.Field>
                         <Button type='submit'>Submit</Button>
                     </Form>
-                </div>
-            </React.Fragment>
+                </React.Fragment>
+                }
+                     </ContextAPI.Consumer>
         )
     }
 }
