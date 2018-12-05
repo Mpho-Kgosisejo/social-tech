@@ -44,7 +44,7 @@ class AccountPersonalDetails extends React.Component {
                         </Form.Field>
                         <Form.Field>
                             <label>Delivery address:</label>
-                            <input value={state.account.personal_details.delivery_address}  />
+                            <input value={state.account.personal_details.address}  />
                         </Form.Field>
                         <Divider />
                         <Form.Field>

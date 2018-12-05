@@ -83,3 +83,50 @@
     color: #FFF !important;
     font-weight: bold !important;
 }
+
+.autocomplete-dropdown-container{
+    border: 1px solid #EEEEEE;
+    border-top: 0;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 10px;
+}
+
+.autocomplete-dropdown-container div{
+    padding: 8px 14px ;
+    cursor: pointer;
+}
+
+.autocomplete-dropdown-container .suggestion-item.loading{
+    background: rgb(244, 245, 247);
+}
+
+.autocomplete-dropdown-container .suggestion-item{
+    
+}
+
+.autocomplete-dropdown-container .suggestion-item-active{
+    background: #FAFAFA;
+}
+
+.cart .map-container{
+    height: 328px;
+    width: 100%;
+    margin-bottom: 10px;
+    position: relative;
+    /* background: rgb(154, 153, 152) */
+}
+
+.cart .map-container .form{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.cart .googlemaps-loading{
+    height: 100%;
+}
+
+.cart .zero-margin.ui.header:first-child{
+    margin: 0 !important;
+    font-size: 1.1em !important;
+}
