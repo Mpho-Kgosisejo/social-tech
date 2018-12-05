@@ -5,11 +5,11 @@
         "personal_details":{
             "img_url": "https://images-na.ssl-images-amazon.com/images/I/71vOUEsnaGL._SX425_.jpg",
             "first_name": "",
-            "last_name": "",
+            "last_name": "Mekwa",
             "username": "tmekwa",
             "email_address": "tmekwa@mail.com",
-            "phone": "",
-            "delivery_address": "",
+            "phone": "0100000000",
+            "delivery_address": "Potatoes / Rice / Garlic",
             "password": ""
         },
         "order_history":

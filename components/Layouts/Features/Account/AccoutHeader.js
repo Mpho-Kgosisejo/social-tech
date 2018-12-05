@@ -32,13 +32,6 @@ class AccountHeader extends React.Component {
                                         <Header as="h2">{state.account.personal_details.first_name} {state.account.personal_details.last_name}</Header>
                                         <br />
                                         <div className="padding-thirty">
-                                            <div className="pull-left">
-                                                <Icon name="map marker alternate" />
-                                                {state.account.personal_details.delivery_address}
-                                                <br />
-                                                <Icon name="phone" />
-                                                {state.account.personal_details.phone}
-                                            </div>
                                             <div className="pull-right">
                                                 <Button onClick={this.editFunc} circular icon='edit outline' />
                                             </div>
