@@ -65,7 +65,7 @@ router.get("/menu-categories", (req, res) => {
 })
 
 // this will create a new menu
-router.post("/", checkAuth, (req, res) => {
+router.post("/", (req, res) => {
     const {name, title, show} = req.body
     console.log(req.body)
 
@@ -100,7 +100,7 @@ router.post("/", checkAuth, (req, res) => {
     });
 })
 
-router.delete("/", checkAuth, (req, res) => {
+router.delete("/", (req, res) => {
     console.log(req.body)
     CategoryModel.findByIdAndRemove(req.body._id)
     .then(result => {
@@ -142,7 +142,7 @@ router.delete("/", checkAuth, (req, res) => {
     })
 })
 
-router.patch("/", checkAuth, (req, res) => {
+router.patch("/", (req, res) => {
     const updateModel = req.body.data
     const updateModel_id = req.body.data._id
     console.log(req.body)

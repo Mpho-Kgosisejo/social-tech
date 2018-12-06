@@ -66,3 +66,30 @@
 .category-table-add-row {
     width: 130px !important;
 }
+
+.edit-image-div {
+    background-color: gray;
+    width: 180px !important;
+    height: 220px !important;
+    position: relative !important;
+}
+
+.edit-image-button{
+    margin: 0;
+    /* background: yellow; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* margin-right: -50%; */
+    transform: translate(-50%, -50%);
+}
+
+.pagination-component {
+    margin-top: 15px !important;
+}
+
+.centered-element{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

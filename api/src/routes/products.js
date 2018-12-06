@@ -124,10 +124,6 @@ router.patch("/", multerUpload.single('productImage'), (req, res) => {
             ingredients : newIngredients
         }
 
-        console.log("==============")
-        console.log(updateModel)
-        console.log("==============?", _id)
-
         Product.findByIdAndUpdate(_id, updateModel, {new : true})
         .then (resp => {
 

@@ -23,7 +23,6 @@ class CategoryListEdit extends React.Component {
                 title : '',
                 show : false
             },
-            newCategoryList : [],
             errorBody : [],
             modalOpen : false,
             isEditing : false,
@@ -192,9 +191,16 @@ class CategoryListEdit extends React.Component {
         if (response.status === 200)
         {   
             this.setState({
-                newCategoryList : response.data.data,
                 deleteCategory : {}
             })
+
+            const getProducts = await api.menu.menu_products()
+
+            this.props.refreshState ({
+                categories : response.data.data,
+                products : getProducts.data.items
+            })
+
             dispatch({type : "ALERT_PORTAL", payload : {
                 open : true, 
                 type : 'success',
@@ -227,8 +233,13 @@ class CategoryListEdit extends React.Component {
             const response = await api.menu.update_category(ctgry)
             if (response.status === 200)
             {   
+                
+
+                this.props.refreshState ({
+                    categories : response.data.data
+                })
+
                 this.setState({
-                    newCategoryList : response.data.data,
                     editCategory : {},
                     edit_Id : ""
                 })
@@ -378,72 +389,6 @@ class CategoryListEdit extends React.Component {
                                 </Table.Row>
                             ))
                         }
-                        {/* {!isEmptyObj(newCategoryList) ? 
-                            newCategoryList.map( ctgry => (
-                                <Table.Row key={ctgry._id} textAlign='center'>
-                                    { (isEditing && validator.equals(ctgry._id, edit_Id)) ? 
-                                        <Table.Cell>
-                                            <Input name='editCategory' value = { editCategory.title } onChange = { iVT => this.onChange(iVT)} fluid rows={1}/> 
-                                            { errorBody.title && < InLineError message = {errorBody.title}/>} 
-                                        </Table.Cell> :  
-                                        <Table.Cell>{ctgry.title}</Table.Cell> 
-                                    }
-                                    <Table.Cell>{this.count_item_number(ctgry, products)}</Table.Cell>
-                                    <Table.Cell>
-                                        { (isEditing && validator.equals(ctgry._id, edit_Id)) ? 
-                                            <Checkbox onChange = { this.handleCheckBoxChange }  defaultChecked={ctgry.show ? true : false }/> 
-                                            :  
-                                            <Checkbox disabled defaultChecked={ctgry.show ? true : false }/>
-                                        }
-                                        
-                                    </Table.Cell>
-                                    <Table.Cell>
-                                        { (isEditing && validator.equals(ctgry._id, edit_Id)) ?
-                                            <ContextApi.Consumer>
-                                                {({state}) => (
-                                                    <Button icon size='small' onClick={() => this.saveEdit(state.dispatch)}>
-                                                    <Icon size='small' name='check'/>
-                                                </Button>
-                                                )}
-                                            </ContextApi.Consumer>
-                                            : 
-                                            <Button icon size='small' onClick={() => this.startEditingCategory(ctgry)}>
-                                                <Icon size='small' name='pencil'/>
-                                            </Button> 
-                                        }
-                                        <Modal 
-                                            basic
-                                                open={modalOpen}
-                                            trigger={
-                                                <Button onClick={() => this.openCloseConfirm(ctgry)} icon size='small'>
-                                                    <Icon size='small' name='delete'/>
-                                                </Button>
-                                            }  size='small'>
-
-                                                <Header content='Delete' />
-                                                <Modal.Content>
-                                                <p>
-                                                    This category might have products in it, do you want to delete it anyway?
-                                                </p>
-                                                </Modal.Content>
-                                                <Modal.Actions>
-                                                    <Button onClick={() => this.openCloseConfirm()} basic color='red' inverted>
-                                                        <Icon name='remove' /> No
-                                                    </Button>
-                                                    <ContextApi.Consumer>
-                                                        {({state}) => (
-                                                            <Button onClick={() => this.confirmDelete(state.dispatch)} color='green' inverted>
-                                                                <Icon name='checkmark' /> Yes
-                                                            </Button>
-                                                        )}
-                                                    </ContextApi.Consumer>
-                                                    
-                                                </Modal.Actions>
-                                        </Modal>
-                                    </Table.Cell>
-                                </Table.Row>
-                            )) : null
-                        } */}
                     </Table.Body>   
                 </Table>
                 </div>

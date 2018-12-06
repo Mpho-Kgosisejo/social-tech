@@ -105,11 +105,26 @@ class MenuEditForm extends React.Component {
             })
         } else if (iVT.target.name === "image") {
             if (iVT.target.files && iVT.target.files[0]) {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    this.setState({ newDisplayImage : e.target.result});
-                };
-                reader.readAsDataURL(event.target.files[0]);
+                const errors = {}
+
+                if ( (iVT.target.files[0].name.split('.').pop() != 'jpeg') &&  (iVT.target.files[0].name.split('.').pop() != 'png')  && (iVT.target.files[0].name.split('.').pop() != 'jpg'))
+                {
+                    errors.image = "Only images of types *.jpeg, *jpg and *.png are allowed."
+                    this.setState({ 
+                        errorBody : {
+                            ...this.state.errorBody,
+                            errors
+                        }  
+                    })
+                }
+                else
+                {
+                    let reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.setState({ newDisplayImage : e.target.result});
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                }
             }
             this.setState({
                 editBody: {
@@ -150,9 +165,12 @@ class MenuEditForm extends React.Component {
             })) {
             errors.description = MessageTypes.FIELD_CANT_BE_EMPTY
         }
-        // if (isEmptyObj(image))
-        // {
-        //   errors.image = "You have to add an image."
+        // if(document.getElementById("uploadFile").value != "") {
+        //     console.log("we have a file", image.name.split('.').pop())
+        //     if((image.name.split('.').pop() != 'jpeg') &&  (image.name.split('.').pop() != 'png'))
+        //     {
+        //         errors.image = "Only images of types *.jpeg and *.png are allowed."
+        //     }
         // }
         if (isEmptyObj(ingredients)) {
             this.setState({
@@ -255,11 +273,14 @@ class MenuEditForm extends React.Component {
                 </Form.Field> 
                 <Form.Field>
                     <label > Product Image </label>
-                    <div>
-                        <Image size='small' src={ isImageEdited ? newDisplayImage : editBody.image }></Image>
-                        <input name="image" style={{display : 'none'}} type='file' onChange={iVT => this.onChange(iVT)} ref={fileInput => this.fileInput = fileInput}></input>
-                        <Button onClick={() => this.fileInput.click()}>Edit</Button>
+                    <div className="edit-image-div">
+                        <Image className="edit-image-div"  src={ isImageEdited ? newDisplayImage : editBody.image }></Image>
+                        <input id='uploadFile' name="image" style={{display : 'none'}} type='file' onChange={iVT => this.onChange(iVT)} ref={fileInput => this.fileInput = fileInput}></input>
+                        <div className="edit-image-button">
+                            <Button className="centered-element" onClick={() => this.fileInput.click()}>Edit</Button>
+                        </div>
                     </div>
+                    { errorBody.image && < InLineError message = {errorBody.image} /> } 
                 </Form.Field>
                 
                 <Form.Button size ='medium' primary onClick = { () => this.uploadEditedMenu()}> Save </Form.Button> 

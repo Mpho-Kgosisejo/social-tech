@@ -91,7 +91,6 @@ class MenuUploadForm extends React.Component {
                 inputIngredient: iVT.target.value
             })
         } else if (iVT.target.name === "image") {
-            console.log("before ===", iVT.target.files[0])
             this.setState({
                 productUploadBody: {
                     ...this.state.productUploadBody,
@@ -129,10 +128,17 @@ class MenuUploadForm extends React.Component {
             })) {
             errors.description = MessageTypes.FIELD_CANT_BE_EMPTY
         }
-        // if (isEmptyObj(image))
-        // {
-        //   errors.image = "You have to add an image."
-        // }
+        if(document.getElementById("uploadFile").value != "") {
+            if((image.name.split('.').pop() != 'jpeg') &&  (image.name.split('.').pop() != 'png') &&  (image.name.split('.').pop() != 'jpg'))
+            {
+                errors.image = "Only images of types *.jpeg, *jpg and *.png are allowed."
+            }
+        }
+        else 
+        {
+            errors.image = "You have to add an image."
+        }
+
         if (isEmptyObj(ingredients)) {
             this.setState({
                 inputIngredientError: "You have to add at least 1 ingredient."
@@ -196,7 +202,7 @@ class MenuUploadForm extends React.Component {
               </Form.Field> 
               < Form.Field error = {!isEmptyObj(errorBody.image)}>
                 <label > Product Image </label>
-                <Input name = "image" onChange = {iVT => this.onChange(iVT)} type = 'file'/> 
+                <Input id='uploadFile' name = "image" onChange = {iVT => this.onChange(iVT)} type = 'file'/> 
                 { errorBody.image && < InLineError message = {errorBody.image} /> } 
               </Form.Field> 
               <Form.Field error={!isEmptyObj(inputIngredientError)}> 
