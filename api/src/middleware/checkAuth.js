@@ -13,19 +13,18 @@ const checkAuth = (req, res, next, isAdmin) => {
     try {
         const token = req.headers.authorization.split(" ")[1] || ""
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        const decodedToken = jwt.verify(decoded.token, process.env.JWT_SECRET)
 
-        req.auth_data = decodedToken
+        req.auth_data = decoded
 
-        if (!decodedToken.key){
-            response(res)
+        if (!decoded.key){
+            response(res, " [1]")
             return
         }
-        UserModel.findOne({_id: decodedToken.key, email: decodedToken.email})
+        UserModel.findOne({_id: decoded.key, email: decoded.email})
         .then(user => {
-            if (user && (user._id == decodedToken.key)){
+            if (user && (user._id == decoded.key)){
                 if (isAdmin){
-                    if (decodedToken.isAdmin){
+                    if (decoded.isAdmin){
                         next()
                         return
                     }
@@ -36,13 +35,13 @@ const checkAuth = (req, res, next, isAdmin) => {
                     return
                 }
             }
-            response(res)
+            response(res, " [2]")
         })
         .catch(() => {
-            response(res)
+            response(res, " [3]")
         })  
     } catch (error) {
-       response(res)
+       response(res, " [4]")
     }
 }
 
