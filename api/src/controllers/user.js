@@ -73,3 +73,43 @@ export const update_avator = (req, res) => {
         })
     })
 }
+
+export const get_info = (req, res) => {
+    const {key} = req.auth_data
+
+    UserModel.findById(key)
+    .then(user => {
+        if (user){
+            const { createdAt, email, username, address, phone, image, admin, lastname, firstname } = user
+            
+            res.json({
+                user: {
+                    createdAt,
+                    email,
+                    username,
+                    address,
+                    phone,
+                    image,
+                    admin,
+                    lastname,
+                    firstname
+                },
+                message: "OK"
+            })
+        }else{
+            res.status(404).json({
+                error: {
+                    message: "User info not found [1]"
+                }
+            })
+        }
+    })
+    .catch(err => {
+        res.status(404).json({
+            catch: err,
+            error: {
+                message: "User info not found [2]"
+            }
+        })
+    })
+}

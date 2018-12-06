@@ -42,6 +42,8 @@ router.post("/", (req, res) => {
     })
 })
 
+router.get("/", userAuth, controller.get_info)
+
 router.patch("/", userAuth, controller.update_info)
 
 router.patch("/avator", userAuth, multerUpload.single("avator"), controller.update_avator)
