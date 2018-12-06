@@ -1,4 +1,4 @@
-import { Button, Image, Card, Modal, Header, Icon, Pagination, Menu } from 'semantic-ui-react'
+import { Button, Image, Card, Modal, Header, Icon, Pagination, Menu, Input } from 'semantic-ui-react'
 import MenuUploadForm from './MenuUploadForm';
 import ContextApi from '../../../../../../../src/config/ContextAPI'
 import api from '../../../../../../../src/providers/APIRequest';
@@ -21,7 +21,11 @@ class MenuListEdit extends React.Component {
 
             //pagination stuff
             activePage: 1,
-            cardsPerPage : 15
+            cardsPerPage : 15,
+
+            //search stuff
+            searchResult : [],
+            isSearching : false,
         }
     }
 
@@ -94,16 +98,55 @@ class MenuListEdit extends React.Component {
 
     handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
 
+    //search filter 
+    filterList = (event) => {
+        let currentList = [];
+        let newList = [];
+
+            // If the search bar isn't empty
+        if (event.target.value !== "") {
+            currentList = this.props.products
+
+            newList = currentList.filter(item => {
+                const lc = item.name.toLowerCase()
+                const filter = event.target.value.toLowerCase()
+
+                return lc.includes(filter)
+            })
+
+            this.setState({
+                searchResult : newList,
+                isSearching : true
+            });
+        }
+        else {
+            this.setState({
+                isSearching : false
+            })
+        }
+    }
+
+    getListToRender = (activePage, cardsPerPage) => {
+        //configure Pagination things
+        const indexOfLastCard = activePage * cardsPerPage;
+        const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+        
+        if (this.state.isSearching)
+        {
+            return (this.state.searchResult.slice(indexOfFirstCard, indexOfLastCard))
+        }
+        else {
+            return (this.props.products.slice(indexOfFirstCard, indexOfLastCard))
+        }
+    }
+
     render ()
     {
         const { products, categories, refreshState} = this.props
-        const { isDeleteModalOpen, isEditModalOpen, editId, isUploadModalOpen, activePage, boundaryRange, siblingRange, showEllipsis, showFirstAndLastNav, showPreviousAndNextNav, totalPages, cardsPerPage } = this.state
+        const { isDeleteModalOpen, isEditModalOpen, editId, isUploadModalOpen, activePage, totalPages, cardsPerPage } = this.state
 
-        //configure Pagination things
-
-        const indexOfLastCard = activePage * cardsPerPage;
-        const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-        const currentCards = products.slice(indexOfFirstCard, indexOfLastCard);
+        
+        const currentCards = this.getListToRender(activePage, cardsPerPage)
 
         const renderCards = currentCards.map((product, index) => {
             return (
@@ -175,6 +218,7 @@ class MenuListEdit extends React.Component {
                         <ContextApi.Consumer>
                             {({state}) => ( 
                                 <div>
+                                    <Input icon='search' type="text" onChange={() => this.filterList(event)} placeholder='Find a product' />
                                     <Card.Group>
                                         {renderCards}
                                     </Card.Group>

@@ -20,7 +20,7 @@ class DashboardMenuPage extends React.Component {
     }
 
     refreshState = (newObject) => {
-      console.log("okay cool cool cool save it", newObject)
+      // console.log("okay cool cool cool save it", newObject)
       this.setState({
           ...this.state,
           ...newObject

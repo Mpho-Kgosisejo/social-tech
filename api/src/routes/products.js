@@ -164,7 +164,6 @@ router.patch("/", multerUpload.single('productImage'), (req, res) => {
     }
     else {
         const {_id, price, available, name, description, menuCategoryId, ingredients, image } = req.body
-        // const newIngredients = JSON.parse(ingredients)
 
         const updateModel = {
             price,
