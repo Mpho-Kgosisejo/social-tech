@@ -109,8 +109,26 @@ const API = {
     },
     profile: {
         account: () => {
-            return (mock.account().then(res => res))
-        }
+            if (Config.get("api.isMock")){
+                return(mock.account().then(res => res))
+            }
+            return(
+                axios.get(`${Config.get("api.endpoint")}/user`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+            },
+            account_update: (user) => {
+                if (Config.get("api.isMock"))
+                {
+                    return (mock.account().then(res => res_))
+                }
+                return (
+                    axios.patch(`${Config.get("api")}/user`)
+                    .then(res => res)
+                    .catch(err => err.response)
+                )
+            }
     }
 }
 

@@ -79,6 +79,7 @@ class account extends React.Component {
                         </React.Fragment>
                     }
                 </ContextAPI.Consumer>
+                <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script> 
             </Layout>
 
         )
