@@ -38,7 +38,7 @@ router.post("/", (req, res) => {
         }
     })
     .catch(err => {
-        res.status(500).json({error: {message: "Something went wrong"}})
+        res.status(500).json({error: {message: "Invalid credentials"}})
     })
 })
 
@@ -87,7 +87,7 @@ router.post("/reset-password", (req, res) => {
                 message: "Reset password email sent"
             })
         }else{
-            res.status(400).json({
+            res.status(401).json({
                 error: {
                     message: "Invalid email"
                 }
@@ -96,7 +96,6 @@ router.post("/reset-password", (req, res) => {
     })
     .catch(err => {
         console.log("catch()", err)
-
         res.status(500).json({
             error: {
                 message: "Something went wrong"
