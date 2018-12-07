@@ -3,6 +3,7 @@ import api from "../../../../../../src/providers/APIRequest"
 import MenuUploadForm from './components/MenuUploadForm'
 import MenuListEdit from './components/MenuListEdit'
 import CategoryListEdit from './components/CategoryListEdit'
+import Router from 'next/router'
 
 class DashboardMenuPage extends React.Component {
 
@@ -17,6 +18,13 @@ class DashboardMenuPage extends React.Component {
         CategoryResponseMessage: "",
         CatStatus: 0,
       }
+    }
+
+    componentWillMount( ) {
+      console.log("aaaa")
+      const page = "menu"
+      console.log("page")
+      // Router.replace({ pathname: "/dashboard", query: { page } })
     }
 
     refreshState = (newObject) => {

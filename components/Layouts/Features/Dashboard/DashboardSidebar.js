@@ -1,12 +1,12 @@
 import React from 'react'
-import { Icon, Menu, Sidebar, Dropdown, Divider, Container } from 'semantic-ui-react'
+import { Icon, Menu, Sidebar, Breadcrumb, Divider, Container } from 'semantic-ui-react'
 import "../../../../static/css/dashboard.css"
 import DashboardMainPage from './DashboardPages/DashboardMainPage';
 import DashboardMenuPage from './DashboardPages/DashBoardMenuPage/DashboardMenuPage';
 import DashboardAboutsPage from './DashboardPages/DashboardAboutsPage'
 import DashboardOrdersPage from './DashboardPages/DashboardOrdersPage'
 import { RightNav } from '../../Nav';
-
+import Router from "next/router"
 
 class DashboardSidebar extends React.Component{
 
@@ -32,19 +32,19 @@ class DashboardSidebar extends React.Component{
 
     renderPage = (pageName)  => {
         switch (pageName){
-            case "home": 
+            case "Home":
                 return(
                     <DashboardMainPage/>
                 )
-            case "orders" :
+            case "Orders" :
                 return (
                     <DashboardOrdersPage/>
                 )
-            case "menu" :
+            case "Menu" :
                 return (
                     <DashboardMenuPage/>
                 )
-            case "about" :
+            case "About" :
                 return (
                     <DashboardAboutsPage/>
                 )
@@ -65,7 +65,13 @@ class DashboardSidebar extends React.Component{
                             <Icon className="header-content" name={openSidebar ? 'close' : 'bars'}/>
                         </Menu.Item>
                         <Menu.Item>
-                            <h1 className="header-content">DASHBOARD</h1>
+                            <h1 className="header-content">
+                                <Breadcrumb size='large' >
+                                    <Breadcrumb.Section>Dashboard</Breadcrumb.Section>
+                                    <Breadcrumb.Divider className="fresheats-brown-color" />
+                                    <Breadcrumb.Section>{activePage}</Breadcrumb.Section>
+                                </Breadcrumb>
+                            </h1>
                         </Menu.Item>
                         <Menu.Menu position="right">
                             <RightNav />
@@ -83,25 +89,24 @@ class DashboardSidebar extends React.Component{
                         className="dashboard-sidebar fresheats-light-green-bg"
                     >
 
-                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("home") }}>
+                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("Home") }}>
                         <Icon name='home' />
                         Home
                     </Menu.Item>
-                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("orders")}}>
+                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("Orders")}}>
                         <Icon name='food' />
                         Orders
                     </Menu.Item>
                     <Divider/>
-                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("menu") }}>
+                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("Menu") }}>
                         <Icon name='clipboard' />
                         Menu
                     </Menu.Item>
-                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("about") }}>
+                    <Menu.Item className="fresheats-brown-color" as='a' onClick={() => { this.changeActivePage("About") }}>
                         <Icon name='clipboard' />
                         About
                     </Menu.Item>
                     </Sidebar>
-
                     <Sidebar.Pusher className="dashboard-sidebar-pushable"> 
                         <div className="mainLayout">
                             { this.renderPage(activePage) }

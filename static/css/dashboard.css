@@ -17,10 +17,29 @@
     min-height: 45px;
     margin: 0px;
     padding: 0px 15px;
-    background: #ffffff;
+    /* background-color: #ffffff; */
+    /* color: #c59c70 ; */
     border-bottom: 0px;
     width: 100% !important;
 }
+
+/* .dashboard-page-header-mini {
+    min-height: 45px;
+    margin: 0px;
+    padding: 5px 15px 5px 15px !important;
+    background-color: #ffffff;
+    color: #c59c70 ;
+    border-bottom: 0px;
+    width: 100% !important;
+    padding: 5px 15px 5px 15px !important; 
+    display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.dashboard-page-header-breadcrumb{
+    padding: 7px !important;
+} */
 
 .dashboard-menu-items {
     color: #ffffff !important;
