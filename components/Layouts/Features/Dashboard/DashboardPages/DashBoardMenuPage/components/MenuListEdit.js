@@ -21,7 +21,7 @@ class MenuListEdit extends React.Component {
 
             //pagination stuff
             activePage: 1,
-            cardsPerPage : 15,
+            cardsPerPage : 18,
 
             //search stuff
             searchResult : [],
@@ -198,33 +198,31 @@ class MenuListEdit extends React.Component {
         return (
             <div> { /* ========================= */ } 
                 <div className = "dashboard-menu-page-container">
-                    {/* <div className = "menu-upload-header"> */}
-                    <Menu>
-                        <Menu.Item>
-                            <h3> Menu Products </h3>
-                        </Menu.Item>
-                        <Menu.Item position='right'>
-                            <Modal open={isUploadModalOpen} trigger={
-                                <Button floated='right' onClick={() => this.handleUploadModal()}  basic >
-                                    Create New Product
-                                </Button>}>
-                                    <MenuUploadForm handleUploadModal={this.handleUploadModal.bind(this)} refreshState={refreshState}  categories={categories} />
-                            </Modal>
-                        </Menu.Item> 
-                    </Menu>
-                    {/* </div>  */}
+                    <div className = "product-list-header">
+                            <div>
+                                <h3> Menu Products </h3>
+                            </div>
+                            <div>
+                                <Modal open={isUploadModalOpen} trigger={
+                                    <Button size="medium" onClick={() => this.handleUploadModal()}  basic >
+                                        Create New Product
+                                    </Button>}>
+                                        <MenuUploadForm handleUploadModal={this.handleUploadModal.bind(this)} refreshState={refreshState}  categories={categories} />
+                                </Modal>
+                                <Input className="product-search" size="medium" icon='search' type="text" onChange={() => this.filterList(event)} placeholder='Find a product' />
+                            </div>
+                    </div> 
 
                     <div className = "upload-contents">
                         <ContextApi.Consumer>
                             {({state}) => ( 
                                 <div>
-                                    <Input icon='search' type="text" onChange={() => this.filterList(event)} placeholder='Find a product' />
                                     <Card.Group>
                                         {renderCards}
                                     </Card.Group>
                                     { this.countNumberOfPages(products, cardsPerPage) > 1 ?     
                                         <div className="pagination-component centered-element">
-                                            <Pagination  boundaryRange={boundaryRange} onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(products, cardsPerPage)} />
+                                            <Pagination size='tiny' onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(products, cardsPerPage)} />
                                         </div>
                                         : null
                                     }
