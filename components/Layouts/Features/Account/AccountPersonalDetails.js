@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Divider, Message, Icon } from 'semantic-ui-react'
+import { Form, Button, Divider, Message, Icon, Input } from 'semantic-ui-react'
 import validator from "validator"
 
 import ContextAPI from "../../../../src/config/ContextAPI"
@@ -132,7 +132,7 @@ class AccountPersonalDetails extends React.Component {
                         </Form.Field>
                         <Form.Field error={!isEmptyObj(errors.phone)}>
                             <label>Phone:</label>
-                            <input value={user.phone} onChange={this.onChange} name="phone"  />
+                            <Input icon='phone' iconPosition='left' value={user.phone} onChange={this.onChange} name="phone"  />
                             {errors.phone && <InLineError message={errors.phone}/>}
                         </Form.Field>
                         <Form.Field error={!isEmptyObj(errors.address)}>
