@@ -1,0 +1,20 @@
+
+.request-catering
+{
+    padding: 30px;
+}
+
+.catering-title
+{
+    padding: 30px 100px;
+}
+
+.catering-accordion
+{
+    padding: 50px 0px;
+}
+
+/* <Button animated fluid type='submit'  loading={isLoading}>
+<Button.Content visible>Update</Button.Content>
+<Button.Content hidden><Icon name="sign in"/></Button.Content>
+</Button> */
