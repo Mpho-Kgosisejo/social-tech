@@ -3,7 +3,7 @@ import { Icon, Menu, Sidebar, Dropdown, Divider, Container } from 'semantic-ui-r
 import "../../../../static/css/dashboard.css"
 import DashboardMainPage from './DashboardPages/DashboardMainPage';
 import DashboardMenuPage from './DashboardPages/DashboardMenuPage';
-import DashboardAboutsPage from './DashboardPages/DashboardAboutsPage'
+import DashboardAboutsPage from './DashboardPages/DashboardAbouts/DashboardAboutsPage'
 import DashboardOrdersPage from './DashboardPages/DashboardOrdersPage'
 import { RightNav } from '../../Nav';
 

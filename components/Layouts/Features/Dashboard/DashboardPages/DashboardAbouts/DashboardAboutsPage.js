@@ -1,23 +1,16 @@
 import React from 'react'
 import { Container, Form, TextArea, Button, Tab, Input, Rating, Header } from 'semantic-ui-react'
-import ContextAPI from "../../../../../src/config/ContextAPI";
-import { isEmptyObj } from "../../../../../src/utils/Objs"
-import { InLineError } from '../../../../Messages/InLineMessage'
-import * as MessageTypes from "../../../../../src/Types/ColorsTypes"
+import ContextAPI from "../../../../../../src/config/ContextAPI";
+import { isEmptyObj } from "../../../../../../src/utils/Objs"
+import { InLineError } from '../../../../../Messages/InLineMessage'
+import * as MessageTypes from "../../../../../../src/Types/ColorsTypes"
 
 class DashboardAboutsPage extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      aboutStory: {
-        description: "",
-        category_name: "",
-        category_desc: ""
-      },
-      rating: 0,
-      errors: {}
-    }
+    
+    
 
   }
 
