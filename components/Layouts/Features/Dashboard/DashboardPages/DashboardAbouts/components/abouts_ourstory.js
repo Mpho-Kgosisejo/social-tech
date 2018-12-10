@@ -1,9 +1,9 @@
 import React from 'react'
 import { Container, Form, TextArea, Button, Tab, Input, Rating, Header } from 'semantic-ui-react'
-// import ContextAPI from "../../../../../../src/config/ContextAPI";
+import ContextAPI from "../../../../../../../src/config/ContextAPI";
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
-import { InLineError } from '../../../../../../Messages/InLineMessage '
-// import * as MessageTypes from "../../../../../../src/Types/ColorsTypes"
+import { InLineError } from '../../../../../../Messages/InLineMessage'
+import * as MessageTypes from "../../../../../../../src/Types/ColorsTypes" 
 
 class AboutOurStory extends React.Component{
 
@@ -14,8 +14,7 @@ class AboutOurStory extends React.Component{
             description: "",
             category_name: "",
             category_desc: ""
-          },
-          rating: 0,
+          }, 
           errors: {}
         }
     
@@ -27,11 +26,9 @@ class AboutOurStory extends React.Component{
           [e.target.name]: e.target.value
         }
       })
-    
-      handleChange = e => this.setState({ rating: e.target.value })
-    
+        
       render() {
-        const { rating, errors, aboutStory} = this.state
+        const { errors, aboutStory} = this.state
        
         return (
                 <div className="dashboard-page-container">
