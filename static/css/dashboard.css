@@ -54,7 +54,7 @@
     /* width: 100vw !important; */
 }
 
-.dashboard-menu-page-container{
+.dashboard-page-container{
     background-color: #ffffff !important;
     margin: 15px 15px 15px 15px !important;
     padding: 20px 20px 20px 20px !important;
@@ -62,6 +62,9 @@
 
 .menu-upload-header{
     margin-bottom: 15px !important;
+}
+
+.form-upload-header{
 }
 
 .upload-contents{
@@ -124,3 +127,39 @@
         margin-top: 5px !important;
     }
 }
+.form-button-submit{
+    background-color: #c59c70 !important;
+    color: white !important;
+}
+
+
+/* REGION: DASHBOARD ORDERS PAAGE */
+
+.dashboard-orders-table{
+
+    background-color: #ffffff !important;
+    margin: 15px 15px 15px 15px !important;
+    padding: 20px 20px 20px 20px !important;
+    border-radius: 0 !important;
+}
+
+.table-header{
+    background-color: #c59c70 !important;
+}
+
+.ui.table thead th , .table-header{
+    color: #fff !important;
+}
+.ui.table tr td {
+    border-top: none !important;
+}
+
+
+
+
+
+
+
+
+
+/* END REGION ORDERS PAGE */

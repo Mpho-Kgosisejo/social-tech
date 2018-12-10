@@ -55,7 +55,7 @@ export const RightNav = () => (
                                 />
                                 {state.login.username}
                             </span>
-                        }
+                        } 
                     // pointing='top left'
                     // icon={null}
                     >

@@ -26,6 +26,8 @@ class Dashoard extends React.Component {
     }
 
     componentDidMount(){
+        const {name} = this.props.router.query
+        console.log(this.props)
         this.props.dispatch({type: "SIDEBAR", payload: false})
         const login = getLogin()
 

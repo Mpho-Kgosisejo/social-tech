@@ -192,6 +192,13 @@ const API = {
                 .catch(err => err.response)
             )
         }
+    },
+    dashboard_orders: {
+        get_orders : () => {
+            if (Config.get("api.isMock")){
+                return (mock.dashboard_orders().then(res => res))
+            }
+        }
     }
 }
 
