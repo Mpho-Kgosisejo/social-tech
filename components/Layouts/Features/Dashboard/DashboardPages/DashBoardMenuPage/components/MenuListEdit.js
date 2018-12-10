@@ -66,11 +66,11 @@ class MenuListEdit extends React.Component {
                 this.props.refreshState({
                     products : this.state.newCategoryList
                 })
-                dispatch({type : "ALERT_PORTAL", payload : {
-                    open : true, 
-                    type : 'success',
-                    message : "Successfully deleted the product."
-                }})
+                // dispatch({type : "ALERT_PORTAL", payload : {
+                //     open : true, 
+                //     type : 'success',
+                //     message : "Successfully deleted the product."
+                // }})
             }
             else
             {
@@ -136,6 +136,8 @@ class MenuListEdit extends React.Component {
             return (this.state.searchResult.slice(indexOfFirstCard, indexOfLastCard))
         }
         else {
+            if(isEmptyObj(this.props.products))
+                return {}
             return (this.props.products.slice(indexOfFirstCard, indexOfLastCard))
         }
     }
@@ -144,56 +146,58 @@ class MenuListEdit extends React.Component {
     {
         const { products, categories, refreshState} = this.props
         const { isDeleteModalOpen, isEditModalOpen, editId, isUploadModalOpen, activePage, totalPages, cardsPerPage } = this.state
-
         
         const currentCards = this.getListToRender(activePage, cardsPerPage)
+        let renderCards = null
+        if (!isEmptyObj(currentCards))
+        {
+            renderCards = currentCards.map((product, index) => {
+                return (
+                    <Card key={index}>
+                        <Card.Content>
+                            <Image floated='right' size='mini' src={product.image} />
+                            <Card.Header>{product.name}</Card.Header>
+                            <Card.Meta>{product.price}</Card.Meta>
+                            <Card.Description>
+                                {product.description}
+                            </Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+                        <Button.Group fluid>
+                            <Modal closeOnDimmerClick open={isEditModalOpen}  size='small' trigger={
+                                <Button onClick={() => this.handleEditModal(product._id)} basic color='green'>
+                                    Edit
+                                </Button>
+                            }>
+                                <MenuEditForm refreshState={refreshState} handleEditModal={this.handleEditModal.bind(this)} productId={editId} categories={categories}/>
+                            </Modal>
+                            
+                            
+                            <Modal closeOnDimmerClick open={isDeleteModalOpen} basic size='small' trigger={<Button onClick={() => this.handleDeleteModal(product)} basic color='red'>
+                                                Delete
+                                            </Button>}>
 
-        const renderCards = currentCards.map((product, index) => {
-            return (
-                <Card key={index}>
-                    <Card.Content>
-                        <Image floated='right' size='mini' src={product.image} />
-                        <Card.Header>{product.name}</Card.Header>
-                        <Card.Meta>{product.price}</Card.Meta>
-                        <Card.Description>
-                            {product.description}
-                        </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra>
-                    <Button.Group fluid>
-                        <Modal closeOnDimmerClick open={isEditModalOpen}  size='small' trigger={
-                            <Button onClick={() => this.handleEditModal(product._id)} basic color='green'>
-                                Edit
-                            </Button>
-                        }>
-                            <MenuEditForm refreshState={refreshState} handleEditModal={this.handleEditModal.bind(this)} productId={editId} categories={categories}/>
-                        </Modal>
-                        
-                        
-                        <Modal closeOnDimmerClick open={isDeleteModalOpen} basic size='small' trigger={<Button onClick={() => this.handleDeleteModal(product)} basic color='red'>
-                                            Delete
-                                        </Button>}>
-
-                            <Header icon='delete' content='Delete Product' />
-                            <Modal.Content>
-                                <p>
-                                    Are you sure you want to delete this product?
-                                </p>
-                            </Modal.Content>
-                            <Modal.Actions>
-                                    <Button onClick={() => this.handleDeleteModal()} basic color='red' inverted>
-                                        <Icon name='remove' /> No
-                                    </Button>
-                                    <Button onClick={() => this.confirmProductDelete(state.dispatch)} color='green' inverted>
-                                        <Icon name='checkmark' /> Yes
-                                    </Button>
-                            </Modal.Actions>
-                        </Modal>                                        
-                    </Button.Group>
-                    </Card.Content>
-                    </Card>
-            )
-        });
+                                <Header icon='delete' content='Delete Product' />
+                                <Modal.Content>
+                                    <p>
+                                        Are you sure you want to delete this product?
+                                    </p>
+                                </Modal.Content>
+                                <Modal.Actions>
+                                        <Button onClick={() => this.handleDeleteModal()} basic color='red' inverted>
+                                            <Icon name='remove' /> No
+                                        </Button>
+                                        <Button onClick={() => this.confirmProductDelete()} color='green' inverted>
+                                            <Icon name='checkmark' /> Yes
+                                        </Button>
+                                </Modal.Actions>
+                            </Modal>                                        
+                        </Button.Group>
+                        </Card.Content>
+                        </Card>
+                )
+            });
+        }
 
         return (
             <div> { /* ========================= */ } 
@@ -217,14 +221,21 @@ class MenuListEdit extends React.Component {
                         <ContextApi.Consumer>
                             {({state}) => ( 
                                 <div>
-                                    <Card.Group>
-                                        {renderCards}
-                                    </Card.Group>
-                                    { this.countNumberOfPages(products, cardsPerPage) > 1 ?     
-                                        <div className="pagination-component centered-element">
-                                            <Pagination size='tiny' onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(products, cardsPerPage)} />
-                                        </div>
-                                        : null
+                                    {isEmptyObj(products) ?
+                                        null 
+                                        :
+                                            <div>
+                                                <Card.Group>
+                                                    {renderCards}
+                                                </Card.Group>
+                                                { 
+                                                    this.countNumberOfPages(products, cardsPerPage) > 1 ?     
+                                                    <div className="pagination-component centered-element">
+                                                    <Pagination size='tiny' onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(products, cardsPerPage)} />
+                                                    </div>
+                                                    : null
+                                                }
+                                            </div>
                                     }
                                 </div>
                         )}

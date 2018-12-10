@@ -20,12 +20,12 @@ class DashboardMenuPage extends React.Component {
       }
     }
 
-    componentWillMount( ) {
-      console.log("aaaa")
-      const page = "menu"
-      console.log("page")
-      // Router.replace({ pathname: "/dashboard", query: { page } })
-    }
+    // componentWillMount( ) {
+    //   console.log("aaaa")
+    //   const page = "menu"
+    //   console.log("page")
+    //   // Router.replace({ pathname: "/dashboard", query: { page } })
+    // }
 
     refreshState = (newObject) => {
       // console.log("okay cool cool cool save it", newObject)

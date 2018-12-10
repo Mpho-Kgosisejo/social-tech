@@ -110,12 +110,17 @@ class CategoryListEdit extends React.Component {
     }
 
     count_item_number = (_category, _products) => {
-        let index = 0
-        _products.forEach(prdct => {
-            if(prdct.menuCategoryId == _category._id)
+        if (isEmptyObj(_products))
+            return 0
+        else 
+        {
+            let index = 0
+            _products.forEach(prdct => {
+                if(prdct.menuCategoryId == _category._id)
                 index += 1
-        })
-        return index
+            })
+            return index
+        }
     }
 
     uploadCategory = async (dispatch) => {
