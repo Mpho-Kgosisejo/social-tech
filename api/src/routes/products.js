@@ -2,7 +2,7 @@ import express from "express"
 
 import Product from "../models/Product"
 import { multerUpload, removeFile } from "../utils/multerImageHandler"
-// import checkAuth from "../middleware/checkAuth"
+import { adminAuth } from "../middleware/checkAuth"
 
 const router  = express.Router()
 
@@ -43,7 +43,7 @@ router.get("/:id", (req, res) => {
     })
 })
 
-router.post("/", multerUpload.single('productImage'), (req, res) => {
+router.post("/", adminAuth, multerUpload.single('productImage'), (req, res) => {
     const {price, available, name, description, menuCategoryId, ingredients} = req.body
     const newIngredients = JSON.parse(ingredients)
     const image =  `${process.env.HOST}/${req.file.path}`
@@ -77,7 +77,7 @@ router.post("/", multerUpload.single('productImage'), (req, res) => {
     })
 })
 
-router.delete("/", (req, res) => {
+router.delete("/", adminAuth,(req, res) => {
     Product.findByIdAndRemove(req.body._id)
     .then (result => {
         const imageToBeDeleted = req.body.image.split('/')[4]
@@ -107,7 +107,7 @@ router.delete("/", (req, res) => {
     })
 })
 
-router.patch("/", multerUpload.single('productImage'), (req, res) => {
+router.patch("/", adminAuth,multerUpload.single('productImage'), (req, res) => {
     if (typeof(req.body.oldImagePath) !== 'undefined') {
         console.log(req.body)
         const {_id, price, available, name, description, menuCategoryId, ingredients, oldImagePath } = req.body

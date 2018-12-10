@@ -280,7 +280,7 @@ class CategoryListEdit extends React.Component {
         const { isAddingCategory, newCategory, newCategoryList, errorBody, modalOpen, isEditing, edit_Id, editCategory} = this.state
         return (
             <div> { /* ========================= */ } 
-                <div className = "dashboard-menu-page-container">
+                <div className = "dashboard-page-container">
                 <div className = "menu-upload-header">
                     <h3> Menu Categories </h3> 
                 </div> 

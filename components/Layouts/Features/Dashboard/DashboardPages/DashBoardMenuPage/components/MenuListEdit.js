@@ -201,7 +201,7 @@ class MenuListEdit extends React.Component {
 
         return (
             <div> { /* ========================= */ } 
-                <div className = "dashboard-menu-page-container">
+                <div className = "dashboard-page-container">
                     <div className = "product-list-header">
                             <div>
                                 <h3> Menu Products </h3>

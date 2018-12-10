@@ -1,7 +1,7 @@
 import express from "express"
 import CategoryModel from "../models/MenuCategory"
 import ProductModel from "../models/Product"
-import checkAuth from "../middleware/checkAuth"
+import { adminAuth } from "../middleware/checkAuth"
 
 const router  = express.Router()
 
@@ -65,7 +65,7 @@ router.get("/menu-categories", (req, res) => {
 })
 
 // this will create a new menu
-router.post("/", (req, res) => {
+router.post("/", adminAuth, (req, res) => {
     const {name, title, show} = req.body
     console.log(req.body)
 
@@ -100,7 +100,7 @@ router.post("/", (req, res) => {
     });
 })
 
-router.delete("/", (req, res) => {
+router.delete("/", adminAuth,(req, res) => {
     console.log(req.body)
     CategoryModel.findByIdAndRemove(req.body._id)
     .then(result => {
@@ -142,7 +142,7 @@ router.delete("/", (req, res) => {
     })
 })
 
-router.patch("/", (req, res) => {
+router.patch("/", adminAuth, (req, res) => {
     const updateModel = req.body.data
     const updateModel_id = req.body.data._id
     console.log(req.body)

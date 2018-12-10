@@ -228,7 +228,7 @@ class MenuEditForm extends React.Component {
 
         return ( 
           <div> { /* ========================= */ } 
-            <div className = "dashboard-menu-page-container">
+            <div className = "dashboard-page-container">
               <div className = "menu-upload-header">
                 <h3> Edit Product </h3> 
               </div> 
