@@ -1,4 +1,4 @@
-import { Form, Button, Dropdown, Input, Label, Checkbox, Segment, TextArea, Image } from 'semantic-ui-react'
+import { Form, Button, Dropdown, Input, Label, Checkbox, Segment, TextArea, Image, Icon } from 'semantic-ui-react'
 import api from "../../../../../../../src/providers/APIRequest"
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import validator from 'validator'
@@ -68,9 +68,25 @@ class MenuEditForm extends React.Component {
         }
     }
 
-    handleDropDownChange = (e, {
-        value
-    }) => {
+    removeIngredient = (ingredient) => {
+        let arr = this.state.editBody.ingredients
+        var found = arr.indexOf(ingredient);
+
+        while (found !== -1) {
+            arr.splice(found, 1);
+            found = arr.indexOf(ingredient);
+        }
+        
+        this.setState({
+            editBody : {
+                ...this.state.editBody,
+                ingredients : arr
+            }
+        })
+
+    }
+
+    handleDropDownChange = (e, { value }) => {
         this.setState({
             editBody: {
                 ...this.state.editBody,
@@ -241,7 +257,7 @@ class MenuEditForm extends React.Component {
                 { isEmptyObj(editBody.ingredients) ? 
                   <Label> <h4> There are no ingredients yet, add some. </h4> </Label> : 
                       editBody.ingredients.map(ingrdnt => ( 
-                        <Label key={ingrdnt}> { ingrdnt } </Label>
+                        <Label key={ingrdnt}> { ingrdnt } <Icon name='delete' onClick={() => this.removeIngredient(ingrdnt)}/> </Label>
                       ))
                 } 
               </Segment> 

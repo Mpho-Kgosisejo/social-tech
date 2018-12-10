@@ -1,4 +1,4 @@
-import { Form, Button, Dropdown, Input, Label, Checkbox, Segment, TextArea } from 'semantic-ui-react'
+import { Form, Button, Dropdown, Input, Label, Checkbox, Segment, TextArea, Icon } from 'semantic-ui-react'
 import api from "../../../../../../../src/providers/APIRequest"
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import validator from 'validator'
@@ -53,6 +53,23 @@ class MenuUploadForm extends React.Component {
                 inputIngredientError : ""
             })
         }
+    }
+
+    removeIngredient = (ingredient) => {
+        let arr = this.state.productUploadBody.ingredients
+        var found = arr.indexOf(ingredient);
+
+        while (found !== -1) {
+            arr.splice(found, 1);
+            found = arr.indexOf(ingredient);
+        }
+        
+        this.setState({
+            productUploadBody : {
+                ...this.state.productUploadBody,
+                ingredients : arr
+            }
+        })
     }
 
     handleDropDownChange = (e, {
@@ -157,6 +174,7 @@ class MenuUploadForm extends React.Component {
         const errors = this.validate()
         if (isEmptyObj(errors)) {
             const res = await api.menu.upload_product(this.state.productUploadBody)
+            console.log(res)
             this.props.refreshState({
                 products : res.data.products
             })
@@ -214,7 +232,7 @@ class MenuUploadForm extends React.Component {
                 { isEmptyObj(productUploadBody.ingredients) ? 
                   <Label> <h4> There are no ingredients yet, add some. </h4> </Label> : 
                       productUploadBody.ingredients.map(ingrdnt => ( 
-                        <Label key={ingrdnt}> { ingrdnt } </Label>
+                        <Label key={ingrdnt}> { ingrdnt } <Icon name='delete' onClick={ () => this.removeIngredient(ingrdnt) }/> </Label>
                       ))
                 } 
               </Segment> 
@@ -249,7 +267,7 @@ class MenuUploadForm extends React.Component {
               </div> 
             </div>
             { /* ===================== */ }
-              {/* <pre>{ JSON.stringify(this.state, " ", 2) }</pre>  */}
+              <pre>{ JSON.stringify(this.state, " ", 2) }</pre> 
               {/* <pre>{ JSON.stringify(this.state.errorBody, " ", 2)}</pre> 
               <pre>{ JSON.stringify(this.state.inputIngredientError, " ", 2) }</pre> */}
             </div>
