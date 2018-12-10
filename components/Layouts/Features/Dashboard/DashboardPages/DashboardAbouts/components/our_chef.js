@@ -46,7 +46,7 @@ class AboutOurChef extends React.Component {
                                 {errors.name && <InLineError message={errors.name} />}
                             </Form.Field>
                             <Form.Field errir={!isEmptyObj(errors.hierarchy)}>
-                                Hierarchy <Input name="description" value={aboutChef.hierarchy} placeholder='ranking of the chef' onChange={this.onChange}/>
+                                Hierarchy <Input name="hierarchy" value={aboutChef.hierarchy} placeholder='ranking of the chef' onChange={this.onChange}/>
                                 {errors.hierarchy && <InLineError message={errors.hierarchy} />}
                             </Form.Field>
                             <Form.Field error={!isEmptyObj(errors.image)}>
@@ -65,7 +65,7 @@ class AboutOurChef extends React.Component {
                             </div>
                             <Button className="form-button-submit" size='large' primary type='submit'>Submit</Button>
                         </Form>
-                        <pre>{JSON.stringify(this.state.aboutChef, null, 2)}</pre>
+                        <pre>{JSON.stringify(this.state, null, 2)}</pre>
                     </Tab.Pane>
                 </div>
             </div>
