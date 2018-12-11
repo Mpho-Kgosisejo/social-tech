@@ -4,7 +4,7 @@ import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
 import { remove, update } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
 
-const TableItem = ({price, _id, image, name, description, quantity}) => {
+const TableItem = ({price, _id, image, name, description, quantity, step}) => {
     const handleOnRemove = (state) => {
         const item = {
             _id
@@ -44,14 +44,14 @@ const TableItem = ({price, _id, image, name, description, quantity}) => {
                         </Table.Cell>
                         <Table.Cell textAlign="center" width={2}>
                             <p>Quantity</p>
-                            <Input className="qty" value={quantity}  type="number" min="1" onChange={(e, {value}) => handleQuantityChange({value, state})} />
+                            <Input disabled={step === "payment"} className="qty" value={quantity}  type="number" min="1" onChange={(e, {value}) => handleQuantityChange({value, state})} />
                         </Table.Cell>
                         <Table.Cell textAlign="center" width={2}>
                             <p>({quantity}xR{price})</p>
                             <Header as="h3" color="grey" className="price">{`R${quantity * price}`}</Header>
                         </Table.Cell>
                         <Table.Cell textAlign="center" width={2}>
-                            <Button icon size="mini" style={{backgroundColor: MILKY_RED}} onClick={() => handleOnRemove(state)}>
+                            <Button disabled={step === "payment"} icon size="mini" style={{backgroundColor: MILKY_RED}} onClick={() => handleOnRemove(state)}>
                                 <Icon name="close" color="grey" />
                             </Button>
                         </Table.Cell>

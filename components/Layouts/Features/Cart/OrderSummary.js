@@ -4,7 +4,7 @@ import GoogleMaps from "../../../utils/GoogleMaps"
 import { readyToProcessDelivery } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
 
-const OrderSummary = ({deliveryObj, useSavedAddress}) => (
+const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) => (
     <ContextAPI.Consumer>
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
@@ -12,8 +12,6 @@ const OrderSummary = ({deliveryObj, useSavedAddress}) => (
 
             return (
                 <React.Fragment>
-                    <Header as="h3">Order Summary</Header>
-                    <Divider />
                     <Grid columns="equal">
                         <Grid.Row>
                             <Grid.Column>
@@ -84,9 +82,16 @@ const OrderSummary = ({deliveryObj, useSavedAddress}) => (
                         <Divider />
                         <Grid.Row>
                             <Grid.Column>
-                                <Button disabled={!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})} fluid icon labelPosition="right" color="black">
-                                    Checkout
-                                    <Icon name="right arrow"/>
+                                <Button
+                                    onClick={handleOnProceedPayment}
+                                    disabled={!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})}
+                                    fluid
+                                    icon
+                                    labelPosition="right"
+                                    color="black"
+                                >
+                                    Proceed to Payment
+                                    <Icon name="right chevron"/>
                                 </Button>
                             </Grid.Column>
                         </Grid.Row>
@@ -98,6 +103,7 @@ const OrderSummary = ({deliveryObj, useSavedAddress}) => (
                         </Grid.Row> */}
                         <Divider hidden />
                     </Grid>
+                    
                 </React.Fragment>    
             )
         }}

@@ -1,4 +1,4 @@
-import { Grid, Segment, Header, Icon, Divider, Table, Message, Modal, Button } from "semantic-ui-react";
+import { Grid, Segment, Header, Icon, Divider, Table, Message, Modal, Button, Breadcrumb } from "semantic-ui-react";
 import Link from "next/link"
 
 import Layout from "../components/Layouts/Layout"
@@ -7,6 +7,7 @@ import { CartTablePlaceholder } from "../components/utils/Placeholders";
 import ContextAPI from "../src/config/ContextAPI";
 
 import OrderSummary from "../components/Layouts/Features/Cart/OrderSummary"
+import Payment from "../components/Layouts/Features/Cart/Payment"
 
 const EmptyCart = () => (
     <Message >
@@ -46,7 +47,16 @@ class Cart extends React.Component {
             loading: true,
             delivery: false,
             openConfirm: false,
-            useSavedAddress: null
+            useSavedAddress: null,
+            step: "order"
+        }
+    }
+
+    handleOnProceedPayment = ({proceed = true}) => {
+        if (proceed){
+            this.setState({step: "payment"})
+        }else{
+            this.setState({step: "order"})
         }
     }
 
@@ -77,10 +87,11 @@ class Cart extends React.Component {
 
         this.props.dispatch({type: "SIDEBAR", payload: false})
         this.props.dispatch({type: "PAGE", payload: "cart"})
+        this.props.dispatch({type: "CART_DELIVERY", payload: {}})
     }
 
     render(){
-        const {loading, delivery, openConfirm, useSavedAddress} = this.state
+        const {loading, delivery, openConfirm, useSavedAddress, step} = this.state
 
         return (
             <Layout title="Cart">
@@ -115,7 +126,7 @@ class Cart extends React.Component {
                                                         {state.cart.items.length > 0 ? 
                                                             state.cart.items.map(item => (
                                                                 <Table key={item.count} basic="very" celled>
-                                                                    <TableItem {...item} />
+                                                                    <TableItem {...item} step={step} />
                                                                 </Table>
                                                             )) :
                                                             <EmptyCart />
@@ -126,7 +137,19 @@ class Cart extends React.Component {
                                         </Grid.Column>
                                         <Grid.Column computer={6} tablet={16} mobile={16}>
                                             <Segment className="order">
-                                                <OrderSummary useSavedAddress={useSavedAddress} deliveryObj={{delivery, toggleDelivery: this.toggleDelivery}} />
+                                                <Breadcrumb size="large">
+                                                    <Breadcrumb.Section active={step === "order"}>Order Summary</Breadcrumb.Section>
+                                                    <Breadcrumb.Divider icon="right chevron" />
+
+                                                    <Breadcrumb.Section active={step === "payment"}>Payment</Breadcrumb.Section>
+                                                </Breadcrumb>
+                                                <Divider />
+                                                
+                                                {step === "order" ?
+                                                    <OrderSummary handleOnProceedPayment={this.handleOnProceedPayment} useSavedAddress={useSavedAddress} deliveryObj={{delivery, toggleDelivery: this.toggleDelivery}} />
+                                                    :
+                                                    <Payment handleOnProceedPayment={this.handleOnProceedPayment} />
+                                                }
                                             </Segment>
                                         </Grid.Column>  
                                     </Grid.Row>
