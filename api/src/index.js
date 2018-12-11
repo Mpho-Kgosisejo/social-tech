@@ -11,6 +11,11 @@ import user from "./routes/user"
 import menu from "./routes/menu"
 import product from "./routes/products";
 
+import chef from "./routes/abouts routes/chefs"
+import contactUS from "./routes/abouts routes/contactus"
+import FAQs from './routes/abouts routes/faqs'
+import story from './routes/abouts routes/story'
+
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 3000
@@ -39,6 +44,12 @@ app.use("/auth", auth)
 app.use("/user", user)
 app.use("/menus", menu)
 app.use("/products", product)
+
+// abouts routes 
+app.use("/chefs", chef)
+app.use("/contact-us", contactUS)
+app.use("/faqs", FAQs)
+app.use("/ourstory", story)
 
 app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"))

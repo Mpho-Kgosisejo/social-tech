@@ -2,45 +2,35 @@
     "status": 200,
     "data":
     {
-        "icon": "food",
-        "header": "Welcome to Fresh Eats!",
-        "chefs": 
-        {
-            "page_header":"Our Chefs",
-            "chef_details":[
-                {
-                    "id": 1,
-                    "name": "Mpumi",
-                    "specialty": "Executive Chef",
-                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
-                    "image_url":  "https://react.semantic-ui.com/images/avatar/large/matthew.png",
-                    "rating": 6
-                },
-                {
-                    "id": 2,
-                    "name": "Thato",
-                    "specialty": "Pastery Chef",
-                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
-                    "image_url":  "https://react.semantic-ui.com/images/avatar/large/nan.jpg",
-                    "rating": 9
-                },
-                {
-                    "id": 3,
-                    "name": "Melissa",
-                    "specialty": "Sours Chef",
-                    "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
-                    "image_url":  "https://react.semantic-ui.com/images/avatar/large/jenny.jpg",
-                    "rating": 6
-                }
-            ]
-        },
+        "chefs":[ 
+            {
+                "_id": 1,
+                "name": "Mpumi",  
+                "speciality": "Executive Chef",
+                "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
+                "image_url":  "https://react.semantic-ui.com/images/avatar/large/matthew.png",
+                "rating": 6
+            },
+            {
+                "_id": 2,
+                "name": "Thato",
+                "speciality": "Pastery Chef",
+                "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
+                "image_url":  "https://react.semantic-ui.com/images/avatar/large/nan.jpg",
+                "rating": 9
+            },
+            {
+                "_id": 3,
+                "name": "Melissa",
+                "speciality": "Sours Chef",
+                "background": "Akis was brought up in Thessaloniki and by the age of 16 (years) he started working in his family business. At the age of 18 years, he left for Athens to become a Chef.",
+                "image_url":  "https://react.semantic-ui.com/images/avatar/large/jenny.jpg",
+                "rating": 6
+            }
+        ],
         "our_story":
         {
-            "id": 7,
-            "page_header":"Our Story",
-            "header": "ABOUT FRESH EATS",
             "description": "Our mission is what drives us to do everything possible to expand human potential. We do that by creating groundbreaking sport innovations, by making our products more sustainably, by building a creative and diverse global team and by making a positive impact in communities where we live and work. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa strong. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. ",
-            "image_url": "",
             "tags":[
                 {
                     "tag_name": "INNOVATION",
@@ -66,7 +56,6 @@
         },
         "contact_us":
         {
-            "page_header":"Contact Us",
             "header": "FRESH EATS HEADQUARTERS",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             "sub_header": "Fresh Eats ZA Headquarters",
@@ -74,39 +63,33 @@
             "address_2": "Beaverton, OR 97005",
             "city": "Johannesburg",
             "address_3": "Melvil",
-            "tell": "(011)-113-4456",
+            "tel": "(011)-113-4456",
             "fax": "(011)-313-8856",
             "chefs_phone": "+27 87-657-6756",
             "business_hours": "7:30 a.m. - 5:30 p.m. PT, Monday - Friday (except holidays)."
         },
-        "faqs":
-        {
-            "id": 9,
-            "page_header":"FAQs",
-            "no_questions": "No comment",
-            "faqs":[
-                {
-                    "index": 0,
-                    "question": "Who is the owner of the resturant Fresh Eats?",
-                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
-                },{
-                    "index": 1,
-                    "question": "When Did Fresh Eats Restaurant Established?",
-                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
-                },{
-                    "index": 2,
-                    "question": "How Many Tables In The Resturant?",
-                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
-                },{
-                    "index": 3,
-                    "question": "How Many Chefs And Workers On Fresh Eats Restaurant?",
-                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
-                },{
-                    "index": 4,
-                    "question": "Can I Have A Reservation On Fresh Eats?",
-                    "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
-                }
-            ]
-        }
+        "faqs":[
+            {
+                "index": 0,
+                "question": "Who is the owner of the resturant Fresh Eats?",
+                "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+            },{
+                "index": 1,
+                "question": "When Did Fresh Eats Restaurant Established?",
+                "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+            },{
+                "index": 2,
+                "question": "How Many Tables In The Resturant?",
+                "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+            },{
+                "index": 3,
+                "question": "How Many Chefs And Workers On Fresh Eats Restaurant?",
+                "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+            },{
+                "index": 4,
+                "question": "Can I Have A Reservation On Fresh Eats?",
+                "answer": "Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery. Granny was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery."
+            }
+        ]
     }
 }
