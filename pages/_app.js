@@ -1,12 +1,13 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import Config from "react-global-configuration"
-import axios from "axios"
+// import axios from "axios"
 
 import devConfig from "../src/config/devConfig"
 import prodConfig from "../src/config/prodConfig"
 import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
+import axios from 'axios'
 import {getLogin} from "../src/providers/LoginSession"
 import * as CartHandler from "../src/providers/CartHandler"
 
@@ -45,13 +46,15 @@ export default class MyApp extends App {
                 delivery: {},
                 items: []
             },
-            account: {
-                personal_details: {
-                    address: "Maboneng Precinct, Fox Street, City and Suburban, Johannesburg, South Africa"
-                }
+            router: {
+                asPath: props.router.asPath,
+                route: props.router.route,
+                query: props.router.query
             },
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
+
+        console.log(">>", props.router)
     }
 
     UNSAFE_componentWillMount(){

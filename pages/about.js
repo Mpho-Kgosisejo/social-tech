@@ -19,7 +19,7 @@ class About extends React.Component {
         this.state = {
             panes: [
                 {
-                    menuItem: 'Our Stories', render: () => <Tab.Pane className="zero-border">
+                    menuItem: 'Our Story', render: () => <Tab.Pane className="zero-border">
                         <ContextAPI.Consumer>
                             {({ state }) => (
                                 <React.Fragment>

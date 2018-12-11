@@ -17,10 +17,29 @@
     min-height: 45px;
     margin: 0px;
     padding: 0px 15px;
-    background: #ffffff;
+    /* background-color: #ffffff; */
+    /* color: #c59c70 ; */
     border-bottom: 0px;
     width: 100% !important;
 }
+
+/* .dashboard-page-header-mini {
+    min-height: 45px;
+    margin: 0px;
+    padding: 5px 15px 5px 15px !important;
+    background-color: #ffffff;
+    color: #c59c70 ;
+    border-bottom: 0px;
+    width: 100% !important;
+    padding: 5px 15px 5px 15px !important; 
+    display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.dashboard-page-header-breadcrumb{
+    padding: 7px !important;
+} */
 
 .dashboard-menu-items {
     color: #ffffff !important;
@@ -41,11 +60,15 @@
     padding: 20px 20px 20px 20px !important;
 }
 
+.menu-upload-header{
+    margin-bottom: 15px !important;
+}
+
 .form-upload-header{
 }
 
-.menu-upload-form{
-    margin: 15px 15px 15px 50px !important;
+.upload-contents{
+    margin: 15px 15px 15px 10px !important;
 }
 
 .category-available-upload-div {
@@ -56,7 +79,87 @@
     margin-left: 15px !important;
     margin-top: 15px !important;
 }
+
+.dash-table-cell{
+    /* width: 150px !important; */
+    /* height: 100px !important; */
+}
+
+.category-table-add-row {
+    width: 130px !important;
+}
+
+.edit-image-div {
+    background-color: gray;
+    width: 180px !important;
+    height: 220px !important;
+    position: relative !important;
+}
+
+.edit-image-button{
+    margin: 0;
+    /* background: yellow; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* margin-right: -50%; */
+    transform: translate(-50%, -50%);
+}
+
+.pagination-component {
+    margin-top: 15px !important;
+}
+
+.centered-element{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-list-header {
+    display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+@media (min-width: 0px) and (max-width: 456px) {
+    .product-search {
+        margin-top: 5px !important;
+    }
+}
 .form-button-submit{
     background-color: #c59c70 !important;
     color: white !important;
 }
+
+
+/* REGION: DASHBOARD ORDERS PAAGE */
+
+.dashboard-orders-table{
+
+    background-color: #ffffff !important;
+    margin: 15px 15px 15px 15px !important;
+    padding: 20px 20px 20px 20px !important;
+    border-radius: 0 !important;
+}
+
+.table-header{
+    background-color: #c59c70 !important;
+}
+
+/* .ui.table thead th , .table-header{
+    color: #fff !important;
+}
+.ui.table tr td {
+    border-top: none !important;
+} */
+
+
+
+
+
+
+
+
+
+/* END REGION ORDERS PAGE */

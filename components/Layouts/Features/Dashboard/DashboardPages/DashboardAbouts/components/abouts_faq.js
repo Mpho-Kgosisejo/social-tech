@@ -38,7 +38,7 @@ class AboutFaqs extends React.Component {
                     <Tab.Pane attached={false}>
                         <Form>
                             <Form.Field error={!isEmptyObj(errors.question)}>
-                                Question<Input placeholder='Add a question eg. Who is the owner of fresh eats?...' name="question" value={aboutFaq.question} action={<Button className="form-button-submit">Add</Button>} onChange={this.onChange}></Input>
+                                Question<Input placeholder='Add a question eg. Who is the owner of fresh eats?...' name="question" value={aboutFaq.question} onChange={this.onChange}></Input>
                                 {errors.question && <InLineError message={errors.question} />}
                             </Form.Field>
                             <Form.Field error={!isEmptyObj(errors.answer)}>

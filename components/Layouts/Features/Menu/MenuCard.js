@@ -1,6 +1,6 @@
 import React from 'react'
 import { Image, Card, Label, Modal, Header, Divider, Button, Icon, Form, Input } from "semantic-ui-react"
-
+import Config from "react-global-configuration"
 import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
 import ContextAPI from '../../../../src/config/ContextAPI';
 import * as cartHandler from "../../../../src/providers/CartHandler"
@@ -103,7 +103,7 @@ class menu_card extends React.Component {
                     <Modal.Actions className="no-border">
                     <ContextAPI.Consumer>
                             {({state}) => (
-                                <>
+                                <div>
                                     {!cartHandler.isInCart({cart: state.cart.items, item: {_id}}) && (
                                         <div className="quantity-div">
                                             <Button size="mini" circular icon='minus' className="decrease-button dec-inc"
@@ -124,7 +124,7 @@ class menu_card extends React.Component {
                                             Add to Cart
                                         </Button>
                                     }
-                                </>
+                                </div>
                             )}
                         </ContextAPI.Consumer>
                     </Modal.Actions>

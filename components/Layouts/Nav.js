@@ -25,7 +25,7 @@ const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
     AboutHelper.RouterHandler({index})
 }
 
-const ResponsiveFragmentBugFix = () => (<></>)
+const ResponsiveFragmentBugFix = () => (<div></div>)
 
 const pushSideBar =({dispatch}) =>
 {
@@ -55,7 +55,7 @@ export const RightNav = () => (
                                 />
                                 {state.login.username}
                             </span>
-                        }
+                        } 
                     // pointing='top left'
                     // icon={null}
                     >

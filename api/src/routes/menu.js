@@ -1,13 +1,14 @@
 import express from "express"
 import CategoryModel from "../models/MenuCategory"
 import ProductModel from "../models/Product"
+import { adminAuth } from "../middleware/checkAuth"
 
 const router  = express.Router()
 
 // this will return all the menus
 router.get("/", (req, res) => {
 
-    var findCategories = new Promise((resolve, reject) => {
+    const findCategories = new Promise((resolve, reject) => {
         CategoryModel.find({}, function(err, CategoryData) {
             if (err) reject(err);
             resolve(CategoryData)                   
@@ -16,7 +17,7 @@ router.get("/", (req, res) => {
   
       // Find all prducts
       // the query action below is not executed, just return PromiseObject for now
-      var findProducts = new Promise((resolve, reject) => {
+      const findProducts = new Promise((resolve, reject) => {
         ProductModel.find({}, function(err, productData) {
             if (err) reject(err);
             resolve(productData)
@@ -25,7 +26,7 @@ router.get("/", (req, res) => {
 
     return Promise.all([findCategories, findProducts])
     .then(data => {            
-        var menuWithProducts = [];
+        const menuWithProducts = [];
         
         data[0].forEach(ctrgry => {
             data[1].forEach(prdct => { 
@@ -42,23 +43,6 @@ router.get("/", (req, res) => {
         })
     })
 
-    // MenuModel.find()
-    // .populate("category", "name title show")
-    // .populate("items", "menuCategoryId ingredients description image available price")
-    // .exec()
-    // .then(categories => {
-    //     res.status(200).json({
-    //         categories
-    //     })
-    // })
-    // .catch(err => {
-    //     res.status(404).json({
-    //         error: {
-    //             message : "error getting menu"   
-    //         }
-    //     })
-    // })
-
 })
 
 
@@ -66,7 +50,7 @@ router.get("/", (req, res) => {
 router.get("/menu-categories", (req, res) => {
     CategoryModel.find()
     .then(data => {
-        res.json({
+        res.status(200).json({
             data,
             message: "OK"
         })
@@ -74,15 +58,16 @@ router.get("/menu-categories", (req, res) => {
     .catch(err => {
         res.status(404).json({
             error: {
-                message: "error..."
+                message: err
             }
         })
     })
 })
 
 // this will create a new menu
-router.post("/", (req, res) => {
+router.post("/", adminAuth, (req, res) => {
     const {name, title, show} = req.body
+    console.log(req.body)
 
     const newMenu = CategoryModel({
         name,
@@ -90,18 +75,104 @@ router.post("/", (req, res) => {
         show
     })
     newMenu.save().then(menu => {
-        res.status(200).json({
-            menu
+        CategoryModel.find()
+            .then(data => {
+                res.status(200).json({
+                    data,
+                    message: "OK"
+                })
+            })
+            .catch(err => {
+                res.status(404).json({
+                    error: {
+                        message: err
+                    }
+                })
+            })
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(501).json({
+            error : {
+                message : "Couldnt add category to the database"
+            }
+        })
+    });
+})
+
+router.delete("/", adminAuth,(req, res) => {
+    console.log(req.body)
+    CategoryModel.findByIdAndRemove(req.body._id)
+    .then(result => {
+        // console.log(result)
+        ProductModel.deleteMany({menuCategoryId : req.body._id})
+        .then(_result => {
+            // console.log(res)
+            CategoryModel.find()
+            .then(data => {
+                res.status(200).json({
+                    data,
+                    message: "OK"
+                })
+            })
+            .catch(err => {
+                res.status(404).json({
+                    error: {
+                        message: err
+                    }
+                })
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(501).json({
+                error : {
+                    message : "Couldnt delete category's items",
+                }
+            })
         })
     })
     .catch(err => {
         console.log(err)
-        res.status(500).json({
+        res.status(501).json({
             error : {
-                message : "couldnt post this menu category to the database"
+                message : "Couldnt delete the category",
             }
         })
-    });
+    })
+})
+
+router.patch("/", adminAuth, (req, res) => {
+    const updateModel = req.body.data
+    const updateModel_id = req.body.data._id
+    console.log(req.body)
+
+    CategoryModel.findByIdAndUpdate(updateModel_id, updateModel, {new : true})
+    .then(_data => {
+        console.log(_data)
+        CategoryModel.find()
+            .then(data => {
+                res.status(200).json({
+                    data,
+                    message: "OK"
+                })
+            })
+            .catch(err => {
+                res.status(404).json({
+                    error: {
+                        message: err
+                    }
+                })
+            })
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(501).json({
+            error : {
+                message : "Couldnt delete category's items",
+            }
+        })
+    })
 })
 
 export default router

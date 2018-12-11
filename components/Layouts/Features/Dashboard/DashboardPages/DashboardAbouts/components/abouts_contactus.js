@@ -15,7 +15,6 @@ class AboutContactUs extends React.Component {
                 description: "",
                 address1: "",
                 address2: "",
-                address3: "",
                 city: "",
                 email: "",
                 tel: "",
@@ -61,10 +60,6 @@ class AboutContactUs extends React.Component {
                                 <Form.Field error={!isEmptyObj(errors.address2)}>
                                     <Form.Input label='Address 2' name="address2" value={contactUs.address2} placeholder='address' onChange={this.onChange}/>
                                     {errors.address2 && <InLineError message={errors.address2} />}
-                                </Form.Field>
-                                <Form.Field error={!isEmptyObj(errors.address3)}>
-                                    <Form.Input label="Address 3" name="address3" value={contactUs.address3} placeholder='address' onChange={this.onChange}/>
-                                    {errors.address3 && <InLineError message={errors.address3} />}
                                 </Form.Field>
                             </Form.Group>
                             <Form.Field error={!isEmptyObj(errors.city)}>

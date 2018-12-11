@@ -28,6 +28,8 @@
     "bcrypt": "^3.0.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "del": "^3.0.0",
+    "delete": "^1.1.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^7.4.3",

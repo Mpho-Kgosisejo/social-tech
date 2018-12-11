@@ -58,6 +58,10 @@ export const reducer = (state, action) => {
             ...state,
             test: action.payload
         })
+        case "ROUTER": return ({
+            ...state,
+            router: action.payload
+        })
         case "PAGE": return ({
             ...state,
             active_page: action.payload

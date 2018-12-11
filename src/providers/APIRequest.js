@@ -75,8 +75,6 @@ const API = {
             }
             return (
                 axios.get(`${Config.get("api.endpoint")}/menus`)
-                .then(res => res)
-                .catch(err => err.response)
             )
         },
         menu_products : () => {
@@ -93,6 +91,86 @@ const API = {
             }
             return (
                 axios.get(`${Config.get("api.endpoint")}/menus/menu-categories`)
+            )
+        },
+        get_single_product : (id) => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/products/${id}`)
+            )
+        },
+        upload_product : (uploadBody) => {
+            const fileData = new FormData()
+            fileData.append('name', uploadBody.name)
+            fileData.append('description', uploadBody.description)
+            fileData.append('price', uploadBody.price)
+            fileData.append('available', uploadBody.available)
+            fileData.append('ingredients', JSON.stringify(uploadBody.ingredients))
+            fileData.append('menuCategoryId', uploadBody.menuCategoryId)
+            fileData.append('productImage',uploadBody.image, uploadBody.image.name)
+            return (
+                axios.post(`${Config.get("api.endpoint")}/products`, fileData)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        update_product : (editBody, isImageEdited) => {
+            
+            if (isImageEdited)
+            {
+                const fileData = new FormData()
+                fileData.append('name', editBody.name)
+                fileData.append('_id', editBody._id)
+                fileData.append('description', editBody.description)
+                fileData.append('price', editBody.price)
+                fileData.append('available', editBody.available)
+                fileData.append('ingredients', JSON.stringify(editBody.ingredients))
+                fileData.append('menuCategoryId', editBody.menuCategoryId)
+                fileData.append('productImage', editBody.image, editBody.image.name)
+                fileData.append('oldImagePath', editBody.oldImagePath)
+                return (
+                    axios.patch(`${Config.get("api.endpoint")}/products`, fileData )
+                    .then(res => res)
+                    .catch(err => err.response)
+                )
+            }
+            else 
+            {
+                // editBody.ingredients = JSON.stringify(editBody.ingredients)
+                return (
+                    axios.patch(`${Config.get("api.endpoint")}/products`, editBody)
+                    .then(res => res)
+                    .catch(err => err.response)
+                )
+            }
+
+            
+        },
+        delete_product : (deleteBody) => {
+            return (
+                axios.delete(`${Config.get("api.endpoint")}/products`, { data : deleteBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        upload_menu : (uploadBody) => {
+            return (
+                axios.post(`${Config.get("api.endpoint")}/menus`, uploadBody)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        delete_category : (deleteBody) => {
+            return (
+                axios.delete(`${Config.get("api.endpoint")}/menus`, { data : deleteBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }, 
+        update_category : (updateBody) => {
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/menus`, { data : updateBody})
+                .then(res => res)
+                .catch(err => err.response)
             )
         }
     },
@@ -113,6 +191,13 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
+        }
+    },
+    dashboard_orders: {
+        get_orders : () => {
+            if (Config.get("api.isMock")){
+                return (mock.dashboard_orders().then(res => res))
+            }
         }
     }
 }
