@@ -137,7 +137,7 @@ class Cart extends React.Component {
                                         </Grid.Column>
                                         <Grid.Column computer={6} tablet={16} mobile={16}>
                                             <Segment className="order">
-                                                <Breadcrumb size="large">
+                                                <Breadcrumb size="huge">
                                                     <Breadcrumb.Section active={step === "order"}>Order Summary</Breadcrumb.Section>
                                                     <Breadcrumb.Divider icon="right chevron" />
 
@@ -158,7 +158,6 @@ class Cart extends React.Component {
                         )
                     }}
                 </ContextAPI.Consumer>
-                {/* <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script>  */}
             </Layout>
         )
     }
