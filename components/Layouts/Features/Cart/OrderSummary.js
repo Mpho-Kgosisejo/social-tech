@@ -1,4 +1,4 @@
-import { Grid, Header, Icon, Divider, Button, Checkbox } from "semantic-ui-react";
+import { Grid, Header, Icon, Divider, Button, Checkbox, Label } from "semantic-ui-react";
 import StripeCheckout from "react-stripe-checkout"
 
 import GoogleMaps from "../../../utils/GoogleMaps"
@@ -10,6 +10,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
             const {distance, cost} = state.cart.delivery
+            const {login, root_loading} = state
             // const {} = state.account
             // const {email = "", }
 
@@ -21,7 +22,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                 <Header as="h3">Sub. total ({totalItemsCount}):</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
-                                <Header>{`R${subTotal}`}</Header>
+                                <Header>{`R${subTotal.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
@@ -29,7 +30,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                 <Header as="h3">TAX:</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
-                                <Header>R{!subTotal? "0" : `${tax}`}</Header>
+                                <Header>R{!subTotal? "0.0" : `${tax.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Divider />
@@ -46,7 +47,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                     <Grid.Row className="total">
                                         <Grid.Column>
                                         <div className="map-container">
-                                            {useSavedAddress ? 
+                                            {/* {useSavedAddress ? 
                                                 <GoogleMaps
                                                     initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
                                                     destination={state.account.personal_details.address}
@@ -55,7 +56,11 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                     initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
                                                     destination={null}
                                                 />
-                                            }
+                                            } */}
+                                            <GoogleMaps
+                                                initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
+                                                destination={useSavedAddress ? useSavedAddress : null}
+                                            />
                                         </div>
                                         </Grid.Column>
                                     </Grid.Row>
@@ -67,7 +72,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                             </Header>
                                         </Grid.Column>
                                         <Grid.Column textAlign="right">
-                                            <Header>{`R${cost ? cost : "0"}`}</Header>
+                                            <Header>{`R${cost ? cost.toFixed(2) : "0.0"}`}</Header>
                                         </Grid.Column>
                                     </Grid.Row>
                                 </>
@@ -79,7 +84,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                 <Header as="h3">Total</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
-                                <Header>{`R${total}`}</Header>
+                                <Header>{`R${total.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Divider />
@@ -97,25 +102,28 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                     <Icon name="right chevron"/>
                                 </Button> */}
 
-                                {!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery}) ?
-                                        <Button disabled fluid color="black">Proceed to Payment</Button>
-                                    :
-                                        <StripeCheckout 
-                                            name="Fresh Eats."
-                                            description={`Order ${Object.keys(state.cart.delivery).length > 0 ? "with" : "without"} delivery`}
-                                            amount={2512345}
-                                            currency="ZAR"
-                                            stripeKey={"pk_test_BNTfnVdHOKirDMYCN8jGzTy5"}
-                                            shippingAddress={false}
-                                            billingAddress={false}
-                                            zipCode={false}
-                                            token={(data) => handleCheckout({data, cart: state.cart})}
-                                            reconfigureOnUpdate={false}
-                                            triggerEvent="onClick"
-                                            email={"mpho.kgosisejo@hotmail.com"}
-                                        >
-                                            <Button fluid color="black">Proceed to Payment</Button>
-                                        </StripeCheckout>
+                                {root_loading ? null : Object.keys(login).length > 0 ?
+                                    !readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery}) ?
+                                            <Button disabled fluid color="black">Proceed to Payment</Button>
+                                        :
+                                            <StripeCheckout 
+                                                name="Fresh Eats."
+                                                description={`Order ${Object.keys(state.cart.delivery).length > 0 ? "with" : "without"} delivery`}
+                                                amount={parseInt(total.toFixed(2).replace(".", ""))}
+                                                currency="ZAR"
+                                                stripeKey={"pk_test_BNTfnVdHOKirDMYCN8jGzTy5"}
+                                                shippingAddress={false}
+                                                billingAddress={false}
+                                                zipCode={false}
+                                                token={(data) => handleCheckout({data, cart: state.cart})}
+                                                reconfigureOnUpdate={false}
+                                                triggerEvent="onClick"
+                                                email={"mpho.kgosisejo@hotmail.com"}
+                                            >
+                                                <Button fluid color="black">Proceed to Payment</Button>
+                                            </StripeCheckout>
+                                : 
+                                    <Label size="large" style={{width: "100%"}}><Header as="h3" className="notifier">You must login to Proceed to Payment</Header></Label>
                                 }
                             </Grid.Column>
                         </Grid.Row>

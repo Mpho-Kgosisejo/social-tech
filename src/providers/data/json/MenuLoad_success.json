@@ -451,7 +451,7 @@
                     },
                     {
                         "price": 87.34,
-                        "available": false,
+                        "available": true,
                         "_id": "15",
                         "name": "Mrappuccino",
                         "image": "https://i.pinimg.com/originals/71/7f/2e/717f2ebb00947b11731086bcfbd32d5a.jpg",
