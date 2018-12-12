@@ -4,6 +4,22 @@ import ChefModel from '../../models/Abouts Models/Chefs'
 
 const router = express.Router()
 
+router.get("/", (req, res) => {
+    ChefModel.find()
+    .then (chefs => {
+        res.status(200).json({
+            chefs
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: {
+                message: err
+            }
+        })
+    })
+})
+
 router.post("/", (req, res) => {
 
     const chef = new ChefModel({
@@ -24,7 +40,7 @@ router.post("/", (req, res) => {
     .catch(err => {
         res.status(500).json({
             error: {
-                message: res
+                message: err
             }
         })
     })

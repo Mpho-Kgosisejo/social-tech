@@ -10,7 +10,7 @@ const AboutSchema = new mongoose.Schema({
     faqs : [FAQs],
     chefs : [Chefs],
     contact_us : ContactUs
-}, {timestamps: true})
+}, {timestamps: true}, )
 
 AboutSchema.plugin(pluginUniqueValidator, {message: "value must be unique"})
 

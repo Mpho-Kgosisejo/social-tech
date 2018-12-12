@@ -8,7 +8,7 @@ const StorySchema = new mongoose.Schema({
         icon_tag : String,
         tag_descritption : String
     }]
-}, {timestamps: true})
+}, {timestamps: true},)
 
 StorySchema.plugin(pluginUniqueValidator, {message: "value must be unique"})
 

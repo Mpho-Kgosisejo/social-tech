@@ -176,9 +176,12 @@ const API = {
     },
     web:{
         about: () => {
-            // if (Config.get("api.isMock")){
+            if (Config.get("api.isMock")){
                 return (mock.about().then(res => res))
-            // }
+            }
+            return (
+                axios.get(`${Config.get("api.endpoint")}/abouts`)
+            )
         },
     },
     gallery: {

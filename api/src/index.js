@@ -15,6 +15,7 @@ import chef from "./routes/abouts routes/chefs"
 import contactUS from "./routes/abouts routes/contactus"
 import FAQs from './routes/abouts routes/faqs'
 import story from './routes/abouts routes/story'
+import abouts from './routes/abouts routes/abouts'
 
 dotenv.config()
 const app = express()
@@ -46,6 +47,7 @@ app.use("/menus", menu)
 app.use("/products", product)
 
 // abouts routes 
+app.use("/abouts", abouts)
 app.use("/chefs", chef)
 app.use("/contact-us", contactUS)
 app.use("/faqs", FAQs)
