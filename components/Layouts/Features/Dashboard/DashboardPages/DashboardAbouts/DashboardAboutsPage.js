@@ -49,7 +49,9 @@ class DashboardAboutsPage extends React.Component {
     const { panes} = this.state
     
     return (
+      <div className="dashboard-page-container">
       <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+      </div>
     )
   }
 

@@ -30,7 +30,9 @@ class AboutOurStory extends React.Component{
 
 
       validate = () => {
-        const {description, category_name, category_desc} = this.state.aboutStory
+        const { description, 
+                category_name,  
+                category_desc } = this.state.aboutStory
         const errors = {}
 
         if (validator.isEmpty(description, {
@@ -57,8 +59,20 @@ class AboutOurStory extends React.Component{
       onclickSubmit = () => {
         const errors = this.validate()
         console.log(errors)
+        if(isEmptyObj(errors)){
 
-      }
+            console.log(errors)
+            this.setState({
+                errors: {}
+            })
+        }
+        else{
+            this.setState({
+                errors: errors
+            })
+        }
+
+    }
 
 
 
