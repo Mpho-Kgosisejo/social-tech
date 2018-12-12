@@ -10,7 +10,7 @@
                 "_id": "1",
                 "items": [
                     {
-                        "price": 50,
+                        "price": 50.00,
                         "available": true,
                         "name": "Cajun Cuisine",
                         "_id": "2",
@@ -26,7 +26,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.00,
                         "available": true,
                         "_id": "3",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b27944b0e2e72364825d2dd/1529320535469/IMG_6518-2.jpg?format=500w",
@@ -42,7 +42,7 @@
                         ]
                     },
                     {
-                        "price": 70,
+                        "price": 70.00,
                         "available": true,
                         "_id": "4",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
@@ -58,7 +58,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.99,
                         "available": true,
                         "_id": "5",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd3bcdb29d6afc4c3c266/1500304324793/Mondiall-8.jpg?format=750w",
@@ -74,7 +74,7 @@
                         ]
                     },
                     {
-                        "price": 20,
+                        "price": 20.00,
                         "available": false,
                         "_id": "6",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd2e79f74563f1f11c29b/1500304116722/0L8A1399.jpg?format=500w",
@@ -90,7 +90,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.00,
                         "available": true,
                         "_id": "7",
                         "name": "Cordon Bleu",
@@ -106,7 +106,7 @@
                         ]
                     },
                     {
-                        "price": 10,
+                        "price": 10.00,
                         "available": false,
                         "_id": "8",
                         "image": "https://diarioelcomunal.com/wp-content/uploads/2018/07/920340da97f26476b50291360aab7ed7.jpg",
@@ -122,7 +122,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.00,
                         "available": false,
                         "_id": "9",
                         "name": "Caffe Latte",
@@ -138,7 +138,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.00,
                         "available": true,
                         "_id": "10",
                         "name": "Caffe Mocha",
@@ -154,7 +154,7 @@
                         ]
                     },
                     {
-                        "price": 120,
+                        "price": 120.00,
                         "available": true,
                         "_id": "11",
                         "name": "Cappuccino",
@@ -170,7 +170,7 @@
                         ]
                     },
                     {
-                        "price": 150,
+                        "price": 150.00,
                         "available": false,
                         "_id": "12",
                         "name": "Pumpkin Spice Latte",
@@ -186,7 +186,7 @@
                         ]
                     },
                     {
-                        "price": 90,
+                        "price": 90.54,
                         "available": false,
                         "_id": "13",
                         "name": "Frappuccino",
@@ -202,7 +202,7 @@
                         ]
                     },
                     {
-                        "price": 93,
+                        "price": 93.00,
                         "available": false,
                         "_id": "14",
                         "name": "MOCHACHOS",
@@ -218,7 +218,7 @@
                         ]
                     },
                     {
-                        "price": 87,
+                        "price": 87.34,
                         "available": false,
                         "_id": "15",
                         "name": "Mrappuccino",
@@ -242,7 +242,7 @@
                 "_id": "16",
                 "items": [
                     {
-                        "price": 50,
+                        "price": 507.34,
                         "available": true,
                         "name": "Cajun Cuisine",
                         "_id": "2",
@@ -258,7 +258,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.34,
                         "available": true,
                         "_id": "3",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b27944b0e2e72364825d2dd/1529320535469/IMG_6518-2.jpg?format=500w",
@@ -274,7 +274,7 @@
                         ]
                     },
                     {
-                        "price": 70,
+                        "price": 70.34,
                         "available": true,
                         "_id": "4",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
@@ -290,7 +290,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.34,
                         "available": true,
                         "_id": "5",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd3bcdb29d6afc4c3c266/1500304324793/Mondiall-8.jpg?format=750w",
@@ -306,7 +306,7 @@
                         ]
                     },
                     {
-                        "price": 20,
+                        "price": 20.34,
                         "available": false,
                         "_id": "6",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd2e79f74563f1f11c29b/1500304116722/0L8A1399.jpg?format=500w",
@@ -322,7 +322,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.34,
                         "available": true,
                         "_id": "7",
                         "name": "Cordon Bleu",
@@ -338,7 +338,7 @@
                         ]
                     },
                     {
-                        "price": 10,
+                        "price": 10.34,
                         "available": false,
                         "_id": "8",
                         "image": "https://diarioelcomunal.com/wp-content/uploads/2018/07/920340da97f26476b50291360aab7ed7.jpg",
@@ -354,7 +354,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.34,
                         "available": false,
                         "_id": "9",
                         "name": "Caffe Latte",
@@ -370,7 +370,7 @@
                         ]
                     },
                     {
-                        "price": 50,
+                        "price": 50.34,
                         "available": true,
                         "_id": "10",
                         "name": "Caffe Mocha",
@@ -386,7 +386,7 @@
                         ]
                     },
                     {
-                        "price": 120,
+                        "price": 87.00,
                         "available": true,
                         "_id": "11",
                         "name": "Cappuccino",
@@ -402,7 +402,7 @@
                         ]
                     },
                     {
-                        "price": 150,
+                        "price": 150.34,
                         "available": false,
                         "_id": "12",
                         "name": "Pumpkin Spice Latte",
@@ -418,7 +418,7 @@
                         ]
                     },
                     {
-                        "price": 90,
+                        "price": 90.34,
                         "available": false,
                         "_id": "13",
                         "name": "Frappuccino",
@@ -434,7 +434,7 @@
                         ]
                     },
                     {
-                        "price": 93,
+                        "price": 93.34,
                         "available": false,
                         "_id": "14",
                         "name": "MOCHACHOS",
@@ -450,7 +450,7 @@
                         ]
                     },
                     {
-                        "price": 87,
+                        "price": 87.34,
                         "available": false,
                         "_id": "15",
                         "name": "Mrappuccino",
