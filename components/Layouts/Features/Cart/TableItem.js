@@ -48,7 +48,7 @@ const TableItem = ({price, _id, image, name, description, quantity, step}) => {
                         </Table.Cell>
                         <Table.Cell textAlign="center" width={2}>
                             <p>({quantity}xR{price})</p>
-                            <Header as="h3" color="grey" className="price">{`R${quantity * price}`}</Header>
+                            <Header as="h3" color="grey" className="price">{`R${(quantity * price).toFixed(2)}`}</Header>
                         </Table.Cell>
                         <Table.Cell textAlign="center" width={2}>
                             <Button disabled={step === "payment"} icon size="mini" style={{backgroundColor: MILKY_RED}} onClick={() => handleOnRemove(state)}>

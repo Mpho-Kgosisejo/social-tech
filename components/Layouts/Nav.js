@@ -10,9 +10,12 @@ import * as MessageTypes from "../../src/Types/MessageTypes"
 import { LIGHT_RED } from "../../src/Types/ColorsTypes";
 import * as AboutHelper from "./Features/About/Helper"
 
-const handleLogout = (dispatch) => {
+const handleLogout = (state) => {
+    const {dispatch} = state
+
     logout()
-    Router.push({ pathname: "/" })
+    if ((`${Router.route}`).includes("/dashboard"))
+        Router.push({ pathname: "/" })
     dispatch({ type: "LOGIN", payload: {} })
     dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
     dispatch({type: "SIDEBAR", payload: false})
@@ -24,8 +27,6 @@ const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
 
     AboutHelper.RouterHandler({index})
 }
-
-const ResponsiveFragmentBugFix = () => (<></>)
 
 const pushSideBar =({dispatch}) =>
 {
@@ -66,7 +67,7 @@ const RightNav = () => (
                                     Account
                                 </Menu.Item>
                             </Link>
-                            <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)}>
+                            <Menu.Item as="a" onClick={() => handleLogout(state)}>
                                 <Icon name="sign out" />
                                 Logout
                             </Menu.Item>

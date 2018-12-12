@@ -10,8 +10,8 @@
 *.swp
 *.tgz
 *.xml
-*.jpg
-*.png
+*/uploads/*.jpg
+*/uploads/*.png
 .DS_Store
 .idea
 .project

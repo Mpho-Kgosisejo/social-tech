@@ -1,14 +1,18 @@
-import { Grid, Header, Icon, Divider, Button, Checkbox } from "semantic-ui-react";
+import { Grid, Header, Icon, Divider, Button, Checkbox, Label } from "semantic-ui-react";
+import StripeCheckout from "react-stripe-checkout"
 
 import GoogleMaps from "../../../utils/GoogleMaps"
 import { readyToProcessDelivery } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
 
-const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) => (
+const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress}) => (
     <ContextAPI.Consumer>
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
             const {distance, cost} = state.cart.delivery
+            const {login, root_loading} = state
+            // const {} = state.account
+            // const {email = "", }
 
             return (
                 <React.Fragment>
@@ -18,7 +22,7 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                                 <Header as="h3">Sub. total ({totalItemsCount}):</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
-                                <Header>{`R${subTotal}`}</Header>
+                                <Header>{`R${subTotal.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
@@ -26,7 +30,7 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                                 <Header as="h3">TAX:</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
-                                <Header>R{!subTotal? "0" : `${tax}`}</Header>
+                                <Header>R{!subTotal? "0.0" : `${tax.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Divider />
@@ -43,7 +47,7 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                                     <Grid.Row className="total">
                                         <Grid.Column>
                                         <div className="map-container">
-                                            {useSavedAddress ? 
+                                            {/* {useSavedAddress ? 
                                                 <GoogleMaps
                                                     initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
                                                     destination={state.account.personal_details.address}
@@ -52,7 +56,11 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                                                     initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
                                                     destination={null}
                                                 />
-                                            }
+                                            } */}
+                                            <GoogleMaps
+                                                initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
+                                                destination={useSavedAddress ? useSavedAddress : null}
+                                            />
                                         </div>
                                         </Grid.Column>
                                     </Grid.Row>
@@ -64,7 +72,7 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                                             </Header>
                                         </Grid.Column>
                                         <Grid.Column textAlign="right">
-                                            <Header>{`R${cost ? cost : "0"}`}</Header>
+                                            <Header>{`R${cost ? cost.toFixed(2) : "0.0"}`}</Header>
                                         </Grid.Column>
                                     </Grid.Row>
                                 </>
@@ -76,13 +84,13 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                                 <Header as="h3">Total</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
-                                <Header>{`R${total}`}</Header>
+                                <Header>{`R${total.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
                         <Divider />
                         <Grid.Row>
                             <Grid.Column>
-                                <Button
+                                {/* <Button
                                     onClick={handleOnProceedPayment}
                                     disabled={!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})}
                                     fluid
@@ -92,7 +100,31 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                                 >
                                     Proceed to Payment
                                     <Icon name="right chevron"/>
-                                </Button>
+                                </Button> */}
+
+                                {root_loading ? null : Object.keys(login).length > 0 ?
+                                    !readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery}) ?
+                                            <Button disabled fluid color="black">Proceed to Payment</Button>
+                                        :
+                                            <StripeCheckout 
+                                                name="Fresh Eats."
+                                                description={`Order ${Object.keys(state.cart.delivery).length > 0 ? "with" : "without"} delivery`}
+                                                amount={parseInt(total.toFixed(2).replace(".", ""))}
+                                                currency="ZAR"
+                                                stripeKey={"pk_test_BNTfnVdHOKirDMYCN8jGzTy5"}
+                                                shippingAddress={false}
+                                                billingAddress={false}
+                                                zipCode={false}
+                                                token={(data) => handleCheckout({data, cart: state.cart})}
+                                                reconfigureOnUpdate={false}
+                                                triggerEvent="onClick"
+                                                email={"mpho.kgosisejo@hotmail.com"}
+                                            >
+                                                <Button fluid color="black">Proceed to Payment</Button>
+                                            </StripeCheckout>
+                                : 
+                                    <Label size="large" style={{width: "100%"}}><Header as="h3" className="notifier">You must login to Proceed to Payment</Header></Label>
+                                }
                             </Grid.Column>
                         </Grid.Row>
                         {/* <Divider />

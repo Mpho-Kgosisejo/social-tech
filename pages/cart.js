@@ -8,6 +8,7 @@ import ContextAPI from "../src/config/ContextAPI";
 
 import OrderSummary from "../components/Layouts/Features/Cart/OrderSummary"
 import Payment from "../components/Layouts/Features/Cart/Payment"
+import api from "../src/providers/APIRequest";
 
 const EmptyCart = () => (
     <Message >
@@ -61,14 +62,14 @@ class Cart extends React.Component {
     }
 
     toggleDelivery = ({state}) => {
-        const {dispatch, login} = state
+        const {dispatch, login, account} = state
 
         if (this.state.delivery){
             dispatch({type: "CART_DELIVERY", payload: {}})
             this.setState({delivery: false})
         }
         else{
-            if (Object.keys(login).length > 0)
+            if (Object.keys(login).length > 0 && Object.keys(account).length > 0 && account.personal_details.address)
                 this.setState({delivery: true, openConfirm: true})
             else
                 this.setState({delivery: true, useSavedAddress: false})
@@ -83,11 +84,40 @@ class Cart extends React.Component {
     }
 
     componentDidMount(){
+        const {dispatch} = this.props
         this.setState({loading: false})
 
-        this.props.dispatch({type: "SIDEBAR", payload: false})
-        this.props.dispatch({type: "PAGE", payload: "cart"})
-        this.props.dispatch({type: "CART_DELIVERY", payload: {}})
+        dispatch({type: "SIDEBAR", payload: false})
+        dispatch({type: "PAGE", payload: "cart"})
+        dispatch({type: "CART_DELIVERY", payload: {}})
+    }
+
+    handleCheckout = async ({data, cart}) => {
+        const {dispatch} = this.props
+        const order = {
+            ...cart,
+            items: cart.items.map(item => item._id),
+            stripe: {
+                id: data.id
+            }
+        }
+        const res = await {status: 200}//api.cart.order({order})
+
+        dispatch({type: "CART", payload: []})
+        if (res.status === 200){
+            console.log("handleCheckout()", order)
+            dispatch({type: "ALERT_PORTAL", payload: {
+                open: true,
+                message: "Payment success"
+            }})
+        }else{
+            console.error("Error") 
+            dispatch({type: "ALERT_PORTAL", payload: {
+                open: true,
+                type: "error",
+                message: "Some Error!"
+            }})
+        }
     }
 
     render(){
@@ -98,7 +128,7 @@ class Cart extends React.Component {
                 <ContextAPI.Consumer>
                     {({state}) => {
                         const {cart} = state
-                        const {address} = state.account.personal_details
+                        const {address} = state.account.personal_details || ""
 
                         return(
                             <>
@@ -146,7 +176,7 @@ class Cart extends React.Component {
                                                 <Divider />
                                                 
                                                 {step === "order" ?
-                                                    <OrderSummary handleOnProceedPayment={this.handleOnProceedPayment} useSavedAddress={useSavedAddress} deliveryObj={{delivery, toggleDelivery: this.toggleDelivery}} />
+                                                    <OrderSummary handleCheckout={this.handleCheckout} handleOnProceedPayment={this.handleOnProceedPayment} useSavedAddress={useSavedAddress} deliveryObj={{delivery, toggleDelivery: this.toggleDelivery}} />
                                                     :
                                                     <Payment handleOnProceedPayment={this.handleOnProceedPayment} />
                                                 }

@@ -138,3 +138,8 @@
 .cart .breadcrumb .section.active{
     /* color: #c59c70; */
 }
+
+.cart .order .row h3.notifier{
+    margin-top: 0px !important;
+    color: rgb(155, 111, 111) !important;
+}
