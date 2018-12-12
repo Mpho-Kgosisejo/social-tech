@@ -39,14 +39,14 @@ class AboutContactUs extends React.Component {
                         // <pre>{JSON.stringify(state.about.data.contact_us, "", 2)}</pre>
                         <React.Fragment>
                             <Container text>
-                                <Header className="aboutsHeaders" as='h2'>{state.about.contact_us.page_header}</Header>
+                                <Header className="aboutsHeaders" as='h2'>Contact Us</Header>
                                 <Divider />
                                 {/* {isLoadingData ? } */}
                                 <Grid columns={2} relaxed>
                                     <Grid.Column>
-                                        <Segment basic>
+                                        {/* <Segment basic>
                                             {state.about.contact_us.description}
-                                        </Segment>
+                                        </Segment> */}
                                         <Header as='h2' dividing>
                                             Our Address
                                         </Header>
@@ -61,7 +61,7 @@ class AboutContactUs extends React.Component {
                                             Our Contact Details
                                 </Header>
                                         <Segment attached>
-                                            <p>Tell: {state.about.contact_us.tell}</p>
+                                            <p>Tel: {state.about.contact_us.tel}</p>
                                             <p>fax: {state.about.contact_us.fax}</p>
                                             <p>Chefs: {state.about.contact_us.chefs_phone}</p>
                                             <p>Business hours: {state.about.contact_us.business_hours}</p>
