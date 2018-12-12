@@ -1,14 +1,17 @@
 import { Grid, Header, Icon, Divider, Button, Checkbox } from "semantic-ui-react";
+import StripeCheckout from "react-stripe-checkout"
 
 import GoogleMaps from "../../../utils/GoogleMaps"
 import { readyToProcessDelivery } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
 
-const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) => (
+const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress}) => (
     <ContextAPI.Consumer>
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
             const {distance, cost} = state.cart.delivery
+            // const {} = state.account
+            // const {email = "", }
 
             return (
                 <React.Fragment>
@@ -82,7 +85,7 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                         <Divider />
                         <Grid.Row>
                             <Grid.Column>
-                                <Button
+                                {/* <Button
                                     onClick={handleOnProceedPayment}
                                     disabled={!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery})}
                                     fluid
@@ -92,7 +95,28 @@ const OrderSummary = ({handleOnProceedPayment, deliveryObj, useSavedAddress}) =>
                                 >
                                     Proceed to Payment
                                     <Icon name="right chevron"/>
-                                </Button>
+                                </Button> */}
+
+                                {!readyToProcessDelivery({total, delivery: state.cart.delivery, toggleDelivery: deliveryObj.delivery}) ?
+                                        <Button disabled fluid color="black">Proceed to Payment</Button>
+                                    :
+                                        <StripeCheckout 
+                                            name="Fresh Eats."
+                                            description={`Order ${Object.keys(state.cart.delivery).length > 0 ? "with" : "without"} delivery`}
+                                            amount={2512345}
+                                            currency="ZAR"
+                                            stripeKey={"pk_test_BNTfnVdHOKirDMYCN8jGzTy5"}
+                                            shippingAddress={false}
+                                            billingAddress={false}
+                                            zipCode={false}
+                                            token={(data) => handleCheckout({data, cart: state.cart})}
+                                            reconfigureOnUpdate={false}
+                                            triggerEvent="onClick"
+                                            email={"mpho.kgosisejo@hotmail.com"}
+                                        >
+                                            <Button fluid color="black">Proceed to Payment</Button>
+                                        </StripeCheckout>
+                                }
                             </Grid.Column>
                         </Grid.Row>
                         {/* <Divider />

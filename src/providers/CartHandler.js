@@ -51,7 +51,7 @@ export const details = ({cart, delivery_cost = 0}) => {
     let data = {
         itemsCount: cart.length,
         totalItemsCount: 0,
-        subTotal: 0,
+        subTotal: 0.0,
         total: 0,
         tax: 0
     }
@@ -61,6 +61,7 @@ export const details = ({cart, delivery_cost = 0}) => {
 
         data.totalItemsCount = parseInt(data.totalItemsCount + item.quantity)
         data.subTotal = (data.subTotal + (item.quantity * parseFloat(item.price)))
+        // console.log(`[${i}] ${item.quantity} * ${item.price} = ${data.subTotal}`)
     }
     if (data.subTotal){
         data.tax = (42 + 0)
