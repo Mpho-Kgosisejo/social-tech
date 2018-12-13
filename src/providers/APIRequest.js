@@ -94,6 +94,9 @@ const API = {
                 return (mock.about().then(res => res))
             // }
         },
+        catering: () => {
+            return (mock.catering().then(res => res))
+        }
     },
     gallery: {
         getInstaImgs: () => {

@@ -18,6 +18,10 @@ export const reducer = (state, action) => {
             ...state,
             about: action.payload
         })
+        case "CATERING": return ({
+            ...state,
+            catering: action.payload
+        })
         case "SIDEBAR": return ({
             ...state,
             isSidebarOpen: (Object.keys(action).length === 2) ? action.payload : (state.isSidebarOpen) ? false : true

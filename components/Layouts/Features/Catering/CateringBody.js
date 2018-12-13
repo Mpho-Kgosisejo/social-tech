@@ -1,11 +1,12 @@
 import { Accordion, Icon, Header } from "semantic-ui-react";
+import ContextAPI from "../../../../src/config/ContextAPI";
 
 
 class CateringBody extends React.Component {
     constructor() {
         super()
         this.state = {
-            activeIndex: 0
+            activeIndex: 0,
         }
     }
 
@@ -20,55 +21,38 @@ class CateringBody extends React.Component {
     render() {
         const { activeIndex } = this.state
         return (
-            <div className="catering-accordion">
-                <Accordion fluid styled>
-                    <Accordion.Title active={activeIndex === 0} index={0} onClick={this.handleClick}>
-                        <Icon name='dropdown' />
-                        Business catering
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndex === 0}>
-                        <Header as='h4' color='grey' >Small, medium, big business</Header>
-                        <p>
-                            Monday - Thursday Only
-                        </p>
-                        <p>
-                            Minimum value R 2500.00 per order
-                        </p>
-                        <p>
-                            T&C Apply
-                        </p>
-                    </Accordion.Content>
+            <ContextAPI.Consumer>
+                {({ state }) => (
+                    <React.Fragment>
+                        <div className="catering-accordion">
+                            <Header className="text-align center" as="h2">{state.catering.plans_title}</Header>
 
-                    <Accordion.Title active={activeIndex === 1} index={1} onClick={this.handleClick}>
-                        <Icon name='dropdown' />
-                        Party catering
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndex === 1}>
-                        <p>
-                            There are many breeds of dogs. Each breed varies in size and temperament. Owners often
-                            select a breed of dog that they find to be compatible with their own lifestyle and
-                            desires from a companion.
-                        </p>
-                    </Accordion.Content>
-
-                    <Accordion.Title active={activeIndex === 2} index={2} onClick={this.handleClick}>
-                        <Icon name='dropdown' />
-                        Wedding catering
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndex === 2}>
-                        <p>
-                            Three common ways for a prospective owner to acquire a dog is from pet shops, private
-                            owners, or shelters.
-                        </p>
-                        <p>
-                            A pet shop may be the most convenient way to buy a dog. Buying a dog from a private
-                            owner allows you to assess the pedigree and upbringing of your dog before choosing to
-                            take it home. Lastly, finding your dog from a shelter, helps give a good home to a dog
-                            who may not find one so readily.
-                        </p>
-                    </Accordion.Content>
-                </Accordion>
-            </div>
+                            <Accordion fluid styled>
+                                {state.catering.accordion_data.map(item =>
+                                    <React.Fragment key={item.index}>
+                                        <Accordion.Title active={activeIndex === item.index} index={item.index} onClick={this.handleClick}>
+                                            <Icon name='dropdown' />
+                                            {item.title}
+                                    </Accordion.Title>
+                                        <Accordion.Content active={activeIndex === item.index}>
+                                            <Header as='h4' color='grey' >{item.subtitle}</Header>
+                                            <p>
+                                                {item.catering_days}
+                                            </p>
+                                            <p>
+                                                {item.catering_price}
+                                            </p>
+                                            <p>
+                                                {item.catering_TCS}
+                                            </p>
+                                        </Accordion.Content>
+                                    </React.Fragment>
+                                )}
+                            </Accordion>
+                        </div>
+                    </React.Fragment>
+                )}
+            </ContextAPI.Consumer>
         )
     }
 }

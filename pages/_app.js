@@ -50,6 +50,7 @@ export default class MyApp extends App {
                     address: "Maboneng Precinct, Fox Street, City and Suburban, Johannesburg, South Africa"
                 }
             },
+            catering: {},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
