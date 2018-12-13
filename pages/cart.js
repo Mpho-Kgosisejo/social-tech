@@ -40,6 +40,25 @@ const Confirm = ({open, address, func}) => (
     </Modal>
 )
 
+const PaymentSuccessComponent = ({open, handlePaymentSuccess}) => (
+    <Modal
+        open={open}
+        onClose={() => handlePaymentSuccess({open: true})}
+        basic
+        size='small'
+      >
+        <Header icon='checkmark' content='Payment Successful' />
+        <Modal.Content>
+          <h4>Transation was successful...</h4>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color='green' onClick={() => handlePaymentSuccess({open: true})} inverted>
+            <Icon name='checkmark' /> Ok
+          </Button>
+        </Modal.Actions>
+      </Modal>
+)
+
 class Cart extends React.Component {
     constructor(props){
         super(props)
@@ -48,10 +67,13 @@ class Cart extends React.Component {
             loading: true,
             delivery: false,
             openConfirm: false,
+            paymentSuccess: false, 
             useSavedAddress: null,
             step: "order"
         }
     }
+
+    handlePaymentSuccess = ({close = true}) => close ? this.setState({paymentSuccess: false}) : this.setState({paymentSuccess: true})
 
     handleOnProceedPayment = ({proceed = true}) => {
         if (proceed){
@@ -101,27 +123,29 @@ class Cart extends React.Component {
                 id: data.id
             }
         }
-        const res = await {status: 200}//api.cart.order({order})
 
+        this.setState({paymentSuccess: true, delivery: false})
+        const res = await {status: 200}//api.cart.order({order})
+        
         dispatch({type: "CART", payload: []})
         if (res.status === 200){
             console.log("handleCheckout()", order)
-            dispatch({type: "ALERT_PORTAL", payload: {
-                open: true,
-                message: "Payment success"
-            }})
+            // dispatch({type: "ALERT_PORTAL", payload: {
+            //     open: true,
+            //     message: "Payment success"
+            // }})
         }else{
             console.error("Error") 
-            dispatch({type: "ALERT_PORTAL", payload: {
-                open: true,
-                type: "error",
-                message: "Some Error!"
-            }})
+            // dispatch({type: "ALERT_PORTAL", payload: {
+            //     open: true,
+            //     type: "error",
+            //     message: "Some Error!"
+            // }})
         }
     }
 
     render(){
-        const {loading, delivery, openConfirm, useSavedAddress, step} = this.state
+        const {loading, delivery, openConfirm, useSavedAddress, step, paymentSuccess} = this.state
 
         return (
             <Layout title="Cart">
@@ -133,6 +157,7 @@ class Cart extends React.Component {
                         return(
                             <>
                                 <Confirm open={openConfirm} address={address} func={this.confirm} />
+                                <PaymentSuccessComponent handlePaymentSuccess={this.handlePaymentSuccess} open={paymentSuccess} />
 
                                 <Divider hidden />
                                 <Header as="h3" color="grey">

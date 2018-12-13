@@ -9,6 +9,7 @@ import { isEmptyObj } from "../../src/utils/Objs"
 import * as MessageTypes from "../../src/Types/MessageTypes"
 import { LIGHT_RED } from "../../src/Types/ColorsTypes";
 import * as AboutHelper from "./Features/About/Helper"
+import Avator from "../utils/Avator";
 
 const handleLogout = (state) => {
     const {dispatch} = state
@@ -47,12 +48,12 @@ const RightNav = () => (
                     <Dropdown
                         trigger={
                             <span>
-                                <Image
+                                <Avator
                                     size="mini"
-                                    alt="no-image"
-                                    src={"http://i.pravatar.cc/100"}
+                                    url={null}
                                     avatar
-                                    style={{ marginRight: "8px" }}
+                                    circular
+                                    style={{ marginRight: "8px", display: "inline-block" }}
                                 />
                                 {state.login.username}
                             </span>

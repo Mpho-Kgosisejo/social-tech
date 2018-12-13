@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import ContextAPI from "../../src/config/ContextAPI";
 import AlertPortal from "../utils/AlertPortal";
 import {LeftComputerNav} from "./Nav"
+import { FRESHEATS_GREEN } from "../../src/Types/ColorsTypes";
 
 import "../../static/css/style.css"
 import "../../static/css/account.css"
@@ -14,7 +15,7 @@ import "../../static/css/menu.css";
 import "../../static/css/cart.css"
 import "../../static/css/alertportal.css"
 import "../../static/css/pageheader.css"
-import { FRESHEATS_GREEN } from "../../src/Types/ColorsTypes";
+import "../../static/css/avator.css"
 
 const companyName = "Fresh Eats."
 

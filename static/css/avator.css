@@ -1,0 +1,27 @@
+.avator-initls{
+    border-radius: 50%;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 53px;
+    font-weight: 200;
+    overflow: hidden;
+    color: rgb(46, 46, 46) !important;
+
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: default;
+
+    background: #c59c70 ;
+}
+
+.avator-initls.mini{
+    font-size: 13px;
+}
+
+.avator-initls.small{
+    font-size: 68px;
+}
