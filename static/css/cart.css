@@ -130,3 +130,16 @@
     margin: 0 !important;
     font-size: 1.1em !important;
 }
+
+.cart .breadcrumb .section{
+    color: rgb(111, 111, 111);
+}
+
+.cart .breadcrumb .section.active{
+    /* color: #c59c70; */
+}
+
+.cart .order .row h3.notifier{
+    margin-top: 0px !important;
+    color: rgb(155, 111, 111) !important;
+}

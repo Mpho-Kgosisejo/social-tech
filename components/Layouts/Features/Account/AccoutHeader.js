@@ -3,6 +3,7 @@ import { Image, Item, Icon, Header, Grid, Dropdown, Button } from 'semantic-ui-r
 
 import ContextAPI from "../../../../src/config/ContextAPI";
 import Layout from '../../Layout';
+import Avator from '../../../utils/Avator';
 
 class AccountHeader extends React.Component {
 
@@ -26,7 +27,9 @@ class AccountHeader extends React.Component {
                             <div className="account-header-container">
                                 <Grid columns={2}>
                                     <Grid.Column width={4} className="account-img-col">
-                                        <Image className="profile-img" src={state.account.personal_details.image} size="small" circular />
+                                    <ContextAPI.Consumer>
+                                    {({state}) => <Avator url={''} size="small" circular />}
+                                </ContextAPI.Consumer>
                                     </Grid.Column>
                                     <Grid.Column width={10}>
                                         <Header as="h2">
