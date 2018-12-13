@@ -11,9 +11,7 @@ const AccountHeader = () => (
                 <Grid columns={2}>
                     <Grid.Column width={4}>
                         <ContextAPI.Consumer>
-                            {({state}) => (
-                                !state.root_loading && <Avator url="" size="small" circular />
-                            )}
+                            {({state}) => <Avator url={''} size="small" circular />}
                         </ContextAPI.Consumer>
 
                     </Grid.Column>
