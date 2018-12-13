@@ -16,6 +16,8 @@ import "../../static/css/alertportal.css"
 import "../../static/css/pageheader.css"
 import "../../static/css/catering.css"
 
+const companyName = "Fresh Eats."
+
 const handleUpdateLayout = ({calculations, state}) => {
     const {dispatch} = state
 
@@ -41,7 +43,7 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
             <link ref="stylesheet" href="/static/css/style.css" />
 
             
-            <title>{title}</title>
+            <title>{title ? `${title} - ${companyName}` : companyName}</title>
         </Head>
 
         
