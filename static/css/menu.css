@@ -30,7 +30,7 @@
 }
 
 .ui.modal>.content .description {
-    padding: 0px !important
+    /* padding: 0px !important; */
 }
 
 .menu-modal-content .description{

@@ -45,10 +45,11 @@ export default class MyApp extends App {
                 delivery: {},
                 items: []
             },
-            account: {
+            account:{
                 personal_details: {
                     address: "Maboneng Precinct, Fox Street, City and Suburban, Johannesburg, South Africa"
-                }
+                },
+                index: 0
             },
             catering: {},
             dispatch: (action) => this.setState(state => reducer(state, action))

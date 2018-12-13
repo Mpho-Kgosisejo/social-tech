@@ -41,6 +41,7 @@ class Catering extends React.Component {
                 {({state}) => (
             <React.Fragment>
                 {loading ? <React.Fragment><PlaceholderHeader /><PlaceholderParagraph /></React.Fragment> : <CateringHeader />}
+                <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script> 
             </React.Fragment>
             
             )}

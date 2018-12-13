@@ -3,7 +3,6 @@ import PageHeader from "../../../utils/PageHeader";
 import React, { Component } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import TimePicker from 'react-time-picker'
 
 import CateringBody from "./CateringBody"
 import Layout from "../../Layout"
@@ -127,7 +126,6 @@ class CateringHeader extends React.Component {
                     title="Catering services"
                     subtitle="We do catering services for small, medium and large coperates"
                 />
-                 {/* <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script>  */}
                 <ContextAPI.Consumer>
                     {({ state }) => (
                         <React.Fragment>
@@ -192,8 +190,8 @@ class CateringHeader extends React.Component {
                                                     </Form.Field>
                                                     <Form.Field error={!isEmptyObj(errors.location)}>
                                                         <label>Location of event:*</label>
-                                                        <Input name="timeOfEvent" />
-                                                        {/* <GooglePlaceSearch value={client.address} onChange={this.onChange} dispatchAddress={this.dispatchLocation} name="location" /> */}
+                                                        {/* <Input name="timeOfEvent" /> */}
+                                                        <GooglePlaceSearch value={client.location} onChange={this.onChange} dispatchAddress={this.dispatchLocation} name="location" />
                                                         {errors.location && <InLineError message={errors.location} />}
                                                     </Form.Field>
                                                 </Form.Group>
@@ -236,6 +234,7 @@ class CateringHeader extends React.Component {
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>
+                
             </Layout>
         )
 

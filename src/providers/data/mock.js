@@ -16,6 +16,9 @@ import requestpasswordchange_f from "./json/request_password_change_fail.json"
 import insta_s from "./json/insta_success.json"
 import catering_s from "./json/catering_success.json"
 import catering_f from "./json/catering_fail.json"
+import account_s from "./json/account_success"
+import account_f from "./json/account_fail"
+
 
 const WAIT_TIME = 1500
 
@@ -37,5 +40,6 @@ export default {
     changePassword: () => loadMock(changepassword_s),
     requestPasswordChange: () => loadMock(requestpasswordchange_s),
     instaGallery: () => loadMock(insta_s),
-    catering: () => loadMock(catering_s)
+    catering: () => loadMock(catering_s),
+    account: () => loadMock(account_s)
 }
