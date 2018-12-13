@@ -53,9 +53,8 @@ class AboutContactUs extends React.Component {
                                         <Segment attached>
                                             <Header as='h3'>{state.about.contact_us.sub_header}</Header>
                                             <p>{state.about.contact_us.address_1}</p>
-                                            <p>{state.about.contact_us.city}</p>
                                             <p>{state.about.contact_us.address_2}</p>
-                                            <p>{state.about.contact_us.address_3}</p>
+                                            <p>{state.about.contact_us.city}</p>
                                         </Segment>
                                         <Divider hidden />
                                         <Header as='h2' dividing>
