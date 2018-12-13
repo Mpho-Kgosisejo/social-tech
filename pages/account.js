@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from "next/router"
 import { Dropdown, Tab } from 'semantic-ui-react'
 
 import Layout from '../components/Layouts/Layout';
@@ -8,6 +9,10 @@ import { AccountTabsPlaceholder } from '../components/utils/Placeholders'
 import { RouterHandler } from "../components/Layouts/Features/About/Helper"
 import AccountHeader from "../components/Layouts/Features/Account/AccoutHeader"
 import AccountTabs from "../components/Layouts/Features/Account/AccountTabs"
+import {isEmptyObj} from "../src/utils/Objs"
+import {getLogin, logout} from "../src/providers/LoginSession"
+import { NOT_AUTHORIZED_PAGE_ACCESS } from "../src/Types/MessageTypes"
+
 
 class account extends React.Component {
 
@@ -16,15 +21,18 @@ class account extends React.Component {
 
         this.state = {
             loading: true,
-            index: 0
+            index: 0,
+            edit: false
         }
     }
 
+    toggleEdit = () => (this.state.edit) ? this.setState({edit: false}) : this.setState({edit: true})
+
     getData = async () => {
-        const data = await api.profile.account()
+        const data = await api.profile.orders()
 
         if (data.status == 200) {
-            this.props.dispatch({ type: "ACCOUNT", payload: { ...data.data } })
+            this.props.dispatch({ type: "ACCOUNT_ORDER_HISTORY", payload: data.data.order_history })
             this.setState({ loading: false })
         }
         else {
@@ -33,19 +41,35 @@ class account extends React.Component {
     }
 
     changeTab = (index) =>{
-        console.log("------", index)
         this.setState({ index })
         // this.props.dispatch({type: "ACCOUNT", payload: {...stateAccount, index}})
         // RouterHandler({index})
     }
 
+    showAlertPortal = ({type, header, message}) => {
+        setTimeout(() => {
+            this.props.dispatch({type: "ALERT_PORTAL", payload: {open: true, type, header, message}})
+        }, 50)
+    }
+
     componentDidMount() {
-        this.getData();
+        const login = getLogin()
+        
+        if (isEmptyObj(login)){
+            this.showAlertPortal({type: "error", header: "", message: `${NOT_AUTHORIZED_PAGE_ACCESS}: dashboard`})
+            logout()
+            Router.replace({pathname: "/"})
+            return 
+        }
+        // await() for call if ever done...
+        // setTimeout(() => {
+            this.getData();
+        // }, 50)
         this.props.dispatch({ type: "PAGE", payload: "account" })
 
     }
     render() {
-        const { loading, index } = this.state
+        const { loading, index, edit } = this.state
 
         return (
             <Layout title="Account">
@@ -53,7 +77,7 @@ class account extends React.Component {
                     {({ state }) =>
                         <React.Fragment>
                             {loading ? <React.Fragment> <AccountTabsPlaceholder /> </React.Fragment> : 
-                            <React.Fragment><AccountHeader /> 
+                            <React.Fragment><AccountHeader toggleEdit={this.toggleEdit} /> 
                             <div className="about-content padding-account-dropdown">
                             <Dropdown
                                 fluid
@@ -73,7 +97,7 @@ class account extends React.Component {
                             />
                             {/* <Tab className="about-tab" menu={{ secondary: true, pointing: true }} activeIndex={state.about.index} onTabChange={(e, d) => this.changeTab(state.about, d.activeIndex)} panes={panes} /> */}
                         </div>
-                        <AccountTabs index={index} onTabChange={this.changeTab}/>
+                        <AccountTabs toggleEdit={this.toggleEdit} edit={edit} index={index} onTabChange={this.changeTab}/>
                         </React.Fragment>
                         }
                         </React.Fragment>

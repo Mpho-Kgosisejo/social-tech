@@ -34,9 +34,19 @@ export const reducer = (state, action) => {
             ...state,
             menu: action.payload
         })
-        case "ACCOUNT": return({
+        case "ACCOUNT_PERSONAL_DETAILS": return({
             ...state,
-            account: action.payload
+            account: {
+                ...state.account,
+                personal_details: action.payload
+            }
+        })
+        case "ACCOUNT_ORDER_HISTORY": return({
+            ...state,
+            account: {
+                ...state.account,
+                order_history: action.payload
+            }
         })
         case "CART_ADD": return ({
             ...state,

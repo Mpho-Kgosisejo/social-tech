@@ -120,18 +120,36 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
-            },
-            account_update: (user) => {
-                if (Config.get("api.isMock"))
-                {
-                    return (mock.account().then(res => res_))
-                }
-                return (
-                    axios.patch(`${Config.get("api")}/user`)
-                    .then(res => res)
-                    .catch(err => err.response)
-                )
+        },
+        account_update: (user) => {
+            if (Config.get("api.isMock"))
+            {
+                return (mock.account().then(res => res_))
             }
+            console.log(`${Config.get("api.endpoint")}/user`)
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/user`,
+                    {
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        phone: user.phone,
+                        address: user.address
+                    }
+                )
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        orders: () => {
+            // if (Config.get("api.isMock")){
+                return(mock.user_orders().then(res => res))
+            // }
+            // return(
+            //     axios.get(`${Config.get("api.endpoint")}/orders`)
+            //     .then(res => res)
+            //     .catch(err => err.response)
+            // )
+        }
     }
 }
 

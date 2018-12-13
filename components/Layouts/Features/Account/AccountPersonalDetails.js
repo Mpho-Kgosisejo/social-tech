@@ -9,6 +9,84 @@ import { InLineError } from "../../../Messages/InLineMessage"
 import API from '../../../../src/providers/APIRequest';
 import GooglePlaceSearch from "../../../utils/GooglePlaceSearch"
 
+const DefaultForm = ({email, username, firstname, lastname, address, phone}) => (
+    <Form>
+        <Form.Field>
+            <label>First name:</label>
+            <input disabled defaultValue={firstname}/>
+        </Form.Field>
+        <Form.Field>
+            <label>Last name:</label>
+            <input disabled defaultValue={lastname}/>
+        </Form.Field>
+        <Form.Field disabled>
+            <label>Username:</label>
+            <input disabled defaultValue={username}/>
+        </Form.Field>
+        <Form.Field disabled>
+            <label>Email address:</label>
+            <input disabled defaultValue={email}/>
+        </Form.Field>
+        <Form.Field>
+            <label>Phone:</label>
+            <Input disabled icon='phone' iconPosition='left' value={phone} />
+        </Form.Field>
+        <Form.Field >
+            <label>Delivery address:</label>
+            <input disabled defaultValue={address}/>
+        </Form.Field>
+        <Divider />
+        <Form.Field>
+            <a href="forgot-password">Change Password</a>
+        </Form.Field>
+        <Button disabled animated fluid type='submit'>
+            <Button.Content visible>Update</Button.Content>
+            <Button.Content hidden><Icon name="sign in"/></Button.Content>
+        </Button>
+    </Form>
+)
+
+const Editable = ({user, root_state, onSubmit, isLoading, errors, onChange, dispatchAddress, toggleEdit}) => (
+    <Form onSubmit={(e) => onSubmit(e, root_state.dispatch, toggleEdit)} loading={isLoading}>
+        <Form.Field error={!isEmptyObj(errors.firstname)}>
+            <label>First name:</label>
+            <input value={user.firstname} onChange={onChange} name="firstname"/>
+            {errors.firstname && <InLineError message={errors.firstname}/>}
+        </Form.Field>
+        <Form.Field error={!isEmptyObj(errors.lastname)}>
+            <label>Last name:</label>
+            <input value={user.lastname} onChange={onChange} name="lastname"/>
+            {errors.lastname && <InLineError message={errors.lastname}/>}
+        </Form.Field>
+        <Form.Field disabled>
+            <label>Username:</label>
+            <input defaultValue={root_state.account.personal_details.username}  />
+        </Form.Field>
+        <Form.Field disabled>
+            <label>Email address:</label>
+            <input defaultValue={root_state.account.personal_details.email}/>
+        </Form.Field>
+        <Form.Field error={!isEmptyObj(errors.phone)}>
+            <label>Phone:</label>
+            <Input icon='phone' iconPosition='left' value={user.phone} onChange={onChange} name="phone"  />
+            {errors.phone && <InLineError message={errors.phone}/>}
+        </Form.Field>
+        <Form.Field error={!isEmptyObj(errors.address)}>
+            <label>Delivery address:</label>
+            <GooglePlaceSearch value={"user.address"} onChange={onChange} dispatchAddress={dispatchAddress} name="address"/>
+            {errors.address && <InLineError message={errors.address}/>}
+        </Form.Field>
+        <Divider />
+        <Form.Field>
+            <a href="forgot-password">Change Password</a>
+        </Form.Field>
+        <Button animated fluid type='submit'  loading={isLoading}>
+            <Button.Content visible>Update</Button.Content>
+            <Button.Content hidden><Icon name="sign in"/></Button.Content>
+        </Button>
+    </Form>
+)
+
 class AccountPersonalDetails extends React.Component {
 
     constructor(props) {
@@ -16,10 +94,11 @@ class AccountPersonalDetails extends React.Component {
         this.state = {
             isLoading: false,
             user: {
-                first_name: "",
-                last_name: "",
+                firstname: "dddd",
+                lastname: "",
                 phone: "",
-                address: ""
+                address: "",
+                email: ""
             },
             errors: {},
             feedback: {
@@ -37,7 +116,7 @@ class AccountPersonalDetails extends React.Component {
         }})
     }
 
-    onSubmit = (e, dispatch) => {
+    onSubmit = (e, dispatch, toggleEdit) => {
         e.preventDefault()
         console.log("Testing Button")
         const errors = this.validate(this.state.user)
@@ -48,7 +127,7 @@ class AccountPersonalDetails extends React.Component {
 
         if (Object.keys(errors).length === 0){
             console.log("Testing Objects")
-            this.doUpdate(dispatch)
+            this.doUpdate(dispatch, toggleEdit)
         }
     }
 
@@ -59,19 +138,30 @@ class AccountPersonalDetails extends React.Component {
         }
     })
 
+    updateLocalState = () => {
+        const {account} = this.props
+
+        if (process.browser){
+            this.setState({
+                ...this.state,
+                user: {...account.personal_details}
+            })
+        }
+    }
+
     validate = (user) => {
         const errors = {}
 
         // Validating Firstname
-        if (!user.first_name)
+        if (!user.firstname)
         {
-            errors.first_name = MessageTypes.FIELD_CANT_BE_EMPTY
+            errors.firstname = MessageTypes.FIELD_CANT_BE_EMPTY
         }
         // Validating Lasstname
 
-        if (!user.last_name)
+        if (!user.lastname)
         {
-            errors.last_name = MessageTypes.FIELD_CANT_BE_EMPTY
+            errors.lastname = MessageTypes.FIELD_CANT_BE_EMPTY
         }
         // Validating Phone
 
@@ -90,67 +180,51 @@ class AccountPersonalDetails extends React.Component {
         return (errors)
     }
 
-    doUpdate = async (dispatch) => {
+    doUpdate = async (dispatch, toggleEdit) => {
         this.setState({isLoading: true})
-        const res = await API.profile.account(this.state.user);
+        const res = await API.profile.account_update(this.state.user);
+
+        console.log(">>>>>>>", res)
 
         if (res.status === 200){
-            console.log("Yes Momma")
-        }else if (res.status === 422){
-
-            console.log("No Momma")
+            this.setState({isLoading: false})
+            dispatch({type: "ACCOUNT_PERSONAL_DETAILS", payload: res.data.user })
+            toggleEdit()
+        }else {
+            this.setState({isLoading: false})
         }
+    }
+
+    componentDidMount(){
+        this.updateLocalState()
     }
 
     render() {
         const { isLoading, user, errors, feedback } = this.state
+        const {edit, toggleEdit } = this.props
 
         return (
             <ContextAPI.Consumer>
-                {({ state }) =>
-                <React.Fragment>
-                    {/* <pre>{JSON.stringify(state.account.personal_details.first_name, "", 1)}</pre> */}
-                    {/* { isLoading ? < pla} */}
-                    <Form onSubmit={(e) => this.onSubmit(e, state.dispatch)} loading={isLoading}>
-                        <Form.Field error={!isEmptyObj(errors.first_name)}>
-                            <label>First name:</label>
-                            <input value={user.first_name} onChange={this.onChange} name="first_name"/>
-                            {errors.first_name && <InLineError message={errors.first_name}/>}
-                        </Form.Field>
-                        <Form.Field error={!isEmptyObj(errors.last_name)}>
-                            <label>Last name:</label>
-                            <input value={user.last_name} onChange={this.onChange} name="last_name"/>
-                            {errors.last_name && <InLineError message={errors.last_name}/>}
-                        </Form.Field>
-                        <Form.Field disabled>
-                            <label>Username:</label>
-                            {/* <input value={state.account.personal_details.username}  /> */}
-                        </Form.Field>
-                        <Form.Field disabled>
-                            <label>Email address:</label>
-                            {/* <input value={state.account.personal_details.email_address}/> */}
-                        </Form.Field>
-                        <Form.Field error={!isEmptyObj(errors.phone)}>
-                            <label>Phone:</label>
-                            <Input icon='phone' iconPosition='left' value={user.phone} onChange={this.onChange} name="phone"  />
-                            {errors.phone && <InLineError message={errors.phone}/>}
-                        </Form.Field>
-                        <Form.Field error={!isEmptyObj(errors.address)}>
-                            <label>Delivery address:</label>
-                            <GooglePlaceSearch value={user.address} onChange={this.onChange} dispatchAddress={this.dispatchAddress} name="address"/>
-                            {errors.address && <InLineError message={errors.address}/>}
-                        </Form.Field>
-                        <Divider />
-                        <Form.Field>
-                            <a href="forgot-password">Change Password</a>
-                        </Form.Field>
-                        <Button animated fluid type='submit'  loading={isLoading}>
-                            <Button.Content visible>Update</Button.Content>
-                            <Button.Content hidden><Icon name="sign in"/></Button.Content>
-                        </Button>
-                    </Form>
-                </React.Fragment>
-                }
+                {({ state }) => {
+                    return (
+                        <React.Fragment>
+                            {edit ?
+                                <Editable
+                                    toggleEdit= {toggleEdit} 
+                                    user={user}
+                                    root_state={state}
+                                    onSubmit={this.onSubmit}
+                                    isLoading={isLoading}
+                                    errors={errors}
+                                    onChange={this.onChange}
+                                    dispatchAddress={this.dispatchAddress}
+                                /> :
+                                <DefaultForm {...state.account.personal_details} />
+                            }
+                        </React.Fragment>
+                        
+                    )
+                }}
                      </ContextAPI.Consumer>
         )
     }

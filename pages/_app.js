@@ -9,6 +9,8 @@ import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
 import {getLogin} from "../src/providers/LoginSession"
 import * as CartHandler from "../src/providers/CartHandler"
+import api from "../src/providers/APIRequest"
+import {isEmptyObj} from "../src/utils/Objs"
 
 export default class MyApp extends App {
     constructor(props){
@@ -69,19 +71,34 @@ export default class MyApp extends App {
         }
     }
 
-    componentDidMount(){
+    init = async () => {
         const login = getLogin()
+        let account = {}
 
         CartHandler.restore_cart({dispatch: this.state.dispatch})
         if (process.browser){
-            axios.defaults.headers.authorization = `Bearer ${login.token}`
+            if (!isEmptyObj(login)){
+                axios.defaults.headers.authorization = `Bearer ${login.token}`
+                const res = await api.profile.account()
+
+                if (res.status == 200) {
+                    account = {
+                        personal_details: res.data.user
+                    }
+                }
+            }
             
             this.setState({
                 ...this.state,
                 root_loading: false,
-                login
+                login,
+                account
             })
         }
+    }
+
+    componentDidMount(){
+        this.init()
     }
 
     static async getInitialProps({ Component, router, ctx }) {

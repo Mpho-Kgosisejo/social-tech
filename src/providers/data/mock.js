@@ -18,6 +18,7 @@ import catering_s from "./json/catering_success.json"
 import catering_f from "./json/catering_fail.json"
 import account_s from "./json/account_success"
 import account_f from "./json/account_fail"
+import user_orders_s from "./json/user_orders_success"
 
 
 const WAIT_TIME = 1500
@@ -41,5 +42,6 @@ export default {
     requestPasswordChange: () => loadMock(requestpasswordchange_s),
     instaGallery: () => loadMock(insta_s),
     catering: () => loadMock(catering_s),
-    account: () => loadMock(account_s)
+    account: () => loadMock(account_s),
+    user_orders: () => loadMock(user_orders_s)
 }

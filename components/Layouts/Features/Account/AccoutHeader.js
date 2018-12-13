@@ -26,14 +26,19 @@ class AccountHeader extends React.Component {
                             <div className="account-header-container">
                                 <Grid columns={2}>
                                     <Grid.Column width={4} className="account-img-col">
-                                        <Image className="profile-img" src={state.account.personal_details.img_url} size="small" circular />
+                                        <Image className="profile-img" src={state.account.personal_details.image} size="small" circular />
                                     </Grid.Column>
                                     <Grid.Column width={10}>
-                                        <Header as="h2">{state.account.personal_details.first_name} {state.account.personal_details.last_name}</Header>
+                                        <Header as="h2">
+                                            {(state.account.personal_details.firstname && state.account.personal_details.lastname) ? 
+                                                `${state.account.personal_details.firstname} ${state.account.personal_details.lastname}` :
+                                                state.account.personal_details.username
+                                            }
+                                        </Header>
                                         <br />
                                         <div className="padding-thirty">
                                             <div className="pull-right">
-                                                <Button onClick={this.editFunc} circular icon='edit outline' />
+                                                <Button onClick={this.props.toggleEdit} circular icon='edit outline' />
                                             </div>
                                         </div>
                                     </Grid.Column>
