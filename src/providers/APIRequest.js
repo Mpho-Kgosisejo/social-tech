@@ -183,6 +183,22 @@ const API = {
                 axios.get(`${Config.get("api.endpoint")}/abouts`)
             )
         },
+        getAboutContactDetails : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/contact-us`)
+            )
+        },
+        updateAboutContactDetails : (body) => {
+            const new_bus_hours = body.time_one.concat(" - ", body.time_two, " , ", body.day_one, " - ", body.day_two)
+            const newBody = {
+                ...body,
+                business_hours : new_bus_hours
+            }
+            console.log(newBody)
+            return (
+                axios.post(`${Config.get("api.endpoint")}/contact-us`, newBody)
+            )
+        }
     },
     gallery: {
         getInstaImgs: () => {

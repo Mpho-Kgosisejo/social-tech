@@ -21,7 +21,7 @@ class AboutOurChef extends React.Component {
           rating: 0
         }
     
-      }
+    }
 
       onChange = (e) => this.setState({
         aboutChef: {

@@ -22,23 +22,22 @@ class DashboardAboutsPage extends React.Component {
             <AboutStory/>
           </Tab.Pane>
         
-      },
-      {
-      menuItem: 'Our Chefs Form', render:() => <Tab.Pane>
-        <AboutsChef/>
-      </Tab.Pane>
-      },
-      {
-        menuItem: 'Contact Us Form', render:() => <Tab.Pane>
-          <AboutContact/>
-        </Tab.Pane>
+        },
+        {
+          menuItem: 'Our Chefs Form', render:() => <Tab.Pane>
+            <AboutsChef/>
+          </Tab.Pane>
+        },
+        {
+          menuItem: 'Contact Us Form', render:() => <Tab.Pane>
+            <AboutContact/>
+          </Tab.Pane>
         },
         {
           menuItem: 'Our FAQs Form', render:() => <Tab.Pane>
             <AboutFaq/>
           </Tab.Pane>
-          }
-
+        }
       ]
     }
     
