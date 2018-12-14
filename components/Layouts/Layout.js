@@ -34,11 +34,19 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta charSet="utf-8" />
             <meta name="theme-color" content={FRESHEATS_GREEN} />
+            
+            {/* Mobile nav-bar Color */}
             <meta name="msapplication-navbutton-color" content={FRESHEATS_GREEN} />
             <meta name="apple-mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+            {/* Website link Preview */}
+            <meta property="og:site_name" content={`${companyName}`}/>
+            <meta property="og:title" content="Something fresh all the time..."/>
+            <meta property="og:description" content="[Melissa Fix Me!] Compelling description of URL that is about 300 characters in length."/>
+            <meta property="og:image" content="/static/imgs/Fresh-Eats-1.png" />
             
-            <link rel="shortcut icon" sizes="192x192" href="/static/imgs/icon.png"/>
+            <link rel="shortcut icon" sizes="192x192" type="image/x-icon" href="/static/imgs/icon.png"/>
 
             {/* If you online... */}
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.0/semantic.min.css" />
