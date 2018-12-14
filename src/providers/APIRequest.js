@@ -198,6 +198,26 @@ const API = {
             return (
                 axios.post(`${Config.get("api.endpoint")}/contact-us`, newBody)
             )
+        },
+        uploadFAQ : (body) => {
+            return (
+                axios.post(`${Config.get("api.endpoint")}/faqs`, body)
+            )
+        },
+        getFaqs : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/faqs`)
+            )
+        },
+        updateFAQ : (body) => {
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/faqs`, body)
+            )
+        },
+        deleteFAQ : (body) => {
+            return (
+                axios.delete(`${Config.get("api.endpoint")}/faqs`, { data : body})
+            )
         }
     },
     gallery: {

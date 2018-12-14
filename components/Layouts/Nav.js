@@ -9,10 +9,14 @@ import { isEmptyObj } from "../../src/utils/Objs"
 import * as MessageTypes from "../../src/Types/MessageTypes"
 import { LIGHT_RED } from "../../src/Types/ColorsTypes";
 import * as AboutHelper from "./Features/About/Helper"
+import Avator from "../utils/Avator";
 
-const handleLogout = (dispatch) => {
+const handleLogout = (state) => {
+    const {dispatch} = state
+
     logout()
-    Router.push({ pathname: "/" })
+    if ((`${Router.route}`).includes("/dashboard") || (`${Router.route}`).includes("/account"))
+        Router.push({ pathname: "/" })
     dispatch({ type: "LOGIN", payload: {} })
     dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
     dispatch({type: "SIDEBAR", payload: false})
@@ -46,12 +50,12 @@ export const RightNav = () => (
                     <Dropdown
                         trigger={
                             <span>
-                                <Image
+                                <Avator
                                     size="mini"
-                                    alt="no-image"
-                                    src={"http://i.pravatar.cc/100"}
+                                    url={null}
                                     avatar
-                                    style={{ marginRight: "8px" }}
+                                    circular
+                                    style={{ marginRight: "8px", display: "inline-block" }}
                                 />
                                 {state.login.username}
                             </span>
@@ -66,7 +70,7 @@ export const RightNav = () => (
                                     Account
                                 </Menu.Item>
                             </Link>
-                            <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)}>
+                            <Menu.Item as="a" onClick={() => handleLogout(state)}>
                                 <Icon name="sign out" />
                                 Logout
                             </Menu.Item>
