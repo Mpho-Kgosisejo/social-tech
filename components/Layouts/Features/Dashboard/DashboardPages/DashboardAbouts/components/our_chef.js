@@ -1,10 +1,12 @@
 import React from 'react'
-import { Container, Form, Button, Tab, Input, Rating} from 'semantic-ui-react'
+import { Container, Form, Button, Tab, Input, Rating, Card, Segment, Icon, Image} from 'semantic-ui-react'
 import ContextAPI from "../../../../../../../src/config/ContextAPI";
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import { InLineError } from '../../../../../../Messages/InLineMessage'
 import * as MessageTypes from "../../../../../../../src/Types/MessageTypes"
 import validator from 'validator'
+import api from '../../../../../../../src/providers/APIRequest';
+
 
 class AboutOurChef extends React.Component {
 
@@ -18,9 +20,22 @@ class AboutOurChef extends React.Component {
                 description: ""
             },
           errors: {},
-          rating: 0
+          rating: 0,
+          chefList : []
         }
-    
+    }
+
+    getChefs = async () => {
+        const res = await api.web.getChefs()
+
+        this.setState({
+            chefList : res.data.chefs
+        })
+    }
+
+    componentDidMount ()
+    {
+        this.getChefs()
     }
 
       onChange = (e) => this.setState({
@@ -68,14 +83,14 @@ class AboutOurChef extends React.Component {
         
       }
 
-      onclickSubmit = () => {
+      onclickSubmit = async () => {
         const errors = this.validate()
-        console.log(errors)
         if(isEmptyObj(errors)){
-
-            console.log(errors)
+            const res = await api.web.uploadChef(this.state.aboutChef, this.state.rating)
+            console.log(res)
             this.setState({
-                errors: {}
+                errors: {},
+                chefList : res.data.chefs
             })
         }
         else{
@@ -86,12 +101,10 @@ class AboutOurChef extends React.Component {
 
     }
 
-
-
-      handleChange = e => this.setState({ rating: e.target.value })
+    handleChange = e => this.setState({ rating: e.target.value })
 
     render() {
-        const { rating, aboutChef, errors } = this.state
+        const { rating, aboutChef, errors, chefList } = this.state
         return (
             <div>
                 <div className="dashboard-page-container">
@@ -122,10 +135,33 @@ class AboutOurChef extends React.Component {
                                 <br />
                                 <Rating rating={this.state.rating} maxRating={5} />
                             </div>
-                            <Button className="form-button-submit" size='large' primary type='submit' onClick = {this.onclickSubmit}>Submit</Button>
+                            <Button className="form-button-submit" size='large' primary type='submit' onClick = {() => this.onclickSubmit() }>Submit</Button>
                         </Form>
                         <pre>{JSON.stringify(this.state, null, 2)}</pre>
                     </Tab.Pane>
+
+                    <Segment>
+                        <Card.Group>
+                            {   chefList.map( chef => (
+                                    <Card key={chef._id}>
+                                        <Image src={chef.image_url}/>
+                                        <Card.Content>
+                                        <Card.Header>{chef.name}</Card.Header>
+                                        <Card.Meta>
+                                            <span className='date'>{chef.speciality}</span>
+                                        </Card.Meta>
+                                        <Card.Description>{chef.background}</Card.Description>
+                                        </Card.Content>
+                                        <Card.Content extra>
+                                        <a>
+                                            <Icon name='user' />
+                                            {chef.rating}
+                                        </a>
+                                        </Card.Content>
+                                    </Card>
+                            ))}
+                        </Card.Group>
+                    </Segment>
                 </div>
             </div>
         )

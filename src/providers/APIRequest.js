@@ -181,11 +181,15 @@ const API = {
             }
             return (
                 axios.get(`${Config.get("api.endpoint")}/abouts`)
+                .then(res => res)
+                .catch(err => err.response)
             )
         },
         getAboutContactDetails : () => {
             return (
                 axios.get(`${Config.get("api.endpoint")}/contact-us`)
+                .then(res => res)
+                .catch(err => err.response)
             )
         },
         updateAboutContactDetails : (body) => {
@@ -194,31 +198,61 @@ const API = {
                 ...body,
                 business_hours : new_bus_hours
             }
-            console.log(newBody)
             return (
                 axios.post(`${Config.get("api.endpoint")}/contact-us`, newBody)
+                .then(res => res)
+                .catch(err => err.response)
             )
         },
         uploadFAQ : (body) => {
             return (
                 axios.post(`${Config.get("api.endpoint")}/faqs`, body)
+                .then(res => res)
+                .catch(err => err.response)
             )
         },
         getFaqs : () => {
             return (
                 axios.get(`${Config.get("api.endpoint")}/faqs`)
+                .then(res => res)
+                .catch(err => err.response)
             )
         },
         updateFAQ : (body) => {
             return (
                 axios.patch(`${Config.get("api.endpoint")}/faqs`, body)
+                .then(res => res)
+                .catch(err => err.response)
             )
         },
         deleteFAQ : (body) => {
             return (
                 axios.delete(`${Config.get("api.endpoint")}/faqs`, { data : body})
+                .then(res => res)
+                .catch(err => err.response)
             )
-        }
+        }, 
+        getChefs : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/chefs`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        uploadChef : (body, rating) => {
+            const fileData = new FormData()
+
+            fileData.append('name', body.name)
+            fileData.append('hierarchy', body.hierarchy)
+            fileData.append('description', body.description)
+            fileData.append('rating', rating)            
+            fileData.append('image',body.image, body.image.name)
+            return (
+                axios.post(`${Config.get("api.endpoint")}/chefs`, fileData)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        } 
     },
     gallery: {
         getInstaImgs: () => {

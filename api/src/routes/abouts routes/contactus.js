@@ -41,12 +41,11 @@ router.post("/", (req, res) => {
             })
         }
         else{
-            console.log("adddddddd")
             const contacts = new ContactUsModel({
                 address_1: req.body.address_1,
                 address_2: req.body.address_2,
                 address_3: req.body.address_3,
-                email : res.body.email,
+                // email : res.body.email,
                 city: req.body.city,
                 tel: req.body.tel,
                 fax: req.body.fax,

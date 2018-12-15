@@ -194,7 +194,7 @@ class AboutFaqs extends React.Component {
                     <Segment>
                             <List divided relaxed>
                                 {faqList.map(FAQ => (
-                                    <List.Item>
+                                    <List.Item id={FAQ._id}>
                                         {/* <List.Icon name='question' size='large' verticalAlign='middle' /> */}
                                         <List.Content>
                                             { (isEditingFAQ && editID === FAQ._id ) ? 
@@ -208,9 +208,10 @@ class AboutFaqs extends React.Component {
                                                         {editErrors.EditAnswer && <InLineError message={editErrors.EditAnswer} />}
                                                     </Form.Field>
                                                 </Form> : 
-                                                <>
-                                                <List.Header as='a'>Q : {FAQ.question}</List.Header>
-                                                <List.Description as='a'> A : {FAQ.answer}</List.Description> </>
+                                                <div>
+                                                    <List.Header as='a'>Q : {FAQ.question}</List.Header>
+                                                    <List.Description as='a'> A : {FAQ.answer}</List.Description> 
+                                                </div>
                                             }
 
                                         </List.Content>
