@@ -58,4 +58,34 @@ router.post("/", multerUpload.single('image'),(req, res) => {
     })
 })
 
+router.delete("/",(req, res) => {
+    ChefModel.findByIdAndRemove(req.body._id)
+    .then (result => {
+        const imageToBeDeleted = req.body.image_url.split('/')[4]
+        removeFile(`uploads/${imageToBeDeleted}`, (err) => {
+            if (err){
+                console.error("RemoveImage: ", err)
+            }else{
+                console.log("RemoveImage: OK")
+            }
+        })
+
+        ChefModel.find()
+        .then (chefs => {
+            res.status(200).json({
+                chefs,
+                message : "successfully delete the chef profile from the database"
+            })
+        })
+    })
+    .catch (err => {
+        res.status(501).json({
+            error : {
+                catch : err,
+                message : "failed to delete the chef's profile from the database."
+            }
+        })
+    })
+})
+
 export default router

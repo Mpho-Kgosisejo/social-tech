@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Form, Button, Tab, Input, Rating, Card, Segment, Icon, Image} from 'semantic-ui-react'
+import { Container, Form, Button, Tab, Input, Rating, Card, Segment, Icon, Image, Menu, Popup, Modal, Header} from 'semantic-ui-react'
 import ContextAPI from "../../../../../../../src/config/ContextAPI";
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import { InLineError } from '../../../../../../Messages/InLineMessage'
@@ -21,7 +21,11 @@ class AboutOurChef extends React.Component {
             },
           errors: {},
           rating: 0,
-          chefList : []
+          chefList : [],
+          isEditingChef : false,
+          editChef : {},
+          isDeletingChef : false,
+          deleteBody : {}
         }
     }
 
@@ -87,7 +91,6 @@ class AboutOurChef extends React.Component {
         const errors = this.validate()
         if(isEmptyObj(errors)){
             const res = await api.web.uploadChef(this.state.aboutChef, this.state.rating)
-            console.log(res)
             this.setState({
                 errors: {},
                 chefList : res.data.chefs
@@ -98,13 +101,32 @@ class AboutOurChef extends React.Component {
                 errors: errors
             })
         }
+    }
 
+    startEditMode = (editChef) => {
+        if(this.state.isEditingChef)
+            this.setState({ isEditingChef : false })
+        else 
+            this.setState({ isEditingChef : true })
+    }
+
+    deleteChef = (delBody) => {
+        if(this.state.isDeletingChef)
+            this.setState({ isDeletingChef : false })
+        else 
+            this.setState({ isDeletingChef : true, deleteBody : delBody })
+    }
+
+    confirmChefdeletion = async () => {
+        const resp = await api.web.deleteChef(this.state.deleteBody)
+        console.log(resp)
+        this.setState({ chefList : resp.data.chefs, deleteBody : {}, isDeletingChef : false })
     }
 
     handleChange = e => this.setState({ rating: e.target.value })
 
     render() {
-        const { rating, aboutChef, errors, chefList } = this.state
+        const { rating, aboutChef, errors, chefList, isEditingChef, isDeletingChef } = this.state
         return (
             <div>
                 <div className="dashboard-page-container">
@@ -137,7 +159,6 @@ class AboutOurChef extends React.Component {
                             </div>
                             <Button className="form-button-submit" size='large' primary type='submit' onClick = {() => this.onclickSubmit() }>Submit</Button>
                         </Form>
-                        <pre>{JSON.stringify(this.state, null, 2)}</pre>
                     </Tab.Pane>
 
                     <Segment>
@@ -153,15 +174,45 @@ class AboutOurChef extends React.Component {
                                         <Card.Description>{chef.background}</Card.Description>
                                         </Card.Content>
                                         <Card.Content extra>
-                                        <a>
-                                            <Icon name='user' />
-                                            {chef.rating}
-                                        </a>
+                                            <Menu secondary>
+                                                <Menu.Item>
+                                                    <a>
+                                                        <Icon name='star' />
+                                                        {chef.rating}
+                                                    </a>
+                                                </Menu.Item>
+                                                <Menu.Menu position='right'>
+                                                    <Menu.Item>
+                                                    {/* <Popup trigger={<Icon name={isEditingChef && editID === FAQ._id ? 'check' : 'edit'}/>} content={isEditingFAQ && editID === FAQ._id ? 'save' : 'edit'} /> */}
+                                                    <Popup trigger={<Icon onClick={() => this.deleteChef(chef) } name='delete'/>} content='delete'/>
+                                                    </Menu.Item>
+                                                </Menu.Menu> 
+                                            </Menu>
                                         </Card.Content>
                                     </Card>
                             ))}
                         </Card.Group>
                     </Segment>
+
+
+                    {/* modal will be called when the delete faq icon is called */}
+                    <Modal open={isDeletingChef} basic size='small'>
+                            <Header content='Warning! This Action is irriversible'/>
+                            <Modal.Content>
+                                <p>
+                                    Are you sure you want to delete this Chef? Press No to cancel the operation and Yes to continue.
+                                </p>
+                            </Modal.Content>
+                            <Modal.Actions>
+                            <Button onClick={() => this.deleteChef()} basic color='red' inverted>
+                                <Icon name='remove' /> No
+                            </Button>
+                            <Button onClick={() => this.confirmChefdeletion()} color='green' inverted>
+                                <Icon name='checkmark' /> Yes
+                            </Button>
+                            </Modal.Actions>
+                        </Modal> 
+                    <pre>{JSON.stringify(this.state, null, 2)}</pre>
                 </div>
             </div>
         )

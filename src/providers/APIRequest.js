@@ -252,7 +252,17 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
-        } 
+        },
+        updateChef : () => {
+
+        },
+        deleteChef : (deleteBody) => {
+            return (
+                axios.delete(`${Config.get("api.endpoint")}/chefs`, { data : deleteBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }
     },
     gallery: {
         getInstaImgs: () => {
