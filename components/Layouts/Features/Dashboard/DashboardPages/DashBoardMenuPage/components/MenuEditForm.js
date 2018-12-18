@@ -135,6 +135,14 @@ class MenuEditForm extends React.Component {
                 }
                 else
                 {
+                    this.setState({
+                        editBody: {
+                            ...this.state.editBody,
+                            oldImagePath : this.state.editBody.image,
+                            image: iVT.target.files[0],
+                        },
+                        isImageEdited : true
+                    })
                     let reader = new FileReader();
                     reader.onload = (e) => {
                         this.setState({ newDisplayImage : e.target.result});
@@ -142,14 +150,6 @@ class MenuEditForm extends React.Component {
                     reader.readAsDataURL(event.target.files[0]);
                 }
             }
-            this.setState({
-                editBody: {
-                    ...this.state.editBody,
-                    oldImagePath : this.state.editBody.image,
-                    image: iVT.target.files[0],
-                },
-                isImageEdited : true
-            })
         } else {
             this.setState({
                 editBody: {
@@ -181,13 +181,13 @@ class MenuEditForm extends React.Component {
             })) {
             errors.description = MessageTypes.FIELD_CANT_BE_EMPTY
         }
-        if(document.getElementById("uploadFile").value != "") {
-            console.log("we have a file", image.name.split('.').pop())
-            if((image.name.split('.').pop() != 'jpeg') &&  (image.name.split('.').pop() != 'png'))
-            {
-                errors.image = "Only images of types *.jpeg and *.png are allowed."
-            }
-        }
+        // if(document.getElementById("uploadFile").value != "") {
+        //     console.log("we have a file", image.name.split('.').pop())
+        //     if((image.name.split('.').pop() != 'jpeg') &&  (image.name.split('.').pop() != 'png'))
+        //     {
+        //         errors.image = "Only images of types *.jpeg and *.png are allowed."
+        //     }
+        // }
         if (isEmptyObj(ingredients)) {
             this.setState({
                 inputIngredientError: "You have to add at least 1 ingredient."

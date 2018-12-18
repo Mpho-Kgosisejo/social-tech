@@ -253,8 +253,34 @@ const API = {
                 .catch(err => err.response)
             )
         },
-        updateChef : () => {
-
+        updateChef : (editBody, isImageEdited) => {
+                if (isImageEdited)
+                {
+                    const fileData = new FormData()
+                    fileData.append('name', editBody.name)
+                    fileData.append('_id', editBody._id)
+                    fileData.append('background', editBody.background)
+                    fileData.append('speciality', editBody.speciality)
+                    fileData.append('rating', editBody.rating)
+                    fileData.append('image_url', editBody.image_url, editBody.image_url.name)
+                    fileData.append('oldImagePath', editBody.oldImagePath)
+                    return (
+                        axios.patch(`${Config.get("api.endpoint")}/chefs`, fileData )
+                        .then(res => res)
+                        .catch(err => err.response)
+                    )
+                }
+                else 
+                {
+                    return (
+                        axios.patch(`${Config.get("api.endpoint")}/chefs`, editBody)
+                        .then(res => res)
+                        .catch(err => err.response)
+                    )
+                }
+    
+                
+            
         },
         deleteChef : (deleteBody) => {
             return (

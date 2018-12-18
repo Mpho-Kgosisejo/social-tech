@@ -88,4 +88,89 @@ router.delete("/",(req, res) => {
     })
 })
 
+router.patch("/", multerUpload.single('image_url'), (req, res) => {
+    if (typeof(req.body.oldImagePath) !== 'undefined') {
+        console.log(req.body)
+        const {_id, speciality, name, background, oldImagePath, rating } = req.body
+        const newImagePath = `${process.env.HOST}/${req.file.path}`
+
+        const updateModel = {
+            name,
+            image_url : newImagePath,
+            background,
+            speciality,
+            rating
+        }
+
+        ChefModel.findByIdAndUpdate(_id, updateModel, {new : true})
+        .then (resp => {
+
+            ChefModel.find()
+            .then (chefs => {
+                res.status(200).json({
+                    chefs,
+                    message : "successfully updated the chef."
+                })
+            })
+            .catch (error => {
+                res.status(500).json({
+                    error : {
+                        catch : error,
+                        message : "failed to get updated list of chefs."
+                    }
+                })
+            })
+
+            const imageToBeDeleted = oldImagePath.split('/')[4]
+            removeFile(`uploads/${imageToBeDeleted}`, (err) => {
+                if (err){
+                    console.error("update image: ", err)
+                }else{
+                    console.log("update image: OK")
+                }
+            })
+
+        })
+        .catch (error => {
+            res.status(500).json({
+                error : {
+                    catch : error,
+                    message : "failed to update the chef."
+                }
+            })
+        })
+    }
+    else {
+        const {_id, speciality, name, background, image_url, rating } = req.body
+        
+        const updateModel = {
+            name,
+            image_url,
+            background,
+            speciality,
+            rating
+        }
+
+        ChefModel.findByIdAndUpdate(_id, updateModel, {new : true})
+        .then (data => {
+            ChefModel.find()
+            .then (chefs => {
+                res.status(200).json({
+                    chefs,
+                    message : "successfully updated the chef."
+                })
+            })
+        })
+        .catch(error => {
+            res.status(501).json({
+                error : {
+                    catch : error,
+                    message : "failed to update the chef."
+                }
+            })
+        })
+    }
+})
+
+
 export default router
