@@ -96,6 +96,11 @@
     position: relative !important;
 }
 
+.edit-chef-image-div {
+    background-color: gray;
+    position: relative !important;
+}
+
 .edit-image-button{
     margin: 0;
     /* background: yellow; */

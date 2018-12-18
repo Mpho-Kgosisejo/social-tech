@@ -1,7 +1,7 @@
 import React from 'react'
-import { Container, Form, Button, Tab, Input, Rating, Card, Segment, Icon, Image, Menu, Popup, Modal, Header} from 'semantic-ui-react'
+import { Form, Button, Tab, Input, Rating, Card, Segment, Icon, Image, Menu, Popup, Modal, Header, Message} from 'semantic-ui-react'
 import ContextAPI from "../../../../../../../src/config/ContextAPI";
-import { isEmptyObj } from "../../../../../../../src/utils/Objs"
+import { isEmptyObj, isEquivalent } from "../../../../../../../src/utils/Objs"
 import { InLineError } from '../../../../../../Messages/InLineMessage'
 import * as MessageTypes from "../../../../../../../src/Types/MessageTypes"
 import validator from 'validator'
@@ -103,11 +103,25 @@ class AboutOurChef extends React.Component {
         }
     }
 
-    startEditMode = (editChef) => {
-        if(this.state.isEditingChef)
-            this.setState({ isEditingChef : false })
+    startEditMode = (edChef) => {
+        if(!isEmptyObj(this.state.editChef))
+        {
+            if (isEquivalent(this.state.editChef, edChef))
+            {
+                this.setState({ isEditingChef : false, editChef : {} })
+            }
+            else 
+            {
+                this.setState({ isEditingChef : true, editChef : edChef })
+            }
+        }
         else 
-            this.setState({ isEditingChef : true })
+        {
+            if(this.state.isEditingChef)
+                this.setState({ isEditingChef : false })
+            else 
+                this.setState({ isEditingChef : true, editChef : edChef })
+        }
     }
 
     deleteChef = (delBody) => {
@@ -126,7 +140,7 @@ class AboutOurChef extends React.Component {
     handleChange = e => this.setState({ rating: e.target.value })
 
     render() {
-        const { rating, aboutChef, errors, chefList, isEditingChef, isDeletingChef } = this.state
+        const { rating, aboutChef, errors, chefList, isEditingChef, editChef, isDeletingChef } = this.state
         return (
             <div>
                 <div className="dashboard-page-container">
@@ -162,40 +176,56 @@ class AboutOurChef extends React.Component {
                     </Tab.Pane>
 
                     <Segment>
-                        <Card.Group>
-                            {   chefList.map( chef => (
-                                    <Card key={chef._id}>
-                                        <Image src={chef.image_url}/>
-                                        <Card.Content>
-                                        <Card.Header>{chef.name}</Card.Header>
-                                        <Card.Meta>
-                                            <span className='date'>{chef.speciality}</span>
-                                        </Card.Meta>
-                                        <Card.Description>{chef.background}</Card.Description>
-                                        </Card.Content>
-                                        <Card.Content extra>
-                                            <Menu secondary>
-                                                <Menu.Item>
-                                                    <a>
-                                                        <Icon name='star' />
-                                                        {chef.rating}
-                                                    </a>
-                                                </Menu.Item>
-                                                <Menu.Menu position='right'>
+                        {isEmptyObj(chefList) ? 
+                            <Message icon>
+                                <Icon name='user'/>
+                                <Message.Content>
+                                <Message.Header>There are currently no chef profiles available</Message.Header>
+                                Use the form above to create a chef's which can be viewed by your users in the about us section of the main website.
+                                </Message.Content>
+                            </Message>
+                            : 
+                            <Card.Group>
+                                {   chefList.map( chef => (
+                                        <Card key={chef._id}>
+                                            <Image src={chef.image_url}/>
+                                            <Card.Content>
+                                                <Card.Header>{chef.name}</Card.Header>
+                                                    <Card.Meta>
+                                                        <span className='date'>{chef.speciality}</span>
+                                                    </Card.Meta>
+                                                <Card.Description>{chef.background}</Card.Description>
+                                            </Card.Content>
+                                            <Card.Content extra>
+                                                <Menu secondary>
                                                     <Menu.Item>
-                                                    {/* <Popup trigger={<Icon name={isEditingChef && editID === FAQ._id ? 'check' : 'edit'}/>} content={isEditingFAQ && editID === FAQ._id ? 'save' : 'edit'} /> */}
-                                                    <Popup trigger={<Icon onClick={() => this.deleteChef(chef) } name='delete'/>} content='delete'/>
+                                                        <a>
+                                                            <Icon name='star' />
+                                                            {chef.rating}
+                                                        </a>
                                                     </Menu.Item>
-                                                </Menu.Menu> 
-                                            </Menu>
-                                        </Card.Content>
-                                    </Card>
-                            ))}
-                        </Card.Group>
+                                                    <Menu.Menu position='right'>
+                                                        <Menu.Item>
+                                                        <Popup trigger={<Icon onClick={() => this.startEditMode(chef)} name='edit'/>} content='edit' />
+                                                        <Popup trigger={<Icon onClick={() => this.deleteChef(chef) } name='delete'/>} content='delete'/>
+                                                        </Menu.Item>
+                                                    </Menu.Menu> 
+                                                </Menu>
+                                            </Card.Content>
+                                        </Card>
+                                ))}
+                            </Card.Group>
+                        }
+                        
                     </Segment>
 
+                    {isEditingChef ? 
+                        <Segment>
+                            Edit {editChef.name}'s Profile
+                        </Segment>
+                    : null}
 
-                    {/* modal will be called when the delete faq icon is called */}
+                    {/* modal will be called when the delete delete chef icon is called */}
                     <Modal open={isDeletingChef} basic size='small'>
                             <Header content='Warning! This Action is irriversible'/>
                             <Modal.Content>
@@ -212,7 +242,8 @@ class AboutOurChef extends React.Component {
                             </Button>
                             </Modal.Actions>
                         </Modal> 
-                    <pre>{JSON.stringify(this.state, null, 2)}</pre>
+                    <pre>{JSON.stringify(this.state.editChef, null, 2)}</pre>
+                    <pre>{JSON.stringify(this.state.isEditingChef, null, 2)}</pre>
                 </div>
             </div>
         )

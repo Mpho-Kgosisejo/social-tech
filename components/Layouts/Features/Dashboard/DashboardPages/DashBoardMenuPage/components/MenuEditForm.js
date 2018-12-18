@@ -181,13 +181,13 @@ class MenuEditForm extends React.Component {
             })) {
             errors.description = MessageTypes.FIELD_CANT_BE_EMPTY
         }
-        // if(document.getElementById("uploadFile").value != "") {
-        //     console.log("we have a file", image.name.split('.').pop())
-        //     if((image.name.split('.').pop() != 'jpeg') &&  (image.name.split('.').pop() != 'png'))
-        //     {
-        //         errors.image = "Only images of types *.jpeg and *.png are allowed."
-        //     }
-        // }
+        if(document.getElementById("uploadFile").value != "") {
+            console.log("we have a file", image.name.split('.').pop())
+            if((image.name.split('.').pop() != 'jpeg') &&  (image.name.split('.').pop() != 'png'))
+            {
+                errors.image = "Only images of types *.jpeg and *.png are allowed."
+            }
+        }
         if (isEmptyObj(ingredients)) {
             this.setState({
                 inputIngredientError: "You have to add at least 1 ingredient."
