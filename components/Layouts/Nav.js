@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Router from "next/router"
-import { Container, Menu, Image, Grid, Icon, Responsive, Dropdown, Label } from "semantic-ui-react"
+import { Container, Menu, Grid, Icon, Responsive, Dropdown, Label } from "semantic-ui-react"
 
 import AuthLayout from "./Features/Auth/AuthLayout";
 import ContextAPI from "../../src/config/ContextAPI"
@@ -10,6 +10,7 @@ import * as MessageTypes from "../../src/Types/MessageTypes"
 import { LIGHT_RED } from "../../src/Types/ColorsTypes";
 import * as AboutHelper from "./Features/About/Helper"
 import Avator from "../utils/Avator";
+import NavAlert from "./Features/NavAlert/NavAlert";
 
 const handleLogout = (state) => {
     const {dispatch} = state
@@ -161,33 +162,39 @@ const LeftNav = () => (
 
 const Nav = () => (
     <ContextAPI.Consumer>
-        {({ state }) => (
-            <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${state.isSidebarOpen && "is-sidebar-open"} ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible && state.active_page === "index") ? "transparent" : ""}`}>
-                <Container className="nav-container">
-                    <React.Fragment>
-                        <LeftNav />
-                        {!state.root_loading &&
-                            <Menu.Menu position="right">
-                                {!isEmptyObj(state.login) ? <RightNav /> : <Responsive minWidth={992} as={React.Fragment}><AuthLayout /></Responsive>}
-                            </Menu.Menu>
-                        }
-                         <Responsive minWidth={992} as={React.Fragment}>
-                        <Link href="/cart" prefetch passHref>
-                            <Menu.Item className="fresheats-brown-color">
-                              <Icon className="cart-icon-nav" name="cart">
-                                {state.cart.details.itemsCount > 0 &&
-                                    <Label circular size="mini" style={{background: LIGHT_RED}}>
-                                        {state.cart.details.itemsCount}
-                                    </Label>
-                                }
-                              </Icon>
-                            </Menu.Item>
-                        </Link>
-                        </Responsive>
-                    </React.Fragment>
-                </Container>
-            </Menu>
-        )}
+        {({ state }) => {
+            const {root_loading, login, cart, account} = state
+        
+            return (
+                <Menu inverted fixed="top" className={`appNav fresheats-light-green-bg signIn-button ${state.isSidebarOpen && "is-sidebar-open"} ${(Object.keys(state.main_layout_calculations).length > 0 && state.main_layout_calculations.topVisible && state.active_page === "index") ? "transparent" : ""}`}>
+                    <Container className="nav-container">
+                        <React.Fragment>
+                            <LeftNav />
+                            {!root_loading &&
+                                <Menu.Menu position="right">
+                                    {!isEmptyObj(login) ? <RightNav /> : <Responsive minWidth={992} as={React.Fragment}><AuthLayout /></Responsive>}
+                                </Menu.Menu>
+                            }
+                            <Responsive minWidth={992} as={React.Fragment}>
+                                <Link href="/cart" prefetch passHref>
+                                    <Menu.Item className="fresheats-brown-color">
+                                    <Icon className="cart-icon-nav" name="cart">
+                                        {cart.details.itemsCount > 0 &&
+                                            <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                                {cart.details.itemsCount}
+                                            </Label>
+                                        }
+                                    </Icon>
+                                    </Menu.Item>
+                                </Link>
+                            </Responsive>
+                        </React.Fragment>
+                    </Container>
+
+                    <NavAlert />
+                </Menu>
+            )
+        }}
     </ContextAPI.Consumer>
 )
 export default Nav

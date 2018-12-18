@@ -62,6 +62,13 @@ export const reducer = (state, action) => {
             ...state,
             active_page: action.payload
         })
+        case "NAV_ALERT": return ({
+            ...state,
+            nav_alert: {
+                ...state.nav_alert,
+                ...action.payload
+            }
+        })
         default:
             return (state)
     }

@@ -2,12 +2,12 @@ import "../static/css/index.css"
 import "../static/css/style.css"
 import Layout from "../components/Layouts/Layout"
 
-import Slider from "react-slick"
+import ReactSlick from "react-slick"
 import { Container, Header, Image } from "semantic-ui-react";
 import IndexLayout from "../components/Layouts/Features/Index/IndexLayout";
 
 
-const settings = {
+const reactSlickSettings = {
     dots: true,
     infinite: true,
     speed: 750,
@@ -82,7 +82,7 @@ class Index extends React.Component {
         return (
             <Layout includeContainer={false} includeNav={true}>
                 <div className="slider-container" >
-                    <Slider {...settings} className="de-slider">
+                    <ReactSlick {...reactSlickSettings} className="de-slider">
                         {sliderImages.map(image => (
                             <div key={image.id} className="de-slider-item">
                                 <div key={image.key} className="slider-bg" style={{ background : `url(${image.url})` }}>
@@ -99,7 +99,7 @@ class Index extends React.Component {
                                 </div>
                             </div>
                         ))}
-                    </Slider>
+                    </ReactSlick>
                 <div className="static-caption">
                         <Container>
                             <Header as="h1">fresh eats.</Header>

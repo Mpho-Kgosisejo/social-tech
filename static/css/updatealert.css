@@ -1,0 +1,55 @@
+.transparent .update-alert{
+    display: none;
+}
+
+.update-alert{
+    position: absolute;
+    top: 58px;
+    width: 100%;
+    padding: 6px 0;
+    
+    background: rgb(94, 120, 206);
+}
+
+.update-alert .container{
+    position: relative;
+}
+
+.update-alert .message{
+    cursor: pointer;
+}
+
+.update-alert, .update-alert a{
+    color: rgb(246, 246, 246) !important;
+}
+
+.update-alert h5{
+    font-size: .9em !important;
+
+}
+
+.update-alert h5 span{
+    font-weight: 100 !important;
+    margin: 0 !important;
+}
+
+.update-alert .close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+
+    /* width: 18px */
+    color: rgb(166, 178, 206) !important
+}
+
+.update-alert .close:hover{
+    color: rgb(201, 203, 206) !important
+}
+
+.update-alert.no-height .slide-child{
+    height: 16px !important;
+    width: 100% !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

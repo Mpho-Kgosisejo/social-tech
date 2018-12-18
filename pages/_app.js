@@ -9,6 +9,7 @@ import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
 import {getLogin} from "../src/providers/LoginSession"
 import * as CartHandler from "../src/providers/CartHandler"
+import * as NavAlertEngine from "../src/utils/NavAlertEngine"
 
 export default class MyApp extends App {
     constructor(props){
@@ -45,7 +46,14 @@ export default class MyApp extends App {
                 delivery: {},
                 items: []
             },
-            account:{},
+            account:{
+                personal_details: {}
+            },
+            nav_alert: {
+                show: true,
+                showAll: false,
+                list: []
+            },
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
@@ -75,6 +83,21 @@ export default class MyApp extends App {
                 root_loading: false,
                 login
             })
+
+            if (Object.keys(login).length > 0){
+                // Call getUpdateProfileMessage() after api.account call
+                
+                setTimeout(() => {
+                    NavAlertEngine.put({state: this.state, alert: {
+                        icon: "exclamation",
+                        header: {
+                            href: "/account",
+                            text: "Profile Update:"
+                        },
+                        message: NavAlertEngine.getUpdateProfileMessage({account: this.state.account})
+                    }})
+                }, 150)
+            }
         }
     }
 

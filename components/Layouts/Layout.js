@@ -16,6 +16,7 @@ import "../../static/css/cart.css"
 import "../../static/css/alertportal.css"
 import "../../static/css/pageheader.css"
 import "../../static/css/avator.css"
+import "../../static/css/updatealert.css"
 
 const companyName = "Fresh Eats."
 
@@ -53,8 +54,8 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
             <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
 
             {/* If you offline... */}
-            {/* <link rel="stylesheet" href="/static/css/semantic-2.3.0.min.css" /> */}
-            {/* <link ref="stylesheet" href="/static/css/account.css" /> */}
+            {/* <link rel="stylesheet" href="/static/css/lib/semantic-2.3.0.min.css" /> */}
+            <link rel="stylesheet" href="/static/css/lib/semantic-2.4.0.min.css" />
             <link ref="stylesheet" href="/static/css/style.css" />
 
             
