@@ -31,6 +31,19 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
     <React.Fragment>
         
         <Head>
+
+            {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+                {/* <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131145124-1"></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments)}
+                    gtag('js', new Date());
+
+                    gtag('config', 'UA-131145124-1');
+                </script> */}
+            {/* <!-- End Google Analytics --> */}
+
+
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta charSet="utf-8" />
             <meta name="theme-color" content={FRESHEATS_GREEN} />
