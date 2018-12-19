@@ -35,10 +35,8 @@ class AboutOurChef extends React.Component {
     }
 
     handleScrollToElement = () => {
-        if (this.state.isEditingChef){
-          window.scrollTo(0, this.editChefRef.current.offsetTop);
-        }
-      }
+        window.scrollTo(0, this.editChefRef.current.offsetTop);
+    }
 
     getChefs = async () => {
         const res = await api.web.getChefs()
@@ -201,6 +199,7 @@ class AboutOurChef extends React.Component {
     }
 
     startEditMode = (edChef) => {
+
         if(!isEmptyObj(this.state.editChef))
         {
             if (isEquivalent(this.state.editChef, edChef))
@@ -347,44 +346,44 @@ class AboutOurChef extends React.Component {
                         }
                     </Segment>
 
-                    {isEditingChef ? 
-                        <div ref={this.editChefRef}>
-                            <Segment>
-                                <h1> Edit {editChef.name}'s Profile </h1>
-                                <Form>
-                                    <Form.Field>
-                                        <div className="edit-image-div">
-                                            <Image className="edit-image-div"  src={ isImageEdited ? newDisplayImage : editChef.image_url }></Image>
-                                            <input id='uploadEditedFile' name="editImage" style={{display : 'none'}} type='file' onChange={iVT => this.onChange(iVT)} ref={fileInput => this.fileInput = fileInput}></input>
-                                            <div className="edit-image-button">
-                                                <Button className="centered-element" onClick={() => this.fileInput.click()}>Edit</Button>
+                     <div ref={this.editChefRef}>
+                        {isEditingChef ? 
+                                <Segment>
+                                    <h1> Edit {editChef.name}'s Profile </h1>
+                                    <Form>
+                                        <Form.Field>
+                                            <div className="edit-image-div">
+                                                <Image className="edit-image-div"  src={ isImageEdited ? newDisplayImage : editChef.image_url }></Image>
+                                                <input id='uploadEditedFile' name="editImage" style={{display : 'none'}} type='file' onChange={iVT => this.onChange(iVT)} ref={fileInput => this.fileInput = fileInput}></input>
+                                                <div className="edit-image-button">
+                                                    <Button className="centered-element" onClick={() => this.fileInput.click()}>Edit</Button>
+                                                </div>
                                             </div>
+                                            { editErrors.image && < InLineError message = {editErrors.image} /> } 
+                                        </Form.Field>
+                                        <Form.Field error={!isEmptyObj(editErrors.editName)}>
+                                            Name <Input name="editName" value={editChef.name} placeholder='Name' onChange={this.onChange}/>
+                                            {editErrors.editName && <InLineError message={editErrors.editName} />}
+                                        </Form.Field>
+                                        <Form.Field error={!isEmptyObj(editErrors.editSpeciality)}>
+                                            Speciality <Input name="editSpeciality" value={editChef.speciality} placeholder='ranking of the chef' onChange={this.onChange}/>
+                                            {editErrors.editSpeciality && <InLineError message={editErrors.editSpeciality} />}
+                                        </Form.Field>
+                                        <Form.Field error={!isEmptyObj(editErrors.editBackground)}>
+                                            Background <TextArea  name="editBackground" value={editChef.background} placeholder='Background story' onChange={this.onChange}/>
+                                            {editErrors.editBackground && <InLineError message={editErrors.editBackground} />}
+                                        </Form.Field>
+                                        <div>
+                                            <div>Rating: {editChef.rating}</div>
+                                            <input type='range' name="editRating"  min={0} max={5} value={editChef.rating} onChange={this.handleChange} />
+                                            <br />
+                                            <Rating rating={this.state.editChef.rating} maxRating={5} />
                                         </div>
-                                        { editErrors.image && < InLineError message = {editErrors.image} /> } 
-                                    </Form.Field>
-                                    <Form.Field error={!isEmptyObj(editErrors.editName)}>
-                                        Name <Input name="editName" value={editChef.name} placeholder='Name' onChange={this.onChange}/>
-                                        {editErrors.editName && <InLineError message={editErrors.editName} />}
-                                    </Form.Field>
-                                    <Form.Field error={!isEmptyObj(editErrors.editSpeciality)}>
-                                        Speciality <Input name="editSpeciality" value={editChef.speciality} placeholder='ranking of the chef' onChange={this.onChange}/>
-                                        {editErrors.editSpeciality && <InLineError message={editErrors.editSpeciality} />}
-                                    </Form.Field>
-                                    <Form.Field error={!isEmptyObj(editErrors.editBackground)}>
-                                        Background <TextArea  name="editBackground" value={editChef.background} placeholder='Background story' onChange={this.onChange}/>
-                                        {editErrors.editBackground && <InLineError message={editErrors.editBackground} />}
-                                    </Form.Field>
-                                    <div>
-                                        <div>Rating: {editChef.rating}</div>
-                                        <input type='range' name="editRating"  min={0} max={5} value={editChef.rating} onChange={this.handleChange} />
-                                        <br />
-                                        <Rating rating={this.state.editChef.rating} maxRating={5} />
-                                    </div>
-                                    <Button className="form-button-submit" size='large' primary onClick = {() => this.saveChefEdit() }>Save</Button>
-                                </Form>
-                            </Segment>
-                        </div>
-                    : null}
+                                        <Button className="form-button-submit" size='large' primary onClick = {() => this.saveChefEdit() }>Save</Button>
+                                    </Form>
+                                </Segment>
+                        : null}
+                    </div>
 
                     {/* modal will be called when the delete delete chef icon is called */}
                     <Modal open={isDeletingChef} basic size='small'>
