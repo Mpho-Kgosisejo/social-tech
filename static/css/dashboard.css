@@ -155,6 +155,11 @@
 } */
 
 
+.ui.items>.item>.image>img, .image-item{
+    height: 150px !important;
+}
+
+
 
 
 

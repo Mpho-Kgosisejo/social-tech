@@ -3,12 +3,15 @@
     "data": {
         "orders": [
             {
-                "_id": "1",
-                "customer": "1",
+                "_id": "1234",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
-                    "itemsCount": 3,
-                    "totalItemsCount": 7,
+                    "itemsCount": 4,
+                    "totalItemsCount": 8,
                     "subTotal": 450,
                     "total": 492,
                     "tax": 42
@@ -17,33 +20,40 @@
                     {
                         "name": "Cajun Cuisine",
                         "image": "https://diarioelcomunal.com/wp-content/uploads/2018/07/920340da97f26476b50291360aab7ed7.jpg",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 1
                     },
                     {
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b27944b0e2e72364825d2dd/1529320535469/IMG_6518-2.jpg?format=500w",
                         "name": "Butternut Soup",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 2
                     },{
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd3bcdb29d6afc4c3c266/1500304324793/Mondiall-8.jpg?format=750w",
                         "name": "Strawberry Due",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 3
                     },
                     {
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
                         "name": "Haystack",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 2
                     }
                 ],
                 "stripe": {},
                 "status": "approved"
             },
             {
-                "_id": "2",
-                "customer": "2",
+                "_id": "2345",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
-                    "itemsCount": 3,
-                    "totalItemsCount": 7,
+                    "itemsCount": 1,
+                    "totalItemsCount": 2,
                     "subTotal": 450,
                     "total": 492, 
                     "tax": 42
@@ -52,18 +62,22 @@
                     {
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/5b27944b0e2e72364825d2dd/1529320535469/IMG_6518-2.jpg?format=500w",
                         "name": "Butternut Soup",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 2
                     }
                 ],
                 "stripe": {},
                 "status": "approved"
             },
             {
-                "_id": "3",
-                "customer": "3",
+                "_id": "3456",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
-                    "itemsCount": 3,
+                    "itemsCount": 1,
                     "totalItemsCount": 7,
                     "subTotal": 450,
                     "total": 492,
@@ -73,19 +87,23 @@
                     {
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
                         "name": "Haystack",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 7
                     }
                 ],
                 "stripe": {},
                 "status": "approved"
             },
             {
-                "_id": "4",
-                "customer": "4",
+                "_id": "4567",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
-                    "itemsCount": 3,
-                    "totalItemsCount": 7,
+                    "itemsCount": 2,
+                    "totalItemsCount": 2,
                     "subTotal": 450,
                     "total": 492,
                     "tax": 42
@@ -94,24 +112,29 @@
                     {
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd3bcdb29d6afc4c3c266/1500304324793/Mondiall-8.jpg?format=750w",
                         "name": "Strawberry Due",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 1
                     },
                     {
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cf150a803bb43a3bb9b43/1500311893106/IMG_0540.jpg?format=500w",
                         "name": "Haystack",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 1
                     }
                 ],
                 "stripe": {},
                 "status": "approved"
             },
             {
-                "_id": "5",
-                "customer": "5",
+                "_id": "5678",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
-                    "itemsCount": 3,
-                    "totalItemsCount": 7,
+                    "itemsCount": 1,
+                    "totalItemsCount": 2,
                     "subTotal": 450,
                     "total": 492,
                     "tax": 42
@@ -120,15 +143,19 @@
                     {
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/59638592ff7c50bac09c1579/596cd2e79f74563f1f11c29b/1500304116722/0L8A1399.jpg?format=500w",
                         "name": "Everything Salad",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 2
                     }
                 ],
                 "stripe": {},
                 "status": "approved"
             },
             {
-                "_id": "6",
-                "customer": "6",
+                "_id": "6789",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
                     "itemsCount": 3,
@@ -141,19 +168,23 @@
                     {
                         "name": "Cordon Bleu",
                         "image": "https://static1.squarespace.com/static/558acad1e4b0f9e7d30bd14e/596385a3b6ac50fc885b61ab/596cdb6bf7e0abe97259afd8/1500306293928/0L8A8661.jpg?format=500w",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 2
                     }
                 ],
                 "stripe": {},
                 "status": "approved"
             },
             {
-                "_id": "7",
-                "customer": "7",
+                "_id": "7891",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
-                    "itemsCount": 3,
-                    "totalItemsCount": 7,
+                    "itemsCount": 1,
+                    "totalItemsCount": 4,
                     "subTotal": 450,
                     "total": 492,
                     "tax": 42
@@ -162,15 +193,19 @@
                     {
                         "image": "https://diarioelcomunal.com/wp-content/uploads/2018/07/920340da97f26476b50291360aab7ed7.jpg",
                         "name": "Caffe Americano",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 4
                     }
                 ],
                 "stripe": {},
                 "status": "approved"
             },
             {
-                "_id": "8",
-                "customer": "8",
+                "_id": "8912",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
                     "itemsCount": 3,
@@ -183,15 +218,19 @@
                     {
                         "name": "Caffe Latte",
                         "image": "https://www.foodphotographyprops.co.uk/wp-content/uploads/2016/10/Olga-Vila-2.jpg",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 2
                     }
                 ],
                 "stripe": {},
                 "status": "approved"
             },
             {
-                "_id": "9",
-                "customer": "9",
+                "_id": "9123",
+                "customer": {
+                    "name": "Jerry",
+                    "contact": "0816577125"
+                },
                 "delivery": {},
                 "details": {
                     "itemsCount": 3,
@@ -204,7 +243,8 @@
                     {
                         "name": "Caffe Mocha",
                         "image": "https://i.pinimg.com/originals/71/7f/2e/717f2ebb00947b11731086bcfbd32d5a.jpg",
-                        "price": 50
+                        "price": 50,
+                        "quantity": 2
                     }
                 ],
                 "stripe": {},

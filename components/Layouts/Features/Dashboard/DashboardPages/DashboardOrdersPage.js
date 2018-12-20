@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Table, Item, Segment, Header } from 'semantic-ui-react'
+import { Container, Table, Item, Segment, Header, Button } from 'semantic-ui-react'
 import api from '../../../../../src/providers/APIRequest';
 import Router from 'next/router';
 import ContextAPI from '../../../../../src/config/ContextAPI';
@@ -55,6 +55,7 @@ class DashboardOrdersPage extends React.Component {
     render() {
 
         const { orders, selectedOrder } = this.state
+        console.log(">>>>>>>>", selectedOrder._id)
 
         return (
             <ContextAPI.Consumer>
@@ -65,9 +66,10 @@ class DashboardOrdersPage extends React.Component {
                                 <Table.Header className="table-header">
                                     <Table.Row>
                                         <Table.HeaderCell>Customer</Table.HeaderCell>
-                                        <Table.HeaderCell>Order ID</Table.HeaderCell>
+                                        <Table.HeaderCell>Order Number</Table.HeaderCell>
                                         <Table.HeaderCell>Price</Table.HeaderCell>
                                         <Table.HeaderCell>Quantity</Table.HeaderCell>
+                                        <Table.HeaderCell>Customer Number</Table.HeaderCell>
                                         <Table.HeaderCell>Status</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
@@ -75,10 +77,11 @@ class DashboardOrdersPage extends React.Component {
                                     {orders.map(el => {
                                         return (
                                             <Table.Row key={el._id}>
-                                                <Table.Cell>{el.customer}</Table.Cell>
+                                                <Table.Cell>{el.customer.name}</Table.Cell>
                                                 <Table.Cell><a onClick={() => this.onClickLink({ id: el._id, state })}>{el._id}</a></Table.Cell>
                                                 <Table.Cell>{el.details.subTotal}</Table.Cell>
                                                 <Table.Cell>{el.details.totalItemsCount}</Table.Cell>
+                                                <Table.Cell>{el.customer.contact}</Table.Cell>
                                                 <Table.Cell>{(el.status) == "approved" ? <p style={{ color: "#3CB371" }}>{el.status}</p> : (el.status) == "pending" ? <p style={{ color: "#ffa900" }}>{el.status}</p> : <p style={{ color: "#FF0000" }}>{el.status}</p>}</Table.Cell>
                                             </Table.Row>
                                         )
@@ -86,35 +89,43 @@ class DashboardOrdersPage extends React.Component {
                                 </Table.Body>
                             </Table>
                         </div>
-                        <Container>
-                        {/* {!isEmptyObj(orders) ? 
-                            <Segment clearing>
-                                    {orders.map(el => {
-                                        return()
-                                        <Header floated='left'>{el._id}</Header>
-                                    })}
-                            </Segment> : "load"
-                        } */}
-                            {!isEmptyObj(selectedOrder) ?
+                        <div className="dashboard-page-container">
+                        {!isEmptyObj(selectedOrder) ? 
+                        // <Container>
+                        <>
+                                <Segment>
+                                <Header sub as='h3' textAlign='left'>Customer : </Header>
+                                <span textAlign='left'>{selectedOrder.customer.name}</span>
+                                <Header sub as='h3' textAlign='left'>Order Number : </Header>
+                                <span textAlign='left'>#{selectedOrder._id}</span>
+                                <Header sub textAlign='left' >Number of Items : </Header>
+                                <span textAlign='left' >{selectedOrder.details.totalItemsCount}</span>
+                                <Header sub textAlign='left'>Total : </Header>
+                                <span textAlign='left'>R{selectedOrder.details.total} inc. vat</span>
+                                <Button floated='right' >Click Here</Button>
+                                
+                                </Segment>
+                            
                                 <Item.Group divided>
                                     {selectedOrder.items.map(menuItem => {
                                         return (
                                             <Item key={menuItem.name}>
-                                                <Item.Image size='tiny' src={menuItem.image} />
+                                                <Item.Image className="image-item" src={menuItem.image} />
                                                 <Item.Content>
                                                     <Item.Header verticalAlign='middle'>{menuItem.name}</Item.Header>
-                                                    <Item.Meta>R{menuItem.price}</Item.Meta>
+                                                    <Item.Meta>Price : R{menuItem.price}</Item.Meta>
+                                                    <Item.Meta>Quantity : {menuItem.quantity}</Item.Meta>
                                                 </Item.Content>
                                             </Item>
                                         )
                                     })}
-                                </Item.Group> :
-                                "load"
-                            }
-                        </Container>
-                        {/* <Order router={state.router} /> */}
-                        <pre>{JSON.stringify(this.state.selectedOrder, " ", 2)}</pre>
-
+                                </Item.Group>
+                                
+                            
+                        {/* // </Container>  */}
+                         </> : "loading" 
+                        }
+                        </div>
                     </>
                 )}
             </ContextAPI.Consumer>
