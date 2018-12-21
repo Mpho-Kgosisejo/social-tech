@@ -197,8 +197,13 @@
     margin-left: 0.9em !important;
 
 }
+
 .ui.modal>.close{
     color: #c59c70 !important;
+}
+
+.menu-search-bar {
+    float: right;
 }
 
 @media ( max-width: 480px) {
