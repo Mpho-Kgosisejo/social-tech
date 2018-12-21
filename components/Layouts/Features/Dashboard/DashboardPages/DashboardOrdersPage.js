@@ -4,7 +4,6 @@ import api from '../../../../../src/providers/APIRequest';
 import Router from 'next/router';
 import ContextAPI from '../../../../../src/config/ContextAPI';
 import { isEmptyObj } from "../../../../../src/utils/Objs";
-// import DashboardOrderIDPage from './DashboardOrderIDPage';
 
 class DashboardOrdersPage extends React.Component {
 
@@ -38,7 +37,7 @@ class DashboardOrdersPage extends React.Component {
             }
         })
 
-        Router.replace({ pathname: router.route, query })
+        Router.replace({ pathname: router.route, query }) 
         dispatch({
             type: "ROUTER", payload: {
                 ...router,
@@ -65,12 +64,12 @@ class DashboardOrdersPage extends React.Component {
                             <Table basic verticalAlign="middle" columns="6" celled striped style={{ cursor: "pointer" }}>
                                 <Table.Header className="table-header">
                                     <Table.Row>
-                                        <Table.HeaderCell>Customer</Table.HeaderCell>
-                                        <Table.HeaderCell>Order Number</Table.HeaderCell>
-                                        <Table.HeaderCell>Price</Table.HeaderCell>
-                                        <Table.HeaderCell>Quantity</Table.HeaderCell>
-                                        <Table.HeaderCell>Customer Number</Table.HeaderCell>
-                                        <Table.HeaderCell>Status</Table.HeaderCell>
+                                        <Table.HeaderCell className="table-header">Customer</Table.HeaderCell>
+                                        <Table.HeaderCell className="table-header">Order Number</Table.HeaderCell>
+                                        <Table.HeaderCell className="table-header">Price</Table.HeaderCell>
+                                        <Table.HeaderCell className="table-header">Quantity</Table.HeaderCell>
+                                        <Table.HeaderCell className="table-header">Customer Number</Table.HeaderCell>
+                                        <Table.HeaderCell className="table-header">Status</Table.HeaderCell>
                                     </Table.Row>
                                 </Table.Header>
                                 <Table.Body>
@@ -91,7 +90,6 @@ class DashboardOrdersPage extends React.Component {
                         </div>
                         <div className="dashboard-page-container">
                         {!isEmptyObj(selectedOrder) ? 
-                        // <Container>
                         <>
                                 <Segment>
                                 <Header sub as='h3' textAlign='left'>Customer : </Header>
@@ -102,14 +100,16 @@ class DashboardOrdersPage extends React.Component {
                                 <span textAlign='left' >{selectedOrder.details.totalItemsCount}</span>
                                 <Header sub textAlign='left'>Total : </Header>
                                 <span textAlign='left'>R{selectedOrder.details.total} inc. vat</span>
-                                <Button floated='right' >Click Here</Button>
+                                <Header sub textAlign='left'>Status : </Header>
+                                <span textAlign='left'>{(selectedOrder.status) == "approved" ? <span style={{ color: "#3CB371" }}>{selectedOrder.status}</span> : (selectedOrder.status) == "pending" ? <span style={{ color: "#ffa900" }}>{selectedOrder.status}</span> : <span style={{ color: "#FF0000" }}>{selectedOrder.status}</span>}</span>
+                                <Button floated='right' className="status-button" >Done</Button>
                                 
                                 </Segment>
                             
                                 <Item.Group divided>
                                     {selectedOrder.items.map(menuItem => {
                                         return (
-                                            <Item key={menuItem.name}>
+                                             <Item key={menuItem.name}>
                                                 <Item.Image className="image-item" src={menuItem.image} />
                                                 <Item.Content>
                                                     <Item.Header verticalAlign='middle'>{menuItem.name}</Item.Header>
@@ -121,8 +121,6 @@ class DashboardOrdersPage extends React.Component {
                                     })}
                                 </Item.Group>
                                 
-                            
-                        {/* // </Container>  */}
                          </> : "loading" 
                         }
                         </div>
