@@ -4,7 +4,8 @@
             "user": {
                 "isAdmin": true,
                 "username": "smith",
-                "token": "0123456789"
+                "token": "0123456789",
+                "avator": ""
         }
     }
 }

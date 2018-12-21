@@ -56,14 +56,14 @@
         },
         "contact_us":
         {
+            "email" : "fresh@eats.co.za",
             "header": "FRESH EATS HEADQUARTERS",
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             "sub_header": "Fresh Eats ZA Headquarters",
-            "address_1": "One Bowerman Drive",
-            "address_2": "Beaverton, OR 97005",
+            "address_1": "48 Silwood Road",
+            "address_2": "Bramley",
             "city": "Johannesburg",
-            "address_3": "Melvil",
-            "tel": "(011)-113-4456",
+            "tell": "(011)-113-4456",
             "fax": "(011)-313-8856",
             "chefs_phone": "+27 87-657-6756",
             "business_hours": "7:30 a.m. - 5:30 p.m. PT, Monday - Friday (except holidays)."

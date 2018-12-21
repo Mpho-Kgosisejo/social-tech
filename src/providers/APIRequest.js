@@ -181,8 +181,114 @@ const API = {
             }
             return (
                 axios.get(`${Config.get("api.endpoint")}/abouts`)
+                .then(res => res)
+                .catch(err => err.response)
             )
         },
+        getAboutContactDetails : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/contact-us`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        updateAboutContactDetails : (body) => {
+            const new_bus_hours = body.time_one.concat(" - ", body.time_two, " , ", body.day_one, " - ", body.day_two)
+            const newBody = {
+                ...body,
+                business_hours : new_bus_hours
+            }
+            return (
+                axios.post(`${Config.get("api.endpoint")}/contact-us`, newBody)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        uploadFAQ : (body) => {
+            return (
+                axios.post(`${Config.get("api.endpoint")}/faqs`, body)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        getFaqs : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/faqs`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        updateFAQ : (body) => {
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/faqs`, body)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        deleteFAQ : (body) => {
+            return (
+                axios.delete(`${Config.get("api.endpoint")}/faqs`, { data : body})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }, 
+        getChefs : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/chefs`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        uploadChef : (body, rating) => {
+            const fileData = new FormData()
+
+            fileData.append('name', body.name)
+            fileData.append('hierarchy', body.hierarchy)
+            fileData.append('description', body.description)
+            fileData.append('rating', rating)            
+            fileData.append('image',body.image, body.image.name)
+            return (
+                axios.post(`${Config.get("api.endpoint")}/chefs`, fileData)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        updateChef : (editBody, isImageEdited) => {
+                if (isImageEdited)
+                {
+                    const fileData = new FormData()
+                    fileData.append('name', editBody.name)
+                    fileData.append('_id', editBody._id)
+                    fileData.append('background', editBody.background)
+                    fileData.append('speciality', editBody.speciality)
+                    fileData.append('rating', editBody.rating)
+                    fileData.append('image_url', editBody.image_url, editBody.image_url.name)
+                    fileData.append('oldImagePath', editBody.oldImagePath)
+                    return (
+                        axios.patch(`${Config.get("api.endpoint")}/chefs`, fileData )
+                        .then(res => res)
+                        .catch(err => err.response)
+                    )
+                }
+                else 
+                {
+                    return (
+                        axios.patch(`${Config.get("api.endpoint")}/chefs`, editBody)
+                        .then(res => res)
+                        .catch(err => err.response)
+                    )
+                }
+    
+                
+            
+        },
+        deleteChef : (deleteBody) => {
+            return (
+                axios.delete(`${Config.get("api.endpoint")}/chefs`, { data : deleteBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }
     },
     gallery: {
         getInstaImgs: () => {

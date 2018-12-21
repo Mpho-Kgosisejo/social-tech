@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import ContextAPI from "../../src/config/ContextAPI";
 import AlertPortal from "../utils/AlertPortal";
 import {LeftComputerNav} from "./Nav"
+import { FRESHEATS_GREEN } from "../../src/Types/ColorsTypes";
 
 import "../../static/css/style.css"
 import "../../static/css/account.css"
@@ -14,6 +15,7 @@ import "../../static/css/menu.css";
 import "../../static/css/cart.css"
 import "../../static/css/alertportal.css"
 import "../../static/css/pageheader.css"
+import "../../static/css/avator.css"
 
 const companyName = "Fresh Eats."
 
@@ -29,8 +31,35 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
     <React.Fragment>
         
         <Head>
+
+            {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+                {/* <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131145124-1"></script>
+                <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments)}
+                    gtag('js', new Date());
+
+                    gtag('config', 'UA-131145124-1');
+                </script> */}
+            {/* <!-- End Google Analytics --> */}
+
+
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta charSet="utf-8" />
+            <meta name="theme-color" content={FRESHEATS_GREEN} />
+            
+            {/* Mobile nav-bar Color */}
+            <meta name="msapplication-navbutton-color" content={FRESHEATS_GREEN} />
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+            {/* Website link Preview */}
+            <meta property="og:site_name" content={`${companyName}`}/>
+            <meta property="og:title" content="Something fresh all the time..."/>
+            <meta property="og:description" content="[Melissa Fix Me!] Compelling description of URL that is about 300 characters in length."/>
+            <meta property="og:image" content="/static/imgs/Fresh-Eats-1.png" />
+            
+            <link rel="shortcut icon" sizes="192x192" type="image/x-icon" href="/static/imgs/icon.png"/>
 
             {/* If you online... */}
             <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.0/semantic.min.css" />

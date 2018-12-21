@@ -135,6 +135,14 @@ class MenuEditForm extends React.Component {
                 }
                 else
                 {
+                    this.setState({
+                        editBody: {
+                            ...this.state.editBody,
+                            oldImagePath : this.state.editBody.image,
+                            image: iVT.target.files[0],
+                        },
+                        isImageEdited : true
+                    })
                     let reader = new FileReader();
                     reader.onload = (e) => {
                         this.setState({ newDisplayImage : e.target.result});
@@ -142,14 +150,6 @@ class MenuEditForm extends React.Component {
                     reader.readAsDataURL(event.target.files[0]);
                 }
             }
-            this.setState({
-                editBody: {
-                    ...this.state.editBody,
-                    oldImagePath : this.state.editBody.image,
-                    image: iVT.target.files[0],
-                },
-                isImageEdited : true
-            })
         } else {
             this.setState({
                 editBody: {

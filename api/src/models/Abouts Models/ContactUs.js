@@ -3,8 +3,7 @@ import pluginUniqueValidator from "mongoose-unique-validator"
 
 
 const ContactUsSchema = new mongoose.Schema({
-    header: String,
-    sub_header: String,
+    email : String,
     address_1: String,
     address_2: String,
     address_3: String,

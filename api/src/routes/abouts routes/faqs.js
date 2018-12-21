@@ -21,13 +21,21 @@ router.get("/", (req, res) => {
 })
 
 router.delete("/", (req, res) => {
+    console.log(req.body)
     FAQModel.findByIdAndRemove(req.body._id)
     .then (result => {
+        console.log(result)
         FAQModel.find()
-        .then (data => {
+        .then (faqs => {
             res.status(200).json({
-                data,
-                message : "successfully delete the product from the database"
+                faqs,
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: {
+                    message: err
+                }
             })
         })
     })
@@ -53,8 +61,19 @@ router.post("/", (req, res) => {
 
         question.save()
         .then(faq => {
-            res.status(200).json({
-                faq,
+            console.log(faq)
+            FAQModel.find()
+            .then (faqs => {
+                res.status(200).json({
+                    faqs,
+                })
+            })
+            .catch(err => {
+                res.status(500).json({
+                    error: {
+                        message: err
+                    }
+                })
             })
         })
         .catch(err => {
@@ -77,8 +96,19 @@ router.post("/", (req, res) => {
 router.patch("/", (req, res) => {
     FAQModel.findByIdAndUpdate(req.body._id, req.body, {new : true})
     .then(faq => {
-        res.status(200).json({
-            faq,
+        console.log(faq)
+        FAQModel.find()
+        .then (faqs => {
+            res.status(200).json({
+                faqs,
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: {
+                    message: err
+                }
+            })
         })
     })
     .catch(err => {

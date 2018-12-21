@@ -51,6 +51,7 @@ export default class MyApp extends App {
                 route: props.router.route,
                 query: props.router.query
             },
+            account:{},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
 

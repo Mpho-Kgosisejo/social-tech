@@ -96,6 +96,11 @@
     position: relative !important;
 }
 
+.edit-chef-image-div {
+    background-color: gray;
+    position: relative !important;
+}
+
 .edit-image-button{
     margin: 0;
     /* background: yellow; */
@@ -168,3 +173,10 @@
 
 
 /* END REGION ORDERS PAGE */
+
+
+/* */
+.edit-faq-input {
+    padding-bottom: 10px !important;
+}
+/* */
