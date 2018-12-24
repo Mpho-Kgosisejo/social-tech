@@ -113,3 +113,31 @@ export const get_info = (req, res) => {
         })
     })
 }
+
+export const get_all_users = (req, res) => {
+
+    UserModel.find()
+    .then(users => {
+        if (users){   
+            res.json({
+                users,
+                message: "OK"
+            })
+        }else{
+            res.status(404).json({
+                error: {
+                    message: "failed to get all users [1]"
+                }
+            })
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(404).json({
+            catch: err,
+            error: {
+                message: "failed to get all users [2]"
+            }
+        })
+    })
+}

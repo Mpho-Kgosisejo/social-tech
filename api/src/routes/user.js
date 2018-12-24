@@ -3,7 +3,7 @@ import express from "express"
 import UserModel from "../models/User"
 import parseErrors from "../utils/parseErrors"
 import {sendConfirmationEmail} from "../mailer/mailer"
-import {userAuth} from "../middleware/checkAuth"
+import {userAuth, adminAuth} from "../middleware/checkAuth"
 import * as controller from "../controllers/user"
 import {multerUpload} from "../utils/multerImageHandler"
 
@@ -43,6 +43,8 @@ router.post("/", (req, res) => {
 })
 
 router.get("/", userAuth, controller.get_info)
+
+router.get("/all", adminAuth, controller.get_all_users)
 
 router.patch("/", userAuth, controller.update_info)
 

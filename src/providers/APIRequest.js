@@ -302,6 +302,15 @@ const API = {
             )
         }
     },
+    dashboard_Index : {
+        get_users : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/user/all`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }
+    },
     dashboard_orders: {
         get_orders : () => {
             if (Config.get("api.isMock")){

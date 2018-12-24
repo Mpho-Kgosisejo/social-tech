@@ -1,5 +1,5 @@
 .dashboard-sidebar-pushable{
-    background-color: whitesmoke !important;
+    background-color: aqua !important;
     height: 100% !important;
     max-height: 100%;
 }
@@ -159,14 +159,6 @@
     border-top: none !important;
 } */
 
-
-
-
-
-
-
-
-
 /* END REGION ORDERS PAGE */
 
 
@@ -175,3 +167,25 @@
     padding-bottom: 10px !important;
 }
 /* */
+
+/* REGION: DASHBOARD MAIN PAAGE */
+
+.index-top-grid {
+    background-color: #ffffff !important;
+    /* margin: 15px 15px 15px 15px !important; */
+    padding-top: 15px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+}
+
+.index-top-grid-column {
+    background-color: yellow !important;
+    /* margin-left: 20px !important; */
+    height: 100px !important;
+    /* width: 200px !important; */
+    /* padding-bottom: 100px !important; */
+    
+}
+
+/* END REGION MAIN PAGE */
+
