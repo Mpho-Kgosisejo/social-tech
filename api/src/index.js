@@ -10,6 +10,7 @@ import auth from "./routes/auth"
 import user from "./routes/user"
 import menu from "./routes/menu"
 import product from "./routes/products";
+import order from "./routes/order"
 
 import chef from "./routes/abouts routes/chefs"
 import contactUS from "./routes/abouts routes/contactus"
@@ -45,6 +46,7 @@ app.use("/auth", auth)
 app.use("/user", user)
 app.use("/menus", menu)
 app.use("/products", product)
+app.use("/order", order)
 
 // abouts routes 
 app.use("/abouts", abouts)

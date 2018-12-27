@@ -181,7 +181,6 @@ export const handle_admin_rights = (req, res) => {
 }
 
 export const delete_user = (req, res) => {
-    console.log(req.body)
     UserModel.findByIdAndRemove(req.body._id)
     .then(user => {
         console.log(user)
