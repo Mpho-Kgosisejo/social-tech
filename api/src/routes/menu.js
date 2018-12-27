@@ -105,7 +105,7 @@ router.delete("/", adminAuth,(req, res) => {
     CategoryModel.findByIdAndRemove(req.body._id)
     .then(result => {
         // console.log(result)
-        ProductModel.deleteMany({menuCategoryId : req.body._id})
+        ProductModel.find({menuCategoryId : req.body._id})
         .then(_result => {
             // console.log(res)
             CategoryModel.find()

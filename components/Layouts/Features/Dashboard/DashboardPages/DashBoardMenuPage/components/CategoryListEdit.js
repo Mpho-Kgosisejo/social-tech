@@ -139,7 +139,6 @@ class CategoryListEdit extends React.Component {
             ctgry.title = jsUcfirst(ctgry.title)
             const res = await api.menu.upload_menu(ctgry)
 
-            console.log(ctgry)
 
             if(res.status === 200){
                 let newArr = res.data.data

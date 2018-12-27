@@ -27,10 +27,10 @@ class OrderHIstoryChart extends React.Component {
     {
 
         return(
-            <div>
-                <h1>I AM THE order history chart component</h1>
+            <>
+                <h3>Order History Graph</h3>
                 <Line data={this.state.chartData}/>
-            </div>
+            </>
         )
     }
 }    

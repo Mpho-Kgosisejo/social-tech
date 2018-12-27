@@ -44,10 +44,16 @@ router.post("/", (req, res) => {
 
 router.get("/", userAuth, controller.get_info)
 
-router.get("/all", adminAuth, controller.get_all_users)
-
 router.patch("/", userAuth, controller.update_info)
 
 router.patch("/avator", userAuth, multerUpload.single("avator"), controller.update_avator)
+
+//these will be handled by the admin in the dashboard, hence they require the admin's Authorization
+
+router.get("/all", adminAuth, controller.get_all_users)
+
+router.delete("/delete-user", adminAuth, controller.delete_user)
+
+router.patch("/handle-admin-rights", adminAuth, controller.handle_admin_rights)
 
 export default router

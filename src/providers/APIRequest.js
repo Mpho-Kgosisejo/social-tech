@@ -309,6 +309,20 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
+        }, 
+        make_or_revoke_admin : (user) => {
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/user/handle-admin-rights`,{ _id : user._id, admin : user.admin })
+                .then (res => res)
+                .catch(err => err.response)
+            )
+        },
+        delete_user : (user) => {
+            return (
+                axios.delete(`${Config.get("api.endpoint")}/user/delete-user`, { data : { _id : user._id, image : user.image}})
+                .then(res => res)
+                .catch(err => err.response)
+            )
         }
     },
     dashboard_orders: {
