@@ -66,7 +66,7 @@ class Dashoard extends React.Component {
                             <React.Fragment>
                                 
                                 {(state.login && state.login.isAdmin) ?
-                                    <AdminDashboard /> : <UserDashboard />
+                                    <AdminDashboard dispatch={this.props.dispatch}/> : <UserDashboard />
                                 }
                             </React.Fragment>
                         )}

@@ -17,7 +17,7 @@ class UserListSegment extends React.Component {
             //pagination stuff
             //pagination stuff
             activePage: 1,
-            usersPerPage : 9,
+            usersPerPage : 8,
         }
     }
 
@@ -177,13 +177,19 @@ class UserListSegment extends React.Component {
                         }
                     </List>
                         { 
-                            this.countNumberOfPages(users, usersPerPage) > 1 ?     
-                                <div className="pagination-component centered-element">
-                                    <Pagination size='tiny' onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(users, usersPerPage)} />
-                                </div>
-                            : null
+                            isSearching ?
+                                this.countNumberOfPages(filteredList, usersPerPage) > 1 ?     
+                                    <div className="pagination-component centered-element">
+                                        <Pagination size='tiny' onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(users, usersPerPage)} />
+                                    </div>
+                                : null
+                             :
+                                this.countNumberOfPages(users, usersPerPage) > 1 ?     
+                                    <div className="pagination-component centered-element">
+                                        <Pagination size='tiny' onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(users, usersPerPage)} />
+                                    </div>
+                                : null
                         }
-                    }
                     {/* <div className="pagination-component centered-element"> */}
                 </div>
 
@@ -240,13 +246,11 @@ class UserListSegment extends React.Component {
                                         <Button size='tiny' onClick={() => this.handleUserClick()}>Close</Button>                                    
                                     </div>
                                 </div>
-                                
-                                
                             </Modal.Content>
                         </Modal>
                     } 
                 </>
-                <pre>{JSON.stringify(this.state, " ", 2)}</pre>
+                {/*pre>{JSON.stringify(this.state, " ", 2)}</pre>*/}
             </>
         )
     }

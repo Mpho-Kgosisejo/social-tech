@@ -15,6 +15,10 @@ const OrderSchema = new mongoose.Schema({
         delivery_adress : {
             type : String,
             required : false
+        },
+        cutomer_id : {
+            type : String,
+            required : true
         }
     },
     details : {

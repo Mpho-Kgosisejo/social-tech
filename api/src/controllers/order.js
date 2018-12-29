@@ -18,6 +18,10 @@ export const get_orders = (req, res) => {
     })
 }
 
+export const get_user_orders = (req, res) => {
+    //TO:DO, use the uid to get a specific user's orders for the user profile page
+}
+
 export const get_order = (req, res) => {
     const id = req.params.id
     console.log(id)

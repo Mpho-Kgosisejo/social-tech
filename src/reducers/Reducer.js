@@ -30,10 +30,10 @@ export const reducer = (state, action) => {
             ...state,
             menu: action.payload
         })
-        // case "ORIGINAL_MENU": return ({
-        //     ...state,
-        //     original_menu: action.payload
-        // })
+        case "ORDERS": return ({
+            ...state,
+            orders: action.payload
+        })
         case "CART_ADD": return ({
             ...state,
             cart: {

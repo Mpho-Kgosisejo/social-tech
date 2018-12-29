@@ -302,6 +302,42 @@ const API = {
             )
         }
     },
+    orders : {
+        get_orders : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/order`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        get_single_order : (id) => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/order/${id}`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        add_order : (body) => {
+            return (
+                axios.post(`${Config.get("api.endpoint")}/order`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        update_order : (body) => {
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/order`)
+                .then(res => res)
+                .catch(err => err.response)
+            ) 
+        },
+        //NB : NOT FULLY FUNCTIONAL YET.
+        get_user_orders : (uid) => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/order/${uid}`)
+            )
+        }
+    },
     dashboard_Index : {
         get_users : () => {
             return (

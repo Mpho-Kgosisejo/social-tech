@@ -13,8 +13,8 @@ import ContextAPI from '../../../../src/config/ContextAPI';
 
 class DashboardSidebar extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             activePage: 'home',
             openSidebar: false
@@ -36,7 +36,7 @@ class DashboardSidebar extends React.Component {
         switch (pageName) {
             case "Home":
                 return (
-                    <DashboardMainPage />
+                    <DashboardMainPage dispatch={this.props.dispatch}/>
                 )
             case "Menu":
                 return (
@@ -57,7 +57,7 @@ class DashboardSidebar extends React.Component {
                 )
             default:
                 return (
-                    <DashboardMainPage />
+                    <DashboardMainPage dispatch={this.props.dispatch}/>
                 )
         }
     }
