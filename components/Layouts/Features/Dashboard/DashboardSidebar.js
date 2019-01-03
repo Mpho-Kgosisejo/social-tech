@@ -120,7 +120,7 @@ class DashboardSidebar extends React.Component {
 
                             <ContextAPI.Consumer>
                                 {({state}) => (
-                                    <pre>{JSON.stringify(state.router, "", 1)}</pre>
+                                    <pre>{JSON.stringify(state.router, "", 3)}</pre>
                                 )}
                             </ContextAPI.Consumer>
                         </div>

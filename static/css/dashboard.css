@@ -150,6 +150,7 @@
 
 .table-header{
     background-color: #c59c70 !important;
+    color: white !important;
 }
 
 /* .ui.table thead th , .table-header{
@@ -160,6 +161,17 @@
 } */
 
 /* END REGION ORDERS PAGE */
+
+.ui.items>.item>.image>img, .image-item{
+    height: 150px !important;
+}
+
+.status-button{
+    margin-top: -1em !important;
+    background-color: #c59c70 !important;
+    color: white !important;
+}
+
 
 
 /* */
