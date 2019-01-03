@@ -39,6 +39,7 @@ const pushSideBar =({dispatch}) =>
     })
 }
 
+const ResponsiveFix = () => <></>
 
 const RightNav = () => (
     <ContextAPI.Consumer>
@@ -78,7 +79,6 @@ const RightNav = () => (
             </React.Fragment>
         )}
     </ContextAPI.Consumer>
-
 )
 
 const LeftTabletNav = () => (
@@ -126,20 +126,20 @@ export const LeftComputerNav = () => (
                                 <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
                         )}
-                        <Responsive maxWidth={991} as={React.Fragment}>
+                        <Responsive maxWidth={991} as={ResponsiveFix}>
                             {isEmptyObj(state.login) ? <AuthLayout /> : <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>}
-                        <Link href="/cart" prefetch passHref>
-                            <Menu.Item className="fresheats-brown-color cart-icon">
-                                <Icon className="cart-icon-" name="cart" size="mini">
-                                    {state.cart.details.itemsCount > 0 &&
-                                        <Label circular size="mini" style={{background: LIGHT_RED}}>
-                                            {state.cart.details.itemsCount}
-                                        </Label>
-                                    }
-                                </Icon>
-                                View Cart
-                            </Menu.Item>
-                        </Link>
+                            <Link href="/cart" prefetch passHref>
+                                <Menu.Item as="a" className="fresheats-brown-color cart-icon">
+                                    <Icon className="cart-icon-" name="cart" size="mini">
+                                        {state.cart.details.itemsCount > 0 &&
+                                            <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                                {state.cart.details.itemsCount}
+                                            </Label>
+                                        }
+                                    </Icon>
+                                    View Cart
+                                </Menu.Item>
+                            </Link>
                         </Responsive>
                     </React.Fragment>
                 )}
@@ -171,18 +171,18 @@ const Nav = () => (
                                 {!isEmptyObj(state.login) ? <RightNav /> : <Responsive minWidth={992} as={React.Fragment}><AuthLayout /></Responsive>}
                             </Menu.Menu>
                         }
-                         <Responsive minWidth={992} as={React.Fragment}>
-                        <Link href="/cart" prefetch passHref>
-                            <Menu.Item className="fresheats-brown-color">
-                              <Icon className="cart-icon-nav" name="cart">
-                                {state.cart.details.itemsCount > 0 &&
-                                    <Label circular size="mini" style={{background: LIGHT_RED}}>
-                                        {state.cart.details.itemsCount}
-                                    </Label>
-                                }
-                              </Icon>
-                            </Menu.Item>
-                        </Link>
+                        <Responsive minWidth={992} as={React.Fragment}>
+                            <Link href="/cart" prefetch passHref>
+                                <Menu.Item className="fresheats-brown-color">
+                                <Icon className="cart-icon-nav" name="cart">
+                                    {state.cart.details.itemsCount > 0 &&
+                                        <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                            {state.cart.details.itemsCount}
+                                        </Label>
+                                    }
+                                </Icon>
+                                </Menu.Item>
+                            </Link>
                         </Responsive>
                     </React.Fragment>
                 </Container>
