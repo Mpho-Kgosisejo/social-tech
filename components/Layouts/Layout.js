@@ -55,7 +55,7 @@ const Layout = ({children, title = "", includeNav = true, includeFooter = true, 
 
             {/* If you offline... */}
             {/* <link rel="stylesheet" href="/static/css/lib/semantic-2.3.0.min.css" /> */}
-            <link rel="stylesheet" href="/static/css/lib/semantic-2.4.0.min.css" />
+            {/* <link rel="stylesheet" href="/static/css/lib/semantic-2.4.0.min.css" /> */}
             <link ref="stylesheet" href="/static/css/style.css" />
 
             
