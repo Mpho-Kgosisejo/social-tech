@@ -118,9 +118,10 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                 token={(data) => handleCheckout({data, cart: state.cart})}
                                                 reconfigureOnUpdate={false}
                                                 triggerEvent="onClick"
-                                                email={"mpho.kgosisejo@hotmail.com"}
+                                                email={login.email}
+                                                disabled={false}
                                             >
-                                                <Button fluid color="black">Proceed to Payment</Button>
+                                                <Button disabled={false} fluid color="black">Proceed to Payment</Button>
                                             </StripeCheckout>
                                 : 
                                     <Label size="large" style={{width: "100%"}}><Header as="h3" className="notifier">You must login to Proceed to Payment</Header></Label>
