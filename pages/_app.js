@@ -54,6 +54,7 @@ export default class MyApp extends App {
                 index: 0
             },
             catering: {},
+            index: {},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }

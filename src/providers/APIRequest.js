@@ -96,6 +96,9 @@ const API = {
         },
         catering: () => {
             return (mock.catering().then(res => res))
+        },
+        index: () => {
+            return (mock.index().then(res => res))
         }
     },
     gallery: {

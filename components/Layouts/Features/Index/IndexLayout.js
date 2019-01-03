@@ -14,7 +14,6 @@ class IndexLayout extends React.Component {
                 <IndexSteps />
                 <IndexMenu />
                 <IndexBanner />
-                {/* <IndexBottomBody /> */}
                 <IndexFrequentlyOrdered />
             </React.Fragment>
         )

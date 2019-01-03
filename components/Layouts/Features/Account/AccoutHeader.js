@@ -5,6 +5,21 @@ import ContextAPI from "../../../../src/config/ContextAPI";
 import Layout from '../../Layout';
 import Avator from '../../../utils/Avator';
 
+
+const hideButton = () => {
+    return(
+        <>
+        </>
+    ) 
+} 
+
+const displayButton = () => {
+    return(
+        <div className="pull-right">
+            {this.props.toggleEdit ? <Button onClick={this.props.toggleEdit} circular icon='edit outline' /> : ""}
+        </div>
+    )
+}
 class AccountHeader extends React.Component {
 
     constructor(props) {
@@ -16,6 +31,11 @@ class AccountHeader extends React.Component {
 
     editFunc = () => {
         this.setState({ disabled: false })
+    }
+
+    componentDidMount()
+    {
+        console.log(this.props)
     }
 
     render() {
@@ -40,9 +60,7 @@ class AccountHeader extends React.Component {
                                         </Header>
                                         <br />
                                         <div className="padding-thirty">
-                                            <div className="pull-right">
-                                                <Button onClick={this.props.toggleEdit} circular icon='edit outline' />
-                                            </div>
+                                            {this.hideButton ? hideButton : displayButton}
                                         </div>
                                     </Grid.Column>
                                 </Grid>

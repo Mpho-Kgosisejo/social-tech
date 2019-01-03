@@ -13,6 +13,7 @@ import { isEmptyObj } from '../../../../src/utils/Objs';
 import { InLineError } from "../../../Messages/InLineMessage"
 import API from '../../../../src/providers/APIRequest';
 import * as MessageTypes from "../../../../src/Types/MessageTypes"
+import { MainMessage } from "../../../Messages/Message";
 
 class CateringHeader extends React.Component {
     constructor() {
@@ -136,7 +137,8 @@ class CateringHeader extends React.Component {
                                         <Button.Content hidden>in 5 minutes</Button.Content>
                                     </Button></div>}>
                                     <Modal.Header>Lets contact you now!</Modal.Header>
-                                    <Form>
+                                    {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message}/>}
+                                    <Form  loading={loading}>
                                         <Modal.Content>
                                             <Modal.Description className="form-fields">
                                                 <Form.Group widths='equal'>
@@ -204,7 +206,7 @@ class CateringHeader extends React.Component {
                                                 onClose={this.close}
                                                 size='small'
                                                 trigger={
-                                                    <Button icon>
+                                                    <Button type="submit" icon>
                                                         Submit <Icon name='right chevron' />
                                                     </Button>
                                                 }

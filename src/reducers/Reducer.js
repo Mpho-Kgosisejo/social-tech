@@ -34,6 +34,10 @@ export const reducer = (state, action) => {
             ...state,
             menu: action.payload
         })
+        case "INDEX": return({
+            ...state,
+            index: action.payload
+        })
         case "ACCOUNT_PERSONAL_DETAILS": return({
             ...state,
             account: {
