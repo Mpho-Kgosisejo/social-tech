@@ -12,6 +12,7 @@ class DashboardMainPage extends React.Component {
     {
         super(props)
         this.state = {
+            isLoading : true,
             userList : {},
             orderList : {},
             chartData : [],
@@ -78,7 +79,7 @@ class DashboardMainPage extends React.Component {
             })
             // console.log( "==========>>>>>>>>>", data)
 
-            this.setState({ orderList : orders, currentYear : _currentYear, chartData : data })
+            this.setState({ orderList : orders, currentYear : _currentYear, chartData : data, isLoading : false })
             
             this.props.dispatch({ type: "ORDERS", payload: _orders })
         }
@@ -99,7 +100,7 @@ class DashboardMainPage extends React.Component {
 
     render()
     {
-        const { userList, orderList, currentYear, chartData } = this.state
+        const { userList, orderList, currentYear, chartData, isLoading } = this.state
         return(
             <div >
                 <ContextAPI.Consumer>
@@ -108,36 +109,34 @@ class DashboardMainPage extends React.Component {
                             <Grid.Row stretched>
                                 <Grid.Column computer={4} tablet={16} mobile={16}>
                                     <Segment className="index-top-grid-column">
-                                            <h1 >{userList.length} </h1>
+                                        { isLoading ? <Loader active/> : <h1> {userList.length} </h1> }
                                     </Segment>
                                 </Grid.Column >
                                 <Grid.Column  computer={4} tablet={16} mobile={16}>
                                     <Segment className="index-top-grid-column">
-                                        {/* {isEmptyObj(state.orders) ? } */}
-                                        {/* <h1 > {state.orders.numOrders} </h1> */}
+                                        { isLoading ? <Loader active/> : <h1 > {orderList.length} </h1> }
                                     </Segment>
                                 </Grid.Column>
                                 <Grid.Column computer={4} tablet={16} mobile={16}>
                                     <Segment className="index-top-grid-column">
-                                            <h1 > Earningz? </h1>
+                                        { isLoading ? <Loader active/> : <h1> Earningz? </h1> }
                                     </Segment>                        
                                 </Grid.Column>
                                 <Grid.Column  computer={4} tablet={16} mobile={16}>
                                     <Segment className="index-top-grid-column">
-                                        <h1 > VIZITORS? </h1>
+                                        { isLoading ? <Loader active/> : <h1> VIZITORS? </h1> }
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>
                             <Grid.Row stretched>
                                 <Grid.Column  computer={8} tablet={16} mobile={16}>
                                     <Segment className="index-2nd-grid-column">
-                                        {/* <pre>{JSON.stringify(state.orders, " ", 2)}</pre> */}
-                                            <OrderHistoryChart chartData={chartData} currentYear={currentYear}/>
+                                        { isLoading ? <Loader active/> : <OrderHistoryChart chartData={chartData} currentYear={currentYear}/> }
                                     </Segment>
                                 </Grid.Column>
                                 <Grid.Column  computer={8} tablet={16} mobile={16}>
                                     <Segment className="index-2nd-grid-column">
-                                        <UserListSegment refreshState={this.refreshState} users={userList} />
+                                        { isLoading ? <Loader active/> : <UserListSegment refreshState={this.refreshState} users={userList} /> }
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>

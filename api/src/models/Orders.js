@@ -1,25 +1,15 @@
 import mongoose from "mongoose"
 import pluginUniqueValidator from "mongoose-unique-validator"
-import Product from "./Product"
 
 const OrderSchema = new mongoose.Schema({
-    customer: {
-        name : {
-            type : String,
-            required : true
-        },
-        contact : {
-            type : String,
-            required : true
-        },
-        delivery_adress : {
-            type : String,
-            required : false
-        },
-        cutomer_id : {
-            type : String,
-            required : true
-        }
+    customer : { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref:'User' , 
+        required : true
+    },
+    delivery : {
+        type : Object,
+        required : false
     },
     details : {
         itemsCount : {

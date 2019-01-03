@@ -136,14 +136,21 @@ class UserListSegment extends React.Component {
                                         <List.Header>{user.username}</List.Header>
                                         {user.email}
                                     </List.Content>
+                                    <List.Content verticalAlign='middle' floated='right'>
+                                        {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
+                                    </List.Content>
                                 </div>
                             : 
                                 <>
+                                    <List.Content  floated='right'>
+                                        {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
+                                    </List.Content>
                                     <Image avatar src={user.image}/>
                                     <List.Content>
                                         <List.Header>{user.username}</List.Header>
                                         {user.email}
                                     </List.Content>
+                                    
                                 </>
                         }
                     </List.Item>
@@ -162,7 +169,7 @@ class UserListSegment extends React.Component {
                     </div>
                 </div>
                 <div className="list-div">
-                    <List divided>
+                    <List divided size='large' animated>
                         {
                             isEmptyObj (users) ? 
                                 <List.Item>
@@ -202,7 +209,7 @@ class UserListSegment extends React.Component {
                                 <Modal.Description>
                                     <Header>{clickedUserDetails.username}</Header>
                                     <p>{clickedUserDetails.email}</p>
-                                    {this.validateProfileCompletion(clickedUserDetails) ? null : <Label basic className="fresheats-brown-bg">This Users Profile Is not completed yet!</Label>}                                    
+                                    {clickedUserDetails.emailConfirmed ? null : <Label basic className="fresheats-brown-bg">This Users account not verified yet.</Label>}                                    
                                 </Modal.Description>
                             </Modal.Content>
                             <Divider className="user-details-divider"/>
@@ -211,7 +218,7 @@ class UserListSegment extends React.Component {
                                     <div>
                                         {/* make admin / revoke access modal */}
                                         <Modal closeIcon trigger={
-                                            <Button size='tiny' positive>{clickedUserDetails.admin ? 'Revoke admin rights' : 'Make admin'}</Button>
+                                            <Button size='tiny' disabled={!clickedUserDetails.emailConfirmed} positive>{clickedUserDetails.admin ? 'Revoke admin rights' : 'Make admin'}</Button>
                                         } basic 
                                         size='small'>
                                             <Header content={clickedUserDetails.admin ? 'Revoke ' + clickedUserDetails.username + '`s administrative rights?' : 'Make ' + clickedUserDetails.username + ' an admin?'}/>
@@ -228,7 +235,7 @@ class UserListSegment extends React.Component {
                                         </Modal> 
                                         
                                         {/* delete user modal */}
-                                        <Modal closeIcon trigger={<Button size='tiny' negative >Delete User</Button>} basic size='small'>
+                                        <Modal closeIcon trigger={<Button disabled={!clickedUserDetails.emailConfirmed} size='tiny' negative >Delete User</Button>} basic size='small'>
                                             <Header content='Warning! This Action is irriversible'/>
                                             <Modal.Content>
                                                 <p>
