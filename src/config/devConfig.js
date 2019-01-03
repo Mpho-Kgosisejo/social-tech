@@ -1,4 +1,7 @@
 export default {
+    stripe: {
+        stripeKey: "pk_test_BNTfnVdHOKirDMYCN8jGzTy5"
+    },
     api: {
         isMock: true,
         endpoint: "http://localhost:3000",

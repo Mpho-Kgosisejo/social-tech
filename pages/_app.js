@@ -45,7 +45,9 @@ export default class MyApp extends App {
                 delivery: {},
                 items: []
             },
-            account:{},
+            account:{
+                personal_details: {}
+            },
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }

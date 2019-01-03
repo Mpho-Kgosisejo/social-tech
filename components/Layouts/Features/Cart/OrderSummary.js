@@ -1,5 +1,6 @@
 import { Grid, Header, Icon, Divider, Button, Checkbox, Label } from "semantic-ui-react";
 import StripeCheckout from "react-stripe-checkout"
+import Config from "react-global-configuration"
 
 import GoogleMaps from "../../../utils/GoogleMaps"
 import { readyToProcessDelivery } from "../../../../src/providers/CartHandler";
@@ -10,7 +11,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
             const {distance, cost} = state.cart.delivery
-            const {login, root_loading} = state
+            const {login, root_loading, account} = state
             // const {} = state.account
             // const {email = "", }
 
@@ -111,7 +112,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                 description={`Order ${Object.keys(state.cart.delivery).length > 0 ? "with" : "without"} delivery`}
                                                 amount={parseInt(total.toFixed(2).replace(".", ""))}
                                                 currency="ZAR"
-                                                stripeKey={"pk_test_BNTfnVdHOKirDMYCN8jGzTy5"}
+                                                stripeKey={Config.get("stripe.stripeKey")}
                                                 shippingAddress={false}
                                                 billingAddress={false}
                                                 zipCode={false}
