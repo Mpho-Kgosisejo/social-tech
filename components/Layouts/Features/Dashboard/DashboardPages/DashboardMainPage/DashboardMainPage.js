@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Grid, Segment, Loader } from 'semantic-ui-react'
+import { Container, Grid, Segment, Loader, Dropdown } from 'semantic-ui-react'
 import OrderHistoryChart from './Components/OrderHistoryChart'
 import UserListSegment from './Components/UserListSegment'
 import ContextAPI from "../../../../../../src/config/ContextAPI";
@@ -16,7 +16,9 @@ class DashboardMainPage extends React.Component {
             userList : {},
             orderList : {},
             chartData : [],
-            currentYear : ""
+            currentYear : "",
+            orderChartDropdownOptions : [],
+            selectedYearData : []
         }
     }
 
@@ -27,6 +29,54 @@ class DashboardMainPage extends React.Component {
             this.setState({ userList : res.data.users })
         }
     } 
+
+    sortYearlyDataByMonth = (yearArray, _orderMonth) => {
+        let month = yearArray
+        
+        switch(_orderMonth)
+        {
+            case '01' :
+                month[0] += 1
+                break 
+            case '02' : 
+            month[1] += 1
+                break 
+            case '03' : 
+            month[2] += 1
+                break
+            case '04' : 
+            month[3] += 1
+                break
+            case '05' : 
+            month[4] += 1
+                break
+            case '06' : 
+            month[5] += 1
+                break
+            case '07' :
+            month[6] += 1
+                break
+            case '08' : 
+            month[7] += 1
+                break
+            case '09' : 
+            month[8] += 1
+                break
+            case '10' : 
+            month[9] += 1
+                break
+            case '11' : 
+            month[10] += 1
+                break
+            case '12' : 
+            month[11] += 1
+                break
+            default : 
+                break
+        }
+        return month
+    }
+
 //           "createdAt": "2018-12-24T14:46:11.028Z",
     getOrders = async () => {
         const res = await api.orders.get_orders()
@@ -55,65 +105,40 @@ class DashboardMainPage extends React.Component {
                     years.push(_orderYear)
                 years = years.sort()
             });
-            console.log(years.sort())
 
+            const _data = new Object()
+            if(years.length > 0)
+            {
+                years.forEach(year => {
+                    orders.forEach(_order => {
+                        let _orderYear = _order.createdAt.split('-')[0]
+                        let _orderMonth = _order.createdAt.split('-')[1]
+                        
+                        if (year == _orderYear)
+                        {
+                            if (_data.hasOwnProperty(year))
+                            {
+                                console.log("there")
+                                const newArr = _data[year]
 
-            let _currentYear = new Date().getFullYear() - 4                    
-            const data = [0,0,0,0,0,0,0,0,0,0,0,0]
+                                _data[year] = this.sortYearlyDataByMonth(_data[year], _orderMonth)
+                            }
+                            else 
+                            {
+                                console.log("not there")
+                                _data[year] = [0,0,0,0,0,0,0,0,0,0,0,0]
 
-            // orders.forEach(_order => {
-            //     let _orderYear = _order.createdAt.split('-')[0]
-            //     let _orderMonth = _order.createdAt.split('-')[1]
-            //     console.log(_orderMonth, ">>>", _currentYear.toString(), "<<<", _orderYear)
-            //     if (_currentYear.toString() === _orderYear)
-            //     {
-            //         switch(_orderMonth)
-            //         {
-            //             case '01' :
-            //                 data[0] += 1
-            //                 break 
-            //             case '02' : 
-            //                 data[1] += 1
-            //                 break 
-            //             case '03' : 
-            //                 data[2] += 1
-            //                 break
-            //             case '04' : 
-            //                 data[3] += 1
-            //                 break
-            //             case '05' : 
-            //                 data[4] += 1
-            //                 break
-            //             case '06' : 
-            //                 data[5] += 1
-            //                 break
-            //             case '07' :
-            //                 data[6] += 1
-            //                 break
-            //             case '08' : 
-            //                 data[7] += 1
-            //                 break
-            //             case '09' : 
-            //                 data[8] += 1
-            //                 break
-            //             case '10' : 
-            //                 data[9] += 1
-            //                 break
-            //             case '11' : 
-            //                 data[10] += 1
-            //                 break
-            //             case '12' : 
-            //                 data[11] += 1
-            //                 break
-            //             default : 
-            //                 break
-            //         }
-            //     }
-            // })
-            // // console.log( "==========>>>>>>>>>", data)
+                                _data[year] = this.sortYearlyDataByMonth(_data[year], _orderMonth) 
+                            }
+                        }
+                    })
+                })
+            }
+            console.log(_data)
 
+            
             // this.setState({ orderList : orders, currentYear : _currentYear, chartData : data, isLoading : false })
-            this.setState({ orderList : orders, currentYear : _currentYear, chartData : data, isLoading : false })
+            this.setState({ orderList : orders, isLoading : false, selectedYearData : _data[new Date().getFullYear()] ,chartData : _data, orderChartDropdownOptions : years })
             // this.props.dispatch({ type: "ORDERS", payload: _orders })
         }
     } 
@@ -133,7 +158,7 @@ class DashboardMainPage extends React.Component {
 
     render()
     {
-        const { userList, orderList, currentYear, chartData, isLoading } = this.state
+        const { userList, orderList, currentYear, chartData, isLoading, orderChartDropdownOptions } = this.state
         return(
             <div >
                 <ContextAPI.Consumer>
@@ -167,6 +192,15 @@ class DashboardMainPage extends React.Component {
                                         { isLoading ? <Loader active/> : 
                                             <React.Fragment> 
                                                 <h3>Order History Graph</h3> 
+                                                <Dropdown 
+                                                    search 
+                                                    selection
+                                                    text={new Date().getFullYear()}
+                                                    options={
+                                                        orderChartDropdownOptions.map(item => (
+                                                        { key: item, text: item, value: item}
+                                                    ))}
+                                                />
                                                 {/* <OrderHistoryChart chartData={chartData} currentYear={currentYear}/>  */}
                                             </React.Fragment>}
                                     </Segment>
