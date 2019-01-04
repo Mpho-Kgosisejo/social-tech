@@ -1,6 +1,7 @@
 export default {
     stripe: {
-        stripeKey: "pk_test_BNTfnVdHOKirDMYCN8jGzTy5"
+        stripeKey: "pk_test_BNTfnVdHOKirDMYCN8jGzTy5",
+        name: "Stripe"
     },
     api: {
         isMock: true,

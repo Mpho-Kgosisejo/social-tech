@@ -126,7 +126,7 @@ export const LeftComputerNav = () => (
                                 <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
                         )}
-                        <Responsive maxWidth={991} as={ResponsiveFix}>
+                        <Responsive maxWidth={991} as={"div"}>
                             {isEmptyObj(state.login) ? <AuthLayout /> : <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>}
                             <Link href="/cart" prefetch passHref>
                                 <Menu.Item as="a" className="fresheats-brown-color cart-icon">

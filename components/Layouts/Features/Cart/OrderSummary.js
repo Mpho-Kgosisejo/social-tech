@@ -5,8 +5,9 @@ import Config from "react-global-configuration"
 import GoogleMaps from "../../../utils/GoogleMaps"
 import { readyToProcessDelivery } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
+import OrderCollectorForm from "./OrderCollectorForm";
 
-const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress}) => (
+const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress, paymentLoading, funcs, cartState}) => (
     <ContextAPI.Consumer>
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
@@ -89,6 +90,16 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                             </Grid.Column>
                         </Grid.Row>
                         <Divider />
+                        {root_loading ? null : Object.keys(login).length > 0 &&
+                            <>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <OrderCollectorForm cartState={cartState} funcs={funcs} />
+                                    </Grid.Column>
+                                </Grid.Row>
+                                <Divider />
+                            </>
+                        }
                         <Grid.Row>
                             <Grid.Column>
                                 {/* <Button
@@ -120,9 +131,18 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                 reconfigureOnUpdate={false}
                                                 triggerEvent="onClick"
                                                 email={login.email}
-                                                disabled={false}
+                                                disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0)}
+                                                opened={() => funcs.cartDispatch({paymentLoading: false})}
+                                                closed={() => funcs.cartDispatch({paymentLoading: false})}
                                             >
-                                                <Button disabled={false} fluid color="black">Proceed to Payment</Button>
+                                                <Button
+                                                    disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0)}
+                                                    onClick={() => funcs.validatorUser()}
+                                                    fluid
+                                                    color="black"
+                                                >
+                                                    {paymentLoading ? `Loading ${Config.get("stripe.name")}...` : "Proceed to Payment"}
+                                                </Button>
                                             </StripeCheckout>
                                 : 
                                     <Label size="large" style={{width: "100%"}}><Header as="h3" className="notifier">You must login to Proceed to Payment</Header></Label>

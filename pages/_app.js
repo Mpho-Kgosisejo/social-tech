@@ -96,7 +96,7 @@ export default class MyApp extends App {
         return (
             <Container>
                 <ContextAPI.Provider value={{state: this.state}}>
-                    <Component {...pageProps} {...this.props} dispatch={this.state.dispatch} />
+                    <Component {...pageProps} {...this.props} state={this.state} dispatch={this.state.dispatch} />
                 </ContextAPI.Provider>
             </Container>
         )
