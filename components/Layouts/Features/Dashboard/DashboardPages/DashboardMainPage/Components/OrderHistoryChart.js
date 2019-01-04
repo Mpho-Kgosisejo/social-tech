@@ -49,10 +49,10 @@ class OrderHIstoryChart extends React.Component {
 
         return(
             <React.Fragment>
-                <h3>Order History Graph</h3>
+                
                 <Line data={data}/>
                 
-                <pre>{JSON.stringify(this.state, " ", 2)}</pre>
+                <pre>{JSON.stringify(this.props, " ", 2)}</pre>
             </React.Fragment>
         )
     }

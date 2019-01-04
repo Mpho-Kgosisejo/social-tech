@@ -33,55 +33,88 @@ class DashboardMainPage extends React.Component {
         if (res.status === 200) 
         {
             const orders = res.data.orders
-            const _orders = {
-                numOrders : orders.length,
-                data: orders
-            }
+            // const _orders = {
+            //     numOrders : orders.length,
+            //     data: orders
+            // }
 
-            let _currentYear = new Date().getFullYear()                     
-            const data = [0,0,0,0,0,0,0,0,0,0,0,0]
+            let years = []
 
             orders.forEach(_order => {
                 let _orderYear = _order.createdAt.split('-')[0]
-                let _orderMonth = _order.createdAt.split('-')[1]
-                if (_currentYear.toString() === _orderYear)
-                {
-                    switch(_orderMonth)
-                    {
-                        case '01' :
-                            data[0] += 1
-                        case '02' : 
-                            data[1] += 1
-                        case '03' : 
-                            data[2] += 1
-                        case '04' : 
-                            data[3] += 1
-                        case '05' : 
-                            data[4] += 1
-                        case '06' : 
-                            data[5] += 1
-                        case '07' :
-                            data[6] += 1 
-                        case '08' : 
-                            data[7] += 1
-                        case '09' : 
-                            data[8] += 1
-                        case '10' : 
-                            data[9] += 1
-                        case '11' : 
-                            data[10] += 1
-                        case '12' : 
-                            data[11] += 1
-                        default : 
-                            break
-                    }
-                }
-            })
-            // console.log( "==========>>>>>>>>>", data)
+                let yearExists = false 
+                
+                years.forEach(year => {
+                    if (year == _orderYear)
+                        yearExists = true
+                    if (year > new Date().getFullYear())
+                        years.pop(year)
+                })
 
+                if (yearExists === false)
+                    years.push(_orderYear)
+                years = years.sort()
+            });
+            console.log(years.sort())
+
+
+            let _currentYear = new Date().getFullYear() - 4                    
+            const data = [0,0,0,0,0,0,0,0,0,0,0,0]
+
+            // orders.forEach(_order => {
+            //     let _orderYear = _order.createdAt.split('-')[0]
+            //     let _orderMonth = _order.createdAt.split('-')[1]
+            //     console.log(_orderMonth, ">>>", _currentYear.toString(), "<<<", _orderYear)
+            //     if (_currentYear.toString() === _orderYear)
+            //     {
+            //         switch(_orderMonth)
+            //         {
+            //             case '01' :
+            //                 data[0] += 1
+            //                 break 
+            //             case '02' : 
+            //                 data[1] += 1
+            //                 break 
+            //             case '03' : 
+            //                 data[2] += 1
+            //                 break
+            //             case '04' : 
+            //                 data[3] += 1
+            //                 break
+            //             case '05' : 
+            //                 data[4] += 1
+            //                 break
+            //             case '06' : 
+            //                 data[5] += 1
+            //                 break
+            //             case '07' :
+            //                 data[6] += 1
+            //                 break
+            //             case '08' : 
+            //                 data[7] += 1
+            //                 break
+            //             case '09' : 
+            //                 data[8] += 1
+            //                 break
+            //             case '10' : 
+            //                 data[9] += 1
+            //                 break
+            //             case '11' : 
+            //                 data[10] += 1
+            //                 break
+            //             case '12' : 
+            //                 data[11] += 1
+            //                 break
+            //             default : 
+            //                 break
+            //         }
+            //     }
+            // })
+            // // console.log( "==========>>>>>>>>>", data)
+
+            // this.setState({ orderList : orders, currentYear : _currentYear, chartData : data, isLoading : false })
             this.setState({ orderList : orders, currentYear : _currentYear, chartData : data, isLoading : false })
-            
-            this.props.dispatch({ type: "ORDERS", payload: _orders })
+            // this.props.dispatch({ type: "ORDERS", payload: _orders })
         }
     } 
 
@@ -131,7 +164,11 @@ class DashboardMainPage extends React.Component {
                             <Grid.Row stretched>
                                 <Grid.Column  computer={8} tablet={16} mobile={16}>
                                     <Segment className="index-2nd-grid-column">
-                                        { isLoading ? <Loader active/> : <OrderHistoryChart chartData={chartData} currentYear={currentYear}/> }
+                                        { isLoading ? <Loader active/> : 
+                                            <React.Fragment> 
+                                                <h3>Order History Graph</h3> 
+                                                {/* <OrderHistoryChart chartData={chartData} currentYear={currentYear}/>  */}
+                                            </React.Fragment>}
                                     </Segment>
                                 </Grid.Column>
                                 <Grid.Column  computer={8} tablet={16} mobile={16}>
