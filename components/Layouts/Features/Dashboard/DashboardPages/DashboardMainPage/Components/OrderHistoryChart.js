@@ -25,7 +25,7 @@ class OrderHIstoryChart extends React.Component {
 
                 labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
                 datasets: [{
-                    label: `Orders History for the year ${cYear}`,
+                    label: `Order History for the year ${cYear}`,
                     data: cData,
                     showLine : true,
                     lineTension : 0.3,

@@ -18,7 +18,10 @@ class DashboardMainPage extends React.Component {
             chartData : [],
             currentYear : "",
             orderChartDropdownOptions : [],
-            selectedYearData : []
+            selectedYearData : {
+                year : "",
+                data : []
+            }
         }
     }
 
@@ -75,6 +78,15 @@ class DashboardMainPage extends React.Component {
                 break
         }
         return month
+    }
+
+    handleGraphYearChange = (value) => {
+        this.setState({
+            selectedYearData : {
+                year : value,
+                data : this.state.chartData[value]
+            }
+        })
     }
 
 //           "createdAt": "2018-12-24T14:46:11.028Z",
@@ -134,11 +146,17 @@ class DashboardMainPage extends React.Component {
                     })
                 })
             }
-            console.log(_data)
-
             
-            // this.setState({ orderList : orders, currentYear : _currentYear, chartData : data, isLoading : false })
-            this.setState({ orderList : orders, isLoading : false, selectedYearData : _data[new Date().getFullYear()] ,chartData : _data, orderChartDropdownOptions : years })
+            this.setState({ 
+                orderList : orders, 
+                isLoading : false, 
+                selectedYearData : {
+                    year : new Date().getFullYear(),
+                    data : _data[new Date().getFullYear()] 
+                },
+                chartData : _data,
+                orderChartDropdownOptions : years 
+            })
             // this.props.dispatch({ type: "ORDERS", payload: _orders })
         }
     } 
@@ -158,7 +176,7 @@ class DashboardMainPage extends React.Component {
 
     render()
     {
-        const { userList, orderList, currentYear, chartData, isLoading, orderChartDropdownOptions } = this.state
+        const { userList, orderList, currentYear, chartData, isLoading, orderChartDropdownOptions, selectedYearData } = this.state
         return(
             <div >
                 <ContextAPI.Consumer>
@@ -195,13 +213,14 @@ class DashboardMainPage extends React.Component {
                                                 <Dropdown 
                                                     search 
                                                     selection
-                                                    text={new Date().getFullYear()}
+                                                    placeholder={new Date().getFullYear()}
+                                                    onChange={(e, { value }) => this.handleGraphYearChange(value)}
                                                     options={
                                                         orderChartDropdownOptions.map(item => (
                                                         { key: item, text: item, value: item}
                                                     ))}
                                                 />
-                                                {/* <OrderHistoryChart chartData={chartData} currentYear={currentYear}/>  */}
+                                                <OrderHistoryChart chartData={selectedYearData.data} currentYear={selectedYearData.year}/> 
                                             </React.Fragment>}
                                     </Segment>
                                 </Grid.Column>
