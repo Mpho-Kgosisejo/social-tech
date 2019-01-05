@@ -30,7 +30,8 @@ class OrderHIstoryChart extends React.Component {
                     showLine : true,
                     lineTension : 0.3,
                     backgroundColor: 'rgba(255,255,255, 0.9)',
-                    borderColor : 'rgba(255,99,132,1)',
+                    // backgroundColor: 'rgba(197, 156, 112, 1)',                    
+                    borderColor : 'rgba(197, 156, 112, 1)',
                     borderWidth: 2,
                 }] 
             }
