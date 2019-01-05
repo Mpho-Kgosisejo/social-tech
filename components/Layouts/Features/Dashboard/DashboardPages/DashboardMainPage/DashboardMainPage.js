@@ -209,17 +209,23 @@ class DashboardMainPage extends React.Component {
                                     <Segment className="index-2nd-grid-column">
                                         { isLoading ? <Loader active/> : 
                                             <React.Fragment> 
-                                                <h3>Order History Graph</h3> 
-                                                <Dropdown 
-                                                    search 
-                                                    selection
-                                                    placeholder={new Date().getFullYear()}
-                                                    onChange={(e, { value }) => this.handleGraphYearChange(value)}
-                                                    options={
-                                                        orderChartDropdownOptions.map(item => (
-                                                        { key: item, text: item, value: item}
-                                                    ))}
-                                                />
+                                                <div className = "product-list-header">
+                                                    <div>
+                                                        <h3>Order History Graph</h3> 
+                                                    </div>
+                                                    <div>                                                
+                                                        <Dropdown 
+                                                            search 
+                                                            selection
+                                                            placeholder={new Date().getFullYear()}
+                                                            onChange={(e, { value }) => this.handleGraphYearChange(value)}
+                                                            options={
+                                                                orderChartDropdownOptions.map(item => (
+                                                                    { key: item, text: item, value: item}
+                                                                    ))}
+                                                                    />
+                                                    </div>
+                                                </div>
                                                 <OrderHistoryChart chartData={selectedYearData.data} currentYear={selectedYearData.year}/> 
                                             </React.Fragment>}
                                     </Segment>

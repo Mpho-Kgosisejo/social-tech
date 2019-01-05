@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Input, Image, Placeholder, Icon, Button, Modal, Header, Divider, Menu, Label, Pagination } from 'semantic-ui-react'
+import { List, Input, Image, Placeholder, Icon, Button, Modal, Header, Divider, Dropdown, Label, Pagination } from 'semantic-ui-react'
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import api from '../../../../../../../src/providers/APIRequest';
 
@@ -165,6 +165,15 @@ class UserListSegment extends React.Component {
                         <h3>Users</h3>
                     </div>
                     <div>
+                    <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
+                        <Dropdown.Menu>
+                        <Dropdown.Header icon='tags' content='Filter by tag' />
+                        <Dropdown.Divider />
+                        <Dropdown.Item label={{ color: 'red', empty: true, circular: true }} text='Important' />
+                        <Dropdown.Item label={{ color: 'blue', empty: true, circular: true }} text='Announcement' />
+                        <Dropdown.Item label={{ color: 'black', empty: true, circular: true }} text='Discussion' />
+                        </Dropdown.Menu>
+                    </Dropdown>
                         <Input placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
                     </div>
                 </div>
