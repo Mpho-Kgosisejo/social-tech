@@ -17,7 +17,7 @@ const API = {
             }
             return (
                 axios.post(`${Config.get("api.endpoint")}/auth`, {
-                    [credentials.login.key]: credentials.login.value,
+                    login: credentials.login,
                     password: credentials.password
                 })
                 .then(res => res)
