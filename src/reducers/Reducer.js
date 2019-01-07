@@ -30,6 +30,10 @@ export const reducer = (state, action) => {
             ...state,
             menu: action.payload
         })
+        case "ORDERS": return ({
+            ...state,
+            orders: action.payload
+        })
         case "CART_ADD": return ({
             ...state,
             cart: {
@@ -57,6 +61,10 @@ export const reducer = (state, action) => {
         case "TEST": return ({
             ...state,
             test: action.payload
+        })
+        case "ROUTER": return ({
+            ...state,
+            router: action.payload
         })
         case "PAGE": return ({
             ...state,

@@ -238,32 +238,32 @@ class Cart extends React.Component {
     }
 
     handleCheckout = async ({data, cart}) => {
+        this.setState({paymentSuccess: true, delivery: false})
         const {dispatch} = this.props
         const order = {
             ...cart,
-            items: cart.items.map(item => item._id),
+            items: cart.items,
             stripe: {
                 id: data.id
             }
         }
 
-        this.setState({paymentSuccess: true, delivery: false})
-        const res = await {status: 200}//api.cart.order({order})
+        const res = await api.orders.add_order(order)
+        console.log("order", order)
         
         dispatch({type: "CART", payload: []})
         if (res.status === 200){
-            console.log("handleCheckout()", order)
             // dispatch({type: "ALERT_PORTAL", payload: {
             //     open: true,
             //     message: "Payment success"
             // }})
         }else{
-            console.error("Error") 
-            // dispatch({type: "ALERT_PORTAL", payload: {
-            //     open: true,
-            //     type: "error",
-            //     message: "Some Error!"
-            // }})
+            dispatch({type: "ALERT_PORTAL", payload: {
+                open: true,
+                type: "error",
+                header: "Error Saving Order Details",
+                message: "Please check your email and contact Fresh Eats right away."
+            }})
         }
     }
 

@@ -38,11 +38,11 @@ class AboutFAQ extends React.Component {
                             {/* <pre>{JSON.stringify(state, "", 2)}</pre> */}
                             <Divider hidden />
                             <Container text>
-                                <Header className="aboutsHeaders" as='h2'>{state.about.faqs.page_header}</Header>
+                                <Header className="aboutsHeaders" as='h2'>FAQs</Header>
                                 <Divider />
                                 <Divider hidden />
                                 {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Accordion fluid styled>
-                                    {state.about.faqs.faqs.map(item => (
+                                    {state.about.faqs.map(item => (
                                         <React.Fragment key={item.index}>
                                             <Accordion.Title active={activeIndex === item.index} index={item.index} onClick={this.handleClick}> <Icon name='dropdown' />
                                                 {item.question}
