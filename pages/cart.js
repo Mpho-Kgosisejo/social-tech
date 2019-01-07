@@ -138,8 +138,23 @@ class Cart extends React.Component {
         
     }
 
-    handleUserUpdate = (user) => {
-        console.log("this.handleUserUpdate()", user)
+    handleUserUpdate = async (user) => {
+        const res = await api.profile.account_update(user)
+        const {dispatch} = this.props
+
+        console.log("res", res)
+        if (res.status === 200){
+            dispatch({type: "ALERT_PORTAL", payload: {
+                open: true,
+                message: "User Details Update Success"
+            }})
+        }else{
+            dispatch({type: "ALERT_PORTAL", payload: {
+                open: true,
+                type: "error",
+                message: "Error updating user's Details"
+            }})
+        }
     }
 
     cartDispatch = payload => this.setState({

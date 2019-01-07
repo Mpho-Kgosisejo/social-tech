@@ -15,6 +15,8 @@ import requestpasswordchange_s from "./json/request_password_change_success.json
 import requestpasswordchange_f from "./json/request_password_change_fail.json"
 import insta_s from "./json/insta_success.json"
 import orders_s from "./json/dashboard_orders_success.json"
+import account_s from "./json/account_success"
+import account_f from "./json/account_fail"
 
 const WAIT_TIME = 1500
 
@@ -36,5 +38,6 @@ export default {
     changePassword: () => loadMock(changepassword_s),
     requestPasswordChange: () => loadMock(requestpasswordchange_s),
     instaGallery: () => loadMock(insta_s),
-    dashboard_orders: () => loadMock(orders_s)
+    dashboard_orders: () => loadMock(orders_s),
+    account: () => loadMock(account_s)
 }
