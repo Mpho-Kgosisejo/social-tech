@@ -130,16 +130,12 @@ class DashboardMainPage extends React.Component {
                         {
                             if (_data.hasOwnProperty(year))
                             {
-                                console.log("there")
                                 const newArr = _data[year]
-
                                 _data[year] = this.sortYearlyDataByMonth(_data[year], _orderMonth)
                             }
                             else 
                             {
-                                console.log("not there")
                                 _data[year] = [0,0,0,0,0,0,0,0,0,0,0,0]
-
                                 _data[year] = this.sortYearlyDataByMonth(_data[year], _orderMonth) 
                             }
                         }

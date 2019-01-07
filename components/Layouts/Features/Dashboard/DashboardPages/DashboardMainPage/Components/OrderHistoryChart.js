@@ -52,7 +52,7 @@ class OrderHIstoryChart extends React.Component {
                 
                 <Line data={data}/>
                 
-                <pre>{JSON.stringify(this.props, " ", 2)}</pre>
+                {/* <pre>{JSON.stringify(this.props, " ", 2)}</pre> */}
             </React.Fragment>
         )
     }

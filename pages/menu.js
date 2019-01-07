@@ -23,6 +23,7 @@ class Menu extends React.Component {
 
     getMenu = async (tab) => {
         const data = await api.menu.menu_items()
+        console.log(data)
 
         if (data.status === 200) {
             const menu_res = data.data.menuWithProducts

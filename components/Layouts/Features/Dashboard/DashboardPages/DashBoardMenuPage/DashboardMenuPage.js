@@ -56,6 +56,8 @@ class DashboardMenuPage extends React.Component {
     getCategories = async () => {
       const data = await api.menu.menu_categories()
       const _categories = data.data.data
+      console.log(data)
+
       if (data.status === 200) {
         this.setState({
           categories: _categories,

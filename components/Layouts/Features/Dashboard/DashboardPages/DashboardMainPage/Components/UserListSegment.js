@@ -14,7 +14,11 @@ class UserListSegment extends React.Component {
             userDetailsOpen : false,
             clickedUserDetails : {},
 
-            //pagination stuff
+            //filter options
+            showOnlyAdmins : true,
+            showOnlyNonAdmins : false,
+            showAllUsers : false,
+
             //pagination stuff
             activePage: 1,
             usersPerPage : 8,
@@ -43,7 +47,8 @@ class UserListSegment extends React.Component {
         }
         else {
             this.setState({
-                isSearching : false
+                isSearching : false,
+                filteredList  : []
             })
         }
     }
@@ -89,17 +94,36 @@ class UserListSegment extends React.Component {
 
     getListToRender = (activePage, usersPerPage) => {
         //configure Pagination things
-        const indexOfLastCard = activePage * usersPerPage;
-        const indexOfFirstCard = indexOfLastCard - usersPerPage;
+        const indexOfLastCard = activePage * usersPerPage
+        const indexOfFirstCard = indexOfLastCard - usersPerPage
+        const { showAllUsers, showOnlyAdmins, showOnlyNonAdmins } = this.state
+        let filterOptionsList = []
+
         
         if (this.state.isSearching)
         {
-            return (this.state.filteredList.slice(indexOfFirstCard, indexOfLastCard))
+            this.state.filteredList.forEach( user => {
+                if(user.admin && showOnlyAdmins)
+                    filterOptionsList.push(user)
+                else if (!user.admin && showOnlyNonAdmins)
+                    filterOptionsList.push(user)
+                else if (showAllUsers) 
+                    filterOptionsList.push(user)
+            })
+            return (filterOptionsList.slice(indexOfFirstCard, indexOfLastCard))
         }
         else {
             if(isEmptyObj(this.props.users))
                 return {}
-            return (this.props.users.slice(indexOfFirstCard, indexOfLastCard))
+            this.props.users.forEach( user => {
+                if(user.admin && showOnlyAdmins)
+                    filterOptionsList.push(user)
+                else if (!user.admin && showOnlyNonAdmins)
+                    filterOptionsList.push(user)
+                else if (showAllUsers) 
+                    filterOptionsList.push(user)
+            })
+            return (filterOptionsList.slice(indexOfFirstCard, indexOfLastCard))
         }
     }
 
@@ -112,6 +136,8 @@ class UserListSegment extends React.Component {
     }
 
     handlePaginationChange = (e, { activePage }) => this.setState({ activePage })    
+
+    handleUserFilterChange = (admin, nonAdmin, all) => this.setState({showOnlyAdmins : admin, showOnlyNonAdmins : nonAdmin, showAllUsers : all})
 
     render()
     {
@@ -167,11 +193,11 @@ class UserListSegment extends React.Component {
                     <div>
                     <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
                         <Dropdown.Menu>
-                        <Dropdown.Header icon='tags' content='Filter by tag' />
-                        <Dropdown.Divider />
-                        <Dropdown.Item label={{ color: 'red', empty: true, circular: true }} text='Important' />
-                        <Dropdown.Item label={{ color: 'blue', empty: true, circular: true }} text='Announcement' />
-                        <Dropdown.Item label={{ color: 'black', empty: true, circular: true }} text='Discussion' />
+                            <Dropdown.Header icon='tags' content='Filter by :' />
+                            <Dropdown.Divider />
+                            <Dropdown.Item onClick={() => this.handleUserFilterChange(true, false, false)} ><h4>Admins</h4></Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.handleUserFilterChange(false, true, false)} ><h4>Users</h4></Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.handleUserFilterChange(false, false, true)} ><h4>Show All</h4></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                         <Input placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
@@ -266,7 +292,7 @@ class UserListSegment extends React.Component {
                         </Modal>
                     } 
                 </>
-                {/*pre>{JSON.stringify(this.state, " ", 2)}</pre>*/}
+                {/*<pre>{JSON.stringify(this.state, " ", 2)}</pre>*/}
             </>
         )
     }

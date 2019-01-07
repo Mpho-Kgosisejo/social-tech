@@ -54,7 +54,7 @@ class DashboardOrdersPage extends React.Component {
     render() {
 
         const { orders, selectedOrder } = this.state
-        console.log(">>>>>>>>", selectedOrder._id)
+        // console.log(">>>>>>>>", selectedOrder._id)
 
         return (
             <ContextAPI.Consumer>
