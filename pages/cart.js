@@ -138,8 +138,8 @@ class Cart extends React.Component {
         
     }
 
-    handleUserUpdate = () => {
-        console.log("this.handleUserUpdate()")
+    handleUserUpdate = (user) => {
+        console.log("this.handleUserUpdate()", user)
     }
 
     cartDispatch = payload => this.setState({
@@ -150,25 +150,32 @@ class Cart extends React.Component {
     handlePaymentSuccess = ({close = true}) => {
         if(close){
             const {remember} = this.state
-            
-            if (remember.names || remember.phonenumber){
-                const {firstname, lastname, phonenumber} = this.state.user
-                // const user = {
-                //     ...this.props.account.personal_details,
-                //     firstname: remember.names ? firstname : this.props.account.personal_details.firstname,
-                //     firstname: remember.names ? lastname : this.props.account.personal_details.lastname,
-                //     firstname: remember.names ? phonenumber : this.props.account.personal_details.phone
-                // }
+            const {firstname, lastname, phone} = this.props.state.account.personal_details
+            const user = {
+                ...this.props.state.account.personal_details,
+                firstname: (firstname || ""),
+                lastname: (lastname || ""),
+                phone: (phone || "")
+            }
 
-                console.log("POST => update user's details", "user")
-                this.setState({user: {
+            if (remember.names){
+                user.firstname = this.state.user.firstname
+                user.lastname = this.state.user.lastname
+            }
+            if (remember.phonenumber){
+                user.phone = this.state.user.phonenumber
+            }
+
+            if (remember.names || remember.phonenumber)
+                this.handleUserUpdate(user)
+            this.setState({
+                paymentSuccess: false,
+                user: {
                     firstname: "",
                     lastname: "",
                     phonenumber: ""
-                }})
-            } 
-        
-            this.setState({paymentSuccess: false})
+                }
+            })
         }else{
             this.setState({paymentSuccess: true})
         }
@@ -249,7 +256,6 @@ class Cart extends React.Component {
         }
 
         const res = await api.orders.add_order(order)
-        console.log("order", order)
         
         dispatch({type: "CART", payload: []})
         if (res.status === 200){

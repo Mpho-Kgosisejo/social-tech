@@ -52,11 +52,7 @@ export default class MyApp extends App {
                 query: props.router.query
             },
             account:{
-                personal_details: {
-                    firstname: "Mpho",
-                    lastname: "Kgosisejo",
-                    phone: "0721465711"
-                }
+                personal_details: {}
             },
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
