@@ -268,7 +268,7 @@ class Cart extends React.Component {
             this.setState({useSavedAddress: false, openConfirm: false})
     }
 
-    componentDidMount(){
+    init = () => {
         const {dispatch, state} = this.props
 
         // setTimeout(() => {
@@ -299,6 +299,15 @@ class Cart extends React.Component {
         dispatch({type: "SIDEBAR", payload: false})
         dispatch({type: "PAGE", payload: "cart"})
         dispatch({type: "CART_DELIVERY", payload: {}})
+    }
+
+    componentDidMount(){
+        var interval = setInterval(() => {
+            if (!this.props.state.root_loading){
+                this.init()
+                clearInterval(interval)
+            }
+        }, 25)
     }
 
     handleCheckout = async ({data, cart}) => {
