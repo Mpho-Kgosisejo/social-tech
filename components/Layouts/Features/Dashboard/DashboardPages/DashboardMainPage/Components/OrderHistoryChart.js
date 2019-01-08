@@ -23,7 +23,7 @@ class OrderHIstoryChart extends React.Component {
         return(
             {
 
-                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
                 datasets: [{
                     label: `Order History for the year ${cYear}`,
                     data: cData,
@@ -31,9 +31,9 @@ class OrderHIstoryChart extends React.Component {
                     lineTension : 0.3,
                     backgroundColor: 'rgba(255,255,255, 0.9)',
                     borderColor : 'rgba(197,156,112,1)',
-                    borderWidth: 2,
+                    borderWidth: 1.5,
                     pointRadius : 4,
-                    pointStyle : 'rectRot',
+                    pointStyle : 'rectRounded',
                 }],
                 
             }
@@ -51,9 +51,9 @@ class OrderHIstoryChart extends React.Component {
             data = this._chartData(chartData, currentYear)
 
         return(
-            <React.Fragment>
+            <React.Fragment >
                 
-                <Line data={data}/>
+                <Line data={data} className="user-list-header"/>
                 
                 {/* <pre>{JSON.stringify(this.props, " ", 2)}</pre> */}
             </React.Fragment>

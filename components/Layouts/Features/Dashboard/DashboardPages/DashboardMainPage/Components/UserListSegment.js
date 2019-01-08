@@ -184,21 +184,21 @@ class UserListSegment extends React.Component {
         
         return(
             <>
-                <div className = "product-list-header">
-                    <div>
+                <div className="product-list-header">
+                    <div className="user-list-header">
                         <h3>{ isSearching ? `${filter} [${this.getFilterList(filteredList).length}]` : `${filter} [${this.getFilterList(users).length}]` }</h3>
                     </div>
                     <div>
-                    <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
-                        <Dropdown.Menu>
-                            <Dropdown.Header icon='tags' content='Filter by :' />
-                            <Dropdown.Divider />
-                            <Dropdown.Item onClick={() => this.handleUserFilterChange(true, false, false, 'Admins')} ><h4>Admins</h4></Dropdown.Item>
-                            <Dropdown.Item onClick={() => this.handleUserFilterChange(false, true, false, 'Non Admins')} ><h4>Users</h4></Dropdown.Item>
-                            <Dropdown.Item onClick={() => this.handleUserFilterChange(false, false, true, 'All Users')} ><h4>Show All</h4></Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
-                        <Input placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
+                        <Dropdown text='Filter' icon='filter' floating labeled button className='icon user-list-header'>
+                            <Dropdown.Menu>
+                                <Dropdown.Header icon='tags' content='Filter by :' />
+                                <Dropdown.Divider />
+                                <Dropdown.Item onClick={() => this.handleUserFilterChange(true, false, false, 'Admins')} ><h4>Admins</h4></Dropdown.Item>
+                                <Dropdown.Item onClick={() => this.handleUserFilterChange(false, true, false, 'Non Admins')} ><h4>Users</h4></Dropdown.Item>
+                                <Dropdown.Item onClick={() => this.handleUserFilterChange(false, false, true, 'All Users')} ><h4>Show All</h4></Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        <Input className="user-list-header" placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
                     </div>
                 </div>
                 <div className="list-div">
@@ -234,7 +234,7 @@ class UserListSegment extends React.Component {
 
                 <>
                     {isEmptyObj(clickedUserDetails) ? null :
-                        <Modal size='small' centered={false} open={userDetailsOpen}>
+                        <Modal size='small' centered open={userDetailsOpen}>
                             <Modal.Header>{clickedUserDetails.username + "'"}s details</Modal.Header>
                             <Modal.Content image>
                                 <Image wrapped size='medium' src={clickedUserDetails.image} />
@@ -249,7 +249,7 @@ class UserListSegment extends React.Component {
                                 <div className = "product-list-header">
                                     <div>
                                         {/* make admin / revoke access modal */}
-                                        <Modal closeIcon trigger={
+                                        <Modal  closeIcon centered trigger={
                                             <Button size='tiny' disabled={!clickedUserDetails.emailConfirmed} positive>{clickedUserDetails.admin ? 'Revoke admin rights' : 'Make admin'}</Button>
                                         } basic 
                                         size='small'>
@@ -267,7 +267,7 @@ class UserListSegment extends React.Component {
                                         </Modal> 
                                         
                                         {/* delete user modal */}
-                                        <Modal closeIcon trigger={<Button disabled={!clickedUserDetails.emailConfirmed} size='tiny' negative >Delete User</Button>} basic size='small'>
+                                        <Modal closeIcon centered trigger={<Button disabled={!clickedUserDetails.emailConfirmed} size='tiny' negative >Delete User</Button>} basic size='small'>
                                             <Header content='Warning! This Action is irriversible'/>
                                             <Modal.Content>
                                                 <p>
