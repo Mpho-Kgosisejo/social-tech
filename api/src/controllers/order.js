@@ -2,7 +2,9 @@ import OrderModel from "../models/Orders"
 
 export const get_orders = (req, res) => {
     OrderModel.find()
+    .sort({createdAt : -1})
     .then(orders => {
+        // console.log(orders)
         res.status(200).json({
             orders,
             message: "OK"

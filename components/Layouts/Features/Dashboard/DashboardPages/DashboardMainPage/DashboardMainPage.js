@@ -213,7 +213,7 @@ class DashboardMainPage extends React.Component {
                                                         <Dropdown 
                                                             search 
                                                             selection
-                                                            placeholder={new Date().getFullYear()}
+                                                            placeholder={new Date().getFullYear().toString()}
                                                             onChange={(e, { value }) => this.handleGraphYearChange(value)}
                                                             options={
                                                                 orderChartDropdownOptions.map(item => (
@@ -232,7 +232,7 @@ class DashboardMainPage extends React.Component {
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>
-                            <pre>{JSON.stringify(this.state, " ", 2)}</pre>
+                            <pre>{JSON.stringify(this.state.orderList, " ", 2)}</pre>
                         </Grid>
                 )}
             </ContextAPI.Consumer>

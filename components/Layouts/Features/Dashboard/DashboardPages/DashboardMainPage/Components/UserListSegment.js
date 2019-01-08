@@ -15,13 +15,15 @@ class UserListSegment extends React.Component {
             clickedUserDetails : {},
 
             //filter options
-            showOnlyAdmins : true,
+            showOnlyAdmins : false,
             showOnlyNonAdmins : false,
-            showAllUsers : false,
+            showAllUsers : true,
+            filter : 'All Users',
 
             //pagination stuff
             activePage: 1,
             usersPerPage : 8,
+            currentCards : 0
         }
     }
 
@@ -96,35 +98,31 @@ class UserListSegment extends React.Component {
         //configure Pagination things
         const indexOfLastCard = activePage * usersPerPage
         const indexOfFirstCard = indexOfLastCard - usersPerPage
-        const { showAllUsers, showOnlyAdmins, showOnlyNonAdmins } = this.state
-        let filterOptionsList = []
-
         
         if (this.state.isSearching)
-        {
-            this.state.filteredList.forEach( user => {
-                if(user.admin && showOnlyAdmins)
-                    filterOptionsList.push(user)
-                else if (!user.admin && showOnlyNonAdmins)
-                    filterOptionsList.push(user)
-                else if (showAllUsers) 
-                    filterOptionsList.push(user)
-            })
-            return (filterOptionsList.slice(indexOfFirstCard, indexOfLastCard))
-        }
+            return (this.getFilterList(this.state.filteredList).slice(indexOfFirstCard, indexOfLastCard))
         else {
             if(isEmptyObj(this.props.users))
                 return {}
-            this.props.users.forEach( user => {
-                if(user.admin && showOnlyAdmins)
-                    filterOptionsList.push(user)
-                else if (!user.admin && showOnlyNonAdmins)
-                    filterOptionsList.push(user)
-                else if (showAllUsers) 
-                    filterOptionsList.push(user)
-            })
-            return (filterOptionsList.slice(indexOfFirstCard, indexOfLastCard))
+            
+            return (this.getFilterList(this.props.users).slice(indexOfFirstCard, indexOfLastCard))
         }
+    }
+
+    getFilterList = (list) => {
+        const { showAllUsers, showOnlyAdmins, showOnlyNonAdmins } = this.state
+        let filterOptionsList = []
+
+        list.forEach( user => {
+            if(user.admin && showOnlyAdmins)
+                filterOptionsList.push(user)
+            else if (!user.admin && showOnlyNonAdmins)
+                filterOptionsList.push(user)
+            else if (showAllUsers) 
+                filterOptionsList.push(user)
+        })
+
+        return(filterOptionsList)
     }
 
     countNumberOfPages = (list, usersPerPage) => {
@@ -137,11 +135,11 @@ class UserListSegment extends React.Component {
 
     handlePaginationChange = (e, { activePage }) => this.setState({ activePage })    
 
-    handleUserFilterChange = (admin, nonAdmin, all) => this.setState({showOnlyAdmins : admin, showOnlyNonAdmins : nonAdmin, showAllUsers : all})
+    handleUserFilterChange = (admin, nonAdmin, all, filter) => this.setState({showOnlyAdmins : admin, showOnlyNonAdmins : nonAdmin, showAllUsers : all, filter : filter})
 
     render()
     {
-        const {filteredList, isSearching, clickedUserDetails, userDetailsOpen, usersPerPage, activePage} = this.state
+        const {filteredList, isSearching, clickedUserDetails, userDetailsOpen, usersPerPage, activePage, filter} = this.state
         const {users} = this.props
 
         const currentCards = this.getListToRender(activePage, usersPerPage)
@@ -151,7 +149,7 @@ class UserListSegment extends React.Component {
         {
             renderCards = currentCards.map(user => {
                 return (
-                    <List.Item id={user.username} onClick={() => this.handleUserClick(user)}>
+                    <List.Item key={user._id} onClick={() => this.handleUserClick(user)}>
                         {
                             (user.image === "") ? 
                                 <div>
@@ -188,16 +186,16 @@ class UserListSegment extends React.Component {
             <>
                 <div className = "product-list-header">
                     <div>
-                        <h3>Users</h3>
+                        <h3>{ isSearching ? `${filter} [${this.getFilterList(filteredList).length}]` : `${filter} [${this.getFilterList(users).length}]` }</h3>
                     </div>
                     <div>
                     <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
                         <Dropdown.Menu>
                             <Dropdown.Header icon='tags' content='Filter by :' />
                             <Dropdown.Divider />
-                            <Dropdown.Item onClick={() => this.handleUserFilterChange(true, false, false)} ><h4>Admins</h4></Dropdown.Item>
-                            <Dropdown.Item onClick={() => this.handleUserFilterChange(false, true, false)} ><h4>Users</h4></Dropdown.Item>
-                            <Dropdown.Item onClick={() => this.handleUserFilterChange(false, false, true)} ><h4>Show All</h4></Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.handleUserFilterChange(true, false, false, 'Admins')} ><h4>Admins</h4></Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.handleUserFilterChange(false, true, false, 'Non Admins')} ><h4>Users</h4></Dropdown.Item>
+                            <Dropdown.Item onClick={() => this.handleUserFilterChange(false, false, true, 'All Users')} ><h4>Show All</h4></Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                         <Input placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
@@ -222,17 +220,16 @@ class UserListSegment extends React.Component {
                             isSearching ?
                                 this.countNumberOfPages(filteredList, usersPerPage) > 1 ?     
                                     <div className="pagination-component centered-element">
-                                        <Pagination size='tiny' onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(users, usersPerPage)} />
+                                        <Pagination size='tiny' activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={2} />
                                     </div>
                                 : null
                              :
                                 this.countNumberOfPages(users, usersPerPage) > 1 ?     
                                     <div className="pagination-component centered-element">
-                                        <Pagination size='tiny' onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(users, usersPerPage)} />
+                                        <Pagination  size='tiny' activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={2} />
                                     </div>
                                 : null
                         }
-                    {/* <div className="pagination-component centered-element"> */}
                 </div>
 
                 <>
