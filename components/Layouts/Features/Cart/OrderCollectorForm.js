@@ -20,7 +20,7 @@ const OrderCollectorForm = ({cartState, funcs}) => {
     }
 
     return (
-        <Form onSubmit={() => {}} loading={false}>
+        <Form onSubmit={() => {}} loading={false} loading={cartState.paymentLoading}>
             <Header className="zero-margin-top">
                 Collector<span>'s details:</span>
                 {/* <br />

@@ -138,6 +138,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                     onClick={() => funcs.validatorUser()}
                                                     fluid
                                                     color="black"
+                                                    // loading={paymentLoading}
                                                 >
                                                     {paymentLoading ? `Loading ${Config.get("stripe.name")}...` : "Proceed to Payment"}
                                                 </Button>
