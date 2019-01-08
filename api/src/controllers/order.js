@@ -44,14 +44,15 @@ export const get_order = (req, res) => {
 
 
 export const add_order = (req, res) => {
-    const {customer = req.auth_data.key, details, items, stripe, status} = req.body
+    const {customer = req.auth_data.key, details, items, stripe, status, delivery} = req.body
 
     const newOrder = new OrderModel({
         customer,
         details,
         items,
         stripe,
-        status
+        status,
+        delivery
     })   
 
     newOrder.save()

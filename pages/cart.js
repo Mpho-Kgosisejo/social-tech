@@ -41,7 +41,7 @@ const Confirm = ({open, address, func}) => (
     </Modal>
 )
 
-const PaymentSuccessComponent = ({open, handlePaymentSuccess, user, remember, cartDispatch}) => {
+const PaymentSuccessComponent = ({open, handlePaymentSuccess, user, remember, cartDispatch, cart}) => {
 
     return (
         <Modal
@@ -71,6 +71,14 @@ const PaymentSuccessComponent = ({open, handlePaymentSuccess, user, remember, ca
                     checked={remember.phonenumber}
                     label={<label style={{color: "rgb(193, 193, 193)"}} className={`${remember.phonenumber ? "bold" : ""}`}>Remember phone number? <b>{user.phonenumber}</b></label>}
                 />
+                <br/>
+                {remember.address !== null && (
+                    <Checkbox
+                        onChange={() => {cartDispatch({remember: {...remember, address: remember.address ? false : true}})}}
+                        checked={remember.address}
+                        label={<label style={{color: "rgb(193, 193, 193)"}} className={`${remember.address ? "bold" : ""}`}>Remember address? <b>{cart.delivery.to}</b></label>}
+                    />
+                )}
             </Modal.Content>
 
             <Modal.Actions>
@@ -102,7 +110,8 @@ class Cart extends React.Component {
             step: "order",
             remember: {
                 names: false,
-                phonenumber: false
+                phonenumber: false,
+                address: null
             }
         }
     }
@@ -142,12 +151,21 @@ class Cart extends React.Component {
         const res = await api.profile.account_update(user)
         const {dispatch} = this.props
 
-        console.log("res", res)
         if (res.status === 200){
             dispatch({type: "ALERT_PORTAL", payload: {
                 open: true,
                 message: "User Details Update Success"
             }})
+            dispatch({
+                type: "ACCOUNT",
+                payload: {
+                    ...this.props.state.account,
+                    personal_details: {
+                        ...this.props.state.account.personal_details,
+                        ...res.data.user
+                    }
+                }
+            })
         }else{
             dispatch({type: "ALERT_PORTAL", payload: {
                 open: true,
@@ -165,12 +183,13 @@ class Cart extends React.Component {
     handlePaymentSuccess = ({close = true}) => {
         if(close){
             const {remember} = this.state
-            const {firstname, lastname, phone} = this.props.state.account.personal_details
+            const {firstname, lastname, phone, address} = this.props.state.account.personal_details
             const user = {
                 ...this.props.state.account.personal_details,
                 firstname: (firstname || ""),
                 lastname: (lastname || ""),
-                phone: (phone || "")
+                phone: (phone || ""),
+                address: (address || "")
             }
 
             if (remember.names){
@@ -180,9 +199,12 @@ class Cart extends React.Component {
             if (remember.phonenumber){
                 user.phone = this.state.user.phonenumber
             }
-
+            if (remember.address === true){
+                user.address = this.props.state.cart.delivery.to
+            }
             if (remember.names || remember.phonenumber)
                 this.handleUserUpdate(user)
+
             this.setState({
                 paymentSuccess: false,
                 user: {
@@ -209,13 +231,33 @@ class Cart extends React.Component {
 
         if (this.state.delivery){
             dispatch({type: "CART_DELIVERY", payload: {}})
-            this.setState({delivery: false})
+            this.setState({
+                delivery: false,
+                remember: {
+                    ...this.state.remember,
+                    address: null
+                }
+            })
         }
         else{
             if (Object.keys(login).length > 0 && Object.keys(account).length > 0 && account.personal_details.address)
-                this.setState({delivery: true, openConfirm: true})
+                this.setState({
+                    delivery: true,
+                    remember: {
+                        ...this.state.remember,
+                        address: false
+                    },
+                    openConfirm: true
+                })
             else
-                this.setState({delivery: true, useSavedAddress: false})
+                this.setState({
+                    delivery: true,
+                    remember: {
+                        ...this.state.remember,
+                        address: false
+                    },
+                    useSavedAddress: false
+                })
         }
     }
 
@@ -301,7 +343,7 @@ class Cart extends React.Component {
                         return(
                             <>
                                 <Confirm open={openConfirm} address={address} func={this.confirm} />
-                                <PaymentSuccessComponent cartDispatch={this.cartDispatch} remember={remember} user={user} handlePaymentSuccess={this.handlePaymentSuccess} open={paymentSuccess} />
+                                <PaymentSuccessComponent cart={state.cart} cartDispatch={this.cartDispatch} remember={remember} user={user} handlePaymentSuccess={this.handlePaymentSuccess} open={paymentSuccess} />
 
                                 <Divider hidden />
                                 <Header as="h3" color="grey">

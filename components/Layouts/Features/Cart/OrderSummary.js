@@ -13,8 +13,6 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
             const {distance, cost} = state.cart.delivery
             const {login, root_loading, account} = state
-            // const {} = state.account
-            // const {email = "", }
 
             return (
                 <React.Fragment>
@@ -61,7 +59,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                             } */}
                                             <GoogleMaps
                                                 initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
-                                                destination={useSavedAddress ? useSavedAddress : null}
+                                                destination={useSavedAddress ? account.personal_details.address : ""}
                                             />
                                         </div>
                                         </Grid.Column>

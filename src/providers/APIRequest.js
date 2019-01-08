@@ -100,6 +100,18 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
+        },
+        isValidToken: (admin) => {
+           if (Config.get("api.isMock")){
+               return (mock.isValidToken().then(res => res))
+           }
+           return (
+                axios.post(`${Config.get("api.endpoint")}/auth/validate-token`, {
+                    admin
+                })
+                .then(res => res)
+                .catch(err => err.response)
+            )
         }
     },
     menu: {

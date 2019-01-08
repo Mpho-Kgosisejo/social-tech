@@ -1,15 +1,14 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import Config from "react-global-configuration"
-// import axios from "axios"
 
 import devConfig from "../src/config/devConfig"
 import prodConfig from "../src/config/prodConfig"
 import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
-import axios from 'axios'
-import {getLogin} from "../src/providers/LoginSession"
+import {getLogin, populateUserDetails, logout} from "../src/providers/LoginSession"
 import * as CartHandler from "../src/providers/CartHandler"
+import api from "../src/providers/APIRequest"
 
 export default class MyApp extends App {
     constructor(props){
@@ -58,6 +57,36 @@ export default class MyApp extends App {
         }
     }
 
+    loadData = async ({login}) => {
+        const res = await api.user.isValidToken(login.isAdmin)
+        
+        if (res.status === 200){
+            populateUserDetails((personal_details) => {
+                this.setState({
+                    ...this.state,
+                    root_loading: false,
+                    login,
+                    account: {
+                        ...this.state.account,
+                        personal_details
+                    }
+                })
+            })
+        }else{
+            logout(this.state.dispatch)
+
+            this.setState({
+                ...this.state,
+                root_loading: false,
+                alertPortal: {
+                    open: true,
+                    type: "error",
+                    message: "Invalid token used. Please signin again."
+                }
+            })
+        }
+    }
+
     UNSAFE_componentWillMount(){
         if (process.browser){
             if (window.location.hostname === "localhost"){
@@ -76,13 +105,16 @@ export default class MyApp extends App {
 
         CartHandler.restore_cart({dispatch: this.state.dispatch})
         if (process.browser){
-            axios.defaults.headers.authorization = `Bearer ${login.token}`
-            
-            this.setState({
-                ...this.state,
-                root_loading: false,
-                login
-            })
+            if (Object.keys(login).length > 0){
+               this.loadData({login})
+            }
+            else {
+                this.setState({
+                    ...this.state,
+                    root_loading: false,
+                    login: {}
+                })
+            }
         }
     }
 

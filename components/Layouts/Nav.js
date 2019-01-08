@@ -14,11 +14,10 @@ import Avator from "../utils/Avator";
 const handleLogout = (state) => {
     const {dispatch} = state
 
-    logout()
+    logout(dispatch)
     if ((`${Router.route}`).includes("/dashboard") || (`${Router.route}`).includes("/account"))
         Router.push({ pathname: "/" })
-    dispatch({ type: "LOGIN", payload: {} })
-    dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
+    dispatch({type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true }})
     dispatch({type: "SIDEBAR", payload: false})
 }
 
