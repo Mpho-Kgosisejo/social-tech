@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Form, TextArea, Button, Tab, Input, Rating, Header } from 'semantic-ui-react'
+import { Tab, Dropdown, Responsive, Segment } from 'semantic-ui-react'
 import ContextAPI from "../../../../../../src/config/ContextAPI";
 import { isEmptyObj } from "../../../../../../src/utils/Objs"
 import { InLineError } from '../../../../../Messages/InLineMessage'
@@ -9,6 +9,7 @@ import AboutContact from '../DashboardAbouts/components/abouts_contactus'
 import AboutFaq from '../DashboardAbouts/components/abouts_faq'
 import AboutsChef from '../DashboardAbouts/components/our_chef';
 import api from '../../../../../../src/providers/APIRequest';
+import { RouterHandler } from '../../../../../../components/Layouts/Features/About/Helper';
 
 class DashboardAboutsPage extends React.Component {
 
@@ -17,6 +18,7 @@ class DashboardAboutsPage extends React.Component {
 
 
     this.state = {
+      activeIndex : 0,
       panes: [
         {
           menuItem: 'Our Story Form', render: () => <Tab.Pane>
@@ -41,55 +43,62 @@ class DashboardAboutsPage extends React.Component {
         }
       ]
     }
+    
   }
 
-  getData = async ({ index }) => {
+  HandleDropDown = (index) => this.setState({activeIndex : index})
 
-    const data = await api.web.about()
-
-    if (data.status === 200) {
-      this.props.dispatch({ type: "ABOUT", payload: { index, ...data.data } })
-      this.setState({ loading: false })
+  getActiveSegment = (index) => 
+  {
+    if (index == 0)
+    {
+      return (<AboutStory />)
     }
-    else {
-      this.setState({ loading: false })
+    if (index == 1)
+    {
+      return (<AboutsChef />)
     }
-  }
-
-  componentDidMount() {
-
-    const { tab } = this.props.router.query
-
-    if (tab) {
-      switch (tab) {
-        case "ourstory":
-          this.getData({ index: 0 })
-          break;
-        case "ourchefs":
-          this.getData({ index: 1 })
-          break;
-        case "ourcontacts":
-          this.getData({ index: 2 })
-          break;
-        case "ourfaqs":
-          this.getData({ index: 3 })
-          break;
-      }
+    if (index == 2)
+    {
+      return (<AboutContact />)
+    }
+    if (index == 3)
+    {
+      return (<AboutFaq />)
     }
   }
-
-
-
 
   render() {
-    const { panes } = this.state
+    const { panes, loading, activeIndex } = this.state
 
     return (
-      <div className="dashboard-page-container">
-        <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-      </div>
-    )
-  }
 
+
+      <div className="dashboard-page-container">
+        <Responsive minWidth={0} maxWidth={769}>
+          <Dropdown
+            fluid
+            selection
+            defaultValue={activeIndex}
+            onChange={(e, {value}) => this.HandleDropDown(value)}
+            options={[{ key: 'Our Story Form', value: 0, text: 'Our Story Form' },
+            { key: 'Our Chefs Form', value: 1, text: 'Our Chefs Form' },
+            { key: 'Contact Us Form', value: 2, text: 'Contact Us Form' },
+            { key: 'Our FAQs Form', value: 3, text: 'Our FAQs Form' }
+            ]}
+          />
+        </Responsive>
+
+        <Responsive minWidth={769} >
+          <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+        </Responsive>
+
+          <Segment>
+              {this.getActiveSegment(activeIndex)}
+          </Segment>
+      </div>
+
+    )
+    }
 }
 export default DashboardAboutsPage
