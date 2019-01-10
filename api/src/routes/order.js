@@ -19,6 +19,6 @@ router.patch("/", controller.update_order)
 router.delete("/", controller.delete_order) 
 
 //TD:LR this one will get all the orders for a specific user, to be used in the user's profile page
-router.get("/:uid", controller.get_user_orders)
+router.get("/user/:uid", controller.get_user_orders)
 
 export default router

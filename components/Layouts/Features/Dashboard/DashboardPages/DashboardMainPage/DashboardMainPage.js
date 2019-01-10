@@ -89,8 +89,8 @@ class DashboardMainPage extends React.Component {
         })
     }
 
-//           "createdAt": "2018-12-24T14:46:11.028Z",
     getOrders = async () => {
+        
         const res = await api.orders.get_orders()
         if (res.status === 200) 
         {
@@ -207,7 +207,7 @@ class DashboardMainPage extends React.Component {
                                             <React.Fragment> 
                                                 <div className = "product-list-header">
                                                     <div>
-                                                        <h3>Order History Graph</h3> 
+                                                        <h3>Orders Graph</h3> 
                                                     </div>
                                                     <div>                                                
                                                         <Dropdown 

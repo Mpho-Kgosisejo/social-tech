@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container, Loader } from 'semantic-ui-react'
 import { Line, defaults } from 'react-chartjs-2'
-import ContextAPI from "../../../../../../../src/config/ContextAPI";
 
 
 class OrderHIstoryChart extends React.Component {
@@ -9,6 +8,37 @@ class OrderHIstoryChart extends React.Component {
     {
         super(props)
         defaults.scale.gridLines.display = false; 
+        this.state = {
+            options : {    
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Months'
+                            }
+                        }],
+                    yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Orders'
+                            }
+                        }]
+                },
+                // title: {
+                //     display: true,
+                //     text: `Order History for the year - ${this.props.currentYear}`
+                // },
+                legend:{
+                    // display: true,
+                    labels: {
+                      usePointStyle: true,
+                    }
+                  }
+            }
+        }
     }
 
     checkProps = (cData, cYear) => {
@@ -19,7 +49,7 @@ class OrderHIstoryChart extends React.Component {
         return false
     }
 
-    _chartData = (cData, cYear) => {
+    _chartData = (cData, cYear) => {        
         return(
             {
 
@@ -34,8 +64,9 @@ class OrderHIstoryChart extends React.Component {
                     borderWidth: 1.5,
                     pointRadius : 4,
                     pointStyle : 'rectRounded',
-                }],
-                
+                    // borderDash : 10
+                    // steppedLine : 'false'
+                }],                   
             }
         )
     }
@@ -45,6 +76,7 @@ class OrderHIstoryChart extends React.Component {
     render()
     {
         const {chartData, currentYear} = this.props
+        const {options} = this.state
         let data = {}
 
         if(this.checkProps(chartData, currentYear) === true)
@@ -53,7 +85,7 @@ class OrderHIstoryChart extends React.Component {
         return(
             <React.Fragment >
                 
-                <Line data={data} className="user-list-header"/>
+                <Line data={data} options={options} className="user-list-header"/>
                 
                 {/* <pre>{JSON.stringify(this.props, " ", 2)}</pre> */}
             </React.Fragment>

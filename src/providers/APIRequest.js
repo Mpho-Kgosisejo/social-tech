@@ -319,22 +319,23 @@ const API = {
         },
         add_order : (body) => {
             return (
-                axios.post(`${Config.get("api.endpoint")}/order`)
+                axios.post(`${Config.get("api.endpoint")}/order`, {body})
                 .then(res => res)
                 .catch(err => err.response)
             )
         },
         update_order : (body) => {
             return (
-                axios.patch(`${Config.get("api.endpoint")}/order`)
+                axios.patch(`${Config.get("api.endpoint")}/order`, {body})
                 .then(res => res)
                 .catch(err => err.response)
             ) 
         },
-        //NB : NOT FULLY FUNCTIONAL YET.
         get_user_orders : (uid) => {
             return (
-                axios.get(`${Config.get("api.endpoint")}/order/${uid}`)
+                axios.get(`${Config.get("api.endpoint")}/order/user/${uid}`)
+                .then(res => res)
+                .catch(err => err.response)
             )
         }
     },
