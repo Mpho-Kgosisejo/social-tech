@@ -180,29 +180,29 @@ class DashboardMainPage extends React.Component {
                         <Grid className="index-top-grid">
                             <Grid.Row stretched>
                                 <Grid.Column computer={4} tablet={16} mobile={16}>
-                                    <Segment className="index-top-grid-column">
+                                    <Segment className="index-top-grid-column dashboard-segment">
                                         { isLoading ? <Loader active/> : <h1> {userList.length} </h1> }
                                     </Segment>
                                 </Grid.Column >
                                 <Grid.Column  computer={4} tablet={16} mobile={16}>
-                                    <Segment className="index-top-grid-column">
+                                    <Segment className="index-top-grid-column dashboard-segment">
                                         { isLoading ? <Loader active/> : <h1 > {orderList.length} </h1> }
                                     </Segment>
                                 </Grid.Column>
                                 <Grid.Column computer={4} tablet={16} mobile={16}>
-                                    <Segment className="index-top-grid-column">
+                                    <Segment className="index-top-grid-column dashboard-segment">
                                         { isLoading ? <Loader active/> : <h1> Earningz? </h1> }
                                     </Segment>                        
                                 </Grid.Column>
                                 <Grid.Column  computer={4} tablet={16} mobile={16}>
-                                    <Segment className="index-top-grid-column">
+                                    <Segment className="index-top-grid-column dashboard-segment">
                                         { isLoading ? <Loader active/> : <h1> VIZITORS? </h1> }
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>
                             <Grid.Row stretched>
                                 <Grid.Column  computer={8} tablet={16} mobile={16}>
-                                    <Segment className="index-2nd-grid-column">
+                                    <Segment className="index-2nd-grid-column dashboard-segment">
                                         { isLoading ? <Loader active/> : 
                                             <React.Fragment> 
                                                 <div className = "product-list-header">
@@ -213,7 +213,7 @@ class DashboardMainPage extends React.Component {
                                                         <Dropdown 
                                                             search 
                                                             selection
-                                                            placeholder={new Date().getFullYear()}
+                                                            placeholder={new Date().getFullYear().toString()}
                                                             onChange={(e, { value }) => this.handleGraphYearChange(value)}
                                                             options={
                                                                 orderChartDropdownOptions.map(item => (
@@ -227,12 +227,12 @@ class DashboardMainPage extends React.Component {
                                     </Segment>
                                 </Grid.Column>
                                 <Grid.Column  computer={8} tablet={16} mobile={16}>
-                                    <Segment className="index-2nd-grid-column">
+                                    <Segment className="index-2nd-grid-column dashboard-segment">
                                         { isLoading ? <Loader active/> : <UserListSegment refreshState={this.refreshState} users={userList} /> }
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>
-                            <pre>{JSON.stringify(this.state, " ", 2)}</pre>
+                            <pre>{JSON.stringify(this.state.orderList, " ", 2)}</pre>
                         </Grid>
                 )}
             </ContextAPI.Consumer>

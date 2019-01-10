@@ -308,8 +308,8 @@ class AboutOurChef extends React.Component {
                             <Message icon>
                                 <Icon name='user'/>
                                 <Message.Content>
-                                <Message.Header>There are currently no chef profiles available</Message.Header>
-                                Use the form above to create a chef's profile which can be viewed by your users in the about us section of the main website.
+                                    <Message.Header>There are currently no chef profiles available</Message.Header>
+                                    Use the form above to create a chef's profile which can be viewed by your users in the about us section of the main website.
                                 </Message.Content>
                             </Message>
                             : 
@@ -402,9 +402,9 @@ class AboutOurChef extends React.Component {
                             </Button>
                             </Modal.Actions>
                         </Modal> 
-                    <pre>{JSON.stringify(this.state, null, 2)}</pre>
+                    {/* <pre>{JSON.stringify(this.state, null, 2)}</pre>
                     <pre>{JSON.stringify(this.state.isEditingChef, null, 2)}</pre>
-                    <pre>{JSON.stringify(this.state.isImageEdited, null, 2)}</pre>
+                    <pre>{JSON.stringify(this.state.isImageEdited, null, 2)}</pre> */}
 
                 </div>
             </div>
