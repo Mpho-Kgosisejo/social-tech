@@ -19,34 +19,19 @@ class DashboardAboutsPage extends React.Component {
 
     this.state = {
       activeIndex : 0,
-      panes: [
-        {
-          menuItem: 'Our Story Form', render: () => <Tab.Pane>
-            <AboutStory />
-          </Tab.Pane>
-
-        },
-        {
-          menuItem: 'Our Chefs Form', render: () => <Tab.Pane>
-            <AboutsChef />
-          </Tab.Pane>
-        },
-        {
-          menuItem: 'Contact Us Form', render: () => <Tab.Pane>
-            <AboutContact />
-          </Tab.Pane>
-        },
-        {
-          menuItem: 'Our FAQs Form', render: () => <Tab.Pane>
-            <AboutFaq />
-          </Tab.Pane>
-        }
+      panes: [ 
+        { menuItem: 'Our Story Form', value : 0 },
+        { menuItem: 'Our Chefs Form', value : 1 },
+        { menuItem: 'Contact Us Form', value : 2 },
+        { menuItem: 'Our FAQs Form', value : 3 }
       ]
     }
     
   }
 
   HandleDropDown = (index) => this.setState({activeIndex : index})
+
+  handleTabChange = (e, { activeIndex }) => this.setState({ activeIndex })
 
   getActiveSegment = (index) => 
   {
@@ -90,12 +75,14 @@ class DashboardAboutsPage extends React.Component {
         </Responsive>
 
         <Responsive minWidth={769} >
-          <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+          <Tab menu={{ secondary: true, pointing: true }} panes={panes} activeIndex={activeIndex} onTabChange={this.handleTabChange}/>
         </Responsive>
 
           <Segment>
               {this.getActiveSegment(activeIndex)}
           </Segment>
+
+                            <pre>{JSON.stringify(this.state, " ", 2)}</pre>
       </div>
 
     )

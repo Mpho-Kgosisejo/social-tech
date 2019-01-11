@@ -158,7 +158,6 @@ class DashboardMainPage extends React.Component {
     } 
 
     refreshState = (newObject) => {
-        // console.log("okay cool cool cool save it", newObject)
         this.setState({
             ...this.state,
             ...newObject
@@ -239,9 +238,6 @@ class DashboardMainPage extends React.Component {
             </div>
         )
     }
-}    
-// const DashboardMainPage = () => (
-//     <h1>I AM THE LANDING PAGE</h1>
-// )
+}
 
 export default DashboardMainPage;

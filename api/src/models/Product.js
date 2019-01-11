@@ -35,6 +35,10 @@ const ProductSchema = new mongoose.Schema({
     menuCategoryId : {
         type: String,
         required : true
+    },
+    numberOfOrders : {
+        type : Number,
+        required : false
     }
 }, {timestamps: true})
 
