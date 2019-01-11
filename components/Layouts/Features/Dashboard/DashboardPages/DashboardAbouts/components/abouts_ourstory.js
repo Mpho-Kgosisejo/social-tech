@@ -74,9 +74,7 @@ class AboutOurStory extends React.Component{
 
     }
 
-
-
-        
+    
       render() {
         const { errors, aboutStory} = this.state
        
