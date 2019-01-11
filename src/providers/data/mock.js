@@ -21,6 +21,7 @@ import account_f from "./json/account_fail"
 import user_orders_s from "./json/user_orders_success"
 import index_s from "./json/index_success.json"
 import index_f from "./json/index_fail.json"
+import orders_s from "./json/dashboard_orders_success.json"
 
 const WAIT_TIME = 1500
 
@@ -45,5 +46,6 @@ export default {
     catering: () => loadMock(catering_s),
     account: () => loadMock(account_s),
     user_orders: () => loadMock(user_orders_s),
-    index: () => loadMock(index_s)
+    index: () => loadMock(index_s),
+    dashboard_orders: () => loadMock(orders_s)
 }

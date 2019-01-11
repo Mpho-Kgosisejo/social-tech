@@ -29,6 +29,8 @@ const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
     AboutHelper.RouterHandler({index})
 }
 
+const ResponsiveFragmentBugFix = () => (<div></div>)
+
 const pushSideBar =({dispatch}) =>
 {
     dispatch({ type: "SIDEBAR" })
@@ -40,7 +42,7 @@ const pushSideBar =({dispatch}) =>
 }
 
 
-const RightNav = () => (
+export const RightNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
@@ -57,7 +59,7 @@ const RightNav = () => (
                                 />
                                 {state.login.username}
                             </span>
-                        }
+                        } 
                     // pointing='top left'
                     // icon={null}
                     >

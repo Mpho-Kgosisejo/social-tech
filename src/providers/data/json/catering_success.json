@@ -11,7 +11,7 @@
                 "subtitle": "Small, medium, big business",
                 "catering_days": "Monday - Thursday Only",
                 "catering_price": "R 2500.00 per order",
-                "catering_TCS": "T&C Apply" 
+                "catering_TCS": "T&C Apply"
             },
             {
                 "index": 2,
@@ -19,7 +19,7 @@
                 "subtitle": "kids, graduation, farewell parties",
                 "catering_days": "Friday - Sunday Only",
                 "catering_price": "R 12 500.00 per order",
-                "catering_TCS": "T&C Apply" 
+                "catering_TCS": "T&C Apply"
             },
             {
                 "index": 3,
@@ -27,7 +27,53 @@
                 "subtitle": "100 - 200 people",
                 "catering_days": "Monday - Thursday Only",
                 "catering_price": "R 2500.00 per order",
-                "catering_TCS": "T&C Apply" 
+                "catering_TCS": "T&C Apply"
+            }
+        ],
+        "cater_fields": [
+            {
+                "_id": "1",
+                "customer_name": "Peter",
+                "customer_num": "0113114112",
+                "customer_email": "peter@gmail.com",
+                "type_event": "Corporate party",
+                "date_event": "2019-02-03",
+                "time_event": "07:30-17:00",
+                "location_event": "WeThinkCode_",
+                "number_people": "100"
+            },
+            {
+                "_id": "2",
+                "customer_name": "Thomas",
+                "customer_num": "0113114112",
+                "customer_email": "thomas@gmail.com",
+                "type_event": "Corporate party",
+                "date_event": "2019-02-03",
+                "time_event": "07:30-17:00",
+                "location_event": "WeThinkCode_",
+                "number_people": "100"
+            },
+            {
+                "_id": "3",
+                "customer_name": "Harry",
+                "customer_num": "0113114112",
+                "customer_email": "harry@gmail.com",
+                "type_event": "Corporate party",
+                "date_event": "2019-02-03",
+                "time_event": "07:30-17:00",
+                "location_event": "WeThinkCode_",
+                "number_people": "100"
+            },
+            {
+                "_id": "4",
+                "customer_name": "Potter",
+                "customer_num": "0113114112",
+                "customer_email": "poter@gmail.com",
+                "type_event": "Corporate party",
+                "date_event": "2019-02-03",
+                "time_event": "07:30-17:00",
+                "location_event": "WeThinkCode_",
+                "number_people": "100"
             }
         ]
     }

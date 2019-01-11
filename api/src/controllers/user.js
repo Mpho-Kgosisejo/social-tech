@@ -113,3 +113,112 @@ export const get_info = (req, res) => {
         })
     })
 }
+
+export const get_all_users = (req, res) => {
+
+    UserModel.find()
+    .then(users => {
+        if (users){   
+            res.json({
+                users,
+                message: "OK"
+            })
+        }else{
+            res.status(404).json({
+                error: {
+                    message: "failed to get all users [1]"
+                }
+            })
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(404).json({
+            catch: err,
+            error: {
+                message: "failed to get all users [2]"
+            }
+        })
+    })
+}
+
+export const handle_admin_rights = (req, res) => {
+
+    let newBody = false
+    if (req.body.admin)
+        newBody = false
+    else 
+        newBody = true
+
+    UserModel.findByIdAndUpdate(req.body._id, { admin : newBody}, {new : true})
+    .then(user => {
+        console.log(user)
+        UserModel.find()
+        .then(users => {
+            if (users){   
+                res.json({
+                    users,
+                    message: "updated the user"
+                })
+            }else{
+                res.status(404).json({
+                    error: {
+                        message: "failed to grant administrative rights [1]"
+                    }
+                })
+            }
+        })
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(404).json({
+            catch: err,
+            error: {
+                message: "failed to grant adminstrative rights [2]"
+            }
+        })
+    })
+}
+
+export const delete_user = (req, res) => {
+    UserModel.findByIdAndRemove(req.body._id)
+    .then(user => {
+        console.log(user)
+        UserModel.find()
+        .then(users => {
+            if (req.body.image !== "")
+            {
+                const imageToBeDeleted = req.body.image.split('/')[4]
+                removeFile(`uploads/${imageToBeDeleted}`, (err) => {
+                    if (err){
+                        console.error("RemoveImage: ", err)
+                    }else{
+                        console.log("RemoveImage: OK")
+                    }
+                })
+            }
+
+            if (users){   
+                res.json({
+                    users,
+                    message: "deleted the user"
+                })
+            }else{
+                res.status(404).json({
+                    error: {
+                        message: "failed to get delete user [1]"
+                    }
+                })
+            }
+        })
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(404).json({
+            catch: err,
+            error: {
+                message: "failed to get delete users [2]"
+            }
+        })
+    })
+}
