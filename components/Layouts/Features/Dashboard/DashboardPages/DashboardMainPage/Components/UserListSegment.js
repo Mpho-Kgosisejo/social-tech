@@ -125,9 +125,9 @@ class UserListSegment extends React.Component {
         return(filterOptionsList)
     }
 
-    countNumberOfPages = (list, usersPerPage) => {
+    countNumberOfPages = (listLength, usersPerPage) => {
         const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(list.length / usersPerPage); i++) {
+        for (let i = 1; i <= Math.ceil(listLength / usersPerPage); i++) {
           pageNumbers.push(i);
         }
         return(pageNumbers.length)
@@ -186,7 +186,7 @@ class UserListSegment extends React.Component {
             <>
                 <div className="product-list-header">
                     <div className="user-list-header">
-                        <h3>{ isSearching ? `${filter} [${this.getFilterList(filteredList).length}]` : `${filter} [${this.getFilterList(users).length}]` }</h3>
+                        <h3>{ isSearching ? `${filter} | ${this.getFilterList(filteredList).length}` : `${filter} | ${this.getFilterList(users).length}` }</h3>
                     </div>
                     <div>
                         <Dropdown text='Filter' icon='filter' floating labeled button className='icon user-list-header'>
@@ -218,15 +218,15 @@ class UserListSegment extends React.Component {
                     </List>
                         { 
                             isSearching ?
-                                this.countNumberOfPages(filteredList, usersPerPage) > 1 ?     
+                                (this.countNumberOfPages(this.getFilterList(filteredList).length, usersPerPage) > 1 && filteredList.length > usersPerPage)?     
                                     <div className="pagination-component centered-element">
-                                        <Pagination size='tiny' activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={2} />
+                                        <Pagination size='tiny' activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(this.getFilterList(filteredList).length, usersPerPage)} />
                                     </div>
                                 : null
                              :
-                                this.countNumberOfPages(users, usersPerPage) > 1 ?     
+                                (this.countNumberOfPages(this.getFilterList(users).length, usersPerPage) > 1  && users.length > usersPerPage)?     
                                     <div className="pagination-component centered-element">
-                                        <Pagination  size='tiny' activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={2} />
+                                        <Pagination  size='tiny' activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(this.getFilterList(users).length, usersPerPage)} />
                                     </div>
                                 : null
                         }

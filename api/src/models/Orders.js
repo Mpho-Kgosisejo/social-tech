@@ -12,27 +12,20 @@ const OrderSchema = new mongoose.Schema({
         required : false
     },
     details : {
-        itemsCount : {
-            type : Number
-        },
-        totalItemsCount : {
-            type : Number
-        },
-        subTotal : {
-            type : Number
-        },
-        total : {
-            type : Number
-        },
-        tax: {
-            type : Number
-        }
+        itemsCount : { type : Number },
+        totalItemsCount : { type : Number },
+        subTotal : { type : Number },
+        total : { type : Number },
+        tax: { type : Number }
+    },
+    feedback : {
+        date : { type : Date },
+        message : { type : String },
+        rating : { type : Number }
     },
     items: [],
     stripe : {},
-    status : {
-        type : String,
-    }
+    status : { type : String }
 }, {timestamps: true})
 
 export default mongoose.model("Orders", OrderSchema)

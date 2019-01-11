@@ -21,7 +21,25 @@ export const get_orders = (req, res) => {
 }
 
 export const get_user_orders = (req, res) => {
-    //TO:DO, use the uid to get a specific user's orders for the user profile page
+    // TO:DO, use the uid to get a specific user's orders for the user profile page
+    const uid = req.params.uid 
+    const query = { customer : uid }
+
+    OrderModel.find(query)
+    .then (orders => {
+        console.log("orders : >>>>>>> ", orders )
+        res.status(200).json({
+            orders,
+            message : "got the users orders"
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+            error: {
+                message : "failed to retrieve user orders.. user id might be invalid"
+            }
+        })    
+    })
 }
 
 export const get_order = (req, res) => {
