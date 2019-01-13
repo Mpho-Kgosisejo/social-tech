@@ -1,5 +1,7 @@
 import {GoogleApiWrapper, Map, Marker} from "google-maps-react"
 import { Input, Form, Divider, Segment, Header, Icon } from "semantic-ui-react";
+import ContextAPI from "../../src/config/ContextAPI";
+import { computeDelivery } from "../../src/providers/CartHandler";
 
 const LoadingContainer = () => (
     <Segment placeholder className="googlemaps-loading">
@@ -20,6 +22,7 @@ export class GoogleMaps extends React.Component {
 
         this.map = null
         this.marker = null
+        this.root_dispatch = () => {}
     }
 
     componentDidMount(){
@@ -33,10 +36,10 @@ export class GoogleMaps extends React.Component {
         geocoder.geocode({address}, (result, status) => {
             if (status === "OK"){
                 const location = result[0].geometry.location
-                this.marker = new Marker({
-                    map: this.map,
-                    position: location
-                })
+                // this.marker = new Marker({
+                //     map: this.map,
+                //     position: location
+                // })
                 
                 this.map.setCenter(location)
             }else{
@@ -53,7 +56,8 @@ export class GoogleMaps extends React.Component {
         const directionsRenderer = new DirectionsRenderer()
         const directionsService = new DirectionsService()
 
-        this.marker.setMap(null)
+        // if (this.marker)
+        //     this.marker.setMap(null)
 
         new DistanceMatrixService().getDistanceMatrix({
             origins: [origin],
@@ -81,7 +85,16 @@ export class GoogleMaps extends React.Component {
                     directionsRenderer.setMap(this.map)
                     directionsService.route(request, (result, status) => {
                         if (status === "OK"){
-                            console.log("Directions success")
+                            const payload = {
+                                distance,
+                                duration,
+                                from: origin,
+                                to: destination
+                            }
+                            
+                            payload.cost = computeDelivery(payload)
+                            this.root_dispatch({type: "CART_DELIVERY", payload})
+
                             directionsRenderer.setDirections(result)
                         }
                     })
@@ -94,7 +107,7 @@ export class GoogleMaps extends React.Component {
         }))
     }
 
-    initMap = (mapProps, map) => {
+    initMap = (mapProps, map, dispatch) => {
         this.map = map
         
         this.findCoords({address: this.props.initialAddress})
@@ -102,6 +115,8 @@ export class GoogleMaps extends React.Component {
             this.handleDistanceCompute({destination: this.props.destination})
         }
         this.initAutoComplete()
+
+        this.root_dispatch = dispatch
     }
 
     initAutoComplete = () => {
@@ -124,35 +139,41 @@ export class GoogleMaps extends React.Component {
     }
 
     render(){
+        const {goole, destination} = this.props
+
         return(
-            <div className="map">
-                <Map
-                    google={this.props.google}
-                    zoom={17.5}
-                    style={{
-                        width: "100%",
-                        height: "280px"
-                    }}
-                    
-                    // initialCenter={this.state.company.position}
-                    
-                    fullscreenControl={false}
-                    mapTypeControl={false}
-                    streetViewControl={false}
-                    draggable={false}
-                    zoomControl={false}
-
-                    bounds={this.MapBounds}
-
-                    onReady={this.initMap}
-                />
-
-                <Form loading={this.state.loadingAutoComplete}>
-                    <Form.Field>
-                        <input ref={ref => (this.autocomplete = ref)} />
-                    </Form.Field>
-                </Form>
-            </div>
+            <ContextAPI.Consumer>
+                {({state}) => (
+                    <div className="map">
+                        <Map
+                            google={google}
+                            zoom={17.5}
+                            style={{
+                                width: "100%",
+                                height: "280px"
+                            }}
+                            
+                            // initialCenter={this.state.company.position}
+                            
+                            fullscreenControl={false}
+                            mapTypeControl={false}
+                            streetViewControl={false}
+                            draggable={false}
+                            zoomControl={false}
+        
+                            bounds={this.MapBounds}
+        
+                            onReady={(mapProps, map) => this.initMap(mapProps, map, state.dispatch)}
+                        />
+        
+                        <Form loading={this.state.loadingAutoComplete}>
+                            <Form.Field>
+                                <input ref={ref => (this.autocomplete = ref)} value={destination} />
+                            </Form.Field>
+                        </Form>
+                    </div>
+                )}
+            </ContextAPI.Consumer>
         )
     }
 }

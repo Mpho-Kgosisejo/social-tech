@@ -15,9 +15,9 @@ export const add = ({state, new_item}) => {
 export const isInCart = ({cart, item}) => {
     for (var i in cart) {
         if ((item._id === cart[i]._id))
-            return (true)
+            return (cart[i])
     }
-    return (false)
+    return (null)
 }
 
 export const remove = ({state, item}) => {
@@ -47,11 +47,11 @@ export const update = ({state, item}) => {
     return (new_items)
 }
 
-export const details = ({cart}) => {
+export const details = ({cart, delivery_cost = 0}) => {
     let data = {
         itemsCount: cart.length,
         totalItemsCount: 0,
-        subTotal: 0,
+        subTotal: 0.0,
         total: 0,
         tax: 0
     }
@@ -64,7 +64,7 @@ export const details = ({cart}) => {
     }
     if (data.subTotal){
         data.tax = (42 + 0)
-        data.total = (data.subTotal + data.tax)
+        data.total = parseFloat(((data.subTotal + data.tax) + delivery_cost).toFixed(2))
     }
     store_cart({cart})
     return (data)
@@ -83,4 +83,16 @@ export const restore_cart = ({dispatch}) => {
             dispatch({type: "CART", payload: cartDecode.items})
         }, 10)
     } catch (error) {}
+}
+
+export const computeDelivery = (delivery) => {
+    return (41.99)
+}
+
+export const readyToProcessDelivery = ({total, delivery, toggleDelivery}) => {
+    if (total <= 0)
+        return (false)
+    if (toggleDelivery && (Object.keys(delivery).length <= 0 || delivery.cost <= 0))
+        return (false)
+    return (true)
 }

@@ -90,11 +90,9 @@ class SignInForm extends React.Component{
                 }
             })
 
-            const {token, isAdmin, username} = res.data.user
-            const loginPayload = {token, isAdmin, username}
-            login(loginPayload)
+            login({...res.data.user})
             this.resetInputs()
-            dispatch({type: "LOGIN", payload: loginPayload})
+            dispatch({type: "LOGIN", payload: {...res.data.user}})
             dispatch({type: "ALERT_PORTAL", payload: {header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_IN, open: true}})
             dispatch({type: "SIDEBAR", payload: false})
         }

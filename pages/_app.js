@@ -1,6 +1,7 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import Config from "react-global-configuration"
+import axios from "axios"
 
 import devConfig from "../src/config/devConfig"
 import prodConfig from "../src/config/prodConfig"
@@ -41,8 +42,10 @@ export default class MyApp extends App {
                     total: 0,
                     tax: 0
                 },
+                delivery: {},
                 items: []
             },
+            account:{},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
@@ -65,6 +68,8 @@ export default class MyApp extends App {
 
         CartHandler.restore_cart({dispatch: this.state.dispatch})
         if (process.browser){
+            axios.defaults.headers.authorization = `Bearer ${login.token}`
+            
             this.setState({
                 ...this.state,
                 root_loading: false,
