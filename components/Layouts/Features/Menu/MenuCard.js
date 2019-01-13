@@ -126,7 +126,7 @@ class menu_card extends React.Component {
             open: true,
             message: `"${this.props.name}" added to cart`
         }})
-        this.closeModal()
+        this.handleOnModalClose(state.menu)
     }
 
     handleOnModalClose = (menu) => {
