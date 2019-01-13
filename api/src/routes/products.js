@@ -199,41 +199,24 @@ router.patch("/", adminAuth,multerUpload.single('productImage'), (req, res) => {
 })
 
 //this endpoint will be used to get all the top selling products
-// router.get("/top", (req, res) => { 
-//     Product.find()
-//     .then(items => {
-//         res.status(200).json({
-//             items,
-//             message : "successfully retrieved products"
-//         }) 
-//     })
-//     .catch(error =>{
-//         console.log(error)
-//         res.status(500).json({
-//             error : {
-//                 message : "Error while trying to retrieve products"
-//             }
-//         })
-//     })
-//  })
 
-// router.get("/top-selling", (req, res) => {
-    
-//     Product.find()
-//     .then(items => {
-//         res.status(200).json({
-//             items,
-//             message : "successfully retrieved products"
-//         }) 
-//     })
-//     .catch(error =>{
-//         console.log(error)
-//         res.status(500).json({
-//             error : {
-//                 message : "Error while trying to retrieve products"
-//             }
-//         })
-//     })
-// })
+router.get("/top-selling", (req, res) => {
+    Product.find()
+    .then(items => {
+        // const ite_ms = insertionSortProductsByMostSold(items)
+        res.status(200).json({
+            items,
+            message : "successfully retrieved products"
+        }) 
+    })
+    .catch(error =>{
+        console.log(error)
+        res.status(500).json({
+            error : {
+                message : "Error while trying to retrieve products"
+            }
+        })
+    })
+})
 
 export default router
