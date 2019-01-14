@@ -73,7 +73,7 @@ const Editable = ({user, root_state, onSubmit, isLoading, errors, onChange, disp
         </Form.Field>
         <Form.Field error={!isEmptyObj(errors.address)}>
             <label>Delivery address:</label>
-            <GooglePlaceSearch value={"user.address"} onChange={onChange} dispatchAddress={dispatchAddress} name="address"/>
+            <GooglePlaceSearch value={user.address} onChange={onChange} dispatchAddress={dispatchAddress} name="address"/>
             {errors.address && <InLineError message={errors.address}/>}
         </Form.Field>
         <Divider />

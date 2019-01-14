@@ -20,7 +20,7 @@ class IndexSteps extends React.Component {
                 <div className="index-steps">
                     <div className="index-steps-container">
                         <div className="index-steps-row align-iterms-center">
-                            {state.root_loading ? "" : <Grid columns={4} divided className="index-step-grid">
+                            {/* {state.root_loading ? "" : <Grid columns={4} divided className="index-step-grid">
                                     {state.index.steps_banner.steps.map(item => (
                                         <React.Fragment key={item.icon}>
                                         <Grid.Column className="index-step-grid-column veritcal-stack">
@@ -31,7 +31,7 @@ class IndexSteps extends React.Component {
                                         </React.Fragment>
                                     ))}
                                 </Grid>
-                            }
+                            } */}
                             <Button href="/menu" className="index-step-get-started-btn" basic color='green'>
                                 GET STARTED
                             </Button>

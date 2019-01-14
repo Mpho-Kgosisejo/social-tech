@@ -23,7 +23,7 @@ class IndexMenu extends React.Component {
                             <div className="index-menu-container">
                                 <div className="index-menu-row">
                                     {state.root_loading ? "" : <Grid columns={2} divided>
-                                        <Grid.Row>
+                                        {/* <Grid.Row>
                                             <Grid.Column>
                                                 <List className="align-iterms-center">
                                                     {state.index.menu_items.items.map(item =>
@@ -54,7 +54,7 @@ class IndexMenu extends React.Component {
                                                     )}
                                                 </List>
                                             </Grid.Column>
-                                        </Grid.Row>
+                                        </Grid.Row> */}
                                     </Grid>
                                     }
                                 </div>
