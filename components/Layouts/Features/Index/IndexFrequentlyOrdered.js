@@ -24,7 +24,7 @@ class IndexFrequentlyOrdered extends React.Component {
                     <div className="index-frequently-ordered">
                     {state.root_loading ? "" : <Card.Group itemsPerRow={3}>
                         {state.index.freq_ordered_meals.meals.map(item =>                
-                            <Card className="veritcal-stack">
+                            <Card key={item.date_created} className="veritcal-stack">
                                 <Image src={item.image} />
                                 <Card.Content>
                                     <Card.Header>{item.name}</Card.Header>

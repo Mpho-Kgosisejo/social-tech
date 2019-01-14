@@ -4,6 +4,7 @@
             "user": {
                 "isAdmin": true,
                 "username": "smith",
+                "email": "john.smith@mock.co.za",
                 "token": "0123456789",
                 "avator": ""
         }

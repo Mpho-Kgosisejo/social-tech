@@ -14,11 +14,10 @@ import Avator from "../utils/Avator";
 const handleLogout = (state) => {
     const {dispatch} = state
 
-    logout()
+    logout(dispatch)
     if ((`${Router.route}`).includes("/dashboard") || (`${Router.route}`).includes("/account"))
         Router.push({ pathname: "/" })
-    dispatch({ type: "LOGIN", payload: {} })
-    dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
+    dispatch({type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true }})
     dispatch({type: "SIDEBAR", payload: false})
 }
 
@@ -28,6 +27,8 @@ const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
 
     AboutHelper.RouterHandler({index})
 }
+
+const ResponsiveFragmentBugFix = () => (<div></div>)
 
 const pushSideBar =({dispatch}) =>
 {
@@ -39,8 +40,9 @@ const pushSideBar =({dispatch}) =>
     })
 }
 
+const ResponsiveFix = () => <></>
 
-const RightNav = () => (
+export const RightNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
@@ -57,7 +59,7 @@ const RightNav = () => (
                                 />
                                 {state.login.username}
                             </span>
-                        }
+                        } 
                     // pointing='top left'
                     // icon={null}
                     >
@@ -78,7 +80,6 @@ const RightNav = () => (
             </React.Fragment>
         )}
     </ContextAPI.Consumer>
-
 )
 
 const LeftTabletNav = () => (
@@ -129,20 +130,20 @@ export const LeftComputerNav = () => (
                                 <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
                         )}
-                        <Responsive maxWidth={991} as={React.Fragment}>
+                        <Responsive maxWidth={991} as={"div"}>
                             {isEmptyObj(state.login) ? <AuthLayout /> : <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>}
-                        <Link href="/cart" prefetch passHref>
-                            <Menu.Item className="fresheats-brown-color cart-icon">
-                                <Icon className="cart-icon-" name="cart" size="mini">
-                                    {state.cart.details.itemsCount > 0 &&
-                                        <Label circular size="mini" style={{background: LIGHT_RED}}>
-                                            {state.cart.details.itemsCount}
-                                        </Label>
-                                    }
-                                </Icon>
-                                View Cart
-                            </Menu.Item>
-                        </Link>
+                            <Link href="/cart" prefetch passHref>
+                                <Menu.Item as="a" className="fresheats-brown-color cart-icon">
+                                    <Icon className="cart-icon-" name="cart" size="mini">
+                                        {state.cart.details.itemsCount > 0 &&
+                                            <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                                {state.cart.details.itemsCount}
+                                            </Label>
+                                        }
+                                    </Icon>
+                                    View Cart
+                                </Menu.Item>
+                            </Link>
                         </Responsive>
                     </React.Fragment>
                 )}
@@ -174,18 +175,18 @@ const Nav = () => (
                                 {!isEmptyObj(state.login) ? <RightNav /> : <Responsive minWidth={992} as={React.Fragment}><AuthLayout /></Responsive>}
                             </Menu.Menu>
                         }
-                         <Responsive minWidth={992} as={React.Fragment}>
-                        <Link href="/cart" prefetch passHref>
-                            <Menu.Item className="fresheats-brown-color">
-                              <Icon className="cart-icon-nav" name="cart">
-                                {state.cart.details.itemsCount > 0 &&
-                                    <Label circular size="mini" style={{background: LIGHT_RED}}>
-                                        {state.cart.details.itemsCount}
-                                    </Label>
-                                }
-                              </Icon>
-                            </Menu.Item>
-                        </Link>
+                        <Responsive minWidth={992} as={React.Fragment}>
+                            <Link href="/cart" prefetch passHref>
+                                <Menu.Item className="fresheats-brown-color">
+                                <Icon className="cart-icon-nav" name="cart">
+                                    {state.cart.details.itemsCount > 0 &&
+                                        <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                            {state.cart.details.itemsCount}
+                                        </Label>
+                                    }
+                                </Icon>
+                                </Menu.Item>
+                            </Link>
                         </Responsive>
                     </React.Fragment>
                 </Container>

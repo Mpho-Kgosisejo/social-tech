@@ -5,34 +5,14 @@ import ContextAPI from "../../../../src/config/ContextAPI";
 import Layout from '../../Layout';
 import Avator from '../../../utils/Avator';
 
-
-const HideButton = () => (
-        <>
-        </>
-)
-
-const DisplayButton = () => (
-        <div className="pull-right">
-            <Button circular icon='edit outline' />
-        </div>
-)
-
 class AccountHeader extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            disabled: true
-        }
     }
 
     editFunc = () => {
         this.setState({ disabled: false })
-    }
-
-    componentDidMount()
-    {
-        console.log(this.props)
     }
 
     render() {
@@ -57,9 +37,11 @@ class AccountHeader extends React.Component {
                                         </Header>
                                         <br />
                                         <div className="padding-thirty">
-                                            <pre>{JSON.stringify(this.state, "", 1)}</pre>
                                             <React.Fragment>
-                                                {this.state.disabled ? <DisplayButton /> : <HideButton />}
+                                                {!this.props.edit && <div className="pull-right">
+                                                        <Button onClick={this.props.toggleEdit} disabled={state.root_loading} circular icon='edit outline' />
+                                                    </div>
+                                                }
                                             </React.Fragment>
                                         </div>
                                     </Grid.Column>

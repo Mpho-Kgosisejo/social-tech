@@ -9,8 +9,8 @@ import { InLineError } from "../../../Messages/InLineMessage"
 import API from '../../../../src/providers/APIRequest';
 import GooglePlaceSearch from "../../../utils/GooglePlaceSearch"
 
-const DefaultForm = ({email, username, firstname, lastname, address, phone}) => (
-    <Form>
+export const DefaultForm = ({root_loading, email, username, firstname, lastname, address, phone}) => (
+    <Form loading={root_loading}>
         <Form.Field>
             <label>First name:</label>
             <input disabled defaultValue={firstname}/>
@@ -47,7 +47,7 @@ const DefaultForm = ({email, username, firstname, lastname, address, phone}) => 
 )
 
 const Editable = ({user, root_state, onSubmit, isLoading, errors, onChange, dispatchAddress, toggleEdit}) => (
-    <Form onSubmit={(e) => onSubmit(e, root_state.dispatch, toggleEdit)} loading={isLoading}>
+    <Form loading={root_state.root_loading} onSubmit={(e) => onSubmit(e, root_state.dispatch, toggleEdit)} loading={isLoading}>
         <Form.Field error={!isEmptyObj(errors.firstname)}>
             <label>First name:</label>
             <input value={user.firstname} onChange={onChange} name="firstname"/>
@@ -118,7 +118,6 @@ class AccountPersonalDetails extends React.Component {
 
     onSubmit = (e, dispatch, toggleEdit) => {
         e.preventDefault()
-        console.log("Testing Button")
         const errors = this.validate(this.state.user)
         this.setState({
             ...this.state.errors,
@@ -126,7 +125,6 @@ class AccountPersonalDetails extends React.Component {
         })
 
         if (Object.keys(errors).length === 0){
-            console.log("Testing Objects")
             this.doUpdate(dispatch, toggleEdit)
         }
     }
@@ -184,8 +182,6 @@ class AccountPersonalDetails extends React.Component {
         this.setState({isLoading: true})
         const res = await API.profile.account_update(this.state.user);
 
-        console.log(">>>>>>>", res)
-
         if (res.status === 200){
             this.setState({isLoading: false})
             dispatch({type: "ACCOUNT_PERSONAL_DETAILS", payload: res.data.user })
@@ -202,13 +198,12 @@ class AccountPersonalDetails extends React.Component {
     render() {
         const { isLoading, user, errors, feedback } = this.state
         const {edit, toggleEdit } = this.props
-        console.log(this.props)
         return (
             <ContextAPI.Consumer>
                 {({ state }) => {
                     return (
                         <React.Fragment>
-                            {edit ?
+                            {(edit) ?
                                 <Editable
                                     toggleEdit= {toggleEdit} 
                                     user={user}
@@ -219,7 +214,7 @@ class AccountPersonalDetails extends React.Component {
                                     onChange={this.onChange}
                                     dispatchAddress={this.dispatchAddress}
                                 /> :
-                                <DefaultForm {...state.account.personal_details} />
+                                <DefaultForm root_loading={state.root_loading} {...state.account.personal_details} />
                             }
                         </React.Fragment>
                         

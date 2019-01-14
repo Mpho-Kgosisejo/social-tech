@@ -27,7 +27,7 @@ class AboutOurStory extends React.Component {
                             <Divider hidden />
                             <Container text>
                                 {/* <Segment className="fresheats-green-bg"> */}
-                                        <Header className="aboutsHeaders" as='h2'>{state.about.our_story.page_header}</Header>
+                                        <Header className="aboutsHeaders" as='h2'>Our Story</Header>
                                     <Divider inverted />
                                     {/* </Divider> */}
                                 {/* </Segment> */}

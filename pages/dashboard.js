@@ -26,6 +26,8 @@ class Dashoard extends React.Component {
     }
 
     componentDidMount(){
+        const {name} = this.props.router.query
+        console.log(this.props)
         this.props.dispatch({type: "SIDEBAR", payload: false})
         const login = getLogin()
 
@@ -59,14 +61,12 @@ class Dashoard extends React.Component {
         return(
             <ContextAPI.Consumer>
                 {({state}) => (
-                    <Layout title="Dashboard">
+                    <Layout title="Dashboard" includeContainer={false} includeFooter={false} includeNav={false}>
                         {(!state.root_loading && !loading) && (
                             <React.Fragment>
-                                <Header as="h2">Dashboard</Header>
-                                <Divider />
                                 
                                 {(state.login && state.login.isAdmin) ?
-                                    <AdminDashboard /> : <UserDashboard />
+                                    <AdminDashboard dispatch={this.props.dispatch}/> : <UserDashboard />
                                 }
                             </React.Fragment>
                         )}

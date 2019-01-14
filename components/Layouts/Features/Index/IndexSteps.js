@@ -22,8 +22,8 @@ class IndexSteps extends React.Component {
                         <div className="index-steps-row align-iterms-center">
                             {state.root_loading ? "" : <Grid columns={4} divided className="index-step-grid">
                                     {state.index.steps_banner.steps.map(item => (
-                                        <React.Fragment>
-                                        <Grid.Column key={item.index} className="index-step-grid-column veritcal-stack">
+                                        <React.Fragment key={item.icon}>
+                                        <Grid.Column className="index-step-grid-column veritcal-stack">
                                         
                                                 <Icon name={item.icon} size="huge" />
                                                 <Header className="index-step-column-h3" as="h3">{item.header}</Header>

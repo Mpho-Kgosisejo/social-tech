@@ -1,18 +1,18 @@
 import { Grid, Header, Icon, Divider, Button, Checkbox, Label } from "semantic-ui-react";
 import StripeCheckout from "react-stripe-checkout"
+import Config from "react-global-configuration"
 
 import GoogleMaps from "../../../utils/GoogleMaps"
 import { readyToProcessDelivery } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
+import OrderCollectorForm from "./OrderCollectorForm";
 
-const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress}) => (
+const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress, paymentLoading, funcs, cartState}) => (
     <ContextAPI.Consumer>
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
             const {distance, cost} = state.cart.delivery
-            const {login, root_loading} = state
-            // const {} = state.account
-            // const {email = "", }
+            const {login, root_loading, account} = state
 
             return (
                 <React.Fragment>
@@ -59,7 +59,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                             } */}
                                             <GoogleMaps
                                                 initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
-                                                destination={useSavedAddress ? useSavedAddress : null}
+                                                destination={useSavedAddress ? account.personal_details.address : ""}
                                             />
                                         </div>
                                         </Grid.Column>
@@ -88,6 +88,16 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                             </Grid.Column>
                         </Grid.Row>
                         <Divider />
+                        {root_loading ? null : Object.keys(login).length > 0 &&
+                            <>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <OrderCollectorForm cartState={cartState} funcs={funcs} />
+                                    </Grid.Column>
+                                </Grid.Row>
+                                <Divider />
+                            </>
+                        }
                         <Grid.Row>
                             <Grid.Column>
                                 {/* <Button
@@ -111,16 +121,27 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                 description={`Order ${Object.keys(state.cart.delivery).length > 0 ? "with" : "without"} delivery`}
                                                 amount={parseInt(total.toFixed(2).replace(".", ""))}
                                                 currency="ZAR"
-                                                stripeKey={"pk_test_BNTfnVdHOKirDMYCN8jGzTy5"}
+                                                stripeKey={Config.get("stripe.stripeKey")}
                                                 shippingAddress={false}
                                                 billingAddress={false}
                                                 zipCode={false}
                                                 token={(data) => handleCheckout({data, cart: state.cart})}
                                                 reconfigureOnUpdate={false}
                                                 triggerEvent="onClick"
-                                                email={"mpho.kgosisejo@hotmail.com"}
+                                                email={login.email}
+                                                disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0)}
+                                                opened={() => funcs.cartDispatch({paymentLoading: false})}
+                                                closed={() => funcs.cartDispatch({paymentLoading: false})}
                                             >
-                                                <Button fluid color="black">Proceed to Payment</Button>
+                                                <Button
+                                                    disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0)}
+                                                    onClick={() => funcs.validatorUser()}
+                                                    fluid
+                                                    color="black"
+                                                    // loading={paymentLoading}
+                                                >
+                                                    {paymentLoading ? `Loading ${Config.get("stripe.name")}...` : "Proceed to Payment"}
+                                                </Button>
                                             </StripeCheckout>
                                 : 
                                     <Label size="large" style={{width: "100%"}}><Header as="h3" className="notifier">You must login to Proceed to Payment</Header></Label>

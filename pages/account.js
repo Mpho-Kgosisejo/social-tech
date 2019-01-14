@@ -22,7 +22,7 @@ class account extends React.Component {
         this.state = {
             loading: true,
             index: 0,
-            edit: true
+            edit: false
         }
     }
 
@@ -77,7 +77,7 @@ class account extends React.Component {
                     {({ state }) =>
                         <React.Fragment>
                             {loading ? <React.Fragment> <AccountTabsPlaceholder /> </React.Fragment> : 
-                            <React.Fragment><AccountHeader toggleEdit={this.toggleEdit} /> 
+                            <React.Fragment><AccountHeader edit={edit} toggleEdit={this.toggleEdit} /> 
                             <div className="about-content padding-account-dropdown">
                             <Dropdown
                                 fluid
