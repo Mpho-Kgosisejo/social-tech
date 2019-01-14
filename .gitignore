@@ -10,8 +10,8 @@
 *.swp
 *.tgz
 *.xml
-*.jpg
-*.png
+*/uploads/*.jpg
+*/uploads/*.png
 .DS_Store
 .idea
 .project
@@ -20,3 +20,4 @@ coverage
 node_modules
 npm-debug.log
 .next
+package-lock.json

@@ -15,9 +15,9 @@ export const add = ({state, new_item}) => {
 export const isInCart = ({cart, item}) => {
     for (var i in cart) {
         if ((item._id === cart[i]._id))
-            return (true)
+            return (cart[i])
     }
-    return (false)
+    return (null)
 }
 
 export const remove = ({state, item}) => {
@@ -51,7 +51,7 @@ export const details = ({cart, delivery_cost = 0}) => {
     let data = {
         itemsCount: cart.length,
         totalItemsCount: 0,
-        subTotal: 0,
+        subTotal: 0.0,
         total: 0,
         tax: 0
     }
@@ -64,7 +64,7 @@ export const details = ({cart, delivery_cost = 0}) => {
     }
     if (data.subTotal){
         data.tax = (42 + 0)
-        data.total = (data.subTotal + data.tax) + delivery_cost
+        data.total = parseFloat(((data.subTotal + data.tax) + delivery_cost).toFixed(2))
     }
     store_cart({cart})
     return (data)

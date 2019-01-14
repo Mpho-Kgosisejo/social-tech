@@ -7,6 +7,7 @@ export default {
     jwt: {
         itemName: "fresheatsJWT",
         cartKey: "fresheatsJWTCart",
-        secret: "fresheats_jwt_secret"
+        secret: "fresheats_jwt_secret",
+        avatorBG: "fresheats_avator_bg"
     }
 }

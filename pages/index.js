@@ -80,7 +80,7 @@ class Index extends React.Component {
 
     render() {
         return (
-            <Layout title="Home" includeContainer={false} includeNav={true}>
+            <Layout includeContainer={false} includeNav={true}>
                 <div className="slider-container" >
                     <Slider {...settings} className="de-slider">
                         {sliderImages.map(image => (
