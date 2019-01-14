@@ -1,8 +1,21 @@
 import React from 'react'
-import { Image, Item, Icon, Header, Grid, Dropdown, Button } from 'semantic-ui-react'
+import { Image, Item, Icon, Header, Grid, Button } from 'semantic-ui-react'
 
 import ContextAPI from "../../../../src/config/ContextAPI";
 import Layout from '../../Layout';
+import Avator from '../../../utils/Avator';
+
+
+const HideButton = () => (
+        <>
+        </>
+)
+
+const DisplayButton = () => (
+        <div className="pull-right">
+            <Button circular icon='edit outline' />
+        </div>
+)
 
 class AccountHeader extends React.Component {
 
@@ -17,6 +30,11 @@ class AccountHeader extends React.Component {
         this.setState({ disabled: false })
     }
 
+    componentDidMount()
+    {
+        console.log(this.props)
+    }
+
     render() {
         return (
             <ContextAPI.Consumer>
@@ -26,15 +44,23 @@ class AccountHeader extends React.Component {
                             <div className="account-header-container">
                                 <Grid columns={2}>
                                     <Grid.Column width={4} className="account-img-col">
-                                        <Image className="profile-img" src={state.account.personal_details.img_url} size="small" circular />
+                                    <ContextAPI.Consumer>
+                                    {({state}) => <Avator url={''} size="small" circular />}
+                                </ContextAPI.Consumer>
                                     </Grid.Column>
                                     <Grid.Column width={10}>
-                                        <Header as="h2">{state.account.personal_details.first_name} {state.account.personal_details.last_name}</Header>
+                                        <Header as="h2">
+                                            {(state.account.personal_details.firstname && state.account.personal_details.lastname) ? 
+                                                `${state.account.personal_details.firstname} ${state.account.personal_details.lastname}` :
+                                                state.account.personal_details.username
+                                            }
+                                        </Header>
                                         <br />
                                         <div className="padding-thirty">
-                                            <div className="pull-right">
-                                                <Button onClick={this.editFunc} circular icon='edit outline' />
-                                            </div>
+                                            <pre>{JSON.stringify(this.state, "", 1)}</pre>
+                                            <React.Fragment>
+                                                {this.state.disabled ? <DisplayButton /> : <HideButton />}
+                                            </React.Fragment>
                                         </div>
                                     </Grid.Column>
                                 </Grid>
