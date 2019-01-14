@@ -24,11 +24,9 @@ class IndexSteps extends React.Component {
                                     {state.index.steps_banner.steps.map(item => (
                                         <React.Fragment key={item.icon}>
                                         <Grid.Column className="index-step-grid-column veritcal-stack">
-                                        
-                                                <Icon name={item.icon} size="huge" />
-                                                <Header className="index-step-column-h3" as="h3">{item.header}</Header>
-                                                <p className="index-step-column-desc">{item.desc}</p>
-                                        
+                                            <Icon name={item.icon} size="huge" />
+                                            <Header className="index-step-column-h3" as="h3">{item.header}</Header>
+                                            <p className="index-step-column-desc">{item.desc}</p>
                                         </Grid.Column>
                                         </React.Fragment>
                                     ))}
