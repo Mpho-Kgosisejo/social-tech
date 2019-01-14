@@ -106,7 +106,9 @@ const API = {
             fileData.append('available', uploadBody.available)
             fileData.append('ingredients', JSON.stringify(uploadBody.ingredients))
             fileData.append('menuCategoryId', uploadBody.menuCategoryId)
+            fileData.append('numberOfOrders', uploadBody.menuCategoryId)
             fileData.append('productImage',uploadBody.image, uploadBody.image.name)
+            
             return (
                 axios.post(`${Config.get("api.endpoint")}/products`, fileData)
                 .then(res => res)

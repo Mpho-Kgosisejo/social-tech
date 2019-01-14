@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Grid, Segment, Loader, Dropdown } from 'semantic-ui-react'
+import { Container, Grid, Segment, Loader, Dropdown, Icon } from 'semantic-ui-react'
 import OrderHistoryChart from './Components/OrderHistoryChart'
 import UserListSegment from './Components/UserListSegment'
 import ContextAPI from "../../../../../../src/config/ContextAPI";
@@ -180,29 +180,95 @@ class DashboardMainPage extends React.Component {
                             <Grid.Row stretched>
                                 <Grid.Column computer={4} tablet={16} mobile={16}>
                                     <Segment className="index-top-grid-column dashboard-segment">
-                                        { isLoading ? <Loader active/> : <h1> {userList.length} </h1> }
+                                        { isLoading ? <Loader active/> : 
+                                            <div className="dashboard-segment-icon-div">
+                                                <div className="dashboard-segment-icon-div-child-one">
+                                                    <div className="dashboard-segment-icon-div-child-center-content">
+                                                        <Icon size='big' inverted name="user outline"/>
+                                                    </div>
+                                                </div>
+                                                <div className="dashboard-segment-icon-div-child-two">
+                                                    <div className="dashboard-segment-icon-div-child-center-content">
+                                                        <h3>
+                                                            <span>Users</span> <br />
+                                                            {userList.length}
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
                                     </Segment>
                                 </Grid.Column >
                                 <Grid.Column  computer={4} tablet={16} mobile={16}>
                                     <Segment className="index-top-grid-column dashboard-segment">
-                                        { isLoading ? <Loader active/> : <h1 > {orderList.length} </h1> }
+                                        { isLoading ? <Loader active/> : 
+                                            <div className="dashboard-segment-icon-div">
+                                                <div className="dashboard-segment-icon-div-child-one">
+                                                    <div className="dashboard-segment-icon-div-child-center-content">
+                                                        <Icon size='big' inverted name="user outline"/>
+                                                    </div>
+                                                </div>
+                                                <div className="dashboard-segment-icon-div-child-two">
+                                                    <div className="dashboard-segment-icon-div-child-center-content">
+                                                        <h3>
+                                                            <span>Total orders</span> <br />
+                                                            {orderList.length}
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
                                     </Segment>
                                 </Grid.Column>
                                 <Grid.Column computer={4} tablet={16} mobile={16}>
                                     <Segment className="index-top-grid-column dashboard-segment">
-                                        { isLoading ? <Loader active/> : <h1> Earningz? </h1> }
+                                        { isLoading ? <Loader active/> : 
+                                            <div className="dashboard-segment-icon-div">
+                                                <div className="dashboard-segment-icon-div-child-one">
+                                                    <div className="dashboard-segment-icon-div-child-center-content">
+                                                        {/* <Icon size='big' inverted name="user outline"/> */}
+                                                        <h1>R</h1>
+                                                    </div>
+                                                </div>
+                                                <div className="dashboard-segment-icon-div-child-two">
+                                                    <div className="dashboard-segment-icon-div-child-center-content">
+                                                        <h3>
+                                                            <span>Net earning</span> <br />
+                                                            {"earningz?"}
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
                                     </Segment>                        
                                 </Grid.Column>
                                 <Grid.Column  computer={4} tablet={16} mobile={16}>
                                     <Segment className="index-top-grid-column dashboard-segment">
-                                        { isLoading ? <Loader active/> : <h1> VIZITORS? </h1> }
+                                        { isLoading ? <Loader active/> : 
+                                            <div className="dashboard-segment-icon-div">
+                                                <div className="dashboard-segment-icon-div-child-one">
+                                                    <div className="dashboard-segment-icon-div-child-center-content">
+                                                        {/* <Icon size='big' inverted name="currency"/> */}
+                                                        <h1>R</h1>
+                                                    </div>
+                                                </div>
+                                                <div className="dashboard-segment-icon-div-child-two">
+                                                    <div className="dashboard-segment-icon-div-child-center-content">
+                                                        <h3>
+                                                            <span>Net earning</span> <br />
+                                                            something
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>
                             <Grid.Row stretched>
                                 <Grid.Column  computer={8} tablet={16} mobile={16}>
                                     <Segment className="index-2nd-grid-column dashboard-segment">
-                                        { isLoading ? <Loader active/> : 
+                                        { isLoading ? null : 
                                             <React.Fragment> 
                                                 <div className = "product-list-header">
                                                     <div>
@@ -227,11 +293,11 @@ class DashboardMainPage extends React.Component {
                                 </Grid.Column>
                                 <Grid.Column  computer={8} tablet={16} mobile={16}>
                                     <Segment className="index-2nd-grid-column dashboard-segment">
-                                        { isLoading ? <Loader active/> : <UserListSegment refreshState={this.refreshState} users={userList} /> }
+                                        { isLoading ? null : <UserListSegment refreshState={this.refreshState} users={userList} /> }
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>
-                            <pre>{JSON.stringify(this.state.orderList, " ", 2)}</pre>
+                            {/* <pre>{JSON.stringify(this.state.orderList, " ", 2)}</pre> */}
                         </Grid>
                 )}
             </ContextAPI.Consumer>
