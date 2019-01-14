@@ -31,6 +31,131 @@ export const PlaceholderSmallParagraph = ({ withImage = false }) => (
     </Placeholder>
 )
 
+export const IndexFrequentlyOrderedPlaceholder = () => (
+    <Card.Group itemsPerRow={3}>
+      <Card>
+        <Card.Content>
+          <Placeholder>
+            <Placeholder.Image square />
+                <Placeholder.Header>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
+        </Card.Content>
+      </Card>
+      <Card>
+        <Card.Content>
+          <Placeholder>
+            <Placeholder.Image square />
+                <Placeholder.Header>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
+        </Card.Content>
+      </Card>
+      <Card>
+        <Card.Content>
+          <Placeholder>
+            <Placeholder.Image square />
+                <Placeholder.Header>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
+        </Card.Content>
+      </Card>
+      <Card>
+        <Card.Content>
+          <Placeholder>
+            <Placeholder.Image square />
+                <Placeholder.Header>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
+        </Card.Content>
+      </Card>
+    </Card.Group>
+  )
+
+export const IndexStepsPlaceHolder = () => (
+    <Grid columns={4} stackable>
+      <Grid.Column>
+        <Segment raised>
+          <Placeholder>
+            <Placeholder.Header image>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length='medium' />
+              <Placeholder.Line length='short' />
+            </Placeholder.Paragraph>
+          </Placeholder>
+        </Segment>
+      </Grid.Column>
+  
+      <Grid.Column>
+        <Segment raised>
+          <Placeholder>
+            <Placeholder.Header image>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length='medium' />
+              <Placeholder.Line length='short' />
+            </Placeholder.Paragraph>
+          </Placeholder>
+        </Segment>
+      </Grid.Column>
+  
+      <Grid.Column>
+        <Segment raised>
+          <Placeholder>
+            <Placeholder.Header image>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length='medium' />
+              <Placeholder.Line length='short' />
+            </Placeholder.Paragraph>
+          </Placeholder>
+        </Segment>
+      </Grid.Column>
+      
+      <Grid.Column>
+        <Segment raised>
+          <Placeholder>
+            <Placeholder.Header image>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length='medium' />
+              <Placeholder.Line length='short' />
+            </Placeholder.Paragraph>
+          </Placeholder>
+        </Segment>
+      </Grid.Column>
+    </Grid>
+  )
+
 export const PlaceholderMediumParagraph = ({ withImage = false }) => (
     <React.Fragment>
         <PlaceholderSmallParagraph withImage={withImage} />
