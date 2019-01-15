@@ -120,7 +120,7 @@ class AboutOurStory extends React.Component {
               {isEmptyObj(tags) ?
                 <Label> <h4> Add a category </h4> </Label> :
                 tags.map(tag => (
-                  <Label key={tag.tag_name} onClick={ () => this.clickLabel() }> {tag.tag_name} </Label>
+                  <Label key={tag.tag_name}> {tag.tag_name} </Label>
                 ))
               }
             </Segment>
