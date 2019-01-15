@@ -6,6 +6,7 @@ import GoogleMaps from "../../../utils/GoogleMaps"
 import { readyToProcessDelivery } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
 import OrderCollectorForm from "./OrderCollectorForm";
+import DateSelector from "./DateSelector"
 
 const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress, paymentLoading, funcs, cartState}) => (
     <ContextAPI.Consumer>
@@ -87,6 +88,10 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                 <Header>{`R${total.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
+                        <Divider />
+
+                        <DateSelector funcs={funcs} cartState={cartState} />
+
                         <Divider />
                         {root_loading ? null : Object.keys(login).length > 0 &&
                             <>

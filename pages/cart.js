@@ -112,6 +112,10 @@ class Cart extends React.Component {
                 names: false,
                 phonenumber: false,
                 address: null
+            },
+            date: {
+                inputValue: null,
+                dates: []
             }
         }
     }
