@@ -280,13 +280,24 @@ const API = {
                         .catch(err => err.response)
                     )
                 }
-    
-                
-            
         },
         deleteChef : (deleteBody) => {
             return (
                 axios.delete(`${Config.get("api.endpoint")}/chefs`, { data : deleteBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        getOurStory : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/ourstory`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        addOrUpdateStory : (body) => {
+            return (
+                axios.post(`${Config.get("api.endpoint")}/ourstory`, body)
                 .then(res => res)
                 .catch(err => err.response)
             )

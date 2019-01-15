@@ -223,7 +223,7 @@ class AboutFaqs extends React.Component {
                                 ))}
                             </List>
                         </Segment>
-                        <pre>{JSON.stringify(this.state.aboutFaq, null, 2)}</pre>
+                        {/* <pre>{JSON.stringify(this.state.aboutFaq, null, 2)}</pre> */}
                         {/* modal will be called when the delete faq icon is called */}
                         <Modal open={isDeletingFAQ} basic size='small'>
                             <Header content='Warning! This Action is irriversible'/>

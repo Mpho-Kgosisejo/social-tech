@@ -273,7 +273,7 @@ class AboutContactUs extends React.Component {
                             </Form.Group>
                             <Button className="form-button-submit" size='large' primary type='submit' onClick={this.onclickSubmit} >Submit</Button>
                         </Form>
-                        <pre>{JSON.stringify(this.state.contactUs, null, 2)}</pre>
+                        {/* <pre>{JSON.stringify(this.state.contactUs, null, 2)}</pre> */}
                     </Tab.Pane>
                 </div>
             </div>

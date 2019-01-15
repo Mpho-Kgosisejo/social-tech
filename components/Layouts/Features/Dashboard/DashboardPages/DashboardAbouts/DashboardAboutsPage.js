@@ -82,7 +82,7 @@ class DashboardAboutsPage extends React.Component {
               {this.getActiveSegment(activeIndex)}
           </Segment>
 
-                            <pre>{JSON.stringify(this.state, " ", 2)}</pre>
+          {/* +<pre>{JSON.stringify(this.state, " ", 2)}</pre> */}
       </div>
 
     )

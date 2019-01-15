@@ -28,7 +28,7 @@ app.use(morgan("dev"))
 app.use(`/${process.env.UPLOADS_PATH}`, express.static(`./${process.env.UPLOADS_PATH}`))
 app.use(bodyParser.json())
 mongoose.Promise = BluebiredPromise
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.connect(process.env.MONGODB_MLAB_URL , {
     useMongoClient: true
 })
 

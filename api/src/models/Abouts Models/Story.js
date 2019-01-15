@@ -6,7 +6,7 @@ const StorySchema = new mongoose.Schema({
     tags : [{
         tag_name : String,
         icon_tag : String,
-        tag_descritption : String
+        tag_description : String
     }]
 }, {timestamps: true},)
 

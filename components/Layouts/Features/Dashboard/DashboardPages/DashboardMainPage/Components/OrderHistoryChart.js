@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Loader } from 'semantic-ui-react'
 import { Line, defaults } from 'react-chartjs-2'
+import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 
 
 class OrderHIstoryChart extends React.Component {
@@ -79,8 +80,11 @@ class OrderHIstoryChart extends React.Component {
         const {options} = this.state
         let data = {}
 
-        if(this.checkProps(chartData, currentYear) === true)
-            data = this._chartData(chartData, currentYear)
+        if (!isEmptyObj(chartData) && !isEmptyObj(currentYear))
+        {
+            if(this.checkProps(chartData, currentYear) === true)
+               data = this._chartData(chartData, currentYear)
+        }
 
         return(
             <React.Fragment >
