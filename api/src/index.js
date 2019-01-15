@@ -5,12 +5,14 @@ import bodyParser from "body-parser"
 import dotenv from "dotenv"
 import BluebiredPromise from "bluebird"
 import morgan from "morgan"
+import docs from "express-mongoose-docs"
 
 import auth from "./routes/auth"
 import user from "./routes/user"
 import menu from "./routes/menu"
 import product from "./routes/products";
 import order from "./routes/order"
+
 
 import chef from "./routes/abouts routes/chefs"
 import contactUS from "./routes/abouts routes/contactus"
@@ -29,6 +31,8 @@ mongoose.Promise = BluebiredPromise
 mongoose.connect(process.env.MONGODB_URL, {
     useMongoClient: true
 })
+
+docs(app, mongoose)
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*")

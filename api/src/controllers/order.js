@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 import OrderModel from "../models/Orders"
+import Product from "../models/Product";
 
 export const get_orders = (req, res) => {
     OrderModel.find()
-    .sort({date : -1})
+    .sort({createdAt : -1})
     .then(orders => {
         // console.log(orders)
         res.status(200).json({
@@ -26,6 +28,7 @@ export const get_user_orders = (req, res) => {
     const query = { customer : uid }
 
     OrderModel.find(query)
+    .sort({createdAt : -1})
     .then (orders => {
         console.log("orders : >>>>>>> ", orders )
         res.status(200).json({
@@ -75,6 +78,20 @@ export const add_order = (req, res) => {
 
     newOrder.save()
     .then(order => {
+    
+        items.forEach(product => {
+            // 87 32 10
+            console.log(product.numberOfOrders)
+            const numberOfOrders = Number(product.numberOfOrders) + 1
+            Product.findByIdAndUpdate(product._id,  { numberOfOrders }, {new : true})
+            .then(prdct => {
+                console.log(prdct)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        });
+
         res.status(200).json({
             order,
             message : "successfully added the order"

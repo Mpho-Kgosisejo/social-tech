@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import pluginUniqueValidator from "mongoose-unique-validator"
+import random from "mongoose-simple-random"
 
 const ProductSchema = new mongoose.Schema({
     name : {
@@ -38,10 +39,12 @@ const ProductSchema = new mongoose.Schema({
     },
     numberOfOrders : {
         type : Number,
-        required : false
+        required : true,
+        default : 0
     }
 }, {timestamps: true})
 
 ProductSchema.plugin(pluginUniqueValidator, {message: "value must be unique"})
+ProductSchema.plugin(random)
 
 export default mongoose.model("Products", ProductSchema)

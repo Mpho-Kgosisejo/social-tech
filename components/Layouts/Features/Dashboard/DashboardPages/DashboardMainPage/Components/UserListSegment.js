@@ -186,7 +186,7 @@ class UserListSegment extends React.Component {
             <>
                 <div className="product-list-header">
                     <div className="user-list-header">
-                        <h3>{ isSearching ? `${filter} | ${this.getFilterList(filteredList).length}` : `${filter} | ${this.getFilterList(users).length}` }</h3>
+                        <h3>{ isSearching ? `${filter} | ${ isEmptyObj(filteredList)? null : this.getFilterList(filteredList).length}` : `${filter} | ${ isEmptyObj(users) ? null : this.getFilterList(users).length}` }</h3>
                     </div>
                     <div>
                         <Dropdown text='Filter' icon='filter' floating labeled button className='icon user-list-header'>
@@ -217,13 +217,15 @@ class UserListSegment extends React.Component {
                         }
                     </List>
                         { 
-                            isSearching ?
+                            isSearching ? 
+                                isEmptyObj(filteredList) ?  null : 
                                 (this.countNumberOfPages(this.getFilterList(filteredList).length, usersPerPage) > 1 && filteredList.length > usersPerPage)?     
                                     <div className="pagination-component centered-element">
                                         <Pagination size='tiny' activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(this.getFilterList(filteredList).length, usersPerPage)} />
                                     </div>
                                 : null
                              :
+                                isEmptyObj(users) ? null :
                                 (this.countNumberOfPages(this.getFilterList(users).length, usersPerPage) > 1  && users.length > usersPerPage)?     
                                     <div className="pagination-component centered-element">
                                         <Pagination  size='tiny' activePage={activePage} onPageChange={this.handlePaginationChange} totalPages={this.countNumberOfPages(this.getFilterList(users).length, usersPerPage)} />
@@ -241,6 +243,8 @@ class UserListSegment extends React.Component {
                                 <Modal.Description>
                                     <Header>{clickedUserDetails.username}</Header>
                                     <p>{clickedUserDetails.email}</p>
+                                    <p>First Name : {clickedUserDetails.firstname}</p>
+                                    <p>Last Name : {clickedUserDetails.lastname}</p>
                                     {clickedUserDetails.emailConfirmed ? null : <Label basic className="fresheats-brown-bg">This Users account not verified yet.</Label>}                                    
                                 </Modal.Description>
                             </Modal.Content>

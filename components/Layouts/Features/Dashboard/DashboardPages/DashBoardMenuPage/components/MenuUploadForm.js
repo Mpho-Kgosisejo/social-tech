@@ -16,7 +16,7 @@ class MenuUploadForm extends React.Component {
                 image: null,
                 available: true,
                 menuCategoryId: "",
-                ingredients: []
+                ingredients: [],
             },
             errorBody: {},
             inputIngredient: "",
