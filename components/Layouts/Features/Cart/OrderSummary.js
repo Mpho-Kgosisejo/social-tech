@@ -80,6 +80,12 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                             )
                         }
                         <Divider />
+                        {!root_loading && (
+                            <>
+                                <DateSelector funcs={funcs} cartState={cartState} />
+                                <Divider />
+                            </>
+                        )}
                         <Grid.Row className="total">
                             <Grid.Column>
                                 <Header as="h3">Total</Header>
@@ -88,13 +94,12 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                 <Header>{`R${total.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
-                        <Divider />
 
-                        <DateSelector funcs={funcs} cartState={cartState} />
-
-                        <Divider />
                         {root_loading ? null : Object.keys(login).length > 0 &&
                             <>
+                                <Divider />
+                                
+
                                 <Grid.Row>
                                     <Grid.Column>
                                         <OrderCollectorForm cartState={cartState} funcs={funcs} />
@@ -139,8 +144,8 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                 closed={() => funcs.cartDispatch({paymentLoading: false})}
                                             >
                                                 <Button
-                                                    disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0)}
-                                                    onClick={() => funcs.validatorUser()}
+                                                    disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0 || cartState.date.dates.length <= 0)}
+                                                    // onClick={() => funcs.validatorUser()}
                                                     fluid
                                                     color="black"
                                                     // loading={paymentLoading}

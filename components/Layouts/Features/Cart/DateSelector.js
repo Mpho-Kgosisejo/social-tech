@@ -3,6 +3,7 @@ import Datepicker from "react-datepicker"
 import {Header, Grid, Input, Label, Icon} from "semantic-ui-react"
 
 import "../../../../static/css/react-datepicker.css"
+import {LIGHT_RED, MILKY_RED} from "../../../../src/Types/ColorsTypes"
 
 class DateSelector extends React.Component {
     state = {
@@ -17,6 +18,18 @@ class DateSelector extends React.Component {
             date: {
                 ...date,
                 inputValue: new Date(d)
+            }
+        })
+    }
+
+    handleOnRemoveDate = (d) => {
+        const {date} = this.props.cartState
+        const {cartDispatch} = this.props.funcs
+
+        cartDispatch({
+            date: {
+                ...date,
+                dates: date.dates.filter(dd => {if (dd !== d) return (dd)})
             }
         })
     }
@@ -48,14 +61,26 @@ class DateSelector extends React.Component {
             <>
                 <Grid.Row>
                     <Grid.Column>
-                        <Header className="zero-margin-top">{`${delivery ? "Delivery" : "Collection"} Date/s`} <span>({date.dates.length})</span>:</Header>
+                        <Header className="zero-margin-top">{`${delivery ? "Delivery" : "Collection"}`} <span>(Date/s - {date.dates.length})</span>:</Header>
+                    </Grid.Column>
+                    {/* <Grid.Column textAlign="right">
+                        <Header className="zero-margin-top">R0.0</Header>
+                    </Grid.Column> */}
+                </Grid.Row>
+
+                <Grid.Row>
+                    <Grid.Column >
                         <Datepicker
-                            onFocus={() => this.open(true)}
-                            onClickOutside={() => this.open(false)}
-                            open={open}
+                            // onFocus={() => this.open(true)}
+                            // onClickOutside={() => this.open(false)}
+                            // open={open}
+
+                            excludeDates={date.dates}
+                            highlightDates={date.dates}
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={15}
+                            placeholderText="dd/mm/yyyy - hh-MM-ss"
                             customInput={
                                 <Input
                                     fluid
@@ -75,12 +100,21 @@ class DateSelector extends React.Component {
                             onChange={this.handleOnChange}
                             value={date.inputValue && (`${date.inputValue.toLocaleDateString()} - ${date.inputValue.toLocaleTimeString()}`)}
                         />
-                        {date.dates.length > 0 && (
+                        {date.dates.length > 0 ? (
                             <div className="date-container">
                                 <Label.Group>
                                     {date.dates.map((d, i) => (
-                                        <Label key={i}>{d.toLocaleDateString()} - <span>{d.toLocaleTimeString()}</span></Label>
+                                        <Label key={i}>
+                                            {d.toLocaleDateString()} - <span>{d.toLocaleTimeString()}</span>
+                                            <Icon name="close" onClick={() => this.handleOnRemoveDate(d)} />
+                                        </Label>
                                     ))}
+                                </Label.Group>
+                            </div>
+                        ) : (
+                            <div className="date-container error">
+                                <Label.Group size="tiny">
+                                    <Label>You must at least add one (1) {delivery ? "delivery" : "collection"} date/s...</Label>
                                 </Label.Group>
                             </div>
                         )}
