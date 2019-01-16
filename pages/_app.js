@@ -9,6 +9,7 @@ import {reducer} from "../src/reducers/Reducer"
 import {getLogin, populateUserDetails, logout} from "../src/providers/LoginSession"
 import * as CartHandler from "../src/providers/CartHandler"
 import api from "../src/providers/APIRequest"
+import {isEmptyObj} from "../src/utils/Objs"
 
 export default class MyApp extends App {
     constructor(props){
@@ -53,13 +54,15 @@ export default class MyApp extends App {
             account:{
                 personal_details: {}
             },
+            catering: {},
+            index: {},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
     }
 
     loadData = async ({login}) => {
         const res = await api.user.isValidToken(login.isAdmin)
-        
+
         if (res.status === 200){
             populateUserDetails((personal_details) => {
                 this.setState({
@@ -100,8 +103,9 @@ export default class MyApp extends App {
         }
     }
 
-    componentDidMount(){
+    init = async () => {
         const login = getLogin()
+        let account = {}
 
         CartHandler.restore_cart({dispatch: this.state.dispatch})
         if (process.browser){
@@ -116,6 +120,10 @@ export default class MyApp extends App {
                 })
             }
         }
+    }
+
+    componentDidMount(){
+        this.init()
     }
 
     static async getInitialProps({ Component, router, ctx }) {

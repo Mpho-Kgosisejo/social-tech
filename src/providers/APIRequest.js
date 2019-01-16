@@ -264,6 +264,12 @@ const API = {
                 .catch(err => err.response)
             )
         },
+        catering: () => {
+            return (mock.catering().then(res => res))
+        },
+        index: () => {
+            return (mock.index().then(res => res))
+        },
         updateFAQ : (body) => {
             return (
                 axios.patch(`${Config.get("api.endpoint")}/faqs`, body)
@@ -428,8 +434,31 @@ const API = {
         account_update: (user) => {
             if (Config.get("api.isMock"))
             {
-                return (mock.account().then(res => res_))
+                return (mock.account().then(res => res))
             }
+            console.log(`${Config.get("api.endpoint")}/user`)
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/user`,
+                    {
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        phone: user.phone,
+                        address: user.address
+                    }
+                )
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        orders: () => {
+            // if (Config.get("api.isMock")){
+                return(mock.user_orders().then(res => res))
+            // }
+            // return(
+            //     axios.get(`${Config.get("api.endpoint")}/orders`)
+            //     .then(res => res)
+            //     .catch(err => err.response)
+            // )
             return (
                 axios.patch(`${Config.get("api.endpoint")}/user`, user)
                 .then(res => res)

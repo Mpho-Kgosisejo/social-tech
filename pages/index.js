@@ -5,7 +5,8 @@ import Layout from "../components/Layouts/Layout"
 import Slider from "react-slick"
 import { Container, Header, Image } from "semantic-ui-react";
 import IndexLayout from "../components/Layouts/Features/Index/IndexLayout";
-
+import api from "../src/providers/APIRequest"
+import ContextAPI from "../src/config/ContextAPI"
 
 const settings = {
     dots: true,
@@ -57,59 +58,83 @@ const sliderImages = [
 ]
 
 class Index extends React.Component {
-    constructor(props)
-    {
+    constructor(props) {
         super(props)
+        this.state = {
+            loading: true
+        }
     }
-    componentDidMount(){
+
+    componentDidMount() {
+        this.getData()
         setTimeout(() => {
-            this.props.dispatch({type: "SIDEBAR", payload: false})
-            this.props.dispatch({type: "PAGE", payload: "index"})
+            this.props.dispatch({ type: "SIDEBAR", payload: false })
+            this.props.dispatch({ type: "PAGE", payload: "index" })
+
             window.scrollTo({
                 top: 1,
                 behavior: "smooth"
             })
-            setTimeout(() =>{
+            setTimeout(() => {
+                this.getData()
                 window.scrollTo({
                     top: 0,
                     behavior: "smooth"
                 })
             }, 50)
-        }, 50) 
+        }, 50)
+    }
+
+    getData = async () => {
+        const data = await api.web.index()
+
+        if (data.status == 200) {
+            this.props.dispatch({ type: "INDEX", payload: { ...data.data } })
+            this.setState({ loading: false })
+        } else {
+            this.setState({ loading: false })
+        }
     }
 
     render() {
         return (
             <Layout includeContainer={false} includeNav={true}>
-                <div className="slider-container" >
-                    <Slider {...settings} className="de-slider">
-                        {sliderImages.map(image => (
-                            <div key={image.id} className="de-slider-item">
-                                <div key={image.key} className="slider-bg" style={{ background : `url(${image.url})` }}>
-                                    <div className="slider-dimmer">
-                                        <div className="slider-item">
-                                            <Container>
-                                                <div className="quotes">
-                                                    {/* <Header as="h1" className="fresheats-brown-color">Quotes:</Header> */}
-                                                    <Header as="h5">{`"${image.caption.content}"`}</Header>
+                <ContextAPI.Consumer>
+                    {({ state }) => (
+                        <React.Fragment>
+                            <div className="slider-container" >
+                                <Slider {...settings} className="de-slider">
+                                    {sliderImages.map(image => (
+                                        <div key={image.id} className="de-slider-item">
+                                            <div key={image.key} className="slider-bg" style={{ background: `url(${image.url})` }}>
+                                                <div className="slider-dimmer">
+                                                    <div className="slider-item">
+                                                        <Container>
+                                                            <div className="quotes">
+                                                                {/* <Header as="h1" className="fresheats-brown-color">Quotes:</Header> */}
+                                                                <Header as="h5">{`"${image.caption.content}"`}</Header>
+                                                            </div>
+                                                        </Container>
+                                                    </div>
                                                 </div>
-                                            </Container>
+                                            </div>
                                         </div>
-                                    </div>
+                                    ))}
+                                </Slider>
+                                <div className="static-caption">
+                                    <Container>
+                                        <Header as="h1">{state.index.slide_title}</Header>
+                                        <Header as="h5">{state.index.slide_subtitle}</Header>
+                                    </Container>
                                 </div>
                             </div>
-                        ))}
-                    </Slider>
-                <div className="static-caption">
-                        <Container>
-                            <Header as="h1">fresh eats.</Header>
-                            <Header as="h5">Something fresh all the time...</Header>
-                        </Container>
-                </div>
-                </div>
-                <Container>
-                    <IndexLayout />
-                </Container>
+                            <Container>
+                                {(!state.root_loading && !this.state.loading) && <IndexLayout />}
+                            </Container>
+                        </React.Fragment>
+                    )}
+
+                </ContextAPI.Consumer>
             </Layout>
         )
     }

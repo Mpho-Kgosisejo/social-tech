@@ -81,6 +81,7 @@ class SignInForm extends React.Component{
             password: this.state.user.password,
         })
 
+        console.log("SignIn", res)
         if (res.status === 200){
             this.setState({
                 feedback: {
