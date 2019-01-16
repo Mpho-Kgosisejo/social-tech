@@ -34,6 +34,13 @@
 {
     width: 100% !important;
 }
+
+.catering-actions
+{
+    float: right;
+    padding-right: 30px;
+    padding-bottom: 20px;
+}
 /* <Button animated fluid type='submit'  loading={isLoading}>
 <Button.Content visible>Update</Button.Content>
 <Button.Content hidden><Icon name="sign in"/></Button.Content>
