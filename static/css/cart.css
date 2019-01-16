@@ -172,5 +172,37 @@
 }
 
 .paymentComponent .checkbox{
-    margin-bottom: 10px;
+    margin: 10px;
+}
+
+.cart .react-datepicker-wrapper,
+.cart .react-datepicker__input-container{
+    width: 100% !important;
+    margin-top: 5px;
+}
+
+.cart .date-container{
+    margin-top: 10px;
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: 0 0 5px 5px;
+    padding: 10px 4px 4px 10px;;
+}
+
+.cart .react-datepicker-wrapper .input input{
+    border-bottom-left-radius: 0;
+}
+
+.cart .react-datepicker-wrapper .input .label{
+    border-bottom-right-radius: 0;
+}
+
+.cart .date-container.error{
+    border-color: #e0b4b4;
+    background: #fff6f6;
+}
+
+.cart .date-container.error .label{
+    width: calc(100% - 6px);
+    color: #FFFFFF;
+    background: #e0b4b4;
 }

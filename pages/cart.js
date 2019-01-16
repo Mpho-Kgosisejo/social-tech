@@ -112,6 +112,10 @@ class Cart extends React.Component {
                 names: false,
                 phonenumber: false,
                 address: null
+            },
+            date: {
+                inputValue: null,
+                dates: []
             }
         }
     }
@@ -318,7 +322,12 @@ class Cart extends React.Component {
             items: cart.items,
             stripe: {
                 id: data.id
-            }
+            },
+            collector: {
+                ...this.state.user,
+                phone: this.state.user.phonenumber
+            },
+            dates: this.state.date.dates
         }
 
         const res = await api.orders.add_order(order)
