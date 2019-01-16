@@ -1,5 +1,4 @@
 import { Header, Container, Button, Modal, Icon, Form, Input } from "semantic-ui-react";
-import PageHeader from "../../../utils/PageHeader";
 import React, { Component } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -76,9 +75,9 @@ class CateringHeader extends React.Component {
             errors
         })
 
-        // if (Object.keys(errors).length === 0){
-        //     this.doCater()
-        // }
+        if (Object.keys(errors).length === 0){
+            this.doCater()
+        }
     }
 
     resetInputs = () => this.setState({
@@ -130,10 +129,12 @@ class CateringHeader extends React.Component {
         return (errors)
     }
 
-    // doCater = async () => {
-    //     this.setState({loading: true})
-    //     const res = await API
-    // }
+    doCater = async () => {
+        this.setState({loading: true})
+        const res = await API.web.catering(this.state.client)
+
+        console.log(res)
+    }
 
     open = () => this.setState({ open: true })
     close = () => this.setState({ open: false })
@@ -141,12 +142,7 @@ class CateringHeader extends React.Component {
     render() {
         const { open, client, loading, errors, feedback } = this.state
         return (
-            <Layout title="Catering" includeContainer={false}>
-                <PageHeader
-                    color="rgb(212, 195, 176)"
-                    title="Catering services"
-                    subtitle="We do catering services for small, medium and large coperates"
-                />
+
                 <ContextAPI.Consumer>
                     {({ state }) => (
                         <React.Fragment>
@@ -161,7 +157,6 @@ class CateringHeader extends React.Component {
                                     <Form onSubmit={this.onSubmit} loading={loading}>
                                         <Modal.Content>
                                             <Modal.Description className="form-fields">
-                                                <pre>{JSON.stringify(this.state, "", 2)}</pre>
                                                 <Form.Group widths='equal'>
                                                     <Form.Field>
                                                         <label>Name:*</label>
@@ -239,8 +234,7 @@ class CateringHeader extends React.Component {
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>
-                
-            </Layout>
+            
         )
 
     }
