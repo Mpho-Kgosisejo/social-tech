@@ -339,7 +339,7 @@ const API = {
         },
         update_order : (body) => {
             return (
-                axios.patch(`${Config.get("api.endpoint")}/order`, {body})
+                axios.patch(`${Config.get("api.endpoint")}/order`, body)
                 .then(res => res)
                 .catch(err => err.response)
             ) 
@@ -373,13 +373,20 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
-        }
+        },
+        get_net_earnings : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/net-earnings`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }, 
     },
     dashboard_orders: {
         get_orders : () => {
             if (Config.get("api.isMock")){
                 return (mock.dashboard_orders().then(res => res))
-            }
+            } 
         }
     }
 }

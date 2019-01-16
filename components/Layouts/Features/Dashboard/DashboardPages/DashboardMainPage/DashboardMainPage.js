@@ -21,8 +21,16 @@ class DashboardMainPage extends React.Component {
             selectedYearData : {
                 year : "",
                 data : []
-            }
+            },
+            netEarn : 0,
+            deliveredToday : 0
         }
+    }
+
+    getNetEarning = async () => {
+        const res = await api.dashboard_Index.get_net_earnings()
+        if (res.status === 200)
+            this.setState({ netEarn : res.data.netearnings.totalNet })
     }
 
     getUsers = async () => {
@@ -103,6 +111,14 @@ class DashboardMainPage extends React.Component {
             let years = []
 
             orders.forEach(_order => {
+                const date = new Date()
+
+                let todaysFullDate = `${date.getFullYear()}-${('0' + Number(date.getMonth()) + 1 ).slice(-2) }-${date.getDate()}`
+
+                if (todaysFullDate === _order.createdAt.split('T')[0])
+                {
+                    this.setState({deliveredToday : this.state.deliveredToday + 1})
+                }
                 let _orderYear = _order.createdAt.split('-')[0]
                 let yearExists = false 
                 
@@ -167,11 +183,12 @@ class DashboardMainPage extends React.Component {
     componentDidMount(){
         this.getUsers()
         this.getOrders()
+        this.getNetEarning()
     }
 
     render()
     {
-        const { userList, orderList, currentYear, chartData, isLoading, orderChartDropdownOptions, selectedYearData } = this.state
+        const { userList, orderList, deliveredToday, chartData, isLoading, orderChartDropdownOptions, selectedYearData, netEarn } = this.state
         return(
             <div >
                 <ContextAPI.Consumer>
@@ -190,7 +207,7 @@ class DashboardMainPage extends React.Component {
                                                 <div className="dashboard-segment-icon-div-child-two">
                                                     <div className="dashboard-segment-icon-div-child-center-content">
                                                         <h3>
-                                                            <span>Users</span> <br />
+                                                            <span>Total users</span> <br />
                                                             {userList.length}
                                                         </h3>
                                                     </div>
@@ -234,7 +251,7 @@ class DashboardMainPage extends React.Component {
                                                     <div className="dashboard-segment-icon-div-child-center-content">
                                                         <h3>
                                                             <span>Net earning</span> <br />
-                                                            {"earningz?"}
+                                                            {parseFloat(Math.round(netEarn * 100) / 100).toFixed(2)}
                                                         </h3>
                                                     </div>
                                                 </div>
@@ -255,8 +272,8 @@ class DashboardMainPage extends React.Component {
                                                 <div className="dashboard-segment-icon-div-child-two">
                                                     <div className="dashboard-segment-icon-div-child-center-content">
                                                         <h3>
-                                                            <span>Net earning</span> <br />
-                                                            something
+                                                            <span>Today's Deliveries</span> <br />
+                                                            {deliveredToday}
                                                         </h3>
                                                     </div>
                                                 </div>
@@ -297,7 +314,7 @@ class DashboardMainPage extends React.Component {
                                     </Segment>
                                 </Grid.Column>
                             </Grid.Row>
-                            {/* <pre>{JSON.stringify(this.state.orderList, " ", 2)}</pre> */}
+                            {/* <pre>{JSON.stringify(this.state.selectedYearData, " ", 2)}</pre> */}
                         </Grid>
                 )}
             </ContextAPI.Consumer>

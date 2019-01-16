@@ -189,6 +189,12 @@ class MenuUploadForm extends React.Component {
         }
     }
 
+    // cancelUpload = () => {
+    //     this.props.refreshState({
+    //         isUploadModalOpen : false
+    //     })
+    // }
+
     render() {
         const { productUploadBody, inputIngredient, inputIngredientError, errorBody } = this.state
         const { categories} = this.props
@@ -262,12 +268,19 @@ class MenuUploadForm extends React.Component {
                 </div> 
                 { errorBody.menuCategoryId && <InLineError message = {errorBody.menuCategoryId}/> } 
                 </Form.Field> 
-                <Form.Button size = 'large' primary onClick = { this.uploadMenu}> Submit </Form.Button> 
+                    <div className = "product-list-header">
+                        <div>
+                            <Form.Button size = 'large' primary onClick = { this.uploadMenu}> Submit </Form.Button> 
+                        </div>
+                        <div>
+                            <Button size = 'large' primary onClick = { this.props.handleUploadModal}> Cancel </Button> 
+                        </div>
+                    </div> 
                 </Form> 
               </div> 
             </div>
             { /* ===================== */ }
-              <pre>{ JSON.stringify(this.state, " ", 2) }</pre> 
+              {/* <pre>{ JSON.stringify(this.state, " ", 2) }</pre>  */}
               {/* <pre>{ JSON.stringify(this.state.errorBody, " ", 2)}</pre> 
               <pre>{ JSON.stringify(this.state.inputIngredientError, " ", 2) }</pre> */}
             </div>

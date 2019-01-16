@@ -118,11 +118,11 @@ class DashboardSidebar extends React.Component {
                         <div className="mainLayout">
                             {this.renderPage(activePage)}
 
-                            <ContextAPI.Consumer>
+                            {/* <ContextAPI.Consumer>
                                 {({state}) => (
                                     <pre>{JSON.stringify(state.router, "", 3)}</pre>
                                 )}
-                            </ContextAPI.Consumer>
+                            </ContextAPI.Consumer> */}
                         </div>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>

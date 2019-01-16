@@ -8,13 +8,13 @@ import {multerUpload} from "../utils/multerImageHandler"
 
 const router = express.Router()
 
-router.get("/", adminAuth, controller.get_orders)
+router.get("/", adminAuth,controller.get_orders)
 
-router.post("/", controller.add_order)
+router.post("/", userAuth,controller.add_order)
 
 router.get("/:id", controller.get_order)
     
-router.patch("/", controller.update_order) 
+router.patch("/",controller.update_order) 
 
 router.delete("/", controller.delete_order) 
 

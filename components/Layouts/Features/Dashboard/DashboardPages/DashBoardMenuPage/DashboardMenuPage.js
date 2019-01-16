@@ -38,7 +38,6 @@ class DashboardMenuPage extends React.Component {
     // <------------------- BEGIN API CALL ------------------------>
     getMenu = async () => {
       const data = await api.menu.menu_products()
-      console.log(data)
       const _products = data.data.items
       if (data.status === 200 || data.status === 304) {
         this.setState({

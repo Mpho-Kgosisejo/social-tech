@@ -50,7 +50,7 @@ router.patch("/avator", userAuth, multerUpload.single("avator"), controller.upda
 
 //these will be handled by the admin in the dashboard, hence they require the admin's Authorization
 
-router.get("/all", adminAuth, controller.get_all_users)
+router.get("/all", controller.get_all_users)
 
 router.delete("/delete-user", adminAuth, controller.delete_user)
 

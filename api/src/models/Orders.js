@@ -3,14 +3,21 @@ import pluginUniqueValidator from "mongoose-unique-validator"
 
 const OrderSchema = new mongoose.Schema({
     customer : { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref:'User' , 
+        type: Object,
         required : true
+    },
+    collector: {
+        type: Object,
+        required : true 
     },
     delivery : {
         type : Object,
         required : false
     },
+    date : [{
+        type : String,
+        required : true
+    }],
     details : {
         itemsCount : { type : Number },
         totalItemsCount : { type : Number },

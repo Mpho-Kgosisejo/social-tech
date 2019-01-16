@@ -194,7 +194,7 @@ class AboutFaqs extends React.Component {
                     <Segment>
                             <List divided relaxed>
                                 {faqList.map(FAQ => (
-                                    <List.Item id={FAQ._id}>
+                                    <List.Item id={FAQ.answer}>
                                         {/* <List.Icon name='question' size='large' verticalAlign='middle' /> */}
                                         <List.Content>
                                             { (isEditingFAQ && editID === FAQ._id ) ? 

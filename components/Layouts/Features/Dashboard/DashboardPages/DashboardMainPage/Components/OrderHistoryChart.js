@@ -80,16 +80,17 @@ class OrderHIstoryChart extends React.Component {
         const {options} = this.state
         let data = {}
 
-        if (!isEmptyObj(chartData) && !isEmptyObj(currentYear))
-        {
-            if(this.checkProps(chartData, currentYear) === true)
-               data = this._chartData(chartData, currentYear)
-        }
+            // if(this.checkProps(chartData, currentYear) === true)
+            //    data = this._chartData(chartData, currentYear)
 
         return(
             <React.Fragment >
                 
-                <Line data={data} options={options} className="user-list-header"/>
+                { this.checkProps(chartData, currentYear) ? 
+                    <Line data={this._chartData(chartData, currentYear)} options={options} className="user-list-header"/> 
+                    : 
+                    <Line data={this._chartData(chartData, currentYear)} options={options} className="user-list-header"/> 
+                }
                 
                 {/* <pre>{JSON.stringify(this.props, " ", 2)}</pre> */}
             </React.Fragment>

@@ -12,6 +12,7 @@ import user from "./routes/user"
 import menu from "./routes/menu"
 import product from "./routes/products";
 import order from "./routes/order"
+import net from "./routes/netearning"
 
 
 import chef from "./routes/abouts routes/chefs"
@@ -51,6 +52,8 @@ app.use("/user", user)
 app.use("/menus", menu)
 app.use("/products", product)
 app.use("/order", order)
+app.use("/net-earnings", net)
+
 
 // abouts routes 
 app.use("/abouts", abouts)
