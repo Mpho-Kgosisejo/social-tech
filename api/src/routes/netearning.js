@@ -7,7 +7,7 @@ import { addUpdateNet } from "../controllers/netearning";
 
 const router = express.Router()
 
-router.get("/", (req, res) => {
+router.get("/",adminAuth, (req, res) => {
     NetEarning.findOne()
     .then (netearnings => {
         res.status(200).json({

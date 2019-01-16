@@ -33,8 +33,13 @@ const checkAuth = (req, res, next, isAdmin) => {
                     response(res, " (NOT ADMIN)")         
                     return
                 }else{
-                    next()
-                    return
+                    if (!decoded.isAdmin){
+                        next()
+                        return
+                    }else{
+                        response(res, " (NOT USER)")         
+                        return
+                    }
                 }
             }
             response(res, " [2]")

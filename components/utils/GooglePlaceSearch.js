@@ -8,7 +8,7 @@ class PlaceSearch extends React.Component {
         
         this.state = {
             address: ''
-        };
+        }
     }
 
     handleChange = address => {
@@ -16,19 +16,26 @@ class PlaceSearch extends React.Component {
     };
 
     handleSelect = address => {
-        geocodeByAddress(address)
-            .then(results => {
-                if (results.length > 0){
-                    this.setState({address: results[0].formatted_address})
-                }
-                
-                return(getLatLng(results[0]))
-            })
-            .then(latLng => {
-                console.log('Success', latLng)
-            })
-            .catch(error => console.error('Error', error));
+        this.props.dispatchAddress(address)
+        this.setState({address})
+            
+        // geocodeByAddress(address)
+        //     .then(results => {
+        //         if (results.length > 0){
+        //             this.setState({address: results[0].formatted_address})
+        //         }
+        //         console.log('Success@', results[0].formatted_address)
+        //         return(getLatLng(results[0]))
+        //     })
+        //     .then(latLng => {
+        //         console.log('Success', latLng)
+        //     })
+        //     .catch(error => console.error('Error', error));
     };
+
+    componentDidMount(){
+        this.handleChange(this.props.value)
+    }
 
     render() {
         return (
@@ -65,7 +72,7 @@ class PlaceSearch extends React.Component {
                         </div>
                     )}
                 </PlacesAutocomplete>
-                <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script> 
+                
             </>
         );
     }

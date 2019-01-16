@@ -1,11 +1,12 @@
 import React from 'react'
+import Router from 'next/router'
 import { Image, Card, Label, Modal, Header, Divider, Button, Icon, Form, Input } from "semantic-ui-react"
 import Config from "react-global-configuration"
 import { MILKY_RED } from "../../../../src/Types/ColorsTypes"
 import ContextAPI from '../../../../src/config/ContextAPI';
 import * as cartHandler from "../../../../src/providers/CartHandler"
 
-const ModalComponent = ({closeModal, image, available, name, price, description, _id, ingredients, inCartItem, open, quantity, doDecrement, doIncrement, addToCart, removeFromCart}) => (
+const ModalComponent = ({handleOnModalClose, image, available, name, price, description, _id, ingredients, inCartItem, open, quantity, doDecrement, doIncrement, addToCart, removeFromCart}) => (
     <ContextAPI.Consumer>
         {({state}) => (
             <Modal
@@ -13,7 +14,7 @@ const ModalComponent = ({closeModal, image, available, name, price, description,
                 size='small'
                 closeIcon
                 open={open}
-                onClose={closeModal}
+                onClose={() => handleOnModalClose(state.menu)}
             >
         
                 <Modal.Content image className="menu-modal-content">
@@ -81,19 +82,14 @@ const ModalComponent = ({closeModal, image, available, name, price, description,
 class menu_card extends React.Component {
     constructor() {
         super()
+
         this.state = {
-            image: "",
-            available: false,
-            price: 0.0,
-            description: "",
-            _id: "",
-            ingredients: [],
-            value: 1,
-            open: false
+            modal: {
+                open: false
+            },
+            value: 1
         }
     }
-
-    closeModal = () => this.setState({open: false})
 
     doDecrement = () => {
         if (this.state.value > 1) {
@@ -130,7 +126,54 @@ class menu_card extends React.Component {
             open: true,
             message: `"${this.props.name}" added to cart`
         }})
-        this.closeModal()
+        this.handleOnModalClose(state.menu)
+    }
+
+    handleOnModalClose = (menu) => {
+        const {data, index} = menu
+
+        this.setState({
+            modal: {
+                ...this.state.modal,
+                open: false
+            }
+        })
+
+        this.routerManager({
+            tab: data[index].name
+        })
+    }
+
+    handleOnCardClick = (menu) => {
+        const {data, index} = menu
+
+        this.setState({
+            modal: {
+                open: true
+            }
+        })
+
+        this.routerManager({
+            tab: data[index].name,
+            item: this.props._id
+        })
+    }
+
+    routerManager = (query) => Router.replace({
+        pathname: '/menu',
+        query
+    })
+
+    componentDidMount(){
+        const {item} = Router.query
+
+        if (item && item === this.props._id){
+            this.setState({
+                modal: {
+                    open: true
+                }
+            })
+        }
     }
 
     render() {
@@ -143,7 +186,7 @@ class menu_card extends React.Component {
 
                     return (
                         <>
-                            <Card onClick={() => this.setState({open: true})} className="zero-border">
+                            <Card onClick={() => this.handleOnCardClick(state.menu)} className="zero-border">
                                 <div className="menuCardImage-p">
                                     <div className="zero-border menuCardImage" style={{ background: `url(${image})`, filter: `grayscale(${available ? 0 : 100}%)` }} />
                                     {available ? null :
@@ -167,14 +210,14 @@ class menu_card extends React.Component {
 
                             <ModalComponent
                                 {...this.props}
-                                open={this.state.open}
+                                open={this.state.modal.open}
                                 quantity={this.state.value}
                                 doDecrement={this.doDecrement}
                                 doIncrement={this.doIncrement}
                                 addToCart={this.addToCart}
                                 removeFromCart={this.removeFromCart}
                                 inCartItem={inCartItem}
-                                closeModal={this.closeModal}
+                                handleOnModalClose={this.handleOnModalClose}
                             />
                         </>
                 )}}

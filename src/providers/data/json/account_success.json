@@ -1,0 +1,17 @@
+{
+    "status": 200,
+    "data":
+    {
+        "user": {
+            "createdAt" : "",
+            "email" : "tmekwa@mail.com",
+            "username" : "tmekwa",
+            "address" : "Maboneng Precinct, Fox Street, City and Suburban, Johannesburg, South Africa",
+            "phone" : "0100000000",
+            "image" : "https://images-na.ssl-images-amazon.com/images/I/71vOUEsnaGL._SX425_.jpg",
+            "admin" : true,
+            "lastname" : "Mekwa",
+            "firstname" : "Thato"
+        }
+    }
+}

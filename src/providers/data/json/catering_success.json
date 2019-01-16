@@ -1,0 +1,34 @@
+{
+    "status": 200,
+    "data": {
+        "event_title": "Event catering",
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla malesuada pellentesque neque tincidunt laoreet. Sed luctus diam at sapien imperdiet posuere. In tempus tincidunt rutrum. Aenean nec lacus a augue porttitor facilisis malesuada tincidunt neque. Nam pretium ut risus et consectetur. Phasellus sagittis volutpat nunc, ut volutpat turpis consequat in. Aenean finibus consequat nisi non rutrum. Fusce lectus nibh, sollicitudin eget pharetra eget, imperdiet non augue. In faucibus sollicitudin ipsum, semper mollis massa. Curabitur lacinia varius mauris, a auctor justo maximus id. Sed sed gravida erat.",
+        "plans_title": "Catering plans",
+        "accordion_data": [
+            {
+                "index": 1,
+                "title": "Business catering",
+                "subtitle": "Small, medium, big business",
+                "catering_days": "Monday - Thursday Only",
+                "catering_price": "R 2500.00 per order",
+                "catering_TCS": "T&C Apply" 
+            },
+            {
+                "index": 2,
+                "title": "Party catering",
+                "subtitle": "kids, graduation, farewell parties",
+                "catering_days": "Friday - Sunday Only",
+                "catering_price": "R 12 500.00 per order",
+                "catering_TCS": "T&C Apply" 
+            },
+            {
+                "index": 3,
+                "title": "Wedding catering",
+                "subtitle": "100 - 200 people",
+                "catering_days": "Monday - Thursday Only",
+                "catering_price": "R 2500.00 per order",
+                "catering_TCS": "T&C Apply" 
+            }
+        ]
+    }
+}

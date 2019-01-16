@@ -1,7 +1,5 @@
 import nodemailer from "nodemailer"
 
-const emailFrom = `${process.env.CLIENT_NAME} <${process.env.EMAIL_ADDRESS}>`
-
 const setup = () => {
     return (
         nodemailer.createTransport({
@@ -18,7 +16,7 @@ const setup = () => {
 const sendEmail = ({to, subject, text = "", html = ""}) => {
     const transport = setup()
     const email = {
-        from: emailFrom,
+        from: process.env.EMAIL_ADDRESS,
         to,
         subject,
         text,

@@ -26,7 +26,7 @@ export const get_orders = (req, res) => {
 
 export const get_user_orders = (req, res) => {
     // TO:DO, use the uid to get a specific user's orders for the user profile page
-    const uid = req.params.uid 
+    const uid = req.user._id
     const query = { customer : uid }
 
     OrderModel.find(query)
@@ -77,7 +77,8 @@ export const add_order = (req, res) => {
         details,
         items,
         stripe,
-        status : "pending"
+        status : "pending",
+        delivery
     })   
 
     newOrder.save()
