@@ -26,7 +26,6 @@ class CateringHeader extends React.Component {
                 email: "",
                 event: "",
                 startDate: "",
-                startTime: "",
                 number: "",
                 location: ""
 
@@ -89,7 +88,6 @@ class CateringHeader extends React.Component {
             email: "",
             event: "",
             startDate: "",
-            startTime: "",
             number: "",
             location: ""
         },
@@ -119,10 +117,6 @@ class CateringHeader extends React.Component {
 
         if (!client.startDate) {
             errors.startDate = MessageTypes.FIELD_CANT_BE_EMPTY
-        }
-
-        if (!client.startTime) {
-            errors.startTime = MessageTypes.FIELD_CANT_BE_EMPTY
         }
 
         if (!client.location) {
@@ -188,30 +182,19 @@ class CateringHeader extends React.Component {
                                                         {errors.email && <InLineError message={errors.email} />}
                                                     </Form.Field>
                                                     <Form.Field>
-                                                        <label>Type of event:*</label>
-                                                        <Input name="event" onChange={this.onChange}/>
-                                                        {errors.event && <InLineError message={errors.event} />}
-                                                    </Form.Field>
-                                                </Form.Group>
-                                                <Form.Group widths='equal'>
-                                                    <Form.Field>
                                                         <label>Date of event:*</label>
                                                         <DatePicker
                                                             customInput={<Input />}
-                                                            includeTimes
+                                                            showTimeSelect
+                                                            minDate={new Date()}
+                                                            timeFormat="HH:mm"
+                                                            timeIntervals={15}
                                                             selected={this.state.startDate}
                                                             onChange={this.handleChange}
                                                             value={this.state.client.startDate}
                                                         />
                                                         {errors.startDate && <InLineError message={errors.startDate} />}
                                                         {/* <Input name="dateOfEvent" /> */}
-                                                    </Form.Field>
-                                                    <Form.Field>
-                                                        <label>Time of event:*</label>
-                                                        {/* <TimePicker name="time" /> */}
-                                                        <Input name="startTime" onChange={this.onChange}/>
-                                                        {errors.startTime && <InLineError message={errors.startTime} />}
-                                                        
                                                     </Form.Field>
                                                 </Form.Group>
                                                 <Form.Group widths='equal'>
@@ -221,12 +204,19 @@ class CateringHeader extends React.Component {
                                                         {errors.number && <InLineError message={errors.number} />}
                                                     </Form.Field>
                                                     <Form.Field>
+                                                        <label>Type of event:*</label>
+                                                        <Input name="event" onChange={this.onChange}/>
+                                                        {errors.event && <InLineError message={errors.event} />}
+                                                        </Form.Field>
+                                                </Form.Group>
+                                                <Form widths="equal">
+                                                    <Form.Field>
                                                         <label>Location of event:*</label>
                                                         {/* <Input name="timeOfEvent" /> */}
                                                         <GooglePlaceSearch value={client.location} onChange={this.onChange} dispatchAddress={this.dispatchLocation} name="location" />
                                                         {errors.location && <InLineError message={errors.location} />}
                                                     </Form.Field>
-                                                </Form.Group>
+                                                </Form>
                                             </Modal.Description>
                                         </Modal.Content>
                                             <Modal.Actions className="catering-actions">
