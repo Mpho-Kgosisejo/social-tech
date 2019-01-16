@@ -76,7 +76,6 @@ class account extends React.Component {
                 <ContextAPI.Consumer>
                     {({ state }) =>
                         <React.Fragment>
-                            <pre>{JSON.stringify(state.account, "", 2)}</pre>
                             {state.root_loading ? <React.Fragment> <AccountTabsPlaceholder /> </React.Fragment> : 
                             <React.Fragment><AccountHeader edit={edit} toggleEdit={this.toggleEdit} /> 
                             <div className="about-content padding-account-dropdown">
