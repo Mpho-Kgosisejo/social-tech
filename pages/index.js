@@ -70,6 +70,7 @@ class Index extends React.Component {
         setTimeout(() => {
             this.props.dispatch({ type: "SIDEBAR", payload: false })
             this.props.dispatch({ type: "PAGE", payload: "index" })
+
             window.scrollTo({
                 top: 1,
                 behavior: "smooth"
@@ -128,7 +129,7 @@ class Index extends React.Component {
                                 </div>
                             </div>
                             <Container>
-                                <IndexLayout />
+                                {(!state.root_loading && !this.state.loading) && <IndexLayout />}
                             </Container>
                         </React.Fragment>
                     )}

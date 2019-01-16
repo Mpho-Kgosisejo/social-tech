@@ -30,7 +30,7 @@ const ProductSchema = new mongoose.Schema({
     },
     ingredients : [{
         type : String,
-        required : true,
+        required : false,
     }],
     menuCategoryId : {
         type: String,

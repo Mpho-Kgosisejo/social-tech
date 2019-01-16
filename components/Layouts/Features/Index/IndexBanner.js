@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid, GridColumn, Header, Divider, Button } from 'semantic-ui-react';
 import IndexBannerHeader from './IndexBannerHeader';
 import ContextAPI from '../../../../src/config/ContextAPI';
+import { PlaceHolderMenu } from "../../../utils/Placeholders"
 
 class IndexBanner extends React.Component {
     
@@ -22,6 +23,7 @@ class IndexBanner extends React.Component {
                         <IndexBannerHeader desc={state.index.todays_spe_banner_desc} header={state.index.todays_spe_banner_header} image={state.index.todays_spe_banner_img} />
                         <div className="index-banner">
                             <div className="index-banner-container">
+                                {state.root_loading ? <PlaceHolderMenu /> : 
                                 <Grid columns="equal">
                                     <Grid.Row className="index-banner-row">
                                         <GridColumn className="col1 padding-zero">
@@ -44,6 +46,7 @@ class IndexBanner extends React.Component {
                                         </Grid.Column>
                                     </Grid.Row>
                                 </Grid>
+                                }
                             </div>
                         </div>
                     </React.Fragment>    

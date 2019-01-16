@@ -39,22 +39,22 @@ class AboutContactUs extends React.Component {
                         // <pre>{JSON.stringify(state.about.data.contact_us, "", 2)}</pre>
                         <React.Fragment>
                             <Container text>
-                                <Header className="aboutsHeaders" as='h2'>{state.about.contact_us.page_header}</Header>
+                                <Header className="aboutsHeaders" as='h2'>Contact Us</Header>
                                 <Divider />
                                 {/* {isLoadingData ? } */}
                                 <Grid columns={2} relaxed>
                                     <Grid.Column>
-                                        <Segment basic>
+                                        {/* <Segment basic>
                                             {state.about.contact_us.description}
-                                        </Segment>
+                                        </Segment> */}
                                         <Header as='h2' dividing>
                                             Our Address
                                         </Header>
                                         <Segment attached>
-                                            <Header as='h3'>{state.about.contact_us.sub_header}</Header>
+                                            <Header as='h3'>Fresh Eats ZA Headquarters</Header>
                                             <p>{state.about.contact_us.address_1}</p>
-                                            <p>{state.about.contact_us.city}</p>
                                             <p>{state.about.contact_us.address_2}</p>
+                                            <p>{state.about.contact_us.city}</p>
                                             <p>{state.about.contact_us.address_3}</p>
                                         </Segment>
                                         <Divider hidden />
@@ -62,7 +62,8 @@ class AboutContactUs extends React.Component {
                                             Our Contact Details
                                 </Header>
                                         <Segment attached>
-                                            <p>Tell: {state.about.contact_us.tell}</p>
+                                            <p>email: {state.about.contact_us.email}</p>
+                                            <p>Tel: {state.about.contact_us.tel}</p>
                                             <p>fax: {state.about.contact_us.fax}</p>
                                             <p>Chefs: {state.about.contact_us.chefs_phone}</p>
                                             <p>Business hours: {state.about.contact_us.business_hours}</p>

@@ -99,6 +99,7 @@ schema.methods.toAuthJSON = function toAuthJSON (){
     return ({
         isAdmin: this.admin,
         username: this.username,
+        email: this.email,
         avator: this.image,
         token: this.token
     })

@@ -16,11 +16,14 @@ import requestpasswordchange_f from "./json/request_password_change_fail.json"
 import insta_s from "./json/insta_success.json"
 import catering_s from "./json/catering_success.json"
 import catering_f from "./json/catering_fail.json"
+import orders_s from "./json/dashboard_orders_success.json"
 import account_s from "./json/account_success"
+import account_s1 from "./json/account_success1"
 import account_f from "./json/account_fail"
 import user_orders_s from "./json/user_orders_success"
 import index_s from "./json/index_success.json"
 import index_f from "./json/index_fail.json"
+import isvalidtoken_s from "./json/isvalidtoken_success"
 
 const WAIT_TIME = 1500
 
@@ -43,7 +46,9 @@ export default {
     requestPasswordChange: () => loadMock(requestpasswordchange_s),
     instaGallery: () => loadMock(insta_s),
     catering: () => loadMock(catering_s),
-    account: () => loadMock(account_s),
     user_orders: () => loadMock(user_orders_s),
-    index: () => loadMock(index_s)
+    index: () => loadMock(index_s),
+    dashboard_orders: () => loadMock(orders_s),
+    account: () => loadMock(account_s1),
+    isValidToken: () => loadMock(isvalidtoken_s)
 }

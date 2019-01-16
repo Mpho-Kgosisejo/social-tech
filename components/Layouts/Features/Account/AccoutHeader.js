@@ -1,41 +1,18 @@
 import React from 'react'
-import { Image, Item, Icon, Header, Grid, Dropdown, Button } from 'semantic-ui-react'
+import { Image, Item, Icon, Header, Grid, Button } from 'semantic-ui-react'
 
 import ContextAPI from "../../../../src/config/ContextAPI";
 import Layout from '../../Layout';
 import Avator from '../../../utils/Avator';
 
-
-const hideButton = () => {
-    return(
-        <>
-        </>
-    ) 
-} 
-
-const displayButton = () => {
-    return(
-        <div className="pull-right">
-            {this.props.toggleEdit ? <Button onClick={this.props.toggleEdit} circular icon='edit outline' /> : ""}
-        </div>
-    )
-}
 class AccountHeader extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            disabled: true
-        }
     }
 
     editFunc = () => {
         this.setState({ disabled: false })
-    }
-
-    componentDidMount()
-    {
-        console.log(this.props)
     }
 
     render() {
@@ -60,7 +37,12 @@ class AccountHeader extends React.Component {
                                         </Header>
                                         <br />
                                         <div className="padding-thirty">
-                                            {this.hideButton ? hideButton : displayButton}
+                                            <React.Fragment>
+                                                {!this.props.edit && <div className="pull-right">
+                                                        <Button onClick={this.props.toggleEdit} disabled={state.root_loading} circular icon='edit outline' />
+                                                    </div>
+                                                }
+                                            </React.Fragment>
                                         </div>
                                     </Grid.Column>
                                 </Grid>

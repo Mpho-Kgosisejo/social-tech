@@ -45,6 +45,14 @@ export const reducer = (state, action) => {
                 personal_details: action.payload
             }
         })
+        case "ORDERS": return ({
+            ...state,
+            orders: action.payload
+        })
+        case "ACCOUNT": return({
+            ...state,
+            account: action.payload
+        })
         case "ACCOUNT_ORDER_HISTORY": return({
             ...state,
             account: {
@@ -79,6 +87,10 @@ export const reducer = (state, action) => {
         case "TEST": return ({
             ...state,
             test: action.payload
+        })
+        case "ROUTER": return ({
+            ...state,
+            router: action.payload
         })
         case "PAGE": return ({
             ...state,

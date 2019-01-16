@@ -27,7 +27,7 @@ class IndexMenu extends React.Component {
                                             <Grid.Column>
                                                 <List className="align-iterms-center">
                                                     {state.index.menu_items.items.map(item =>
-                                                        <React.Fragment>
+                                                        <React.Fragment key={item.name}>
                                                             <List.Item className="list-padding">
                                                                 <Image size="tiny" avatar src={item.image} />
                                                                 <List.Content className="menu-content">
@@ -42,7 +42,7 @@ class IndexMenu extends React.Component {
                                             <Grid.Column>
                                                 <List className="align-iterms-center">
                                                     {state.index.menu_items.items.map(item =>
-                                                        <React.Fragment>
+                                                        <React.Fragment key={item.name}>
                                                             <List.Item className="list-padding">
                                                                 <Image size="tiny" avatar src={item.image} />
                                                                 <List.Content className="menu-content">

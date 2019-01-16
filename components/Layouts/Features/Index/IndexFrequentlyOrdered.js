@@ -4,6 +4,7 @@ import { Grid, Icon, Image, Container, Card } from 'semantic-ui-react'
 import Slider from "react-slick"
 import IndexBannerHeader from './IndexBannerHeader';
 import ContextAPI from '../../../../src/config/ContextAPI';
+import { } from "../../../utils/Placeholders"
 
 class IndexFrequentlyOrdered extends React.Component {
     
@@ -22,9 +23,9 @@ class IndexFrequentlyOrdered extends React.Component {
                 <React.Fragment>
                     <IndexBannerHeader desc={state.index.freq_ordered_banner_desc} header={state.index.freq_ordered_banner_header} image={state.index.freq_ordered_banner_img} />
                     <div className="index-frequently-ordered">
-                    {state.root_loading ? "" : <Card.Group itemsPerRow={3}>
+                    {state.root_loading ? <IndexFrequentlyOrderedPlaceholder /> : <Card.Group itemsPerRow={3}>
                         {state.index.freq_ordered_meals.meals.map(item =>                
-                            <Card className="veritcal-stack">
+                            <Card key={item.date_created} className="veritcal-stack">
                                 <Image src={item.image} />
                                 <Card.Content>
                                     <Card.Header>{item.name}</Card.Header>

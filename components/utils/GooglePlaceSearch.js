@@ -8,7 +8,7 @@ class PlaceSearch extends React.Component {
         
         this.state = {
             address: ''
-        };
+        }
     }
 
     handleChange = address => {
@@ -32,6 +32,10 @@ class PlaceSearch extends React.Component {
         //     })
         //     .catch(error => console.error('Error', error));
     };
+
+    componentDidMount(){
+        this.handleChange(this.props.value)
+    }
 
     render() {
         return (
