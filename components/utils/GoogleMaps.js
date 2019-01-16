@@ -168,7 +168,7 @@ export class GoogleMaps extends React.Component {
         
                         <Form loading={this.state.loadingAutoComplete}>
                             <Form.Field>
-                                <input ref={ref => (this.autocomplete = ref)} value={destination} />
+                                <input ref={ref => (this.autocomplete = ref)} defaultValue={destination} />
                             </Form.Field>
                         </Form>
                     </div>

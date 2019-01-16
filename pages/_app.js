@@ -1,15 +1,15 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import Config from "react-global-configuration"
-// import axios from "axios"
 
 import devConfig from "../src/config/devConfig"
 import prodConfig from "../src/config/prodConfig"
 import ContextAPI from "../src/config/ContextAPI"
 import {reducer} from "../src/reducers/Reducer"
-import axios from 'axios'
-import {getLogin} from "../src/providers/LoginSession"
+import {getLogin, populateUserDetails, logout} from "../src/providers/LoginSession"
 import * as CartHandler from "../src/providers/CartHandler"
+import api from "../src/providers/APIRequest"
+import {isEmptyObj} from "../src/utils/Objs"
 
 export default class MyApp extends App {
     constructor(props){
@@ -51,11 +51,43 @@ export default class MyApp extends App {
                 route: props.router.route,
                 query: props.router.query
             },
-            account:{},
+            account:{
+                personal_details: {}
+            },
+            catering: {},
+            index: {},
             dispatch: (action) => this.setState(state => reducer(state, action))
         }
+    }
 
-        console.log(">>", props.router)
+    loadData = async ({login}) => {
+        const res = await api.user.isValidToken(login.isAdmin)
+
+        if (res.status === 200){
+            populateUserDetails((personal_details) => {
+                this.setState({
+                    ...this.state,
+                    root_loading: false,
+                    login,
+                    account: {
+                        ...this.state.account,
+                        personal_details
+                    }
+                })
+            })
+        }else{
+            logout(this.state.dispatch)
+
+            this.setState({
+                ...this.state,
+                root_loading: false,
+                alertPortal: {
+                    open: true,
+                    type: "error",
+                    message: "Invalid token used. Please signin again."
+                }
+            })
+        }
     }
 
     UNSAFE_componentWillMount(){
@@ -71,19 +103,27 @@ export default class MyApp extends App {
         }
     }
 
-    componentDidMount(){
+    init = async () => {
         const login = getLogin()
+        let account = {}
 
         CartHandler.restore_cart({dispatch: this.state.dispatch})
         if (process.browser){
-            axios.defaults.headers.authorization = `Bearer ${login.token}`
-            
-            this.setState({
-                ...this.state,
-                root_loading: false,
-                login
-            })
+            if (Object.keys(login).length > 0){
+               this.loadData({login})
+            }
+            else {
+                this.setState({
+                    ...this.state,
+                    root_loading: false,
+                    login: {}
+                })
+            }
         }
+    }
+
+    componentDidMount(){
+        this.init()
     }
 
     static async getInitialProps({ Component, router, ctx }) {
@@ -102,7 +142,7 @@ export default class MyApp extends App {
         return (
             <Container>
                 <ContextAPI.Provider value={{state: this.state}}>
-                    <Component {...pageProps} {...this.props} dispatch={this.state.dispatch} />
+                    <Component {...pageProps} {...this.props} state={this.state} dispatch={this.state.dispatch} />
                 </ContextAPI.Provider>
             </Container>
         )

@@ -194,7 +194,7 @@ class AboutFaqs extends React.Component {
                     <Segment>
                             <List divided relaxed>
                                 {faqList.map(FAQ => (
-                                    <List.Item id={FAQ._id}>
+                                    <List.Item id={FAQ.answer}>
                                         {/* <List.Icon name='question' size='large' verticalAlign='middle' /> */}
                                         <List.Content>
                                             { (isEditingFAQ && editID === FAQ._id ) ? 
@@ -223,7 +223,7 @@ class AboutFaqs extends React.Component {
                                 ))}
                             </List>
                         </Segment>
-                        <pre>{JSON.stringify(this.state.aboutFaq, null, 2)}</pre>
+                        {/* <pre>{JSON.stringify(this.state.aboutFaq, null, 2)}</pre> */}
                         {/* modal will be called when the delete faq icon is called */}
                         <Modal open={isDeletingFAQ} basic size='small'>
                             <Header content='Warning! This Action is irriversible'/>

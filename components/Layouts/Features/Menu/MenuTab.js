@@ -7,6 +7,7 @@ import { ErrorMessage, WarningMessage, InfoMessage, GreyMessage } from "../../..
 import ContextAPI from "../../../../src/config/ContextAPI";
 
 class menu_tab extends React.Component {
+    
     handleTabChange = ({ index, state }) => {
         const dispatch = state.dispatch
         const menu = state.menu.data
@@ -15,6 +16,7 @@ class menu_tab extends React.Component {
         dispatch({ type: "MENU", payload: { index, data: menu } })
 
         Router.replace({ pathname: "/menu", query: { tab } })
+        console.log("Router", Router.query)
     }
 
     render() {
@@ -43,7 +45,7 @@ class menu_tab extends React.Component {
                         <div className="zero-border marginTopBottom">
                             <Card.Group doubling itemsPerRow={3} stackable>
                                 {isEmptyObj(state.menu.data[state.menu.index].items) ?
-                                    <Container><GreyMessage icon="exclamation" header="Menu Error!" message={`Unfortunately the ${state.menu.data[state.menu.index].title} category has no products`} /></Container>
+                                    <Container><GreyMessage icon="exclamation" header="Oops!" message={`It looks like the ${state.menu.data[state.menu.index].title} category has no products in it, try again later we have great products coming to the menu.`} /></Container>
                                     :
                                     state.menu.data[state.menu.index].items.map(product => (
                                         <MenuCard key={product._id} {...product} />

@@ -35,7 +35,7 @@ class Gallery extends React.Component {
             const { data } = res.data
             this.setState({ data });
         } else {
-            res.status(404).send('Bad Request')
+            res.status(401).send('Bad Request')
         }
     }
 

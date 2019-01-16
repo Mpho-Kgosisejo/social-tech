@@ -16,12 +16,14 @@ const checkAuth = (req, res, next, isAdmin) => {
 
         req.auth_data = decoded
 
+        console.log(decoded)
         if (!decoded.key){
             response(res, " [1]")
             return
         }
         UserModel.findOne({_id: decoded.key, email: decoded.email})
         .then(user => {
+            req.user = user
             if (user && (user._id == decoded.key)){
                 if (isAdmin){
                     if (decoded.isAdmin){
@@ -31,8 +33,13 @@ const checkAuth = (req, res, next, isAdmin) => {
                     response(res, " (NOT ADMIN)")         
                     return
                 }else{
-                    next()
-                    return
+                    if (!decoded.isAdmin){
+                        next()
+                        return
+                    }else{
+                        response(res, " (NOT USER)")         
+                        return
+                    }
                 }
             }
             response(res, " [2]")

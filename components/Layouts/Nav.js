@@ -14,11 +14,10 @@ import Avator from "../utils/Avator";
 const handleLogout = (state) => {
     const {dispatch} = state
 
-    logout()
+    logout(dispatch)
     if ((`${Router.route}`).includes("/dashboard") || (`${Router.route}`).includes("/account"))
         Router.push({ pathname: "/" })
-    dispatch({ type: "LOGIN", payload: {} })
-    dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
+    dispatch({type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true }})
     dispatch({type: "SIDEBAR", payload: false})
 }
 
@@ -41,6 +40,7 @@ const pushSideBar =({dispatch}) =>
     })
 }
 
+const ResponsiveFix = () => <></>
 
 export const RightNav = () => (
     <ContextAPI.Consumer>
@@ -80,7 +80,6 @@ export const RightNav = () => (
             </React.Fragment>
         )}
     </ContextAPI.Consumer>
-
 )
 
 const LeftTabletNav = () => (
@@ -118,6 +117,9 @@ export const LeftComputerNav = () => (
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 3 })}>FAQs</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
+                <Link href="/catering" prefetch passHref>
+                    <Menu.Item as="a" className="fresheats-brown-color">Cater Now</Menu.Item>
+                </Link>
                 <Link href="/gallery" prefetch passHref>
                     <Menu.Item as="a" className="fresheats-brown-color">Gallery</Menu.Item>
                 </Link>
@@ -128,20 +130,20 @@ export const LeftComputerNav = () => (
                                 <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
                         )}
-                        <Responsive maxWidth={991} as={React.Fragment}>
+                        <Responsive maxWidth={991} as={"div"}>
                             {isEmptyObj(state.login) ? <AuthLayout /> : <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>}
-                        <Link href="/cart" prefetch passHref>
-                            <Menu.Item className="fresheats-brown-color cart-icon">
-                                <Icon className="cart-icon-" name="cart" size="mini">
-                                    {state.cart.details.itemsCount > 0 &&
-                                        <Label circular size="mini" style={{background: LIGHT_RED}}>
-                                            {state.cart.details.itemsCount}
-                                        </Label>
-                                    }
-                                </Icon>
-                                View Cart
-                            </Menu.Item>
-                        </Link>
+                            <Link href="/cart" prefetch passHref>
+                                <Menu.Item as="a" className="fresheats-brown-color cart-icon">
+                                    <Icon className="cart-icon-" name="cart" size="mini">
+                                        {state.cart.details.itemsCount > 0 &&
+                                            <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                                {state.cart.details.itemsCount}
+                                            </Label>
+                                        }
+                                    </Icon>
+                                    View Cart
+                                </Menu.Item>
+                            </Link>
                         </Responsive>
                     </React.Fragment>
                 )}
@@ -173,18 +175,18 @@ const Nav = () => (
                                 {!isEmptyObj(state.login) ? <RightNav /> : <Responsive minWidth={992} as={React.Fragment}><AuthLayout /></Responsive>}
                             </Menu.Menu>
                         }
-                         <Responsive minWidth={992} as={React.Fragment}>
-                        <Link href="/cart" prefetch passHref>
-                            <Menu.Item className="fresheats-brown-color">
-                              <Icon className="cart-icon-nav" name="cart">
-                                {state.cart.details.itemsCount > 0 &&
-                                    <Label circular size="mini" style={{background: LIGHT_RED}}>
-                                        {state.cart.details.itemsCount}
-                                    </Label>
-                                }
-                              </Icon>
-                            </Menu.Item>
-                        </Link>
+                        <Responsive minWidth={992} as={React.Fragment}>
+                            <Link href="/cart" prefetch passHref>
+                                <Menu.Item className="fresheats-brown-color">
+                                <Icon className="cart-icon-nav" name="cart">
+                                    {state.cart.details.itemsCount > 0 &&
+                                        <Label circular size="mini" style={{background: LIGHT_RED}}>
+                                            {state.cart.details.itemsCount}
+                                        </Label>
+                                    }
+                                </Icon>
+                                </Menu.Item>
+                            </Link>
                         </Responsive>
                     </React.Fragment>
                 </Container>

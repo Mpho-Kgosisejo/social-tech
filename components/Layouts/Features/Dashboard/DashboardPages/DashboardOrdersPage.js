@@ -17,8 +17,7 @@ class DashboardOrdersPage extends React.Component {
     }
 
     getData = async () => {
-        const res = await api.dashboard_orders.get_orders();
-
+        const res = await api.orders.get_orders();
         if (res.status === 200) {
             const { orders } = res.data
             this.setState({ orders, selectedOrder: orders[0] });
@@ -51,10 +50,28 @@ class DashboardOrdersPage extends React.Component {
         this.getData()
     }
 
+    handleFinishOrder = async () => {
+        const res = await api.orders.update_order({_id : this.state.selectedOrder._id, status : "done"})
+        if (res.status === 200){
+            const newOrder = res.data.updatedOrder
+            
+            this.setState({
+                ...this.state,
+                orders: this.state.orders.map(order => {
+                    if (order._id === this.state.selectedOrder._id){
+                        order = newOrder
+                    }
+                    return (order)
+                }),
+                selectedOrder: newOrder
+            })
+        }
+    }
+
     render() {
 
         const { orders, selectedOrder } = this.state
-        console.log(">>>>>>>>", selectedOrder._id)
+        // console.log(">>>>>>>>", selectedOrder._id)
 
         return (
             <ContextAPI.Consumer>
@@ -76,12 +93,12 @@ class DashboardOrdersPage extends React.Component {
                                     {orders.map(el => {
                                         return (
                                             <Table.Row key={el._id}>
-                                                <Table.Cell>{el.customer.name}</Table.Cell>
+                                                <Table.Cell>{el.customer.username}</Table.Cell>
                                                 <Table.Cell><a onClick={() => this.onClickLink({ id: el._id, state })}>{el._id}</a></Table.Cell>
-                                                <Table.Cell>{el.details.subTotal}</Table.Cell>
+                                                <Table.Cell>{el.details.total}</Table.Cell>
                                                 <Table.Cell>{el.details.totalItemsCount}</Table.Cell>
                                                 <Table.Cell>{el.customer.contact}</Table.Cell>
-                                                <Table.Cell>{(el.status) == "approved" ? <p style={{ color: "#3CB371" }}>{el.status}</p> : (el.status) == "pending" ? <p style={{ color: "#ffa900" }}>{el.status}</p> : <p style={{ color: "#FF0000" }}>{el.status}</p>}</Table.Cell>
+                                                <Table.Cell>{(el.status) == "done" ? <p style={{ color: "#3CB371" }}>{el.status}</p> : (el.status) == "pending" ? <p style={{ color: "#ffa900" }}>{el.status}</p> : <p style={{ color: "#FF0000" }}>{el.status}</p>}</Table.Cell>
                                             </Table.Row>
                                         )
                                     })}
@@ -93,26 +110,32 @@ class DashboardOrdersPage extends React.Component {
                         <>
                                 <Segment>
                                 <Header sub as='h3' textAlign='left'>Customer : </Header>
-                                <span textAlign='left'>{selectedOrder.customer.name}</span>
+                                <span >{selectedOrder.customer.username}</span>
+                                <Header sub as='h3' textAlign='left'>Collector : </Header>
+                                <span >{selectedOrder.collector.firstname} {selectedOrder.collector.lastname}</span>
+                                <br/>
+                                <span > Contact Detail's : {selectedOrder.collector.phone}</span>
                                 <Header sub as='h3' textAlign='left'>Order Number : </Header>
-                                <span textAlign='left'>#{selectedOrder._id}</span>
+                                <span >#{selectedOrder._id}</span>
                                 <Header sub textAlign='left' >Number of Items : </Header>
-                                <span textAlign='left' >{selectedOrder.details.totalItemsCount}</span>
+                                <span >{selectedOrder.details.totalItemsCount}</span>
                                 <Header sub textAlign='left'>Total : </Header>
-                                <span textAlign='left'>R{selectedOrder.details.total} inc. vat</span>
+                                <span >R{selectedOrder.details.total} inc. vat</span>
                                 <Header sub textAlign='left'>Status : </Header>
-                                <span textAlign='left'>{(selectedOrder.status) == "approved" ? <span style={{ color: "#3CB371" }}>{selectedOrder.status}</span> : (selectedOrder.status) == "pending" ? <span style={{ color: "#ffa900" }}>{selectedOrder.status}</span> : <span style={{ color: "#FF0000" }}>{selectedOrder.status}</span>}</span>
-                                <Button floated='right' className="status-button" >Done</Button>
+                                <span >{(selectedOrder.status) == "done" ? <span style={{ color: "#3CB371" }}>{selectedOrder.status}</span> : (selectedOrder.status) == "pending" ? <span style={{ color: "#ffa900" }}>{selectedOrder.status}</span> : <span style={{ color: "#FF0000" }}>{selectedOrder.status}</span>}</span>
+                                <Header sub textAlign='left'>Delivery : </Header>
+                                <span >{isEmptyObj(selectedOrder.delivery) ? "The Order will be collected." : selectedOrder.delivery}</span>
+                                { selectedOrder.status == "pending" ? <Button onClick={() => this.handleFinishOrder()} floated='right' className="status-button" >Done</Button> : null }
                                 
                                 </Segment>
                             
                                 <Item.Group divided>
                                     {selectedOrder.items.map(menuItem => {
                                         return (
-                                             <Item key={menuItem.name}>
+                                             <Item key={menuItem._id}>
                                                 <Item.Image className="image-item" src={menuItem.image} />
                                                 <Item.Content>
-                                                    <Item.Header verticalAlign='middle'>{menuItem.name}</Item.Header>
+                                                    <Item.Header>{menuItem.name}</Item.Header>
                                                     <Item.Meta>Price : R{menuItem.price}</Item.Meta>
                                                     <Item.Meta>Quantity : {menuItem.quantity}</Item.Meta>
                                                 </Item.Content>

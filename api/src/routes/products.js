@@ -1,14 +1,16 @@
 import express from "express"
 
-import Product from "../models/Product"
 import { multerUpload, removeFile } from "../utils/multerImageHandler"
 import { adminAuth } from "../middleware/checkAuth"
+import Product from "../models/Product";
 
 const router  = express.Router()
 
 router.get("/", (req, res) => {
     Product.find()
+    .sort({createdAt : -1})
     .then(items => {
+        // const ite_ms = insertionSortProductsByMostSold(items)
         res.status(200).json({
             items,
             message : "successfully retrieved products"
@@ -44,7 +46,7 @@ router.get("/:id", (req, res) => {
 })
 
 router.post("/", adminAuth, multerUpload.single('productImage'), (req, res) => {
-    const {price, available, name, description, menuCategoryId, ingredients} = req.body
+    const {price, available, name, description, menuCategoryId, ingredients, numberOfOrders} = req.body
     const newIngredients = JSON.parse(ingredients)
     const image =  `${process.env.HOST}/${req.file.path}`
     const newProduct = new Product({
@@ -54,12 +56,13 @@ router.post("/", adminAuth, multerUpload.single('productImage'), (req, res) => {
         image,
         description,
         menuCategoryId,
-        ingredients : newIngredients
+        ingredients : newIngredients,
     })
 
 
     newProduct.save().then(product => {
         Product.find()
+        .sort({createdAt : -1})
         .then (products => {
             res.status(200).json({
                 products,
@@ -90,6 +93,7 @@ router.delete("/", adminAuth,(req, res) => {
         })
 
         Product.find()
+        .sort({createdAt : -1})
         .then (data => {
             res.status(200).json({
                 data,
@@ -128,6 +132,7 @@ router.patch("/", adminAuth,multerUpload.single('productImage'), (req, res) => {
         .then (resp => {
 
             Product.find()
+            .sort({createdAt : -1})
             .then (data => {
                 res.status(200).json({
                     data,
@@ -178,6 +183,7 @@ router.patch("/", adminAuth,multerUpload.single('productImage'), (req, res) => {
         Product.findByIdAndUpdate(_id, updateModel, {new : true})
         .then (data => {
             Product.find()
+            .sort({createdAt : -1})
             .then (result => {
                 res.status(200).json({
                     result,
@@ -194,6 +200,49 @@ router.patch("/", adminAuth,multerUpload.single('productImage'), (req, res) => {
             })
         })
     }
+})
+
+//this endpoint will be used to get all the top selling products
+
+router.get("/index/top-selling", (req, res) => {
+    Product.find()
+    .sort({numberOfOrders : -1})
+    .limit(6)
+    .then(items => {
+        // const ite_ms = insertionSortProductsByMostSold(items)
+        console.log(items)
+        res.status(200).json({
+            items,
+            message : "successfully retrieved products"
+        }) 
+    })
+    .catch(error =>{
+        console.log(error)
+        res.status(500).json({
+            error : {
+                message : "Error while trying to retrieve products"
+            }
+        })
+    })
+})
+
+router.get("/index/random-products", (req, res) => {
+    Product.findRandom({}, {}, {limit: 6}, (err, results) => {
+        if (!err) {
+            res.status(200).json({
+                results,
+                message : "successfully retrieved products"
+            }) 
+        }
+        else
+        {
+            res.status(500).json({
+                error : {
+                    message : "Error while trying to retrieve random products"
+                }
+            })
+        }
+    });
 })
 
 export default router

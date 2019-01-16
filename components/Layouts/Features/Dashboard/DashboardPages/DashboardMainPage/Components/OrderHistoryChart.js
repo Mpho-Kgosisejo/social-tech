@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Loader } from 'semantic-ui-react'
 import { Line, defaults } from 'react-chartjs-2'
-import ContextAPI from "../../../../../../../src/config/ContextAPI";
+import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 
 
 class OrderHIstoryChart extends React.Component {
@@ -9,6 +9,37 @@ class OrderHIstoryChart extends React.Component {
     {
         super(props)
         defaults.scale.gridLines.display = false; 
+        this.state = {
+            options : {    
+                responsive: true,
+                scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Months'
+                            }
+                        }],
+                    yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Orders'
+                            }
+                        }]
+                },
+                // title: {
+                //     display: true,
+                //     text: `Order History for the year - ${this.props.currentYear}`
+                // },
+                legend:{
+                    // display: true,
+                    labels: {
+                      usePointStyle: true,
+                    }
+                  }
+            }
+        }
     }
 
     checkProps = (cData, cYear) => {
@@ -19,21 +50,24 @@ class OrderHIstoryChart extends React.Component {
         return false
     }
 
-    _chartData = (cData, cYear) => {
+    _chartData = (cData, cYear) => {        
         return(
             {
 
-                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
                 datasets: [{
                     label: `Order History for the year ${cYear}`,
                     data: cData,
                     showLine : true,
                     lineTension : 0.3,
                     backgroundColor: 'rgba(255,255,255, 0.9)',
-                    // backgroundColor: 'rgba(197, 156, 112, 1)',                    
-                    borderColor : 'rgba(197, 156, 112, 1)',
-                    borderWidth: 2,
-                }] 
+                    borderColor : 'rgba(197,156,112,1)',
+                    borderWidth: 1.5,
+                    pointRadius : 4,
+                    pointStyle : 'rectRounded',
+                    // borderDash : 10
+                    // steppedLine : 'false'
+                }],                   
             }
         )
     }
@@ -43,17 +77,22 @@ class OrderHIstoryChart extends React.Component {
     render()
     {
         const {chartData, currentYear} = this.props
+        const {options} = this.state
         let data = {}
 
-        if(this.checkProps(chartData, currentYear) === true)
-            data = this._chartData(chartData, currentYear)
+            // if(this.checkProps(chartData, currentYear) === true)
+            //    data = this._chartData(chartData, currentYear)
 
         return(
-            <React.Fragment>
+            <React.Fragment >
                 
-                <Line data={data}/>
+                { this.checkProps(chartData, currentYear) ? 
+                    <Line data={this._chartData(chartData, currentYear)} options={options} className="user-list-header"/> 
+                    : 
+                    <Line data={this._chartData(chartData, currentYear)} options={options} className="user-list-header"/> 
+                }
                 
-                <pre>{JSON.stringify(this.props, " ", 2)}</pre>
+                {/* <pre>{JSON.stringify(this.props, " ", 2)}</pre> */}
             </React.Fragment>
         )
     }

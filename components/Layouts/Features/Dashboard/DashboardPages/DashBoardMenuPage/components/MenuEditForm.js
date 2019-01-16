@@ -17,7 +17,7 @@ class MenuEditForm extends React.Component {
                 image: null,
                 available: true,
                 menuCategoryId: "",
-                ingredients: []
+                ingredients: [],
             },
             errorBody: {},
             inputIngredient: "",
@@ -276,9 +276,10 @@ class MenuEditForm extends React.Component {
                         text: category.title, value: category._id }
                         ))
                     }/> } 
-                    <Checkbox className = "toggle-checkbox" 
+                    <Checkbox className="toggle-checkbox" 
                       defaultChecked 
                       toggle 
+                      checked={editBody.available}
                       onChange = {
                         this.handleCheckBoxChange
                       }
@@ -299,12 +300,18 @@ class MenuEditForm extends React.Component {
                     { errorBody.image && < InLineError message = {errorBody.image} /> } 
                 </Form.Field>
                 
-                <Form.Button size ='medium' primary onClick = { () => this.uploadEditedMenu()}> Save </Form.Button> 
-                <Button size ='medium' primary onClick={() => handleEditModal()}> Cancel </Button> 
+                <div className = "product-list-header">
+                    <div>
+                        <Form.Button size ='medium' primary onClick = { () => this.uploadEditedMenu()}> Save </Form.Button> 
+                    </div>
+                    <div>
+                        <Button size ='medium' primary onClick={() => handleEditModal()}> Cancel </Button>  
+                    </div>
+                </div> 
                 </Form> 
               </div> 
             { /* ===================== */ }
-              <pre>{ JSON.stringify(this.state, " ", 2) }</pre> 
+              {/* <pre>{ JSON.stringify(this.state, " ", 2) }</pre>  */}
               {/* <pre>{ JSON.stringify(this.state.errorBody, " ", 2)}</pre> */}
             </div>
           )

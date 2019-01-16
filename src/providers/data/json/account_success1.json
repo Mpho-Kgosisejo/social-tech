@@ -1,0 +1,18 @@
+{
+    "data": {
+        "user": {
+            "createdAt": "2018-11-23T08:53:14.031Z",
+            "updatedAt": "2019-01-07T15:03:07.237Z",
+            "email": "john.smith@mock.co.za",
+            "username": "smith",
+            "address": "WeThinkCode_, Albertina Sisulu Road, Johannesburg",
+            "phone": "0837410987",
+            "image": "",
+            "admin": false,
+            "lastname": "smith",
+            "firstname": "john"
+        },
+        "message": "OK"
+    },
+    "status": 200
+}

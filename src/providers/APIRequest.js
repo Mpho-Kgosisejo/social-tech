@@ -5,19 +5,32 @@ import mock from "./data/mock"
 
 const API = {
     user: {
+        /**
+         * "signin" is used to authenticate the user.
+         * 
+         * Returns API response of endpoint: [POST, /auth]
+         * @param credentials [Object => {login: {key: [String => "username/email"], value: [String]}, password: [String]}]
+         */
         signin: (credentials) => {
             if (Config.get("api.isMock")){
                 return (mock.login().then(res => res))
             }
             return (
                 axios.post(`${Config.get("api.endpoint")}/auth`, {
-                    [credentials.login.key]: credentials.login.value,
+                    login: credentials.login,
                     password: credentials.password
                 })
                 .then(res => res)
                 .catch(err => err.response)
             )
         },
+
+        /**
+         * "signup" is used to register the user.
+         * 
+         * Returns API response of endpoint => [POST, /user]
+         * @param user [Object: {username: [String], email: [String], password: [String]}]
+         */
         signup: (user) => {
             if (Config.get("api.isMock")){
                 return (mock.signup().then(res => res))
@@ -32,6 +45,13 @@ const API = {
                 .catch(err => err.response)
             )
         },
+
+        /**
+         * "confirmEmail" is used to confirm user's email after they have registered.
+         * 
+         * Returns API response of endpoint => [POST, /auth/confirmation]
+         * @param token [String]
+         */
         confirmEmail: (token) => {
             if (Config.get("api.isMock")){
                 return (mock.confirmEmail().then(res => res))
@@ -44,6 +64,13 @@ const API = {
                 .catch(err => err.response)
             )
         },
+
+        /**
+         * "requestPasswordChange" is used to request "password cahange", sending a link (via email) to the user so they able to change and also confim if user (of email) exists.
+         * 
+         * Returns API response of endpoint => [POST, /auth/reset-password] (Sends user a link via email)
+         * @param email [String]
+         */
         requestPasswordChange: (email) => {
             if (Config.get("api.isMock")){
                 return (mock.requestPasswordChange().then(res => res))
@@ -54,6 +81,13 @@ const API = {
                 .catch(err => err.response)
             )
         },
+
+        /**
+         * "changePassword" is used to change/reset user's password.
+         * 
+         * Returns API response of endpoint => [POST, /auth/change-password]
+         * @param object [Object] => {token: [String, "token given to user via email"], password: [String, "user's new password"]}
+         */
         changePassword: ({token, password}) => {
             if (Config.get("api.isMock")){
                 return (mock.changePassword().then(res => res))
@@ -62,6 +96,18 @@ const API = {
                 axios.post(`${Config.get("api.endpoint")}/auth/change-password`, {
                     token,
                     password
+                })
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        isValidToken: (admin) => {
+           if (Config.get("api.isMock")){
+               return (mock.isValidToken().then(res => res))
+           }
+           return (
+                axios.post(`${Config.get("api.endpoint")}/auth/validate-token`, {
+                    admin
                 })
                 .then(res => res)
                 .catch(err => err.response)
@@ -106,7 +152,9 @@ const API = {
             fileData.append('available', uploadBody.available)
             fileData.append('ingredients', JSON.stringify(uploadBody.ingredients))
             fileData.append('menuCategoryId', uploadBody.menuCategoryId)
+            fileData.append('numberOfOrders', uploadBody.menuCategoryId)
             fileData.append('productImage',uploadBody.image, uploadBody.image.name)
+            
             return (
                 axios.post(`${Config.get("api.endpoint")}/products`, fileData)
                 .then(res => res)
@@ -218,6 +266,12 @@ const API = {
                 .catch(err => err.response)
             )
         },
+        catering: () => {
+            return (mock.catering().then(res => res))
+        },
+        index: () => {
+            return (mock.index().then(res => res))
+        },
         updateFAQ : (body) => {
             return (
                 axios.patch(`${Config.get("api.endpoint")}/faqs`, body)
@@ -278,13 +332,24 @@ const API = {
                         .catch(err => err.response)
                     )
                 }
-    
-                
-            
         },
         deleteChef : (deleteBody) => {
             return (
                 axios.delete(`${Config.get("api.endpoint")}/chefs`, { data : deleteBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        getOurStory : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/ourstory`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        addOrUpdateStory : (body) => {
+            return (
+                axios.post(`${Config.get("api.endpoint")}/ourstory`, body)
                 .then(res => res)
                 .catch(err => err.response)
             )
@@ -319,22 +384,27 @@ const API = {
         },
         add_order : (body) => {
             return (
-                axios.post(`${Config.get("api.endpoint")}/order`)
+<<<<<<< HEAD
+                axios.post(`${Config.get("api.endpoint")}/order`, {body})
+=======
+                axios.post(`${Config.get("api.endpoint")}/order`, body)
+>>>>>>> d65832eecf671cd400abaec722c7bba28f15d0a4
                 .then(res => res)
                 .catch(err => err.response)
             )
         },
         update_order : (body) => {
             return (
-                axios.patch(`${Config.get("api.endpoint")}/order`)
+                axios.patch(`${Config.get("api.endpoint")}/order`, body)
                 .then(res => res)
                 .catch(err => err.response)
             ) 
         },
-        //NB : NOT FULLY FUNCTIONAL YET.
         get_user_orders : (uid) => {
             return (
-                axios.get(`${Config.get("api.endpoint")}/order/${uid}`)
+                axios.get(`${Config.get("api.endpoint")}/order/user/${uid}`)
+                .then(res => res)
+                .catch(err => err.response)
             )
         }
     },
@@ -359,13 +429,66 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
-        }
+        },
+        get_net_earnings : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/net-earnings`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }, 
     },
     dashboard_orders: {
         get_orders : () => {
             if (Config.get("api.isMock")){
                 return (mock.dashboard_orders().then(res => res))
+            } 
+        }
+    },
+    profile: {
+        account: () => {
+            if (Config.get("api.isMock")){
+                return(mock.account().then(res => res))
             }
+            return(
+                axios.get(`${Config.get("api.endpoint")}/user`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        account_update: (user) => {
+            if (Config.get("api.isMock"))
+            {
+                return (mock.account().then(res => res))
+            }
+            console.log(`${Config.get("api.endpoint")}/user`)
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/user`,
+                    {
+                        firstname: user.firstname,
+                        lastname: user.lastname,
+                        phone: user.phone,
+                        address: user.address
+                    }
+                )
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        orders: () => {
+            // if (Config.get("api.isMock")){
+                return(mock.user_orders().then(res => res))
+            // }
+            // return(
+            //     axios.get(`${Config.get("api.endpoint")}/orders`)
+            //     .then(res => res)
+            //     .catch(err => err.response)
+            // )
+            return (
+                axios.patch(`${Config.get("api.endpoint")}/user`, user)
+                .then(res => res)
+                .catch(err => err.response)
+            )
         }
     }
 }

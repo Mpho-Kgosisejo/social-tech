@@ -1,4 +1,7 @@
 import { Placeholder, Grid, Segment, Card, Table } from "semantic-ui-react"
+import { Container } from "next/dist/lib/app";
+
+import { Divider } from 'semantic-ui-react'
 
 export const PlaceholderSmallParagraph = ({ withImage = false }) => (
     <Placeholder fluid>
@@ -27,6 +30,131 @@ export const PlaceholderSmallParagraph = ({ withImage = false }) => (
         }
     </Placeholder>
 )
+
+export const IndexFrequentlyOrderedPlaceholder = () => (
+    <Card.Group itemsPerRow={3}>
+      <Card>
+        <Card.Content>
+          <Placeholder>
+            <Placeholder.Image square />
+                <Placeholder.Header>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
+        </Card.Content>
+      </Card>
+      <Card>
+        <Card.Content>
+          <Placeholder>
+            <Placeholder.Image square />
+                <Placeholder.Header>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
+        </Card.Content>
+      </Card>
+      <Card>
+        <Card.Content>
+          <Placeholder>
+            <Placeholder.Image square />
+                <Placeholder.Header>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
+        </Card.Content>
+      </Card>
+      <Card>
+        <Card.Content>
+          <Placeholder>
+            <Placeholder.Image square />
+                <Placeholder.Header>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
+        </Card.Content>
+      </Card>
+    </Card.Group>
+  )
+
+export const IndexStepsPlaceHolder = () => (
+    <Grid columns={4} stackable>
+      <Grid.Column>
+        <Segment raised>
+          <Placeholder>
+            <Placeholder.Header image>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length='medium' />
+              <Placeholder.Line length='short' />
+            </Placeholder.Paragraph>
+          </Placeholder>
+        </Segment>
+      </Grid.Column>
+  
+      <Grid.Column>
+        <Segment raised>
+          <Placeholder>
+            <Placeholder.Header image>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length='medium' />
+              <Placeholder.Line length='short' />
+            </Placeholder.Paragraph>
+          </Placeholder>
+        </Segment>
+      </Grid.Column>
+  
+      <Grid.Column>
+        <Segment raised>
+          <Placeholder>
+            <Placeholder.Header image>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length='medium' />
+              <Placeholder.Line length='short' />
+            </Placeholder.Paragraph>
+          </Placeholder>
+        </Segment>
+      </Grid.Column>
+      
+      <Grid.Column>
+        <Segment raised>
+          <Placeholder>
+            <Placeholder.Header image>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length='medium' />
+              <Placeholder.Line length='short' />
+            </Placeholder.Paragraph>
+          </Placeholder>
+        </Segment>
+      </Grid.Column>
+    </Grid>
+  )
 
 export const PlaceholderMediumParagraph = ({ withImage = false }) => (
     <React.Fragment>
@@ -137,3 +265,42 @@ export const CartTablePlaceholder = () => (
         </Table.Row>
     </Table.Body>
 )
+
+export const AccountHeaderPlaceholder = () =>
+    (
+        <Container>
+            <Placeholder fluid className="account-placeholder">
+                <Placeholder.Header image>
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                </Placeholder.Header>
+                <Placeholder.Paragraph>
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                    <Placeholder.Line />
+                </Placeholder.Paragraph>
+            </Placeholder>
+        </Container>
+    )
+
+export const AccountTabsPlaceholder = () =>
+    (
+        <Container>
+            <Grid columns={2}>
+                <Grid.Column width={4} className="account-img-col">
+                    <Placeholder style={{ height: 150, width: 150 }}>
+                        <Placeholder.Image />
+                    </Placeholder>
+                </Grid.Column>
+                <Grid.Column width={10}>
+                    <Placeholder fluid>   
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        <Placeholder.Line />
+                        </Placeholder>
+                </Grid.Column>
+            </Grid>
+        </Container>
+    )

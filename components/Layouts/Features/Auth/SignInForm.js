@@ -81,6 +81,7 @@ class SignInForm extends React.Component{
             password: this.state.user.password,
         })
 
+        console.log("SignIn", res)
         if (res.status === 200){
             this.setState({
                 feedback: {
@@ -90,7 +91,7 @@ class SignInForm extends React.Component{
                 }
             })
 
-            login({...res.data.user})
+            login({...res.data.user, dispatch})
             this.resetInputs()
             dispatch({type: "LOGIN", payload: {...res.data.user}})
             dispatch({type: "ALERT_PORTAL", payload: {header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_IN, open: true}})
