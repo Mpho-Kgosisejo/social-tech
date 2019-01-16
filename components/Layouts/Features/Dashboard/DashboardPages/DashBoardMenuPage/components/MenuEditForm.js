@@ -276,9 +276,10 @@ class MenuEditForm extends React.Component {
                         text: category.title, value: category._id }
                         ))
                     }/> } 
-                    <Checkbox className = "toggle-checkbox" 
+                    <Checkbox className="toggle-checkbox" 
                       defaultChecked 
                       toggle 
+                      checked={editBody.available}
                       onChange = {
                         this.handleCheckBoxChange
                       }
