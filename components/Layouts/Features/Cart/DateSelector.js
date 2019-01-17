@@ -4,6 +4,7 @@ import {Header, Grid, Input, Label, Icon} from "semantic-ui-react"
 
 import "../../../../static/css/react-datepicker.css"
 import {LIGHT_RED, MILKY_RED} from "../../../../src/Types/ColorsTypes"
+import ContextAPI from "../../../../src/config/ContextAPI"
 
 class DateSelector extends React.Component {
     state = {
@@ -12,39 +13,34 @@ class DateSelector extends React.Component {
 
     handleOnChange = (d) => {
         const {cartDispatch} = this.props.funcs
-        const {date} = this.props.cartState
 
         cartDispatch({
             date: {
-                ...date,
                 inputValue: new Date(d)
             }
         })
     }
 
-    handleOnRemoveDate = (d) => {
-        const {date} = this.props.cartState
-        const {cartDispatch} = this.props.funcs
-
-        cartDispatch({
-            date: {
-                ...date,
-                dates: date.dates.filter(dd => {if (dd !== d) return (dd)})
-            }
+    handleOnRemoveDate = (d, dates, dispatch) => {
+        dispatch({
+            type: "CART_DATES",
+            payload: dates.filter(dd => (dd !== d))
         })
     }
 
-    handleOnAddDate = () => {
-        const {date} = this.props.cartState
+    handleOnAddDate = (dates, dispatch) => {
         const {cartDispatch} = this.props.funcs
+        const {date} = this.props.cartState
 
         if (date.inputValue){
-            date.dates.push(date.inputValue)
             this.open(false)
-
+            
+            dispatch({
+                type: "CART_DATES",
+                payload: dates.concat(date.inputValue)
+            })
             cartDispatch({
                 date: {
-                    ...date,
                     inputValue: null
                 }
             })
@@ -58,69 +54,73 @@ class DateSelector extends React.Component {
         const {open} = this.state
 
         return (
-            <>
-                <Grid.Row>
-                    <Grid.Column>
-                        <Header className="zero-margin-top">{`${delivery ? "Delivery" : "Collection"}`} <span>(Date/s - {date.dates.length})</span>:</Header>
-                    </Grid.Column>
-                    {/* <Grid.Column textAlign="right">
-                        <Header className="zero-margin-top">R0.0</Header>
-                    </Grid.Column> */}
-                </Grid.Row>
+            <ContextAPI.Consumer>
+                {({state}) => (
+                    <>
+                        <Grid.Row>
+                            <Grid.Column>
+                                <Header className="zero-margin-top">{`${delivery ? "Delivery" : "Collection"}`} <span>(Date/s - {state.cart.dates.length})</span>:</Header>
+                            </Grid.Column>
+                            {/* <Grid.Column textAlign="right">
+                                <Header className="zero-margin-top">R0.0</Header>
+                            </Grid.Column> */}
+                        </Grid.Row>
 
-                <Grid.Row>
-                    <Grid.Column >
-                        <Datepicker
-                            // onFocus={() => this.open(true)}
-                            // onClickOutside={() => this.open(false)}
-                            // open={open}
+                        <Grid.Row>
+                            <Grid.Column >
+                                <Datepicker
+                                    // onFocus={() => this.open(true)}
+                                    // onClickOutside={() => this.open(false)}
+                                    // open={open}
 
-                            excludeDates={date.dates}
-                            highlightDates={date.dates}
-                            showTimeSelect
-                            timeFormat="HH:mm"
-                            timeIntervals={15}
-                            placeholderText="dd/mm/yyyy - hh-MM-ss"
-                            customInput={
-                                <Input
-                                    fluid
-                                    labelPosition="right"
-                                    label={
-                                        <Label
-                                            onClick={this.handleOnAddDate}
-                                            style={{cursor: "pointer"}}
-                                        >
-                                            {/* <Icon name="add"/> */}
-                                            Add
-                                        </Label>
+                                    excludeDates={state.cart.dates}
+                                    // highlightDates={state.cart.dates}
+                                    showTimeSelect
+                                    timeFormat="HH:mm"
+                                    timeIntervals={15}
+                                    placeholderText="dd/mm/yyyy - hh-MM-ss"
+                                    customInput={
+                                        <Input
+                                            fluid
+                                            labelPosition="right"
+                                            label={
+                                                <Label
+                                                    onClick={() => this.handleOnAddDate(state.cart.dates, state.dispatch)}
+                                                    style={{cursor: "pointer"}}
+                                                >
+                                                    {/* <Icon name="add"/> */}
+                                                    Add
+                                                </Label>
+                                            }
+                                        />
                                     }
+                                    minDate={new Date()}
+                                    onChange={this.handleOnChange}
+                                    value={date.inputValue && (`${date.inputValue.toLocaleDateString()} - ${date.inputValue.toLocaleTimeString()}`)}
                                 />
-                            }
-                            minDate={new Date()}
-                            onChange={this.handleOnChange}
-                            value={date.inputValue && (`${date.inputValue.toLocaleDateString()} - ${date.inputValue.toLocaleTimeString()}`)}
-                        />
-                        {date.dates.length > 0 ? (
-                            <div className="date-container">
-                                <Label.Group>
-                                    {date.dates.map((d, i) => (
-                                        <Label key={i}>
-                                            {d.toLocaleDateString()} - <span>{d.toLocaleTimeString()}</span>
-                                            <Icon name="close" onClick={() => this.handleOnRemoveDate(d)} />
-                                        </Label>
-                                    ))}
-                                </Label.Group>
-                            </div>
-                        ) : (
-                            <div className="date-container error">
-                                <Label.Group size="tiny">
-                                    <Label>You must at least add one (1) {delivery ? "delivery" : "collection"} date/s...</Label>
-                                </Label.Group>
-                            </div>
-                        )}
-                    </Grid.Column>
-                </Grid.Row>
-            </>
+                                {state.cart.dates.length > 0 ? (
+                                    <div className="date-container">
+                                        <Label.Group>
+                                            {state.cart.dates.map((d, i) => (
+                                                <Label key={i}>
+                                                    {d.toLocaleDateString()} - <span>{d.toLocaleTimeString()}</span>
+                                                    <Icon name="close" onClick={() => this.handleOnRemoveDate(d, state.cart.dates, state.dispatch)} />
+                                                </Label>
+                                            ))}
+                                        </Label.Group>
+                                    </div>
+                                ) : (
+                                    <div className="date-container error">
+                                        <Label.Group size="tiny">
+                                            <Label>You must at least add one (1) {delivery ? "delivery" : "collection"} date/s...</Label>
+                                        </Label.Group>
+                                    </div>
+                                )}
+                            </Grid.Column>
+                        </Grid.Row>
+                    </>
+                )}
+            </ContextAPI.Consumer>
         )
     }
 }

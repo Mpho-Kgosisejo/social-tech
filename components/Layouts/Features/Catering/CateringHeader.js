@@ -1,8 +1,8 @@
 import { Header, Container, Button, Modal, Icon, Form, Input } from "semantic-ui-react";
-import PageHeader from "../../../utils/PageHeader";
 import React, { Component } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import validator from "validator"
 
 import CateringBody from "./CateringBody"
 import Layout from "../../Layout"
@@ -24,49 +24,26 @@ class CateringHeader extends React.Component {
                 phone: "",
                 email: "",
                 event: "",
-                startDate: new Date(),
-                startTime: "",
+                startDate: "",
                 number: "",
                 location: ""
 
             },
 
             open: false,
-            isLoading: false,
+            loading: false,
 
             errors: {},
             feedback: {
                 type: "info",
                 header: "",
-                message: ""
+                message: "Catering event added successfully"
             }
 
         }
         this.handleChange = this.handleChange.bind(this);
     }
 
-
-    handleChange(date) {
-        this.setState({
-            startDate: date
-        });
-    }
-
-    onChange = (e) => this.setState({
-        ...this.state,
-        [e.target.name]: e.target.value
-    })
-
-    onSubmit = (e, dispatch) => {
-        e.preventDefault()
-
-        const errors = this.validate(this.state.client)
-        this.state({
-            ...this.state.errors,
-            errors
-        })
-    }
-    
     dispatchLocation= (location) => {
         this.setState({client: {
             ...this.state.client,
@@ -74,44 +51,116 @@ class CateringHeader extends React.Component {
         }})
     }
 
+    handleChange(date) {
+        this.setState({
+            client: {
+                ...this.state.client,
+                startDate: date.toString()
+            }
+        });
+    }
+
+    onChange = (e) => this.setState({
+        ...this.state,
+        client: {
+            ...this.state.client,
+            [e.target.name]: e.target.value
+        }
+    })
+
+    onSubmit = (e) => {
+        e.preventDefault()
+        const errors = this.validate(this.state.client)
+        this.setState({
+            errors
+        })
+
+        if (Object.keys(errors).length === 0){
+            this.doCater()
+        }
+    }
+
+    resetInputs = () => this.setState({
+        client: {
+            name: "",
+            phone: "",
+            email: "",
+            event: "",
+            startDate: "",
+            number: "",
+            location: ""
+        },
+        loading: false
+    })
+
     validate = (client) => {
         const errors = {}
-
+        
         if (!client.name) {
-            errors.login = MessageTypes.FIELD_CANT_BE_EMPTY
+            errors.name = MessageTypes.FIELD_CANT_BE_EMPTY
         }
 
         if (!client.phone) {
-            errors.login = MessageTypes.FIELD_CANT_BE_EMPTY
-        } else if (!validator.isMobilePhone(user.phone, "en-ZA")) {
+            errors.phone = MessageTypes.FIELD_CANT_BE_EMPTY
+        } else if (!validator.isMobilePhone(client.phone, "en-ZA")) {
             errors.phone = MessageTypes.INVALID_MOBILE_NUMBER
         }
 
         if (!client.email) {
-            errors.login = MessageTypes.FIELD_CANT_BE_EMPTY
+            errors.email = MessageTypes.FIELD_CANT_BE_EMPTY
         }
 
         if (!client.event) {
-            errors.login = MessageTypes.FIELD_CANT_BE_EMPTY
+            errors.event = MessageTypes.FIELD_CANT_BE_EMPTY
         }
 
         if (!client.startDate) {
-            errors.login = MessageTypes.FIELD_CANT_BE_EMPTY
-        }
-
-        if (!client.startTime) {
-            errors.login = MessageTypes.FIELD_CANT_BE_EMPTY
+            errors.startDate = MessageTypes.FIELD_CANT_BE_EMPTY
         }
 
         if (!client.location) {
-            errors.login = MessageTypes.FIELD_CANT_BE_EMPTY
+            errors.location = MessageTypes.FIELD_CANT_BE_EMPTY
         }
 
         if (!client.number) {
-            errors.login = MessageTypes.FIELD_CANT_BE_EMPTY
+            errors.number = MessageTypes.FIELD_CANT_BE_EMPTY
         }
 
         return (errors)
+    }
+
+    doCater = async () => {
+        this.setState({loading: true})
+        const res = await API.catering.add(this.state.client)
+        
+        if (res.status === 200){
+            this.setState({
+                feedback: {
+                    type: "success",
+                    header: "",
+                    message: "Catering event added successfully"
+                },
+                client: {
+                    name: "",
+                    phone: "",
+                    email: "",
+                    event: "",
+                    startDate: "",
+                    number: "",
+                    location: ""
+                },
+                loading: false
+            })
+        }else{
+            this.setState({
+                feedback: {
+                    type: "error",
+                    header: "",
+                    message: "Something went wrong adding catering event, please try again"
+                },
+                loading: false
+            })
+        }
     }
 
     open = () => this.setState({ open: true })
@@ -120,108 +169,87 @@ class CateringHeader extends React.Component {
     render() {
         const { open, client, loading, errors, feedback } = this.state
         return (
-            
-            <Layout title="Catering" includeContainer={false}>
-                <PageHeader
-                    color="rgb(212, 195, 176)"
-                    title="Catering services"
-                    subtitle="We do catering services for small, medium and large coperates"
-                />
+
                 <ContextAPI.Consumer>
                     {({ state }) => (
                         <React.Fragment>
                             <Container>
                                 <Modal trigger={<div className="request-catering">
-                                    <Button animated="fade" fluid basic color='red'>
+                                    <Button animated="fade" fluid basic>
                                         <Button.Content visible>Request a quick catering... </Button.Content>
                                         <Button.Content hidden>in 5 minutes</Button.Content>
-                                    </Button></div>}>
+                                    </Button></div>} closeIcon>
                                     <Modal.Header>Lets contact you now!</Modal.Header>
-                                    {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message}/>}
-                                    <Form  loading={loading}>
+                                    <Form loading={loading}>
                                         <Modal.Content>
                                             <Modal.Description className="form-fields">
+                                                {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message}/>}
+                                                
+                                                {/* <pre>{JSON.stringify(this.state, "", 2)}</pre> */}
+
                                                 <Form.Group widths='equal'>
-                                                    <Form.Field error={!isEmptyObj(errors.name)}>
+                                                    <Form.Field>
                                                         <label>Name:*</label>
-                                                        <Input name="name" />
+                                                        <Input name="name" onChange={this.onChange} />
                                                         {errors.name && <InLineError message={errors.name} />}
                                                     </Form.Field>
-                                                    <Form.Field error={!isEmptyObj(errors.phone)}>
+                                                    <Form.Field>
                                                         <label>Contact number:*</label>
-                                                        <Input icon="phone" iconPosition='left' name="phone" />
+                                                        <Input icon="phone" iconPosition='left' name="phone" onChange={this.onChange} />
                                                         {errors.phone && <InLineError message={errors.phone} />}
 
                                                     </Form.Field>
                                                 </Form.Group>
                                                 <Form.Group widths='equal'>
-                                                    <Form.Field error={!isEmptyObj(errors.email)}>
+                                                    <Form.Field>
                                                         <label>Email address:*</label>
-                                                        <Input name="email" />
+                                                        <Input name="email"  onChange={this.onChange}/>
                                                         {errors.email && <InLineError message={errors.email} />}
                                                     </Form.Field>
-                                                    <Form.Field error={!isEmptyObj(errors.event)}>
-                                                        <label>Type of event:*</label>
-                                                        <Input name="phone" />
-                                                    </Form.Field>
-                                                    {errors.phone && <InLineError message={errors.phone} />}
-                                                </Form.Group>
-                                                <Form.Group widths='equal'>
-                                                    <Form.Field error={!isEmptyObj(errors.startDate)}>
+                                                    <Form.Field>
                                                         <label>Date of event:*</label>
                                                         <DatePicker
+                                                            customInput={<Input />}
+                                                            showTimeSelect
+                                                            minDate={new Date()}
+                                                            timeFormat="HH:mm"
+                                                            timeIntervals={15}
                                                             selected={this.state.startDate}
                                                             onChange={this.handleChange}
+                                                            value={this.state.client.startDate}
                                                         />
                                                         {errors.startDate && <InLineError message={errors.startDate} />}
                                                         {/* <Input name="dateOfEvent" /> */}
                                                     </Form.Field>
-                                                    <Form.Field error={!isEmptyObj(errors.startTime)}>
-                                                        <label>Time of event:*</label>
-                                                        {/* <TimePicker name="time" /> */}
-                                                        <Input name="timeOfEvent" />
-                                                        {errors.startTime && <InLineError message={errors.startTime} />}
-                                                        
-                                                    </Form.Field>
                                                 </Form.Group>
                                                 <Form.Group widths='equal'>
-                                                    <Form.Field error={!isEmptyObj(errors.number)}>
+                                                    <Form.Field>
                                                         <label>Number of people:*</label>
-                                                        <Input name="numberOfPeople" />
+                                                        <Input name="number" onChange={this.onChange}/>
                                                         {errors.number && <InLineError message={errors.number} />}
                                                     </Form.Field>
-                                                    <Form.Field error={!isEmptyObj(errors.location)}>
+                                                    <Form.Field>
+                                                        <label>Type of event:*</label>
+                                                        <Input name="event" onChange={this.onChange}/>
+                                                        {errors.event && <InLineError message={errors.event} />}
+                                                        </Form.Field>
+                                                </Form.Group>
+                                                <Form widths="equal">
+                                                    <Form.Field>
                                                         <label>Location of event:*</label>
                                                         {/* <Input name="timeOfEvent" /> */}
                                                         <GooglePlaceSearch value={client.location} onChange={this.onChange} dispatchAddress={this.dispatchLocation} name="location" />
                                                         {errors.location && <InLineError message={errors.location} />}
                                                     </Form.Field>
-                                                </Form.Group>
+                                                </Form>
                                             </Modal.Description>
                                         </Modal.Content>
-                                        <Modal.Actions className="modal-action">
-                                            <Modal
-                                                open={open}
-                                                onOpen={this.open}
-                                                onClose={this.close}
-                                                size='small'
-                                                trigger={
-                                                    <Button type="submit" icon>
-                                                        Submit <Icon name='right chevron' />
-                                                    </Button>
-                                                }
-                                            >
-                                                <Modal.Header>Confirmation
-                                                </Modal.Header>
-                                                <Modal.Content>
-                                                    <p>Is this your mobile number: +27 78 567 8987</p>
-                                                </Modal.Content>
-                                                <Modal.Actions>
-                                                    <Button icon='check' content='All Done' onClick={this.close} />
-                                                </Modal.Actions>
-
-                                            </Modal>
-                                        </Modal.Actions>
+                                            <Modal.Actions className="catering-actions">
+                                                <Button animated fluid type='submit' onClick={this.onSubmit} loading={loading}>
+                                                    <Button.Content visible>Submit</Button.Content>
+                                                    <Button.Content hidden><Icon name="checkmark"/></Button.Content>
+                                                </Button>
+                                            </Modal.Actions>
                                     </Form>
                                 </Modal>
 
@@ -236,8 +264,7 @@ class CateringHeader extends React.Component {
                         </React.Fragment>
                     )}
                 </ContextAPI.Consumer>
-                
-            </Layout>
+            
         )
 
     }

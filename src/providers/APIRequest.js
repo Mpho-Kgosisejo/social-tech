@@ -370,6 +370,9 @@ const API = {
             )
         },
         add_order : (body) => {
+            if (Config.get("api.isMock")){
+                return (mock.genericMock().then(res => res))
+            }
             return (
                 axios.post(`${Config.get("api.endpoint")}/order`, body)
                 .then(res => res)
@@ -461,6 +464,20 @@ const API = {
             // )
             return (
                 axios.patch(`${Config.get("api.endpoint")}/user`, user)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }
+    },
+    catering: {
+        add : (cateringEvent) => {
+            if (Config.get("api.isMock")){
+                return(mock.cateringAdd().then(res => res))
+            }
+            return(
+                axios.post(`${Config.get("api.endpoint")}/catering`, {
+                    ...cateringEvent
+                })
                 .then(res => res)
                 .catch(err => err.response)
             )
