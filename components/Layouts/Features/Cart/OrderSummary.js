@@ -13,7 +13,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
             const {distance, cost} = state.cart.delivery
-            const {login, root_loading, account} = state
+            const {login, root_loading, account, cart} = state
 
             return (
                 <React.Fragment>
@@ -28,7 +28,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column>
-                                <Header as="h3">TAX:</Header>
+                                <Header as="h3">VAT <span>(15%)</span>:</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
                                 <Header>R{!subTotal? "0.0" : `${tax.toFixed(2)}`}</Header>
@@ -144,7 +144,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                 closed={() => funcs.cartDispatch({paymentLoading: false})}
                                             >
                                                 <Button
-                                                    disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0 || cartState.date.dates.length <= 0)}
+                                                    disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0 || cart.dates.length <= 0)}
                                                     // onClick={() => funcs.validatorUser()}
                                                     fluid
                                                     color="black"

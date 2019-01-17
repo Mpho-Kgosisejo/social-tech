@@ -20,6 +20,7 @@ import contactUS from "./routes/abouts routes/contactus"
 import FAQs from './routes/abouts routes/faqs'
 import story from './routes/abouts routes/story'
 import abouts from './routes/abouts routes/abouts'
+import catering from "./routes/catering"
 
 dotenv.config()
 const app = express()
@@ -61,6 +62,7 @@ app.use("/chefs", chef)
 app.use("/contact-us", contactUS)
 app.use("/faqs", FAQs)
 app.use("/ourstory", story)
+app.use("/catering", catering)
 
 app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"))

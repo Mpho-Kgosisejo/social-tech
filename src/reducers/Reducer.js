@@ -64,7 +64,7 @@ export const reducer = (state, action) => {
             ...state,
             cart: {
                 ...state.cart,
-                details: details({cart: state.cart.items.concat([action.payload])}),
+                details: details({cart: state.cart.items.concat([action.payload]), dates: state.cart.dates}),
                 items: state.cart.items.concat([action.payload])
             }
         })
@@ -72,7 +72,7 @@ export const reducer = (state, action) => {
             ...state,
             cart: {
                 ...state.cart,
-                details: details({cart: action.payload}),
+                details: details({cart: action.payload, dates: state.cart.dates}),
                 items: action.payload
             }
         })
@@ -80,8 +80,16 @@ export const reducer = (state, action) => {
             ...state,
             cart: {
                 ...state.cart,
-                details: details({cart: state.cart.items, delivery_cost: action.payload.cost}),
+                details: details({cart: state.cart.items, delivery_cost: action.payload.cost, dates: state.cart.dates}),
                 delivery: action.payload
+            }
+        })
+        case "CART_DATES": return ({
+            ...state,
+            cart: {
+                ...state.cart,
+                details: details({cart: state.cart.items, dates: action.payload}),
+                dates: action.payload
             }
         })
         case "TEST": return ({

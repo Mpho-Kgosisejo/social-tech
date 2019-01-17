@@ -6,6 +6,7 @@ import CateringBody from "../components/Layouts/Features/Catering/CateringBody";
 import api from "../src/providers/APIRequest";
 import ContextAPI from "../src/config/ContextAPI";
 import { PlaceholderHeader, PlaceholderParagraph } from "semantic-ui-react";
+import PageHeader from "../components/utils/PageHeader";
 
 class Catering extends React.Component {
     constructor() {
@@ -37,15 +38,22 @@ class Catering extends React.Component {
     render() {
         const { loading } = this.state
         return (
-            <ContextAPI.Consumer>
-                {({state}) => (
-            <React.Fragment>
-                {loading ? <React.Fragment><PlaceholderHeader /><PlaceholderParagraph /></React.Fragment> : <CateringHeader />}
-                <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script> 
-            </React.Fragment>
-            
-            )}
-            </ContextAPI.Consumer>
+            <Layout title="Catering" includeContainer={false}>
+                <PageHeader
+                    color="rgb(212, 195, 176)"
+                    title="Catering services"
+                    subtitle="We do catering services for small, medium and large coperates"
+                />
+                <ContextAPI.Consumer>
+                    {({state}) => (
+                <React.Fragment>
+                    {loading ? <React.Fragment><PlaceholderHeader /><PlaceholderParagraph /></React.Fragment> : <CateringHeader />}
+                    <script type="text/javascript" src={`https://maps.googleapis.com/maps/api/js?key=${"AIzaSyCrU9Rw7a253dKb-SMfEeCsGYgFVw9GehQ"}&libraries=places`}></script> 
+                </React.Fragment>
+                
+                )}
+                </ContextAPI.Consumer>
+            </Layout>
             
         )
     }

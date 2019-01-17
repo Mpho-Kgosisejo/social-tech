@@ -43,6 +43,7 @@ export default class MyApp extends App {
                     total: 0,
                     tax: 0
                 },
+                dates: [],
                 delivery: {},
                 items: []
             },
