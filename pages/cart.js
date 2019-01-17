@@ -130,6 +130,9 @@ class Cart extends React.Component {
             errors.lastname = '"Lastname" is required'
         if (validator.isEmpty(phonenumber, {ignore_whitespace: true}))
             errors.phonenumber = '"Phone Number" is required'
+        else
+            if (!validator.isMobilePhone(phonenumber, "en-ZA"))
+                errors.phonenumber = "Phone Number not a valid RSA Number"
         return (errors)
     }
 
