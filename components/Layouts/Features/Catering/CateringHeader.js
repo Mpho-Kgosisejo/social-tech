@@ -31,13 +31,13 @@ class CateringHeader extends React.Component {
             },
 
             open: false,
-            isLoading: false,
+            loading: false,
 
             errors: {},
             feedback: {
                 type: "info",
                 header: "",
-                message: ""
+                message: "Catering event added successfully"
             }
 
         }
@@ -90,7 +90,7 @@ class CateringHeader extends React.Component {
             number: "",
             location: ""
         },
-        isLoading: false
+        loading: false
     })
 
     validate = (client) => {
@@ -131,9 +131,36 @@ class CateringHeader extends React.Component {
 
     doCater = async () => {
         this.setState({loading: true})
-        const res = await API.web.catering(this.state.client)
-
-        console.log(res)
+        const res = await API.catering.add(this.state.client)
+        
+        if (res.status === 200){
+            this.setState({
+                feedback: {
+                    type: "success",
+                    header: "",
+                    message: "Catering event added successfully"
+                },
+                client: {
+                    name: "",
+                    phone: "",
+                    email: "",
+                    event: "",
+                    startDate: "",
+                    number: "",
+                    location: ""
+                },
+                loading: false
+            })
+        }else{
+            this.setState({
+                feedback: {
+                    type: "error",
+                    header: "",
+                    message: "Something went wrong adding catering event, please try again"
+                },
+                loading: false
+            })
+        }
     }
 
     open = () => this.setState({ open: true })
@@ -153,10 +180,13 @@ class CateringHeader extends React.Component {
                                         <Button.Content hidden>in 5 minutes</Button.Content>
                                     </Button></div>} closeIcon>
                                     <Modal.Header>Lets contact you now!</Modal.Header>
-                                    {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message}/>}
-                                    <Form onSubmit={this.onSubmit} loading={loading}>
+                                    <Form loading={loading}>
                                         <Modal.Content>
                                             <Modal.Description className="form-fields">
+                                                {feedback.message && <MainMessage type={feedback.type} header={feedback.header} message={feedback.message}/>}
+                                                
+                                                {/* <pre>{JSON.stringify(this.state, "", 2)}</pre> */}
+
                                                 <Form.Group widths='equal'>
                                                     <Form.Field>
                                                         <label>Name:*</label>
@@ -215,7 +245,7 @@ class CateringHeader extends React.Component {
                                             </Modal.Description>
                                         </Modal.Content>
                                             <Modal.Actions className="catering-actions">
-                                                <Button animated fluid type='submit'  loading={loading}>
+                                                <Button animated fluid type='submit' onClick={this.onSubmit} loading={loading}>
                                                     <Button.Content visible>Submit</Button.Content>
                                                     <Button.Content hidden><Icon name="checkmark"/></Button.Content>
                                                 </Button>

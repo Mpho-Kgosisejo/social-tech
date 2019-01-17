@@ -47,11 +47,13 @@ export const update = ({state, item}) => {
     return (new_items)
 }
 
-export const details = ({cart, delivery_cost = 0}) => {
+export const details = ({cart, delivery_cost = 0, dates = []}) => {
+    const tax = 0.15
     let data = {
         itemsCount: cart.length,
         totalItemsCount: 0,
         subTotal: 0.0,
+        sub: 0.0,
         total: 0,
         tax: 0
     }
@@ -60,10 +62,12 @@ export const details = ({cart, delivery_cost = 0}) => {
         const item = cart[i]
 
         data.totalItemsCount = parseInt(data.totalItemsCount + item.quantity)
-        data.subTotal = (data.subTotal + (item.quantity * parseFloat(item.price)))
+        data.sub = (data.sub + (item.quantity * parseFloat(item.price)))
     }
+    data.subTotal = (dates.length <= 0) ? data.sub : (data.sub * dates.length)
+
     if (data.subTotal){
-        data.tax = (42 + 0)
+        data.tax = (tax * data.subTotal)
         data.total = parseFloat(((data.subTotal + data.tax) + delivery_cost).toFixed(2))
     }
     store_cart({cart})

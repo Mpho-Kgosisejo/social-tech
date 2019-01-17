@@ -152,7 +152,9 @@ const API = {
             fileData.append('available', uploadBody.available)
             fileData.append('ingredients', JSON.stringify(uploadBody.ingredients))
             fileData.append('menuCategoryId', uploadBody.menuCategoryId)
+            fileData.append('numberOfOrders', uploadBody.menuCategoryId)
             fileData.append('productImage',uploadBody.image, uploadBody.image.name)
+            
             return (
                 axios.post(`${Config.get("api.endpoint")}/products`, fileData)
                 .then(res => res)
@@ -215,6 +217,20 @@ const API = {
         update_category : (updateBody) => {
             return (
                 axios.patch(`${Config.get("api.endpoint")}/menus`, { data : updateBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        random_products : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/products/index/random-products`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        top_selling_products : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/products/index/top-selling`)
                 .then(res => res)
                 .catch(err => err.response)
             )
@@ -330,13 +346,24 @@ const API = {
                         .catch(err => err.response)
                     )
                 }
-    
-                
-            
         },
         deleteChef : (deleteBody) => {
             return (
                 axios.delete(`${Config.get("api.endpoint")}/chefs`, { data : deleteBody})
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        getOurStory : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/ourstory`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        addOrUpdateStory : (body) => {
+            return (
+                axios.post(`${Config.get("api.endpoint")}/ourstory`, body)
                 .then(res => res)
                 .catch(err => err.response)
             )
@@ -370,6 +397,9 @@ const API = {
             )
         },
         add_order : (body) => {
+            if (Config.get("api.isMock")){
+                return (mock.genericMock().then(res => res))
+            }
             return (
                 axios.post(`${Config.get("api.endpoint")}/order`, body)
                 .then(res => res)
@@ -383,10 +413,11 @@ const API = {
                 .catch(err => err.response)
             ) 
         },
-        //NB : NOT FULLY FUNCTIONAL YET.
         get_user_orders : (uid) => {
             return (
-                axios.get(`${Config.get("api.endpoint")}/order/${uid}`)
+                axios.get(`${Config.get("api.endpoint")}/order/user/${uid}`)
+                .then(res => res)
+                .catch(err => err.response)
             )
         }
     },
@@ -411,13 +442,20 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
-        }
+        },
+        get_net_earnings : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/net-earnings`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        }, 
     },
     dashboard_orders: {
         get_orders : () => {
             if (Config.get("api.isMock")){
                 return (mock.dashboard_orders().then(res => res))
-            }
+            } 
         }
     },
     profile: {
@@ -469,10 +507,12 @@ const API = {
     catering: {
         add : (cateringEvent) => {
             if (Config.get("api.isMock")){
-                return(mock.catering().then(res => res))
+                return(mock.cateringAdd().then(res => res))
             }
             return(
-                axios.post(`${Config.get("api.endpoint")}/catering`, cateringEvent)
+                axios.post(`${Config.get("api.endpoint")}/catering`, {
+                    ...cateringEvent
+                })
                 .then(res => res)
                 .catch(err => err.response)
             )

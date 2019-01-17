@@ -15,7 +15,8 @@
     user-select: none;
     cursor: default;
 
-    background: #c59c70 ;
+    background: #c59c70;
+    color: #c59c70 !important;
 }
 
 .avator-initls.mini{

@@ -37,7 +37,6 @@ class Menu extends React.Component {
                 data: menu_res
             }
             this.props.dispatch({ type: "MENU", payload: menu })
-            // this.props.dispatch({ type: "ORIGINAL_MENU", payload: menu })
             this.setState({ isLoadingData: false })
         } else {
             this.setState({ errorMessage: data.error.message, isLoadingData: false })
@@ -138,8 +137,7 @@ class Menu extends React.Component {
                                 </ContextAPI.Consumer>
                         }
                     </Container>
-                    <Divider></Divider>
-                    <pre>{JSON.stringify(this.state, "", 2)}</pre>
+                    {/* <pre>{JSON.stringify(this.state, "", 2)}</pre> */}
                 </Layout>
             </div>
         )

@@ -114,8 +114,7 @@ class Cart extends React.Component {
                 address: null
             },
             date: {
-                inputValue: null,
-                dates: []
+                inputValue: null
             }
         }
     }
@@ -327,12 +326,13 @@ class Cart extends React.Component {
                 ...this.state.user,
                 phone: this.state.user.phonenumber
             },
-            dates: this.state.date.dates
+            dates: this.props.state.cart.dates
         }
 
         const res = await api.orders.add_order(order)
         
         dispatch({type: "CART", payload: []})
+        dispatch({type: "CART_DATES", payload: []})
         if (res.status === 200){
             // dispatch({type: "ALERT_PORTAL", payload: {
             //     open: true,
