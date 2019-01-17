@@ -16,7 +16,6 @@ const checkAuth = (req, res, next, isAdmin) => {
 
         req.auth_data = decoded
 
-        console.log(decoded)
         if (!decoded.key){
             response(res, " [1]")
             return

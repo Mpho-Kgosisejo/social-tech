@@ -11,7 +11,12 @@ import CateringModel from '../models/Catering'
  * @param res.error [Object: {catch: [Object, "Catched error..."], error: {message: [String]}}]
  */
 export const add = (req, res) => {
-    const newCateringEvent = new CateringModel({...req.body})
+    const newCateringEvent = new CateringModel({
+        ...req.body,
+        date: new Date(req.body.startDate),
+        numberOfPeople: req.body.number,
+        description: ""
+    })
 
     newCateringEvent.save()
     .then(cateringEvent => {

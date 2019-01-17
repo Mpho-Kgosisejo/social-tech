@@ -46,7 +46,6 @@ const CateringSchema = new mongoose.Schema({
     description: {
         type: String,
         default: "",
-        required: true,
         trim: true
     }
 }, {timestamps: true})
