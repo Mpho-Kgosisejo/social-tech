@@ -220,6 +220,20 @@ const API = {
                 .then(res => res)
                 .catch(err => err.response)
             )
+        },
+        random_products : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/products/index/random-products`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
+        },
+        top_selling_products : () => {
+            return (
+                axios.get(`${Config.get("api.endpoint")}/products/index/top-selling`)
+                .then(res => res)
+                .catch(err => err.response)
+            )
         }
     },
     web:{
