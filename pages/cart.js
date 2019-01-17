@@ -331,6 +331,7 @@ class Cart extends React.Component {
 
         const res = await api.orders.add_order(order)
         
+        console.log("res", res)
         dispatch({type: "CART", payload: []})
         dispatch({type: "CART_DATES", payload: []})
         if (res.status === 200){

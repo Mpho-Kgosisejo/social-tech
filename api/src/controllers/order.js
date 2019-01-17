@@ -69,7 +69,7 @@ export const get_order = (req, res) => {
 
 
 export const add_order = (req, res) => {
-    const {collector, details, items, stripe} = req.body 
+    const {collector, details, items, stripe, delivery} = req.body 
     const customer = req.user
     const newOrder = new OrderModel({
         customer,

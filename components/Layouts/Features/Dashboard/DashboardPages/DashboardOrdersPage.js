@@ -124,7 +124,7 @@ class DashboardOrdersPage extends React.Component {
                                 <Header sub textAlign='left'>Status : </Header>
                                 <span >{(selectedOrder.status) == "done" ? <span style={{ color: "#3CB371" }}>{selectedOrder.status}</span> : (selectedOrder.status) == "pending" ? <span style={{ color: "#ffa900" }}>{selectedOrder.status}</span> : <span style={{ color: "#FF0000" }}>{selectedOrder.status}</span>}</span>
                                 <Header sub textAlign='left'>Delivery : </Header>
-                                <span >{isEmptyObj(selectedOrder.delivery) ? "The Order will be collected." : selectedOrder.delivery}</span>
+                                <span >{isEmptyObj(selectedOrder.delivery) ? "The Order will be collected." : selectedOrder.delivery.to}</span>
                                 { selectedOrder.status == "pending" ? <Button onClick={() => this.handleFinishOrder()} floated='right' className="status-button" >Done</Button> : null }
                                 
                                 </Segment>
