@@ -144,7 +144,7 @@ class UserListSegment extends React.Component {
 
     render()
     {
-        const {filteredList, isSearching, clickedUserDetails, userDetailsOpen, usersPerPage, activePage, admin, nonAdmin, showAll} = this.state
+        const {filteredList, isSearching, clickedUserDetails, userDetailsOpen, usersPerPage, activePage, admin, nonAdmin, showAll, filter} = this.state
         const {users} = this.props
 
         const currentCards = this.getListToRender(activePage, usersPerPage)
