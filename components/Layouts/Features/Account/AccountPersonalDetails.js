@@ -184,6 +184,11 @@ class AccountPersonalDetails extends React.Component {
 
         if (res.status === 200){
             this.setState({isLoading: false})
+            dispatch({type : "ALERT_PORTAL", payload : {
+                open : true, 
+                type : '',
+                message : "Profile successfully updated"
+            }}) 
             dispatch({type: "ACCOUNT_PERSONAL_DETAILS", payload: res.data.user })
             toggleEdit()
         }else {
