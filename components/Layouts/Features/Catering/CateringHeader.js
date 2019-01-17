@@ -160,12 +160,12 @@ class CateringHeader extends React.Component {
                                                 <Form.Group widths='equal'>
                                                     <Form.Field>
                                                         <label>Name:*</label>
-                                                        <Input name="name" onChange={this.onChange} />
+                                                        <Input value={client.name} name="name" onChange={this.onChange} />
                                                         {errors.name && <InLineError message={errors.name} />}
                                                     </Form.Field>
                                                     <Form.Field>
                                                         <label>Contact number:*</label>
-                                                        <Input icon="phone" iconPosition='left' name="phone" onChange={this.onChange} />
+                                                        <Input value={client.phone} icon="phone" iconPosition='left' name="phone" onChange={this.onChange} />
                                                         {errors.phone && <InLineError message={errors.phone} />}
 
                                                     </Form.Field>
@@ -173,7 +173,7 @@ class CateringHeader extends React.Component {
                                                 <Form.Group widths='equal'>
                                                     <Form.Field>
                                                         <label>Email address:*</label>
-                                                        <Input name="email"  onChange={this.onChange}/>
+                                                        <Input value={client.email} name="email"  onChange={this.onChange}/>
                                                         {errors.email && <InLineError message={errors.email} />}
                                                     </Form.Field>
                                                     <Form.Field>
@@ -195,12 +195,12 @@ class CateringHeader extends React.Component {
                                                 <Form.Group widths='equal'>
                                                     <Form.Field>
                                                         <label>Number of people:*</label>
-                                                        <Input name="number" onChange={this.onChange}/>
+                                                        <Input value={client.number} name="number" onChange={this.onChange}/>
                                                         {errors.number && <InLineError message={errors.number} />}
                                                     </Form.Field>
                                                     <Form.Field>
                                                         <label>Type of event:*</label>
-                                                        <Input name="event" onChange={this.onChange}/>
+                                                        <Input value={client.event} name="event" onChange={this.onChange}/>
                                                         {errors.event && <InLineError message={errors.event} />}
                                                         </Form.Field>
                                                 </Form.Group>
