@@ -370,6 +370,9 @@ const API = {
             )
         },
         add_order : (body) => {
+            if (Config.get("api.isMock")){
+                return (mock.genericMock().then(res => res))
+            }
             return (
                 axios.post(`${Config.get("api.endpoint")}/order`, body)
                 .then(res => res)

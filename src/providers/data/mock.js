@@ -25,6 +25,7 @@ import index_s from "./json/index_success.json"
 import index_f from "./json/index_fail.json"
 import isvalidtoken_s from "./json/isvalidtoken_success"
 import catering_add_s from "./json/catering_add_success"
+import generic_mock_s from "./json/generic_mock_success"
 
 const WAIT_TIME = 1500
 
@@ -38,6 +39,7 @@ const loadMock = (data) => {
 }
 
 export default {
+    genericMock: () => loadMock(generic_mock_s),
     login: () => loadMock(login_s),
     signup: () => loadMock(signup_s),
     menu : () => loadMock(menu_s),
