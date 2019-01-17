@@ -10,6 +10,14 @@ import auth from "./routes/auth"
 import user from "./routes/user"
 import menu from "./routes/menu"
 import product from "./routes/products";
+import order from "./routes/order"
+
+import chef from "./routes/abouts routes/chefs"
+import contactUS from "./routes/abouts routes/contactus"
+import FAQs from './routes/abouts routes/faqs'
+import story from './routes/abouts routes/story'
+import abouts from './routes/abouts routes/abouts'
+import catering from "./routes/catering"
 
 dotenv.config()
 const app = express()
@@ -39,6 +47,15 @@ app.use("/auth", auth)
 app.use("/user", user)
 app.use("/menus", menu)
 app.use("/products", product)
+app.use("/order", order)
+
+// abouts routes 
+app.use("/abouts", abouts)
+app.use("/chefs", chef)
+app.use("/contact-us", contactUS)
+app.use("/faqs", FAQs)
+app.use("/ourstory", story)
+app.use("/catering", catering)
 
 app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"))

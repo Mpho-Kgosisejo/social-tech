@@ -13,19 +13,6 @@ class AboutOurChefs extends React.Component {
         }
     }
 
-    // getData = async () => {
-    //     const data = await api.web.about()
-
-    //     this.setState({ aboutData: data })
-    //     console.log(this.state.aboutData)
-    //     console.log(data.data.chefs)
-    //     if (data.status === 200) {
-    //         this.setState({ responseMessage: data.data.message, isLoadingData: false, aboutData: data.data.chefs })
-    //     } else {
-    //         this.setState({ responseMessage: data.error.message, isLoadingData: false })
-    //     }
-    // }
-
     componentDidMount() {
         // this.getData()
     }
@@ -38,17 +25,17 @@ class AboutOurChefs extends React.Component {
                         <React.Fragment>
                             <Divider hidden />
                             <Container text>
-                                <Header className="aboutsHeaders" as='h2'>{state.about.chefs.page_header}</Header>
+                                <Header className="aboutsHeaders" as='h2'>Our Chefs</Header>
                                 <Divider inverted/>
                                 <Divider hidden/>
                                 {isLoadingData ? <Placeholder><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /><Placeholder.Line /></Placeholder> : <Card.Group itemsPerRow={2} stackable>
-                                    {state.about.chefs.chef_details.map(item => (
-                                        <Card key={item.name}>
+                                    {state.about.chefs.map(item => (
+                                        <Card key={item._id}>
                                             <Image className="myImgs" src={item.image_url} />
                                             <Card.Content>
                                                 <Card.Header>{item.name}</Card.Header>
                                                 <Card.Meta>
-                                                    <span className='date'>{item.specialty}</span>
+                                                    <span className='date'>{item.speciality}</span>
                                                 </Card.Meta>
                                                 <Card.Description>{item.background}</Card.Description>
                                             </Card.Content>

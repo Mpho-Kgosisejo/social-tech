@@ -1,18 +1,19 @@
 import { Grid, Header, Icon, Divider, Button, Checkbox, Label } from "semantic-ui-react";
 import StripeCheckout from "react-stripe-checkout"
+import Config from "react-global-configuration"
 
 import GoogleMaps from "../../../utils/GoogleMaps"
 import { readyToProcessDelivery } from "../../../../src/providers/CartHandler";
 import ContextAPI from "../../../../src/config/ContextAPI";
+import OrderCollectorForm from "./OrderCollectorForm";
+import DateSelector from "./DateSelector"
 
-const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress}) => (
+const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useSavedAddress, paymentLoading, funcs, cartState}) => (
     <ContextAPI.Consumer>
         {({state}) => {
             const {subTotal, total, totalItemsCount, tax} = state.cart.details
             const {distance, cost} = state.cart.delivery
-            const {login, root_loading} = state
-            // const {} = state.account
-            // const {email = "", }
+            const {login, root_loading, account, cart} = state
 
             return (
                 <React.Fragment>
@@ -27,7 +28,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                         </Grid.Row>
                         <Grid.Row>
                             <Grid.Column>
-                                <Header as="h3">TAX:</Header>
+                                <Header as="h3">VAT <span>(15%)</span>:</Header>
                             </Grid.Column>
                             <Grid.Column textAlign="right">
                                 <Header>R{!subTotal? "0.0" : `${tax.toFixed(2)}`}</Header>
@@ -59,7 +60,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                             } */}
                                             <GoogleMaps
                                                 initialAddress={"84 Albertina Sisulu Rd, Johannesburg, 2000, South Africa"}
-                                                destination={useSavedAddress ? useSavedAddress : null}
+                                                destination={useSavedAddress ? account.personal_details.address : ""}
                                             />
                                         </div>
                                         </Grid.Column>
@@ -79,6 +80,12 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                             )
                         }
                         <Divider />
+                        {!root_loading && (
+                            <>
+                                <DateSelector funcs={funcs} cartState={cartState} />
+                                <Divider />
+                            </>
+                        )}
                         <Grid.Row className="total">
                             <Grid.Column>
                                 <Header as="h3">Total</Header>
@@ -87,7 +94,20 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                 <Header>{`R${total.toFixed(2)}`}</Header>
                             </Grid.Column>
                         </Grid.Row>
-                        <Divider />
+
+                        {root_loading ? null : Object.keys(login).length > 0 &&
+                            <>
+                                <Divider />
+                                
+
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <OrderCollectorForm cartState={cartState} funcs={funcs} />
+                                    </Grid.Column>
+                                </Grid.Row>
+                                <Divider />
+                            </>
+                        }
                         <Grid.Row>
                             <Grid.Column>
                                 {/* <Button
@@ -111,7 +131,7 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                 description={`Order ${Object.keys(state.cart.delivery).length > 0 ? "with" : "without"} delivery`}
                                                 amount={parseInt(total.toFixed(2).replace(".", ""))}
                                                 currency="ZAR"
-                                                stripeKey={"pk_test_BNTfnVdHOKirDMYCN8jGzTy5"}
+                                                stripeKey={Config.get("stripe.stripeKey")}
                                                 shippingAddress={false}
                                                 billingAddress={false}
                                                 zipCode={false}
@@ -119,9 +139,19 @@ const OrderSummary = ({handleOnProceedPayment, handleCheckout, deliveryObj, useS
                                                 reconfigureOnUpdate={false}
                                                 triggerEvent="onClick"
                                                 email={login.email}
-                                                disabled={false}
+                                                disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0)}
+                                                opened={() => funcs.cartDispatch({paymentLoading: false})}
+                                                closed={() => funcs.cartDispatch({paymentLoading: false})}
                                             >
-                                                <Button disabled={false} fluid color="black">Proceed to Payment</Button>
+                                                <Button
+                                                    disabled={(paymentLoading || Object.keys(funcs.isUserValid()).length > 0 || cart.dates.length <= 0)}
+                                                    // onClick={() => funcs.validatorUser()}
+                                                    fluid
+                                                    color="black"
+                                                    // loading={paymentLoading}
+                                                >
+                                                    {paymentLoading ? `Loading ${Config.get("stripe.name")}...` : "Proceed to Payment"}
+                                                </Button>
                                             </StripeCheckout>
                                 : 
                                     <Label size="large" style={{width: "100%"}}><Header as="h3" className="notifier">You must login to Proceed to Payment</Header></Label>

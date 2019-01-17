@@ -18,6 +18,10 @@ export const reducer = (state, action) => {
             ...state,
             about: action.payload
         })
+        case "CATERING": return ({
+            ...state,
+            catering: action.payload
+        })
         case "SIDEBAR": return ({
             ...state,
             isSidebarOpen: (Object.keys(action).length === 2) ? action.payload : (state.isSidebarOpen) ? false : true
@@ -30,11 +34,37 @@ export const reducer = (state, action) => {
             ...state,
             menu: action.payload
         })
+        case "INDEX": return({
+            ...state,
+            index: action.payload
+        })
+        case "ACCOUNT_PERSONAL_DETAILS": return({
+            ...state,
+            account: {
+                ...state.account,
+                personal_details: action.payload
+            }
+        })
+        case "ORDERS": return ({
+            ...state,
+            orders: action.payload
+        })
+        case "ACCOUNT": return({
+            ...state,
+            account: action.payload
+        })
+        case "ACCOUNT_ORDER_HISTORY": return({
+            ...state,
+            account: {
+                ...state.account,
+                order_history: action.payload
+            }
+        })
         case "CART_ADD": return ({
             ...state,
             cart: {
                 ...state.cart,
-                details: details({cart: state.cart.items.concat([action.payload])}),
+                details: details({cart: state.cart.items.concat([action.payload]), dates: state.cart.dates}),
                 items: state.cart.items.concat([action.payload])
             }
         })
@@ -42,7 +72,7 @@ export const reducer = (state, action) => {
             ...state,
             cart: {
                 ...state.cart,
-                details: details({cart: action.payload}),
+                details: details({cart: action.payload, dates: state.cart.dates}),
                 items: action.payload
             }
         })
@@ -50,13 +80,25 @@ export const reducer = (state, action) => {
             ...state,
             cart: {
                 ...state.cart,
-                details: details({cart: state.cart.items, delivery_cost: action.payload.cost}),
+                details: details({cart: state.cart.items, delivery_cost: action.payload.cost, dates: state.cart.dates}),
                 delivery: action.payload
+            }
+        })
+        case "CART_DATES": return ({
+            ...state,
+            cart: {
+                ...state.cart,
+                details: details({cart: state.cart.items, dates: action.payload}),
+                dates: action.payload
             }
         })
         case "TEST": return ({
             ...state,
             test: action.payload
+        })
+        case "ROUTER": return ({
+            ...state,
+            router: action.payload
         })
         case "PAGE": return ({
             ...state,

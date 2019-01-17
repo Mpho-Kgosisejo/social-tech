@@ -2,87 +2,67 @@ import Layout from "../../Layout"
 import { List, Image, Grid, Header } from "semantic-ui-react";
 import React from 'react'
 import IndexBannerHeader from "./IndexBannerHeader";
+import ContextAPI from "../../../../src/config/ContextAPI";
 
 class IndexMenu extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: true
+        }
+    }
+
     render() {
         return (
-            <React.Fragment>
-                <IndexBannerHeader desc="Discover the taste" header="Explore our menu" image= "http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg" />
-                <div className="index-menu">
-                    <div className="index-menu-container">
-                        <div className="index-menu-row">
-                            <Grid columns={2} divided>
-                                <Grid.Row>
-                                    <Grid.Column>
-                                        <List className="align-iterms-center">
-                                            <List.Item className="list-padding">
-                                                <Image size="tiny" avatar src='https://demos.onepagelove.com/html/resto/img/img_square_1.jpg' />
-                                                <List.Content className="menu-content">
-                                                    <Header as="h4">FRIED POTATOES WITH GARLIC</Header>
-                                                    Crab / Potatoes / Rice
-                                                </List.Content>
-                                                </List.Item>
-                                                <List.Item className="list-padding">
-                                                <Image  size="tiny" avatar src='https://demos.onepagelove.com/html/resto/img/img_square_2.jpg' />
-                                                <List.Content className="menu-content">
-                                                <   Header as="h4">SALTED FRIED CHICKEN</Header>
-                                                    Crab / Potatoes / Rice
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item className="list-padding">
-                                            <Image  size="tiny" avatar src='https://demos.onepagelove.com/html/resto/img/img_square_3.jpg' />
-                                            <List.Content className="menu-content">
-                                            <Header as="h4">ROAST BEEF (4 STICKS)</Header>
-                                                Crab / Potatoes / Rice
-                                            </List.Content>
-                                            </List.Item>
-                                            <List.Item className="list-padding">
-                                            <Image size="tiny" avatar src='https://demos.onepagelove.com/html/resto/img/img_square_4.jpg' />
-                                            <List.Content className="menu-content">
-                                                <Header as="h4">TUNA ROAST SOURCE</Header>
-                                                Crab / Potatoes / Rice
-                                            </List.Content>
-                                            </List.Item>
-                                        </List>
-                                    </Grid.Column>
-                                    <Grid.Column>
-                                        <List className="align-iterms-center">
-                                            <List.Item className="list-padding">
-                                                <Image size="tiny" avatar src='https://demos.onepagelove.com/html/resto/img/img_square_5.jpg' />
-                                                <List.Content className="menu-content">
-                                                    <Header as="h4">BAKED POTATO PIZZA</Header>
-                                                    Crab / Potatoes / Rice
-                                                </List.Content>
-                                                </List.Item>
-                                                <List.Item className="list-padding">
-                                                <Image size="tiny" avatar src='https://demos.onepagelove.com/html/resto/img/img_square_4.jpg' />
-                                                <List.Content className="menu-content">
-                                                    <Header as="h4">SALTED FRIED CHICKEN</Header>
-                                                    Crab / Potatoes / Rice
-                                                </List.Content>
-                                            </List.Item>
-                                            <List.Item className="list-padding">
-                                            <Image size="tiny" avatar src='https://demos.onepagelove.com/html/resto/img/img_square_3.jpg' />
-                                            <List.Content className="menu-content">
-                                                <Header as="h4">TUNA ROAST SOURCE</Header>
-                                                Crab / Potatoes / Rice
-                                            </List.Content>
-                                            </List.Item>
-                                            <List.Item className="list-padding">
-                                            <Image size="tiny" avatar src='https://demos.onepagelove.com/html/resto/img/img_square_2.jpg' />
-                                            <List.Content className="menu-content">
-                                                <Header as="h4">FRIED POTATOES WITH GARLIC</Header>
-                                                Crab / Potatoes / Rice
-                                            </List.Content>
-                                            </List.Item>
-                                        </List>
-                                    </Grid.Column>
-                                </Grid.Row>
-                            </Grid>
+            <ContextAPI.Consumer>
+                {({ state }) => (
+                    <React.Fragment>
+                        <IndexBannerHeader desc={state.index.menu_banner_desc} header={state.index.menu_banner_header} image={state.index.menu_banner_img} />
+                        <div className="index-menu">
+                            <div className="index-menu-container">
+                                <div className="index-menu-row">
+                                    {state.root_loading ? "" : <Grid columns={2} divided>
+                                        <Grid.Row>
+                                            <Grid.Column>
+                                                <List className="align-iterms-center">
+                                                    {state.index.menu_items.items.map(item =>
+                                                        <React.Fragment key={item.name}>
+                                                            <List.Item className="list-padding">
+                                                                <Image size="tiny" avatar src={item.image} />
+                                                                <List.Content className="menu-content">
+                                                                    <Header as="h4">{item.name}</Header>
+                                                                    {item.contains}
+                                                            </List.Content>
+                                                            </List.Item>
+                                                        </React.Fragment>
+                                                    )}
+                                                </List>
+                                            </Grid.Column>
+                                            <Grid.Column>
+                                                <List className="align-iterms-center">
+                                                    {state.index.menu_items.items.map(item =>
+                                                        <React.Fragment key={item.name}>
+                                                            <List.Item className="list-padding">
+                                                                <Image size="tiny" avatar src={item.image} />
+                                                                <List.Content className="menu-content">
+                                                                    <Header as="h4">{item.name}</Header>
+                                                                    {item.contains}
+                                                            </List.Content>
+                                                            </List.Item>
+                                                        </React.Fragment>
+                                                    )}
+                                                </List>
+                                            </Grid.Column>
+                                        </Grid.Row>
+                                    </Grid>
+                                    }
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </React.Fragment>
+                    </React.Fragment>
+                )}
+            </ContextAPI.Consumer>
         )
     }
 }

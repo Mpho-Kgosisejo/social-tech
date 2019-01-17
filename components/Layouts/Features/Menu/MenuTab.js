@@ -7,6 +7,7 @@ import { ErrorMessage, WarningMessage, InfoMessage, GreyMessage } from "../../..
 import ContextAPI from "../../../../src/config/ContextAPI";
 
 class menu_tab extends React.Component {
+    
     handleTabChange = ({ index, state }) => {
         const dispatch = state.dispatch
         const menu = state.menu.data
@@ -15,6 +16,7 @@ class menu_tab extends React.Component {
         dispatch({ type: "MENU", payload: { index, data: menu } })
 
         Router.replace({ pathname: "/menu", query: { tab } })
+        console.log("Router", Router.query)
     }
 
     render() {

@@ -5,6 +5,7 @@ export const NOT_AUTHORIZED_PAGE_ACCESS = `${NOT_AUTHORIZED} to access page`
 // #region Auth
 export const FIELD_CANT_BE_EMPTY = "field can not be empty"
 export const INVALID_EMAIL = "invalid email"
+export const INVALID_MOBILE_NUMBER = "invalid number"
 export const PASSWORD_MISMATCH = "password mismatch"
 export const TRY_AGAIN_LATER = "please try again later"
 export const INCORRECT_CREDENTIALS = "incorrect credentials"
@@ -17,6 +18,7 @@ export const SUCCESSFULLY_SIGNUP = "you have successfully signed up, check email
 export const CONFIRMATION_EMAIL_ERROR = `invalid confirmation token, ${TRY_AGAIN_LATER}`
 export const CONFIRMATION_EMAIL_SUCCESS = "Email was successfully confirmed"
 export const CONFIRMATION_EMAIL_UNEXPECTED_ERROR = `${UNEXPECTED_ERROR} confirming email`
+export const INVALID_PHONE_NUMBER = "please enter a valid phone number"
 
 export const valueMustBeInLength = length => (`value must be ${length} in length`)
 // #endregion

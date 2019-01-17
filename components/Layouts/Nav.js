@@ -15,11 +15,10 @@ import NavAlert from "./Features/NavAlert/NavAlert";
 const handleLogout = (state) => {
     const {dispatch} = state
 
-    logout()
+    logout(dispatch)
     if ((`${Router.route}`).includes("/dashboard") || (`${Router.route}`).includes("/account"))
         Router.push({ pathname: "/" })
-    dispatch({ type: "LOGIN", payload: {} })
-    dispatch({ type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true } })
+    dispatch({type: "ALERT_PORTAL", payload: { type: "", header: "", message: MessageTypes.SUCCESSFULLY_LOGGED_OUT, open: true }})
     dispatch({type: "SIDEBAR", payload: false})
 }
 
@@ -29,6 +28,8 @@ const handleAboutDropdown = ({ dispatch, aboutState, index }) => {
 
     AboutHelper.RouterHandler({index})
 }
+
+const ResponsiveFragmentBugFix = () => (<div></div>)
 
 const pushSideBar =({dispatch}) =>
 {
@@ -42,7 +43,7 @@ const pushSideBar =({dispatch}) =>
 
 const ResponsiveFix = () => <></>
 
-const RightNav = () => (
+export const RightNav = () => (
     <ContextAPI.Consumer>
         {({ state }) => (
             <React.Fragment>
@@ -59,7 +60,7 @@ const RightNav = () => (
                                 />
                                 {state.login.username}
                             </span>
-                        }
+                        } 
                     // pointing='top left'
                     // icon={null}
                     >
@@ -117,6 +118,9 @@ export const LeftComputerNav = () => (
                         <Dropdown.Item className="fresheats-brown-color" as="a" onClick={() => handleAboutDropdown({ dispatch: state.dispatch, aboutState: state.about, index: 3 })}>FAQs</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
+                <Link href="/catering" prefetch passHref>
+                    <Menu.Item as="a" className="fresheats-brown-color">Cater Now</Menu.Item>
+                </Link>
                 <Link href="/gallery" prefetch passHref>
                     <Menu.Item as="a" className="fresheats-brown-color">Gallery</Menu.Item>
                 </Link>
@@ -127,7 +131,7 @@ export const LeftComputerNav = () => (
                                 <Menu.Item as="a" className="fresheats-brown-color">Dashboard</Menu.Item>
                             </Link>
                         )}
-                        <Responsive maxWidth={991} as={ResponsiveFix}>
+                        <Responsive maxWidth={991} as={"div"}>
                             {isEmptyObj(state.login) ? <AuthLayout /> : <Menu.Item as="a" onClick={() => handleLogout(state.dispatch)} className="fresheats-brown-color">Logout</Menu.Item>}
                             <Link href="/cart" prefetch passHref>
                                 <Menu.Item as="a" className="fresheats-brown-color cart-icon">

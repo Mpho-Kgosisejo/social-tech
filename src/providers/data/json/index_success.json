@@ -1,0 +1,121 @@
+{
+    "status": 200,
+    "data": {
+        "slide_title": "fresh eats.",
+        "slide_subtitle": "Something fresh all the time...",
+        "header_subtitle": "Hello Dear",
+        "header_title": "Welcome to Fresh Eats",
+        "header_desc": "Fresh Eats was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery.",
+        "header_sign_img": "https://thumb.ibb.co/hsAcfL/Fresh-Eats-Sign.png",
+        "steps_banner_desc": "Here's how you use it",
+        "steps_banner_img": "https://demos.hogash.com/phaeton-restaurant-html/images/bestservice.jpg",
+        "steps_banner_header": "Easy to use",
+        "steps_banner": 
+        {         
+            "steps": [
+                {
+                    "id": 1,
+                    "icon": "laptop",
+                    "header": "Order",
+                    "desc": "Choose your favourite options"
+                },            
+                {
+                    "id": 2,
+                    "icon": "payment",
+                    "header": "Billing",
+                    "desc": "Enter billing information"
+                },            
+                {
+                    "id": 3,
+                    "icon": "truck",
+                    "header": "Delivery",
+                    "desc": "Wait for you food to be delivered"
+                },            
+                {
+                    "id": 4,
+                    "icon": "info",
+                    "header": "Confirm",
+                    "desc": "Once delivered confirmation will be sent"
+                }
+            ]
+        },
+        "menu_banner_desc": "Discover the taste",
+        "menu_banner_img": "http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg",
+        "menu_banner_header": "Explore our menu",
+        "menu_items":
+        {
+            "items":[
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_1.jpg",
+                    "name": "FRIED POTATOES WITH GARLIC",
+                    "contains": "Crab / Potatoes / Rice"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_2.jpg",
+                    "name": "SALTED FRIED CHICKEN",
+                    "contains": "Crab / Potatoes / Rice"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_3.jpg",
+                    "name": "ROAST BEEF (4 STICKS)",
+                    "contains": "Crab / Potatoes / Rice"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_4.jpg",
+                    "name": "TUNA ROAST SOURCE",
+                    "contains": "Crab / Potatoes / Rice"
+                }
+            ]
+        },
+        "todays_spe_banner_desc": "What's trending?",
+        "todays_spe_banner_header": "Today's speciality",
+        "todays_spe_banner_img": "http://themearth.com/demo/html/restaura/view/assets/img/menu/menu1.jpg",
+        "todays_spe_new_dish": "New dishes",
+        "todays_spe_name": "Grilled Seafood Paella",
+        "todays_spe_desc": "Monkfish, onion, paella rice, garlic & smoked paprika, creamy chesapeake crab dip with artichoke, baked and topped with cheddar cheese, with crusty bread for dipping.",
+        "freq_ordered_banner_desc": "From the top sold dishes that our users prefer",
+        "freq_ordered_banner_header": "Frequently ordered meals",    
+        "freq_ordered_banner_img": "http://themearth.com/demo/html/restaura/view/assets/img/menu/menu2.jpg",
+        "freq_ordered_meals": 
+        {
+            "meals":
+            [
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_1.jpg",
+                    "name": "GREEN SALAD WITH MACARONNI",
+                    "date_created": "JUNE 29, 2018",
+                    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.",
+                    "category": "STARTER"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_2.jpg",
+                    "name": "CHEESE CHIPS SEREVD WITH BROWN RICE AND WNGS",
+                    "date_created": "MAY 2, 2018",
+                    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.",
+                    "category": "MEAL"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_3.jpg",
+                    "name": "CHEESE BEEF AND CHICKEN",
+                    "date_created": "JULY 9, 2018",
+                    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.",
+                    "category": "STARTER"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_4.jpg",
+                    "name": "SPINACH SERVED IN FISH (SPINISH)",
+                    "date_created": "JUNE 9 2018",
+                    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.",
+                    "category": "MEAL"
+                },
+                {
+                    "image": "https://demos.onepagelove.com/html/resto/img/img_square_5.jpg",
+                    "name": "TOMATOE CHEESE AND CHICKEN PIZZA",
+                    "date_created": "JUNE 29, 2017",
+                    "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto provident qui tempore natus quos quibusdam soluta at.",
+                    "category": "MEAL"
+                }
+            ]
+        }
+    }
+}

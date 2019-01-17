@@ -15,6 +15,7 @@ import "../../static/css/menu.css";
 import "../../static/css/cart.css"
 import "../../static/css/alertportal.css"
 import "../../static/css/pageheader.css"
+import "../../static/css/catering.css"
 import "../../static/css/avator.css"
 import "../../static/css/updatealert.css"
 
@@ -30,7 +31,9 @@ const handleUpdateLayout = ({calculations, state}) => {
 
 const Layout = ({children, title = "", includeNav = true, includeFooter = true, includeContainer = true}) => (
     <React.Fragment>
+        
         <Head>
+
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta charSet="utf-8" />
             <meta name="theme-color" content={FRESHEATS_GREEN} />
