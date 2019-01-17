@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Input, Image, Placeholder, Icon, Button, Modal, Header, Divider, Dropdown, Label, Pagination } from 'semantic-ui-react'
+import { List, Input, Image, Placeholder, Icon, Button, Modal, Header, Divider,Checkbox, Dropdown, Label, Pagination } from 'semantic-ui-react'
 import { isEmptyObj } from "../../../../../../../src/utils/Objs"
 import api from '../../../../../../../src/providers/APIRequest';
 
@@ -13,6 +13,11 @@ class UserListSegment extends React.Component {
             isSearching : false,
             userDetailsOpen : false,
             clickedUserDetails : {},
+            //filterOptions
+
+            admin : false,
+            nonAdmin : false,
+            showAll : true,
 
             //filter options
             showOnlyAdmins : false,
@@ -139,7 +144,11 @@ class UserListSegment extends React.Component {
 
     render()
     {
+<<<<<<< HEAD
+        const {filteredList, isSearching, clickedUserDetails, userDetailsOpen, usersPerPage, activePage, admin, nonAdmin, showAll} = this.state
+=======
         const {filteredList, isSearching, clickedUserDetails, userDetailsOpen, usersPerPage, activePage, filter} = this.state
+>>>>>>> ace0a6e8f1bec70f16035e712e0061f76d1e7f2a
         const {users} = this.props
 
         const currentCards = this.getListToRender(activePage, usersPerPage)
@@ -148,6 +157,27 @@ class UserListSegment extends React.Component {
         if (!isEmptyObj(currentCards))
         {
             renderCards = currentCards.map(user => {
+<<<<<<< HEAD
+                if (user.admin && admin)
+                {
+                    console.log("we showing only admins")
+                    
+                    return (
+                        <List.Item id={user.username} onClick={() => this.handleUserClick(user)}>
+                            {
+                                (user.image === "") ? 
+                                    <div>
+                                        <div className="user-list-image-div fresheats-brown-bg user-list-item"> 
+                                            <h4>{user.username[0].toUpperCase()}</h4> 
+                                        </div>
+                                        <List.Content className="user-list-item">
+                                            <List.Header>{user.username}</List.Header>
+                                            {user.email}
+                                        </List.Content>
+                                        <List.Content verticalAlign='middle' floated='right'>
+                                            {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
+                                        </List.Content>
+=======
                 return (
                     <List.Item key={user._id} onClick={() => this.handleUserClick(user)}>
                         {
@@ -155,30 +185,93 @@ class UserListSegment extends React.Component {
                                 <div>
                                     <div className="user-list-image-div fresheats-brown-bg user-list-item"> 
                                         <h4>{user.username[0].toUpperCase()}</h4> 
+>>>>>>> ace0a6e8f1bec70f16035e712e0061f76d1e7f2a
                                     </div>
-                                    <List.Content className="user-list-item">
-                                        <List.Header>{user.username}</List.Header>
-                                        {user.email}
-                                    </List.Content>
-                                    <List.Content verticalAlign='middle' floated='right'>
-                                        {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
-                                    </List.Content>
-                                </div>
-                            : 
-                                <>
-                                    <List.Content  floated='right'>
-                                        {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
-                                    </List.Content>
-                                    <Image avatar src={user.image}/>
-                                    <List.Content>
-                                        <List.Header>{user.username}</List.Header>
-                                        {user.email}
-                                    </List.Content>
-                                    
-                                </>
-                        }
-                    </List.Item>
-                )
+                                : 
+                                    <>
+                                        <List.Content  floated='right'>
+                                            {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
+                                        </List.Content>
+                                        <Image avatar src={user.image}/>
+                                        <List.Content>
+                                            <List.Header>{user.username}</List.Header>
+                                            {user.email}
+                                        </List.Content>
+                                        
+                                    </>
+                            }
+                        </List.Item>
+                    )                }
+                else if (!user.admin && nonAdmin)
+                {
+                    console.log("we showing only non admins")
+                    return (
+                        <List.Item id={user.username} onClick={() => this.handleUserClick(user)}>
+                            {
+                                (user.image === "") ? 
+                                    <div>
+                                        <div className="user-list-image-div fresheats-brown-bg user-list-item"> 
+                                            <h4>{user.username[0].toUpperCase()}</h4> 
+                                        </div>
+                                        <List.Content className="user-list-item">
+                                            <List.Header>{user.username}</List.Header>
+                                            {user.email}
+                                        </List.Content>
+                                        <List.Content verticalAlign='middle' floated='right'>
+                                            {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
+                                        </List.Content>
+                                    </div>
+                                : 
+                                    <>
+                                        <List.Content  floated='right'>
+                                            {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
+                                        </List.Content>
+                                        <Image avatar src={user.image}/>
+                                        <List.Content>
+                                            <List.Header>{user.username}</List.Header>
+                                            {user.email}
+                                        </List.Content>
+                                        
+                                    </>
+                            }
+                        </List.Item>
+                    )
+                }
+                else if (showAll)
+                {
+                    console.log("we showing everyone")                    
+                    return (
+                        <List.Item id={user.username} onClick={() => this.handleUserClick(user)}>
+                            {
+                                (user.image === "") ? 
+                                    <div>
+                                        <div className="user-list-image-div fresheats-brown-bg user-list-item"> 
+                                            <h4>{user.username[0].toUpperCase()}</h4> 
+                                        </div>
+                                        <List.Content className="user-list-item">
+                                            <List.Header>{user.username}</List.Header>
+                                            {user.email}
+                                        </List.Content>
+                                        <List.Content verticalAlign='middle' floated='right'>
+                                            {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
+                                        </List.Content>
+                                    </div>
+                                : 
+                                    <>
+                                        <List.Content  floated='right'>
+                                            {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
+                                        </List.Content>
+                                        <Image avatar src={user.image}/>
+                                        <List.Content>
+                                            <List.Header>{user.username}</List.Header>
+                                            {user.email}
+                                        </List.Content>
+                                        
+                                    </>
+                            }
+                        </List.Item>
+                    )
+                }
             });
         }
         
@@ -189,6 +282,21 @@ class UserListSegment extends React.Component {
                         <h3>{ isSearching ? `${filter} | ${ isEmptyObj(filteredList)? null : this.getFilterList(filteredList).length}` : `${filter} | ${ isEmptyObj(users) ? null : this.getFilterList(users).length}` }</h3>
                     </div>
                     <div>
+<<<<<<< HEAD
+                    <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
+                        <Dropdown.Menu>
+                            <Dropdown.Header icon='user' content='Filter by :' />
+                            <Dropdown.Divider />
+                            <Dropdown.Item><h4>Admins</h4></Dropdown.Item>
+                            <Dropdown.Item><h4>Users</h4></Dropdown.Item>
+                            <Dropdown.Item><h4>Show all</h4></Dropdown.Item>
+                            {/* <Dropdown.Item label={{ color: 'pink', empty: true, circular: true }} text='Admins' />
+                            <Dropdown.Item label={{ color: 'blue', empty: true, circular: true }} text='Users' />
+                            <Dropdown.Item label={{ color: 'black', empty: true, circular: true }} text='Show all' /> */}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                        <Input placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
+=======
                         <Dropdown text='Filter' icon='filter' floating labeled button className='icon user-list-header'>
                             <Dropdown.Menu>
                                 <Dropdown.Header icon='tags' content='Filter by :' />
@@ -199,6 +307,7 @@ class UserListSegment extends React.Component {
                             </Dropdown.Menu>
                         </Dropdown>
                         <Input className="user-list-header" placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
+>>>>>>> ace0a6e8f1bec70f16035e712e0061f76d1e7f2a
                     </div>
                 </div>
                 <div className="list-div">
