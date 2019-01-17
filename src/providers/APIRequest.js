@@ -401,11 +401,7 @@ const API = {
                 return (mock.genericMock().then(res => res))
             }
             return (
-<<<<<<< HEAD
-                axios.post(`${Config.get("api.endpoint")}/order`, {body})
-=======
                 axios.post(`${Config.get("api.endpoint")}/order`, body)
->>>>>>> d65832eecf671cd400abaec722c7bba28f15d0a4
                 .then(res => res)
                 .catch(err => err.response)
             )

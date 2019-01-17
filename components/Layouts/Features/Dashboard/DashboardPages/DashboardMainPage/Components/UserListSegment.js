@@ -144,11 +144,7 @@ class UserListSegment extends React.Component {
 
     render()
     {
-<<<<<<< HEAD
         const {filteredList, isSearching, clickedUserDetails, userDetailsOpen, usersPerPage, activePage, admin, nonAdmin, showAll} = this.state
-=======
-        const {filteredList, isSearching, clickedUserDetails, userDetailsOpen, usersPerPage, activePage, filter} = this.state
->>>>>>> ace0a6e8f1bec70f16035e712e0061f76d1e7f2a
         const {users} = this.props
 
         const currentCards = this.getListToRender(activePage, usersPerPage)
@@ -157,7 +153,6 @@ class UserListSegment extends React.Component {
         if (!isEmptyObj(currentCards))
         {
             renderCards = currentCards.map(user => {
-<<<<<<< HEAD
                 if (user.admin && admin)
                 {
                     console.log("we showing only admins")
@@ -177,15 +172,6 @@ class UserListSegment extends React.Component {
                                         <List.Content verticalAlign='middle' floated='right'>
                                             {user.emailConfirmed ? null : <Label size='tiny' basic className="fresheats-brown-bg">Account not verified</Label>}                                    
                                         </List.Content>
-=======
-                return (
-                    <List.Item key={user._id} onClick={() => this.handleUserClick(user)}>
-                        {
-                            (user.image === "") ? 
-                                <div>
-                                    <div className="user-list-image-div fresheats-brown-bg user-list-item"> 
-                                        <h4>{user.username[0].toUpperCase()}</h4> 
->>>>>>> ace0a6e8f1bec70f16035e712e0061f76d1e7f2a
                                     </div>
                                 : 
                                     <>
@@ -282,7 +268,6 @@ class UserListSegment extends React.Component {
                         <h3>{ isSearching ? `${filter} | ${ isEmptyObj(filteredList)? null : this.getFilterList(filteredList).length}` : `${filter} | ${ isEmptyObj(users) ? null : this.getFilterList(users).length}` }</h3>
                     </div>
                     <div>
-<<<<<<< HEAD
                     <Dropdown text='Filter' icon='filter' floating labeled button className='icon'>
                         <Dropdown.Menu>
                             <Dropdown.Header icon='user' content='Filter by :' />
@@ -296,18 +281,6 @@ class UserListSegment extends React.Component {
                         </Dropdown.Menu>
                     </Dropdown>
                         <Input placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
-=======
-                        <Dropdown text='Filter' icon='filter' floating labeled button className='icon user-list-header'>
-                            <Dropdown.Menu>
-                                <Dropdown.Header icon='tags' content='Filter by :' />
-                                <Dropdown.Divider />
-                                <Dropdown.Item onClick={() => this.handleUserFilterChange(true, false, false, 'Admins')} ><h4>Admins</h4></Dropdown.Item>
-                                <Dropdown.Item onClick={() => this.handleUserFilterChange(false, true, false, 'Non Admins')} ><h4>Users</h4></Dropdown.Item>
-                                <Dropdown.Item onClick={() => this.handleUserFilterChange(false, false, true, 'All Users')} ><h4>Show All</h4></Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                        <Input className="user-list-header" placeholder='Search by username' icon='search' type="text" onChange={() => this.filterList(event)}/>
->>>>>>> ace0a6e8f1bec70f16035e712e0061f76d1e7f2a
                     </div>
                 </div>
                 <div className="list-div">
