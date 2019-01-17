@@ -469,10 +469,12 @@ const API = {
     catering: {
         add : (cateringEvent) => {
             if (Config.get("api.isMock")){
-                return(mock.catering().then(res => res))
+                return(mock.cateringAdd().then(res => res))
             }
             return(
-                axios.post(`${Config.get("api.endpoint")}/catering`, cateringEvent)
+                axios.post(`${Config.get("api.endpoint")}/catering`, {
+                    ...cateringEvent
+                })
                 .then(res => res)
                 .catch(err => err.response)
             )

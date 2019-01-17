@@ -24,6 +24,7 @@ import user_orders_s from "./json/user_orders_success"
 import index_s from "./json/index_success.json"
 import index_f from "./json/index_fail.json"
 import isvalidtoken_s from "./json/isvalidtoken_success"
+import catering_add_s from "./json/catering_add_success"
 
 const WAIT_TIME = 1500
 
@@ -50,5 +51,6 @@ export default {
     index: () => loadMock(index_s),
     dashboard_orders: () => loadMock(orders_s),
     account: () => loadMock(account_s1),
-    isValidToken: () => loadMock(isvalidtoken_s)
+    isValidToken: () => loadMock(isvalidtoken_s),
+    cateringAdd: () => loadMock(catering_add_s)
 }
