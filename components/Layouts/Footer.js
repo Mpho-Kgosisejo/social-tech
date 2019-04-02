@@ -74,7 +74,7 @@ const Footer = () => (
                 <div className="footer_copywriter_container">
                     <div className="footer_copywriter_row">
                         <div className="copywriter_info">
-                            <span>© 2019 Fresh Eats, With Love by the </span>
+                            <span>© 2019 Fresh Chew, With Love by the </span>
                             <a className="footer_link_color" target="_blank" href="https://en.wikipedia.org/wiki/Fantastic_Four_(2015_film)">Fantastic 4</a>
                         </div>
                     </div>
