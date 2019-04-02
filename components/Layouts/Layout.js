@@ -17,7 +17,7 @@ import "../../static/css/alertportal.css"
 import "../../static/css/pageheader.css"
 import "../../static/css/avator.css"
 
-const companyName = "Fresh Eats."
+const companyName = "Fresh Chew."
 
 const handleUpdateLayout = ({calculations, state}) => {
     const {dispatch} = state
