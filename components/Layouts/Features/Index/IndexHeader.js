@@ -10,14 +10,14 @@ class IndexHeader extends React.Component {
                     <div className="header-container">
                         <div className="header-row align-iterms-center">
                             <p className="header-sub">Hello Dear</p>
-                            <Header as="h2">Welcome to Fresh Eats</Header>
+                            <Header as="h2">Welcome to Fresh Chew</Header>
                             <Divider className="header-divider" />
                             <Grid>
                                 <Grid.Column width={3}>
                                    <p></p>
                                 </Grid.Column>
                                 <Grid.Column width={10}>
-                                    <p className="header-desc">Fresh Eats was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery.</p>
+                                    <p className="header-desc">Fresh Chew was the first retaurant to open in Egypt, the resturant was designed with the history in mind we have created a soft industrial dining room, combined with an open kitchen, coffee take out bar and on site coffee roastery.</p>
                                 </Grid.Column>
                                 <Grid.Column width={3}>
                                 <p></p>
