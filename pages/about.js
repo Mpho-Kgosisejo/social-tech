@@ -158,7 +158,7 @@ class About extends React.Component {
             <Layout title="About Us" includeContainer={false}>
                 <PageHeader 
                     color="rgb(212, 195, 176)"
-                    title="Welcome to Fresh Eats" />
+                    title="Welcome to Fresh Chew" />
                 
                 <Container>
                     <ContextAPI.Consumer>
