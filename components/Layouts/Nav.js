@@ -99,7 +99,7 @@ export const LeftComputerNav = () => (
             <React.Fragment>
                 <Link href="/" prefetch passHref>
                     <Menu.Item className="fresheats-brown-color nav-logo">
-                        <img src="../static/imgs/Fresh-Eats-1.png"></img>
+                        <img src="../static/imgs/icon.png"></img>
                     </Menu.Item>
                 </Link>
                 <Link href="/" prefetch passHref>
